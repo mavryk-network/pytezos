@@ -172,17 +172,19 @@
 <span></span><span class="kn">import</span> <span class="nn">atexit</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">unittest</span>
-<span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">CancelledError</span><span class="p">,</span> <span class="n">Future</span><span class="p">,</span> <span class="n">ThreadPoolExecutor</span><span class="p">,</span> <span class="n">wait</span>
+<span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">Future</span><span class="p">,</span> <span class="n">ThreadPoolExecutor</span><span class="p">,</span> <span class="n">wait</span>
 <span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Event</span>
 <span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
 
 <span class="kn">import</span> <span class="nn">requests.exceptions</span>
 <span class="kn">from</span> <span class="nn">testcontainers.core.generic</span> <span class="kn">import</span> <span class="n">DockerContainer</span>  <span class="c1"># type: ignore</span>
 
 <span class="kn">from</span> <span class="nn">pytezos.client</span> <span class="kn">import</span> <span class="n">PyTezosClient</span>
 <span class="kn">from</span> <span class="nn">pytezos.operation.group</span> <span class="kn">import</span> <span class="n">OperationGroup</span>
-<span class="kn">from</span> <span class="nn">pytezos.sandbox.parameters</span> <span class="kn">import</span> <span class="n">FLORENCE</span><span class="p">,</span> <span class="n">GRANADA</span>
+<span class="kn">from</span> <span class="nn">pytezos.sandbox.parameters</span> <span class="kn">import</span> <span class="n">LATEST</span>
+
+<span class="n">DOCKER_IMAGE</span> <span class="o">=</span> <span class="s1">&#39;bakingbad/sandboxed-node:v11.0-1&#39;</span>
 
 <span class="c1"># NOTE: Container object is a singleton which will be used in all tests inherited from class _SandboxedNodeTestCase</span>
 <span class="c1"># and stopped after all tests are completed.</span>
@@ -196,13 +198,13 @@
 <div class="viewcode-block" id="SandboxedNodeTestCase"><a class="viewcode-back" href="../../../integration_tests.html#pytezos.sandbox.node.SandboxedNodeTestCase">[docs]</a><span class="k">class</span> <span class="nc">SandboxedNodeTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Perform tests with sanboxed node in Docker container.&quot;&quot;&quot;</span>
 
-    <span class="n">IMAGE</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;bakingbad/sandboxed-node:v9.4-1&#39;</span>
+    <span class="n">IMAGE</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">DOCKER_IMAGE</span>
     <span class="s2">&quot;Docker image to use&quot;</span>
 
     <span class="n">PORT</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="s2">&quot;Port to expose to host machine&quot;</span>
 
-    <span class="n">PROTOCOL</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">GRANADA</span>
+    <span class="n">PROTOCOL</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">LATEST</span>
     <span class="s2">&quot;Hash of protocol to activate&quot;</span>
 
 <div class="viewcode-block" id="SandboxedNodeTestCase.setUpClass"><a class="viewcode-back" href="../../../integration_tests.html#pytezos.sandbox.node.SandboxedNodeTestCase.setUpClass">[docs]</a>    <span class="nd">@classmethod</span>

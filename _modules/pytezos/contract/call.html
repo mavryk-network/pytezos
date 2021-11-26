@@ -429,22 +429,6 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_code</span><span class="p">(</span><span class="n">storage</span><span class="o">=</span><span class="n">storage</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="n">sender</span><span class="o">=</span><span class="n">sender</span><span class="p">,</span> <span class="n">gas_limit</span><span class="o">=</span><span class="n">gas_limit</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_operation</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="ContractCall.storage_view"><a class="viewcode-back" href="../../../high_level.html#pytezos.contract.call.ContractCall.storage_view">[docs]</a>    <span class="k">def</span> <span class="nf">storage_view</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Get return value of an off-chain storage view.</span>
-
-<span class="sd">        :returns: Decoded parameters of a callback</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">_</span><span class="p">,</span> <span class="n">storage</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">Interpreter</span><span class="o">.</span><span class="n">run_view</span><span class="p">(</span>
-            <span class="n">parameter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">],</span>
-            <span class="n">entrypoint</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;entrypoint&#39;</span><span class="p">],</span>
-            <span class="n">storage</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;prim&#39;</span><span class="p">:</span> <span class="s1">&#39;None&#39;</span><span class="p">},</span>
-            <span class="n">context</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="k">if</span> <span class="n">error</span><span class="p">:</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">stdout</span><span class="p">))</span>
-            <span class="k">raise</span> <span class="n">error</span>
-        <span class="k">return</span> <span class="n">storage</span>  <span class="c1"># type: ignore</span></div>
-
 <div class="viewcode-block" id="ContractCall.callback_view"><a class="viewcode-back" href="../../../high_level.html#pytezos.contract.call.ContractCall.callback_view">[docs]</a>    <span class="k">def</span> <span class="nf">callback_view</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get return value of an on-chain callback method.</span>
 
@@ -456,7 +440,7 @@
             <span class="n">storage_ty</span> <span class="o">=</span> <span class="n">StorageSection</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">storage_expr</span><span class="p">)</span>
             <span class="n">initial_storage</span> <span class="o">=</span> <span class="n">storage_ty</span><span class="o">.</span><span class="n">dummy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="p">)</span><span class="o">.</span><span class="n">to_micheline_value</span><span class="p">(</span><span class="n">lazy_diff</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-        <span class="n">operations</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">Interpreter</span><span class="o">.</span><span class="n">run_view</span><span class="p">(</span>
+        <span class="n">operations</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">Interpreter</span><span class="o">.</span><span class="n">run_callback</span><span class="p">(</span>
             <span class="n">parameter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">],</span>
             <span class="n">entrypoint</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;entrypoint&#39;</span><span class="p">],</span>
             <span class="n">storage</span><span class="o">=</span><span class="n">initial_storage</span><span class="p">,</span>

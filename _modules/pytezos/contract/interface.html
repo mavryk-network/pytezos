@@ -174,7 +174,7 @@
 <span class="kn">from</span> <span class="nn">decimal</span> <span class="kn">import</span> <span class="n">Decimal</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">lru_cache</span>
 <span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">exists</span><span class="p">,</span> <span class="n">expanduser</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Union</span>
 <span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlparse</span>
 
 <span class="kn">import</span> <span class="nn">requests</span>
@@ -188,6 +188,7 @@
 <span class="kn">from</span> <span class="nn">pytezos.contract.metadata</span> <span class="kn">import</span> <span class="n">ContractMetadata</span>
 <span class="kn">from</span> <span class="nn">pytezos.contract.result</span> <span class="kn">import</span> <span class="n">ContractCallResult</span>
 <span class="kn">from</span> <span class="nn">pytezos.contract.token_metadata</span> <span class="kn">import</span> <span class="n">ContractTokenMetadata</span>
+<span class="kn">from</span> <span class="nn">pytezos.contract.view</span> <span class="kn">import</span> <span class="n">ContractView</span>
 <span class="kn">from</span> <span class="nn">pytezos.crypto.key</span> <span class="kn">import</span> <span class="n">Key</span>
 <span class="kn">from</span> <span class="nn">pytezos.jupyter</span> <span class="kn">import</span> <span class="n">get_class_docstring</span>
 <span class="kn">from</span> <span class="nn">pytezos.logging</span> <span class="kn">import</span> <span class="n">logger</span>
@@ -195,6 +196,7 @@
 <span class="kn">from</span> <span class="nn">pytezos.michelson.micheline</span> <span class="kn">import</span> <span class="n">MichelsonRuntimeError</span>
 <span class="kn">from</span> <span class="nn">pytezos.michelson.parse</span> <span class="kn">import</span> <span class="n">michelson_to_micheline</span>
 <span class="kn">from</span> <span class="nn">pytezos.michelson.program</span> <span class="kn">import</span> <span class="n">MichelsonProgram</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.sections</span> <span class="kn">import</span> <span class="n">ViewSection</span>
 <span class="kn">from</span> <span class="nn">pytezos.michelson.types.base</span> <span class="kn">import</span> <span class="n">generate_pydoc</span>
 <span class="kn">from</span> <span class="nn">pytezos.operation.group</span> <span class="kn">import</span> <span class="n">OperationGroup</span>
 <span class="kn">from</span> <span class="nn">pytezos.rpc</span> <span class="kn">import</span> <span class="n">ShellQuery</span>
@@ -220,12 +222,27 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ContractData</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">entrypoints</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">program</span><span class="o">.</span><span class="n">parameter</span><span class="o">.</span><span class="n">list_entrypoints</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">views</span> <span class="o">=</span> <span class="p">{</span><span class="n">view</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">view</span> <span class="k">for</span> <span class="n">view</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">program</span><span class="o">.</span><span class="n">views</span><span class="p">}</span>  <span class="c1"># type: Dict[str, Type[ViewSection]]</span>
+
         <span class="k">for</span> <span class="n">entrypoint</span><span class="p">,</span> <span class="n">ty</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">entrypoints</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">entrypoint</span> <span class="o">==</span> <span class="s1">&#39;token_metadata&#39;</span><span class="p">:</span>
                 <span class="k">continue</span>
             <span class="n">attr</span> <span class="o">=</span> <span class="n">ContractEntrypoint</span><span class="p">(</span><span class="n">context</span><span class="o">=</span><span class="n">context</span><span class="p">,</span> <span class="n">entrypoint</span><span class="o">=</span><span class="n">entrypoint</span><span class="p">)</span>
             <span class="n">attr</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">generate_pydoc</span><span class="p">(</span><span class="n">ty</span><span class="p">,</span> <span class="n">entrypoint</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entrypoint</span><span class="p">),</span> <span class="sa">f</span><span class="s1">&#39;Entrypoint name collision </span><span class="si">{</span><span class="n">entrypoint</span><span class="si">}</span><span class="s1">&#39;</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entrypoint</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">view_name</span><span class="p">,</span> <span class="n">view_ty</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">view_attr</span> <span class="o">=</span> <span class="n">ContractView</span><span class="p">(</span>
+                <span class="n">context</span><span class="o">=</span><span class="n">context</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="n">view_name</span><span class="p">,</span>
+                <span class="n">parameter</span><span class="o">=</span><span class="n">view_ty</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">as_micheline_expr</span><span class="p">(),</span>
+                <span class="n">return_type</span><span class="o">=</span><span class="n">view_ty</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">as_micheline_expr</span><span class="p">(),</span>
+                <span class="n">code</span><span class="o">=</span><span class="n">view_ty</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">as_micheline_expr</span><span class="p">(),</span>  <span class="c1"># type: ignore</span>
+            <span class="p">)</span>
+            <span class="n">view_attr</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">view_ty</span><span class="o">.</span><span class="n">generate_pydoc</span><span class="p">()</span>  <span class="c1"># type: ignore</span>
+            <span class="k">assert</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">view_name</span><span class="p">),</span> <span class="sa">f</span><span class="s1">&#39;View name collision </span><span class="si">{</span><span class="n">view_name</span><span class="si">}</span><span class="s1">&#39;</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">view_name</span><span class="p">,</span> <span class="n">view_attr</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="n">res</span> <span class="o">=</span> <span class="p">[</span>
@@ -234,6 +251,8 @@
             <span class="s1">&#39;.parameter</span><span class="se">\t</span><span class="s1"># root entrypoint&#39;</span><span class="p">,</span>
             <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Entrypoints&#39;</span><span class="p">,</span>
             <span class="o">*</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;.</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1">()&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">entrypoints</span><span class="p">)),</span>
+            <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Views&#39;</span><span class="p">,</span>
+            <span class="o">*</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;.</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1">()&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">views</span><span class="p">)),</span>
             <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Helpers&#39;</span><span class="p">,</span>
             <span class="n">get_class_docstring</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,</span> <span class="n">attr_filter</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">entrypoints</span><span class="p">),</span>
         <span class="p">]</span>
@@ -284,12 +303,17 @@
 <span class="sd">        :param context: optional execution context</span>
 <span class="sd">        :rtype: ContractInterface</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">program</span> <span class="o">=</span> <span class="n">MichelsonProgram</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">expression</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">code_expr</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">resolve_global_constants</span><span class="p">(</span><span class="n">expression</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">code_expr</span> <span class="o">=</span> <span class="n">expression</span>
+        <span class="n">program</span> <span class="o">=</span> <span class="n">MichelsonProgram</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">code_expr</span><span class="p">)</span>
         <span class="bp">cls</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">ContractInterface</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="p">(</span><span class="n">ContractInterface</span><span class="p">,),</span> <span class="nb">dict</span><span class="p">(</span><span class="n">program</span><span class="o">=</span><span class="n">program</span><span class="p">))</span>
         <span class="n">context</span> <span class="o">=</span> <span class="n">ExecutionContext</span><span class="p">(</span>
             <span class="n">shell</span><span class="o">=</span><span class="n">context</span><span class="o">.</span><span class="n">shell</span> <span class="k">if</span> <span class="n">context</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">key</span><span class="o">=</span><span class="n">context</span><span class="o">.</span><span class="n">key</span> <span class="k">if</span> <span class="n">context</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="n">script</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="n">expression</span><span class="p">),</span>
+            <span class="n">script</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="n">code_expr</span><span class="p">),</span>
+            <span class="n">global_constants</span><span class="o">=</span><span class="n">context</span><span class="o">.</span><span class="n">global_constants</span> <span class="k">if</span> <span class="n">context</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">context</span><span class="p">)</span></div>
 
@@ -379,6 +403,7 @@
 <span class="sd">        :param key: base58 encoded key, path to the faucet file, alias from tezos-client, or instance of `Key`</span>
 <span class="sd">        :param block_id: block height / hash / offset to use, default is `head`</span>
 <span class="sd">        :param mode: whether to use `readable` or `optimized` encoding for parameters/storage/other</span>
+<span class="sd">        :param ipfs_gateway: override IPFS gateway URI</span>
 <span class="sd">        :rtype: ContractInterface</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">has_address</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">address</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>

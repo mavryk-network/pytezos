@@ -522,6 +522,27 @@ More info <a class="reference external" href="https://tezos.gitlab.io/master/whi
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="pytezos.operation.group.OperationGroup.register_global_constant">
+<span class="sig-name descname"><span class="pre">register_global_constant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">counter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fee</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gas_limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pytezos.operation.group.OperationGroup.register_global_constant" title="Permalink to this definition">¶</a></dt>
+<dd><p>Operation to register Micheline expressions in a global table of constants</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> – Micheline expression</p></li>
+<li><p><strong>source</strong> – Address from which funds will be delegated, leave None to use signatory address</p></li>
+<li><p><strong>counter</strong> – Current account counter, leave None for autocomplete</p></li>
+<li><p><strong>fee</strong> – Leave None for autocomplete</p></li>
+<li><p><strong>gas_limit</strong> – Leave None for autocomplete</p></li>
+<li><p><strong>storage_limit</strong> – Leave None for autocomplete</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dict or OperationGroup</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pytezos.operation.group.OperationGroup.result">
 <span class="sig-name descname"><span class="pre">result</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pytezos.operation.result.OperationResult" title="pytezos.operation.result.OperationResult"><span class="pre">pytezos.operation.result.OperationResult</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/pytezos/operation/group.html#OperationGroup.result"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.operation.group.OperationGroup.result" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse the preapply result.</p>
@@ -977,6 +998,11 @@ More info <a class="reference external" href="https://tezos.gitlab.io/master/whi
 <dl class="py function">
 <dt class="sig sig-object py" id="pytezos.operation.forge.forge_origination">
 <span class="sig-prename descclassname"><span class="pre">pytezos.operation.forge.</span></span><span class="sig-name descname"><span class="pre">forge_origination</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bytes</span></span></span><a class="reference internal" href="_modules/pytezos/operation/forge.html#forge_origination"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.operation.forge.forge_origination" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pytezos.operation.forge.forge_register_global_constant">
+<span class="sig-prename descclassname"><span class="pre">pytezos.operation.forge.</span></span><span class="sig-name descname"><span class="pre">forge_register_global_constant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bytes</span></span></span><a class="reference internal" href="_modules/pytezos/operation/forge.html#forge_register_global_constant"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.operation.forge.forge_register_global_constant" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">

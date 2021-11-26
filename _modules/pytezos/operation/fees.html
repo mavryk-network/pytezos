@@ -173,7 +173,6 @@
 
 <span class="kn">from</span> <span class="nn">pytezos.operation.forge</span> <span class="kn">import</span> <span class="n">forge_operation</span>
 
-<span class="c1"># NOTE: Correct for PtEdo2Zk</span>
 <span class="n">DEFAULT_CONSTANTS</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
     <span class="n">hard_gas_limit_per_operation</span><span class="o">=</span><span class="mi">1040000</span><span class="p">,</span>
     <span class="n">hard_storage_limit_per_operation</span><span class="o">=</span><span class="mi">60000</span><span class="p">,</span>
@@ -230,9 +229,10 @@
         <span class="s1">&#39;reveal&#39;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
         <span class="s1">&#39;delegation&#39;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
         <span class="s1">&#39;origination&#39;</span><span class="p">:</span> <span class="n">constants</span><span class="p">[</span><span class="s1">&#39;hard_gas_limit_per_operation&#39;</span><span class="p">],</span>
-        <span class="s1">&#39;transaction&#39;</span><span class="p">:</span> <span class="n">constants</span><span class="p">[</span><span class="s1">&#39;hard_gas_limit_per_operation&#39;</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;destination&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;KT&#39;</span><span class="p">)</span>
-        <span class="k">else</span> <span class="n">DEFAULT_TRANSACTION_GAS_LIMIT</span><span class="p">,</span>
+        <span class="s1">&#39;transaction&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">constants</span><span class="p">[</span><span class="s1">&#39;hard_gas_limit_per_operation&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="n">content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;destination&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;KT&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="n">DEFAULT_TRANSACTION_GAS_LIMIT</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;register_global_constant&#39;</span><span class="p">:</span> <span class="n">constants</span><span class="p">[</span><span class="s1">&#39;hard_gas_limit_per_operation&#39;</span><span class="p">],</span>
     <span class="p">}</span>
     <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="n">content</span><span class="p">[</span><span class="s1">&#39;kind&#39;</span><span class="p">]]</span></div>
 
@@ -252,9 +252,12 @@
         <span class="s1">&#39;reveal&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
         <span class="s1">&#39;delegation&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
         <span class="s1">&#39;origination&#39;</span><span class="p">:</span> <span class="n">constants</span><span class="p">[</span><span class="s1">&#39;hard_storage_limit_per_operation&#39;</span><span class="p">],</span>
-        <span class="s1">&#39;transaction&#39;</span><span class="p">:</span> <span class="n">constants</span><span class="p">[</span><span class="s1">&#39;hard_storage_limit_per_operation&#39;</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;destination&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;KT&#39;</span><span class="p">)</span>
-        <span class="k">else</span> <span class="n">DEFAULT_TRANSACTION_STORAGE_LIMIT</span><span class="p">,</span>
+        <span class="s1">&#39;transaction&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">constants</span><span class="p">[</span><span class="s1">&#39;hard_storage_limit_per_operation&#39;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;destination&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;KT&#39;</span><span class="p">)</span>
+            <span class="k">else</span> <span class="n">DEFAULT_TRANSACTION_STORAGE_LIMIT</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;register_global_constant&#39;</span><span class="p">:</span> <span class="n">constants</span><span class="p">[</span><span class="s1">&#39;hard_storage_limit_per_operation&#39;</span><span class="p">],</span>
     <span class="p">}</span>
     <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="n">content</span><span class="p">[</span><span class="s1">&#39;kind&#39;</span><span class="p">]]</span></div>
 </pre></div>

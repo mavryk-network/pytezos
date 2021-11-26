@@ -1347,6 +1347,8 @@
 </li>
         <li><a href="instructions.html#pytezos.michelson.instructions.tezos.NowInstruction.execute">(pytezos.michelson.instructions.tezos.NowInstruction class method)</a>
 </li>
+        <li><a href="instructions.html#pytezos.michelson.instructions.tezos.OpenChestInstruction.execute">(pytezos.michelson.instructions.tezos.OpenChestInstruction class method)</a>
+</li>
         <li><a href="instructions.html#pytezos.michelson.instructions.tezos.SelfAddressInstruction.execute">(pytezos.michelson.instructions.tezos.SelfAddressInstruction class method)</a>
 </li>
         <li><a href="instructions.html#pytezos.michelson.instructions.tezos.SelfInstruction.execute">(pytezos.michelson.instructions.tezos.SelfInstruction class method)</a>
@@ -1360,6 +1362,8 @@
         <li><a href="instructions.html#pytezos.michelson.instructions.tezos.TotalVotingPowerInstruction.execute">(pytezos.michelson.instructions.tezos.TotalVotingPowerInstruction class method)</a>
 </li>
         <li><a href="instructions.html#pytezos.michelson.instructions.tezos.TransferTokensInstruction.execute">(pytezos.michelson.instructions.tezos.TransferTokensInstruction class method)</a>
+</li>
+        <li><a href="instructions.html#pytezos.michelson.instructions.tezos.ViewInstruction.execute">(pytezos.michelson.instructions.tezos.ViewInstruction class method)</a>
 </li>
         <li><a href="instructions.html#pytezos.michelson.instructions.tezos.VotingPowerInstruction.execute">(pytezos.michelson.instructions.tezos.VotingPowerInstruction class method)</a>
 </li>
@@ -1395,6 +1399,8 @@
       <li><a href="instructions.html#pytezos.michelson.instructions.crypto.execute_hash">execute_hash() (in module pytezos.michelson.instructions.crypto)</a>
 </li>
       <li><a href="instructions.html#pytezos.michelson.instructions.arithmetic.execute_shift">execute_shift() (in module pytezos.michelson.instructions.arithmetic)</a>
+</li>
+      <li><a href="code.html#pytezos.michelson.program.MichelsonProgram.execute_view">execute_view() (pytezos.michelson.program.MichelsonProgram method)</a>
 </li>
       <li><a href="instructions.html#pytezos.michelson.instructions.compare.execute_zero_compare">execute_zero_compare() (in module pytezos.michelson.instructions.compare)</a>
 </li>
@@ -1551,6 +1557,8 @@
       <li><a href="operation_groups.html#pytezos.operation.forge.forge_operation_group">forge_operation_group() (in module pytezos.operation.forge)</a>
 </li>
       <li><a href="operation_groups.html#pytezos.operation.forge.forge_origination">forge_origination() (in module pytezos.operation.forge)</a>
+</li>
+      <li><a href="operation_groups.html#pytezos.operation.forge.forge_register_global_constant">forge_register_global_constant() (in module pytezos.operation.forge)</a>
 </li>
       <li><a href="operation_groups.html#pytezos.operation.forge.forge_reveal">forge_reveal() (in module pytezos.operation.forge)</a>
 </li>
@@ -1868,12 +1876,12 @@
 </li>
       <li><a href="repl.html#pytezos.context.impl.ExecutionContext.get_dummy_chain_id">get_dummy_chain_id() (pytezos.context.impl.ExecutionContext method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="repl.html#pytezos.context.impl.ExecutionContext.get_dummy_key_hash">get_dummy_key_hash() (pytezos.context.impl.ExecutionContext method)</a>
 </li>
       <li><a href="repl.html#pytezos.context.impl.ExecutionContext.get_dummy_lambda">get_dummy_lambda() (pytezos.context.impl.ExecutionContext method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="repl.html#pytezos.context.impl.ExecutionContext.get_dummy_public_key">get_dummy_public_key() (pytezos.context.impl.ExecutionContext method)</a>
 </li>
       <li><a href="repl.html#pytezos.context.impl.ExecutionContext.get_dummy_signature">get_dummy_signature() (pytezos.context.impl.ExecutionContext method)</a>
@@ -1930,6 +1938,8 @@
 </li>
       <li><a href="repl.html#pytezos.context.impl.ExecutionContext.get_storage_expr">get_storage_expr() (pytezos.context.impl.ExecutionContext method)</a>
 </li>
+      <li><a href="repl.html#pytezos.context.impl.ExecutionContext.get_storage_value">get_storage_value() (pytezos.context.impl.ExecutionContext method)</a>
+</li>
       <li><a href="repl.html#pytezos.context.impl.ExecutionContext.get_tmp_big_map_id">get_tmp_big_map_id() (pytezos.context.impl.ExecutionContext method)</a>
 </li>
       <li><a href="repl.html#pytezos.context.impl.ExecutionContext.get_tmp_sapling_state_id">get_tmp_sapling_state_id() (pytezos.context.impl.ExecutionContext method)</a>
@@ -1937,6 +1947,12 @@
       <li><a href="repl.html#pytezos.context.impl.ExecutionContext.get_total_voting_power">get_total_voting_power() (pytezos.context.impl.ExecutionContext method)</a>
 </li>
       <li><a href="code.html#pytezos.michelson.macros.get_var_annots">get_var_annots() (in module pytezos.michelson.macros)</a>
+</li>
+      <li><a href="code.html#pytezos.michelson.program.MichelsonProgram.get_view">get_view() (pytezos.michelson.program.MichelsonProgram class method)</a>
+</li>
+      <li><a href="repl.html#pytezos.context.impl.ExecutionContext.get_view_expr">get_view_expr() (pytezos.context.impl.ExecutionContext method)</a>
+</li>
+      <li><a href="repl.html#pytezos.context.impl.ExecutionContext.get_views_expr">get_views_expr() (pytezos.context.impl.ExecutionContext method)</a>
 </li>
       <li><a href="repl.html#pytezos.context.impl.ExecutionContext.get_voting_power">get_voting_power() (pytezos.context.impl.ExecutionContext method)</a>
 </li>
@@ -2004,6 +2020,8 @@
         <li><a href="code.html#pytezos.michelson.program.TztMichelsonProgram.instantiate">(pytezos.michelson.program.TztMichelsonProgram class method)</a>
 </li>
       </ul></li>
+      <li><a href="code.html#pytezos.michelson.program.MichelsonProgram.instantiate_view">instantiate_view() (pytezos.michelson.program.MichelsonProgram class method)</a>
+</li>
       <li><a href="repl.html#pytezos.michelson.repl.InterpreterResult.instructions">instructions (pytezos.michelson.repl.InterpreterResult attribute)</a>
 </li>
       <li><a href="high_level.html#pytezos.contract.call.ContractCall.interpret">interpret() (pytezos.contract.call.ContractCall method)</a>
@@ -2026,10 +2044,10 @@
 </li>
       <li><a href="types.html#pytezos.michelson.types.base.MichelsonType.is_big_map_friendly">is_big_map_friendly() (pytezos.michelson.types.base.MichelsonType class method)</a>
 </li>
-      <li><a href="crypto.html#pytezos.crypto.encoding.is_chain_id">is_chain_id() (in module pytezos.crypto.encoding)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="crypto.html#pytezos.crypto.encoding.is_chain_id">is_chain_id() (in module pytezos.crypto.encoding)</a>
+</li>
       <li><a href="types.html#pytezos.michelson.types.base.MichelsonType.is_comparable">is_comparable() (pytezos.michelson.types.base.MichelsonType class method)</a>
 </li>
       <li><a href="types.html#pytezos.michelson.types.base.MichelsonType.is_duplicable">is_duplicable() (pytezos.michelson.types.base.MichelsonType class method)</a>
@@ -2417,6 +2435,8 @@
 <h2 id="O">O</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="instructions.html#pytezos.michelson.instructions.tezos.OpenChestInstruction">OpenChestInstruction (class in pytezos.michelson.instructions.tezos)</a>
+</li>
       <li><a href="high_level.html#pytezos.client.PyTezosClient.operation">operation() (pytezos.client.PyTezosClient method)</a>
 
       <ul>
@@ -2906,6 +2926,8 @@
 </li>
         <li><a href="instructions.html#pytezos.michelson.instructions.tezos.NowInstruction.prim">(pytezos.michelson.instructions.tezos.NowInstruction attribute)</a>
 </li>
+        <li><a href="instructions.html#pytezos.michelson.instructions.tezos.OpenChestInstruction.prim">(pytezos.michelson.instructions.tezos.OpenChestInstruction attribute)</a>
+</li>
         <li><a href="instructions.html#pytezos.michelson.instructions.tezos.SelfAddressInstruction.prim">(pytezos.michelson.instructions.tezos.SelfAddressInstruction attribute)</a>
 </li>
         <li><a href="instructions.html#pytezos.michelson.instructions.tezos.SelfInstruction.prim">(pytezos.michelson.instructions.tezos.SelfInstruction attribute)</a>
@@ -2919,6 +2941,8 @@
         <li><a href="instructions.html#pytezos.michelson.instructions.tezos.TotalVotingPowerInstruction.prim">(pytezos.michelson.instructions.tezos.TotalVotingPowerInstruction attribute)</a>
 </li>
         <li><a href="instructions.html#pytezos.michelson.instructions.tezos.TransferTokensInstruction.prim">(pytezos.michelson.instructions.tezos.TransferTokensInstruction attribute)</a>
+</li>
+        <li><a href="instructions.html#pytezos.michelson.instructions.tezos.ViewInstruction.prim">(pytezos.michelson.instructions.tezos.ViewInstruction attribute)</a>
 </li>
         <li><a href="instructions.html#pytezos.michelson.instructions.tezos.VotingPowerInstruction.prim">(pytezos.michelson.instructions.tezos.VotingPowerInstruction attribute)</a>
 </li>
@@ -3631,6 +3655,14 @@
 </li>
       <li><a href="code.html#pytezos.michelson.program.TztMichelsonProgram.register_bigmaps">register_bigmaps() (pytezos.michelson.program.TztMichelsonProgram method)</a>
 </li>
+      <li><a href="high_level.html#pytezos.client.PyTezosClient.register_global_constant">register_global_constant() (pytezos.client.PyTezosClient method)</a>
+
+      <ul>
+        <li><a href="repl.html#pytezos.context.impl.ExecutionContext.register_global_constant">(pytezos.context.impl.ExecutionContext method)</a>
+</li>
+        <li><a href="operation_groups.html#pytezos.operation.group.OperationGroup.register_global_constant">(pytezos.operation.group.OperationGroup method)</a>
+</li>
+      </ul></li>
       <li><a href="repl.html#pytezos.context.impl.ExecutionContext.register_sapling_state">register_sapling_state() (pytezos.context.impl.ExecutionContext method)</a>
 </li>
       <li><a href="types.html#pytezos.michelson.types.set.SetType.remove">remove() (pytezos.michelson.types.set.SetType method)</a>
@@ -3651,18 +3683,22 @@
       </ul></li>
       <li><a href="types.html#pytezos.michelson.types.sum.OrType.resolve">resolve() (pytezos.michelson.types.sum.OrType method)</a>
 </li>
+      <li><a href="repl.html#pytezos.context.impl.ExecutionContext.resolve_global_constants">resolve_global_constants() (pytezos.context.impl.ExecutionContext method)</a>
+</li>
       <li><a href="rpc_queries.html#pytezos.rpc.shell.ResponseGenerator">ResponseGenerator (class in pytezos.rpc.shell)</a>
 </li>
       <li><a href="repl.html#pytezos.michelson.stack.MichelsonStack.restore">restore() (pytezos.michelson.stack.MichelsonStack method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="high_level.html#pytezos.contract.call.ContractCall.result">result() (pytezos.contract.call.ContractCall method)</a>
 
       <ul>
         <li><a href="operation_groups.html#pytezos.operation.group.OperationGroup.result">(pytezos.operation.group.OperationGroup method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="code.html#pytezos.michelson.program.MichelsonProgram.ret">ret() (pytezos.michelson.program.MichelsonProgram method)</a>
+</li>
       <li><a href="high_level.html#pytezos.client.PyTezosClient.reveal">reveal() (pytezos.client.PyTezosClient method)</a>
 
       <ul>
@@ -3682,6 +3718,8 @@
       <li><a href="rpc_queries.html#pytezos.rpc.node.RpcNode">RpcNode (class in pytezos.rpc.node)</a>
 </li>
       <li><a href="operation_groups.html#pytezos.operation.group.OperationGroup.run">run() (pytezos.operation.group.OperationGroup method)</a>
+</li>
+      <li><a href="repl.html#pytezos.michelson.repl.Interpreter.run_callback">run_callback() (pytezos.michelson.repl.Interpreter static method)</a>
 </li>
       <li><a href="high_level.html#pytezos.contract.call.ContractCall.run_code">run_code() (pytezos.contract.call.ContractCall method)</a>
 
@@ -3783,10 +3821,10 @@
 </li>
       <li><a href="repl.html#pytezos.context.impl.ExecutionContext.set_source_expr">set_source_expr() (pytezos.context.impl.ExecutionContext method)</a>
 </li>
-      <li><a href="repl.html#pytezos.context.impl.ExecutionContext.set_storage_expr">set_storage_expr() (pytezos.context.impl.ExecutionContext method)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="repl.html#pytezos.context.impl.ExecutionContext.set_storage_expr">set_storage_expr() (pytezos.context.impl.ExecutionContext method)</a>
+</li>
       <li><a href="repl.html#pytezos.context.impl.ExecutionContext.set_total_voting_power">set_total_voting_power() (pytezos.context.impl.ExecutionContext method)</a>
 </li>
       <li><a href="repl.html#pytezos.context.impl.ExecutionContext.set_voting_power">set_voting_power() (pytezos.context.impl.ExecutionContext method)</a>
@@ -3854,8 +3892,6 @@
       <li><a href="high_level.html#pytezos.contract.interface.ContractInterface.storage_from_micheline">storage_from_micheline() (pytezos.contract.interface.ContractInterface method)</a>
 </li>
       <li><a href="high_level.html#pytezos.contract.interface.ContractInterface.storage_from_michelson">storage_from_michelson() (pytezos.contract.interface.ContractInterface method)</a>
-</li>
-      <li><a href="high_level.html#pytezos.contract.call.ContractCall.storage_view">storage_view() (pytezos.contract.call.ContractCall method)</a>
 </li>
       <li><a href="code.html#pytezos.michelson.sections.storage.StorageSection">StorageSection (class in pytezos.michelson.sections.storage)</a>
 </li>
@@ -4177,8 +4213,12 @@
 </li>
       <li><a href="high_level.html#pytezos.contract.call.ContractCall.view">view() (pytezos.contract.call.ContractCall method)</a>
 </li>
+      <li><a href="instructions.html#pytezos.michelson.instructions.tezos.ViewInstruction">ViewInstruction (class in pytezos.michelson.instructions.tezos)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="code.html#pytezos.michelson.program.MichelsonProgram.views">views (pytezos.michelson.program.MichelsonProgram attribute)</a>
+</li>
       <li><a href="rpc_queries.html#pytezos.rpc.protocol.OperationListListQuery.votes">votes (pytezos.rpc.protocol.OperationListListQuery property)</a>
 </li>
       <li><a href="rpc_queries.html#pytezos.rpc.protocol.BlockQuery.voting_period">voting_period() (pytezos.rpc.protocol.BlockQuery method)</a>

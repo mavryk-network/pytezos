@@ -169,15 +169,16 @@
            <div itemprop="articleBody">
             
   <h1>Source code for pytezos.michelson.instructions.tezos</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">cast</span>
+<span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="kn">from</span> <span class="nn">pytezos.context.abstract</span> <span class="kn">import</span> <span class="n">AbstractContext</span>  <span class="c1"># type: ignore</span>
 <span class="kn">from</span> <span class="nn">pytezos.michelson.instructions.base</span> <span class="kn">import</span> <span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">format_stdout</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.micheline</span> <span class="kn">import</span> <span class="n">MichelineSequence</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.sections</span> <span class="kn">import</span> <span class="n">ParameterSection</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.micheline</span> <span class="kn">import</span> <span class="n">MichelineLiteral</span><span class="p">,</span> <span class="n">MichelineSequence</span><span class="p">,</span> <span class="n">MichelsonRuntimeError</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.sections</span> <span class="kn">import</span> <span class="n">ParameterSection</span><span class="p">,</span> <span class="n">StorageSection</span><span class="p">,</span> <span class="n">ViewSection</span>
 <span class="kn">from</span> <span class="nn">pytezos.michelson.stack</span> <span class="kn">import</span> <span class="n">MichelsonStack</span>
 <span class="kn">from</span> <span class="nn">pytezos.michelson.types</span> <span class="kn">import</span> <span class="p">(</span><span class="n">AddressType</span><span class="p">,</span> <span class="n">ChainIdType</span><span class="p">,</span> <span class="n">ContractType</span><span class="p">,</span> <span class="n">KeyHashType</span><span class="p">,</span> <span class="n">MutezType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">,</span> <span class="n">OperationType</span><span class="p">,</span> <span class="n">OptionType</span><span class="p">,</span>
-                                     <span class="n">TimestampType</span><span class="p">,</span> <span class="n">UnitType</span><span class="p">)</span>
+                                     <span class="n">PairType</span><span class="p">,</span> <span class="n">TimestampType</span><span class="p">,</span> <span class="n">UnitType</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">pytezos.michelson.types.base</span> <span class="kn">import</span> <span class="n">MichelsonType</span>
 
 
@@ -429,6 +430,58 @@
         <span class="n">stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
         <span class="n">stdout</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">format_stdout</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">prim</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[</span><span class="n">res</span><span class="p">]))</span>  <span class="c1"># type: ignore</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">stack_items_added</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="ViewInstruction"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.tezos.ViewInstruction">[docs]</a><span class="k">class</span> <span class="nc">ViewInstruction</span><span class="p">(</span><span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;VIEW&#39;</span><span class="p">,</span> <span class="n">args_len</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+
+<div class="viewcode-block" id="ViewInstruction.execute"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.tezos.ViewInstruction.execute">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="s1">&#39;MichelsonStack&#39;</span><span class="p">,</span> <span class="n">stdout</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">context</span><span class="p">:</span> <span class="n">AbstractContext</span><span class="p">):</span>
+        <span class="n">input_value</span><span class="p">,</span> <span class="n">view_address</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Tuple</span><span class="p">[</span><span class="n">MichelsonType</span><span class="p">,</span> <span class="n">AddressType</span><span class="p">],</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop2</span><span class="p">())</span>
+
+        <span class="n">name</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Type</span><span class="p">[</span><span class="n">MichelineLiteral</span><span class="p">],</span> <span class="bp">cls</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">get_string</span><span class="p">()</span>
+        <span class="n">address</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">view_address</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">address</span> <span class="o">==</span> <span class="n">context</span><span class="o">.</span><span class="n">get_self_address</span><span class="p">():</span>
+            <span class="n">address</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># FIXME: spawn new context with patched BALANCE and others</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;PyTezos does not support external views with BALANCE or other context-dependent opcodes&#39;</span><span class="p">)</span>
+
+        <span class="n">return_ty</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Type</span><span class="p">[</span><span class="n">MichelsonType</span><span class="p">],</span> <span class="bp">cls</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">view_expr</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">get_view_expr</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">address</span><span class="o">=</span><span class="n">address</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">view_expr</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">MichelsonRuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Failed to load view </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">view_address</span><span class="p">)</span><span class="si">}</span><span class="s1">%</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+            <span class="n">view_ty</span> <span class="o">=</span> <span class="n">ViewSection</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">view_expr</span><span class="p">)</span>
+            <span class="n">return_ty</span><span class="o">.</span><span class="n">assert_type_equal</span><span class="p">(</span><span class="n">view_ty</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">message</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;view </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> return type&#39;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="p">(</span><span class="n">MichelsonRuntimeError</span><span class="p">,</span> <span class="ne">AssertionError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">stdout</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;VIEW: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">OptionType</span><span class="o">.</span><span class="n">none</span><span class="p">(</span><span class="n">return_ty</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">storage_expr</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">get_storage_value</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
+            <span class="n">storage_ty</span> <span class="o">=</span> <span class="n">StorageSection</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">get_storage_expr</span><span class="p">())</span>
+            <span class="n">storage_value</span> <span class="o">=</span> <span class="n">storage_ty</span><span class="o">.</span><span class="n">from_micheline_value</span><span class="p">(</span><span class="n">storage_expr</span><span class="p">)</span><span class="o">.</span><span class="n">item</span>
+
+            <span class="n">parameter</span> <span class="o">=</span> <span class="n">PairType</span><span class="o">.</span><span class="n">from_comb</span><span class="p">([</span><span class="n">input_value</span><span class="p">,</span> <span class="n">storage_value</span><span class="p">])</span>
+            <span class="n">view_stack</span> <span class="o">=</span> <span class="n">MichelsonStack</span><span class="p">([</span><span class="n">parameter</span><span class="p">])</span>
+            <span class="c1"># FIXME: need to patch context.balance</span>
+            <span class="n">view_code</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">MichelineSequence</span><span class="p">,</span> <span class="n">view_ty</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+            <span class="n">view_code</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">view_stack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">view_stack</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">MichelsonRuntimeError</span><span class="p">(</span><span class="s1">&#39;Expected single item on the stack, got&#39;</span><span class="p">,</span> <span class="n">view_stack</span><span class="p">)</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">OptionType</span><span class="o">.</span><span class="n">from_some</span><span class="p">(</span><span class="n">view_stack</span><span class="o">.</span><span class="n">pop1</span><span class="p">())</span>
+
+        <span class="n">stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+        <span class="n">stdout</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">format_stdout</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">prim</span><span class="p">,</span> <span class="p">[</span><span class="n">input_value</span><span class="p">,</span> <span class="n">view_address</span><span class="p">],</span> <span class="p">[</span><span class="n">res</span><span class="p">]))</span>  <span class="c1"># type: ignore</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">stack_items_added</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="OpenChestInstruction"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.tezos.OpenChestInstruction">[docs]</a><span class="k">class</span> <span class="nc">OpenChestInstruction</span><span class="p">(</span><span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;OPEN_CHEST&#39;</span><span class="p">):</span>
+
+<div class="viewcode-block" id="OpenChestInstruction.execute"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.tezos.OpenChestInstruction.execute">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="n">MichelsonStack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">context</span><span class="p">:</span> <span class="n">AbstractContext</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div></div>
 </pre></div>
 
            </div>

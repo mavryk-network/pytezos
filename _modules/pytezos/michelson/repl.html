@@ -297,14 +297,14 @@
             <span class="n">stdout</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">format_stdout</span><span class="p">())</span>
             <span class="k">return</span> <span class="p">[],</span> <span class="kc">None</span><span class="p">,</span> <span class="p">[],</span> <span class="n">stdout</span><span class="p">,</span> <span class="n">e</span></div>
 
-<div class="viewcode-block" id="Interpreter.run_view"><a class="viewcode-back" href="../../../repl.html#pytezos.michelson.repl.Interpreter.run_view">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">run_view</span><span class="p">(</span>
+<div class="viewcode-block" id="Interpreter.run_callback"><a class="viewcode-back" href="../../../repl.html#pytezos.michelson.repl.Interpreter.run_callback">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">run_callback</span><span class="p">(</span>
         <span class="n">entrypoint</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">parameter</span><span class="p">,</span>
         <span class="n">storage</span><span class="p">,</span>
         <span class="n">context</span><span class="p">:</span> <span class="n">ExecutionContext</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Optional</span><span class="p">[</span><span class="ne">Exception</span><span class="p">]]:</span>
-        <span class="sd">&quot;&quot;&quot;Execute view of contract loaded in context</span>
+        <span class="sd">&quot;&quot;&quot;Execute view entrypoint of the contract loaded into the context</span>
 
 <span class="sd">        :param entrypoint: contract entrypoint</span>
 <span class="sd">        :param parameter: parameter section</span>
@@ -340,6 +340,28 @@
         <span class="k">except</span> <span class="n">MichelsonRuntimeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="n">stdout</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">format_stdout</span><span class="p">())</span>
             <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="n">e</span></div>
+
+<div class="viewcode-block" id="Interpreter.run_view"><a class="viewcode-back" href="../../../repl.html#pytezos.michelson.repl.Interpreter.run_view">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">run_view</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">storage</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">ExecutionContext</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="ne">Exception</span><span class="p">]]:</span>
+        <span class="n">ctx</span> <span class="o">=</span> <span class="n">ExecutionContext</span><span class="p">(</span>
+            <span class="n">shell</span><span class="o">=</span><span class="n">context</span><span class="o">.</span><span class="n">shell</span><span class="p">,</span>
+            <span class="n">key</span><span class="o">=</span><span class="n">context</span><span class="o">.</span><span class="n">key</span><span class="p">,</span>
+            <span class="n">block_id</span><span class="o">=</span><span class="n">context</span><span class="o">.</span><span class="n">block_id</span><span class="p">,</span>
+            <span class="n">script</span><span class="o">=</span><span class="n">context</span><span class="o">.</span><span class="n">script</span><span class="p">,</span>
+            <span class="n">address</span><span class="o">=</span><span class="n">context</span><span class="o">.</span><span class="n">address</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">stack</span> <span class="o">=</span> <span class="n">MichelsonStack</span><span class="p">()</span>
+        <span class="n">stdout</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># type: ignore</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">program</span> <span class="o">=</span> <span class="n">MichelsonProgram</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">with_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">program</span><span class="o">.</span><span class="n">instantiate_view</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">parameter</span><span class="o">=</span><span class="n">parameter</span><span class="p">,</span> <span class="n">storage</span><span class="o">=</span><span class="n">storage</span><span class="p">)</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">begin</span><span class="p">(</span><span class="n">stack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">execute_view</span><span class="p">(</span><span class="n">stack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+            <span class="n">ret_value</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">ret</span><span class="p">(</span><span class="n">stack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">ret_value</span><span class="o">.</span><span class="n">to_python_object</span><span class="p">(),</span> <span class="n">stdout</span><span class="p">,</span> <span class="kc">None</span>
+        <span class="k">except</span> <span class="n">MichelsonRuntimeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">stdout</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">format_stdout</span><span class="p">())</span>
+            <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="n">e</span></div>
 
 <div class="viewcode-block" id="Interpreter.run_tzt"><a class="viewcode-back" href="../../../repl.html#pytezos.michelson.repl.Interpreter.run_tzt">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">run_tzt</span><span class="p">(</span>
