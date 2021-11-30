@@ -169,7 +169,7 @@
            <div itemprop="articleBody">
             
   <h1>Source code for pytezos.michelson.types.operation</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Type</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Type</span>
 
 <span class="kn">from</span> <span class="nn">pytezos.michelson.micheline</span> <span class="kn">import</span> <span class="n">MichelineSequence</span>
 <span class="kn">from</span> <span class="nn">pytezos.michelson.types.base</span> <span class="kn">import</span> <span class="n">MichelsonType</span>
@@ -220,7 +220,7 @@
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">content</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="OperationType.transaction"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.operation.OperationType.transaction">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">transaction</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">destination</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">entrypoint</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">parameter</span><span class="p">:</span> <span class="n">MichelsonType</span><span class="p">)</span> \
+    <span class="k">def</span> <span class="nf">transaction</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">destination</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">entrypoint</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">param_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">MichelsonType</span><span class="p">])</span> \
             <span class="o">-&gt;</span> <span class="s1">&#39;OperationType&#39;</span><span class="p">:</span>
         <span class="n">content</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">&#39;kind&#39;</span><span class="p">:</span> <span class="s1">&#39;transaction&#39;</span><span class="p">,</span>
@@ -229,10 +229,10 @@
             <span class="s1">&#39;amount&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">amount</span><span class="p">),</span>
             <span class="s1">&#39;parameters&#39;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="s1">&#39;entrypoint&#39;</span><span class="p">:</span> <span class="n">entrypoint</span><span class="p">,</span>
-                <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="n">parameter</span><span class="o">.</span><span class="n">to_micheline_value</span><span class="p">()</span>
+                <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="n">value</span>
             <span class="p">}</span>
         <span class="p">}</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">ty</span><span class="o">=</span><span class="nb">type</span><span class="p">(</span><span class="n">parameter</span><span class="p">))</span></div>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">ty</span><span class="o">=</span><span class="n">param_type</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="OperationType.to_python_object"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.operation.OperationType.to_python_object">[docs]</a>    <span class="k">def</span> <span class="nf">to_python_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">try_unpack</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">lazy_diff</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">comparable</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="n">kind</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="p">[</span><span class="s1">&#39;kind&#39;</span><span class="p">]</span>
