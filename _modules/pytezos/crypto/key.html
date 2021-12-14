@@ -461,7 +461,7 @@
 
 <div class="viewcode-block" id="Key.from_faucet"><a class="viewcode-back" href="../../../crypto.html#pytezos.crypto.key.Key.from_faucet">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_faucet</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">source</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;Key&#39;</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Import key from a faucet file: https://faucet.tzalpha.net/</span>
+        <span class="sd">&quot;&quot;&quot;Import key from a faucet file: https://teztnets.xyz/</span>
 
 <span class="sd">        :param source: path to the json file</span>
 <span class="sd">        :rtype: Key</span>
@@ -478,7 +478,7 @@
             <span class="n">mnemonic</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;mnemonic&#39;</span><span class="p">],</span>
             <span class="n">passphrase</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
             <span class="n">email</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
-            <span class="n">activation_code</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;secret&#39;</span><span class="p">]</span>
+            <span class="n">activation_code</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;activation_code&#39;</span><span class="p">]</span>
         <span class="p">)</span>
         <span class="k">if</span> <span class="n">key</span><span class="o">.</span><span class="n">public_key_hash</span><span class="p">()</span> <span class="o">!=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;pkh&#39;</span><span class="p">]:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Failed to import&#39;</span><span class="p">)</span>
