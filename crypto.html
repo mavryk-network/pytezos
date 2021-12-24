@@ -185,16 +185,10 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytezos.crypto.key.</span></span><span class="sig-name descname"><span class="pre">Key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">public_point</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secret_exponent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">curve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">b'ed'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytezos/crypto/key.html#Key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.crypto.key.Key" title="Permalink to this definition">¶</a></dt>
 <dd><p>Represents a public or secret key for Tezos. Ed25519, Secp256k1 and P256
 are supported.</p>
-<dl class="py method">
+<dl class="py attribute">
 <dt class="sig sig-object py" id="pytezos.crypto.key.Key.blinded_public_key_hash">
-<span class="sig-name descname"><span class="pre">blinded_public_key_hash</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/pytezos/crypto/key.html#Key.blinded_public_key_hash"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.crypto.key.Key.blinded_public_key_hash" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates base58 encoded commitment out of activation code (required) and public key hash</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>blinded public key hash</p>
-</dd>
-</dl>
-</dd></dl>
+<span class="sig-name descname"><span class="pre">blinded_public_key_hash</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;function</span> <span class="pre">Key.blinded_public_key_hash&gt;</span> <span class="pre">Creates</span> <span class="pre">base58</span> <span class="pre">encoded</span> <span class="pre">commitment</span> <span class="pre">out</span> <span class="pre">of</span> <span class="pre">activation</span> <span class="pre">code</span> <span class="pre">(required)</span> <span class="pre">and</span> <span class="pre">public</span> <span class="pre">key</span> <span class="pre">hash</span>&#160; <span class="pre">:return:</span> <span class="pre">blinded</span> <span class="pre">public</span> <span class="pre">key</span> <span class="pre">hash</span> </em><a class="reference internal" href="_modules/pytezos/crypto/key.html#Key.blinded_public_key_hash"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.crypto.key.Key.blinded_public_key_hash" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytezos.crypto.key.Key.from_alias">
@@ -314,78 +308,30 @@ if not set value from from PYTEZOS_PASSPHRASE env variable will be used or promt
 </dl>
 </dd></dl>
 
-<dl class="py method">
+<dl class="py attribute">
 <dt class="sig sig-object py" id="pytezos.crypto.key.Key.public_key">
-<span class="sig-name descname"><span class="pre">public_key</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/pytezos/crypto/key.html#Key.public_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.crypto.key.Key.public_key" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates base58 encoded public key representation.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the public key associated with the private key</p>
-</dd>
-</dl>
-</dd></dl>
+<span class="sig-name descname"><span class="pre">public_key</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;function</span> <span class="pre">Key.public_key&gt;</span> <span class="pre">Creates</span> <span class="pre">base58</span> <span class="pre">encoded</span> <span class="pre">public</span> <span class="pre">key</span> <span class="pre">representation.</span>&#160; <span class="pre">:returns:</span> <span class="pre">the</span> <span class="pre">public</span> <span class="pre">key</span> <span class="pre">associated</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">private</span> <span class="pre">key</span> </em><a class="reference internal" href="_modules/pytezos/crypto/key.html#Key.public_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.crypto.key.Key.public_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
-<dl class="py method">
+<dl class="py attribute">
 <dt class="sig sig-object py" id="pytezos.crypto.key.Key.public_key_hash">
-<span class="sig-name descname"><span class="pre">public_key_hash</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/pytezos/crypto/key.html#Key.public_key_hash"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.crypto.key.Key.public_key_hash" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates base58 encoded public key hash for this key.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the public key hash for this key</p>
-</dd>
-</dl>
-</dd></dl>
+<span class="sig-name descname"><span class="pre">public_key_hash</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;function</span> <span class="pre">Key.public_key_hash&gt;</span> <span class="pre">Creates</span> <span class="pre">base58</span> <span class="pre">encoded</span> <span class="pre">public</span> <span class="pre">key</span> <span class="pre">hash</span> <span class="pre">for</span> <span class="pre">this</span> <span class="pre">key.</span>&#160; <span class="pre">:returns:</span> <span class="pre">the</span> <span class="pre">public</span> <span class="pre">key</span> <span class="pre">hash</span> <span class="pre">for</span> <span class="pre">this</span> <span class="pre">key</span> </em><a class="reference internal" href="_modules/pytezos/crypto/key.html#Key.public_key_hash"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.crypto.key.Key.public_key_hash" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
-<dl class="py method">
+<dl class="py attribute">
 <dt class="sig sig-object py" id="pytezos.crypto.key.Key.secret_key">
-<span class="sig-name descname"><span class="pre">secret_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">passphrase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ed25519_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytezos/crypto/key.html#Key.secret_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.crypto.key.Key.secret_key" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates base58 encoded private key representation.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>passphrase</strong> – encryption phrase for the private key</p></li>
-<li><p><strong>ed25519_seed</strong> – encode seed rather than full key for ed25519 curve (True by default)</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>the secret key associated with this key, if available</p>
-</dd>
-</dl>
-</dd></dl>
+<span class="sig-name descname"><span class="pre">secret_key</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;function</span> <span class="pre">Key.secret_key&gt;</span> <span class="pre">Creates</span> <span class="pre">base58</span> <span class="pre">encoded</span> <span class="pre">private</span> <span class="pre">key</span> <span class="pre">representation.</span>&#160; <span class="pre">:param</span> <span class="pre">passphrase:</span> <span class="pre">encryption</span> <span class="pre">phrase</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">private</span> <span class="pre">key</span> <span class="pre">:param</span> <span class="pre">ed25519_seed:</span> <span class="pre">encode</span> <span class="pre">seed</span> <span class="pre">rather</span> <span class="pre">than</span> <span class="pre">full</span> <span class="pre">key</span> <span class="pre">for</span> <span class="pre">ed25519</span> <span class="pre">curve</span> <span class="pre">(True</span> <span class="pre">by</span> <span class="pre">default)</span> <span class="pre">:returns:</span> <span class="pre">the</span> <span class="pre">secret</span> <span class="pre">key</span> <span class="pre">associated</span> <span class="pre">with</span> <span class="pre">this</span> <span class="pre">key,</span> <span class="pre">if</span> <span class="pre">available</span> </em><a class="reference internal" href="_modules/pytezos/crypto/key.html#Key.secret_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.crypto.key.Key.secret_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
-<dl class="py method">
+<dl class="py attribute">
 <dt class="sig sig-object py" id="pytezos.crypto.key.Key.sign">
-<span class="sig-name descname"><span class="pre">sign</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generic</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytezos/crypto/key.html#Key.sign"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.crypto.key.Key.sign" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sign a raw sequence of bytes.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>message</strong> – sequence of bytes, raw format or hexadecimal notation</p></li>
-<li><p><strong>generic</strong> – do not specify elliptic curve if set to True</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>signature in base58 encoding</p>
-</dd>
-</dl>
-</dd></dl>
+<span class="sig-name descname"><span class="pre">sign</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;function</span> <span class="pre">Key.sign&gt;</span> <span class="pre">Sign</span> <span class="pre">a</span> <span class="pre">raw</span> <span class="pre">sequence</span> <span class="pre">of</span> <span class="pre">bytes.</span>&#160; <span class="pre">:param</span> <span class="pre">message:</span> <span class="pre">sequence</span> <span class="pre">of</span> <span class="pre">bytes,</span> <span class="pre">raw</span> <span class="pre">format</span> <span class="pre">or</span> <span class="pre">hexadecimal</span> <span class="pre">notation</span> <span class="pre">:param</span> <span class="pre">generic:</span> <span class="pre">do</span> <span class="pre">not</span> <span class="pre">specify</span> <span class="pre">elliptic</span> <span class="pre">curve</span> <span class="pre">if</span> <span class="pre">set</span> <span class="pre">to</span> <span class="pre">True</span> <span class="pre">:returns:</span> <span class="pre">signature</span> <span class="pre">in</span> <span class="pre">base58</span> <span class="pre">encoding</span> </em><a class="reference internal" href="_modules/pytezos/crypto/key.html#Key.sign"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.crypto.key.Key.sign" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
-<dl class="py method">
+<dl class="py attribute">
 <dt class="sig sig-object py" id="pytezos.crypto.key.Key.verify">
-<span class="sig-name descname"><span class="pre">verify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signature</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/pytezos/crypto/key.html#Key.verify"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.crypto.key.Key.verify" title="Permalink to this definition">¶</a></dt>
-<dd><p>Verify signature, raise exception if it is not valid.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>message</strong> – sequance of bytes, raw format or hexadecimal notation</p></li>
-<li><p><strong>signature</strong> – a signature in base58 encoding</p></li>
-</ul>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p>ValueError if signature is not valid</p>
-</dd>
-</dl>
-</dd></dl>
+<span class="sig-name descname"><span class="pre">verify</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;function</span> <span class="pre">Key.verify&gt;</span> <span class="pre">Verify</span> <span class="pre">signature,</span> <span class="pre">raise</span> <span class="pre">exception</span> <span class="pre">if</span> <span class="pre">it</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">valid.</span>&#160; <span class="pre">:param</span> <span class="pre">message:</span> <span class="pre">sequance</span> <span class="pre">of</span> <span class="pre">bytes,</span> <span class="pre">raw</span> <span class="pre">format</span> <span class="pre">or</span> <span class="pre">hexadecimal</span> <span class="pre">notation</span> <span class="pre">:param</span> <span class="pre">signature:</span> <span class="pre">a</span> <span class="pre">signature</span> <span class="pre">in</span> <span class="pre">base58</span> <span class="pre">encoding</span> <span class="pre">:raises:</span> <span class="pre">ValueError</span> <span class="pre">if</span> <span class="pre">signature</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">valid</span> <span class="pre">:returns:</span> <span class="pre">True</span> <span class="pre">if</span> <span class="pre">signature</span> <span class="pre">is</span> <span class="pre">valid</span> </em><a class="reference internal" href="_modules/pytezos/crypto/key.html#Key.verify"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.crypto.key.Key.verify" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
