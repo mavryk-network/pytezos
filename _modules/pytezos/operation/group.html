@@ -248,8 +248,6 @@
 
 <div class="viewcode-block" id="OperationGroup.binary_payload"><a class="viewcode-back" href="../../../operation_groups.html#pytezos.operation.group.OperationGroup.binary_payload">[docs]</a>    <span class="k">def</span> <span class="nf">binary_payload</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Get binary payload used for injection/hash calculation.&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;kind&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;endorsement_with_slot&#39;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">forge</span><span class="p">())</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span> <span class="o">*</span> <span class="mi">64</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">signature</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Not signed&#39;</span><span class="p">)</span>
 
@@ -595,36 +593,7 @@
 
 <span class="sd">        :rtype: List[OperationResult]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">OperationResult</span><span class="o">.</span><span class="n">from_operation_group</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">preapply</span><span class="p">())</span></div>
-
-<div class="viewcode-block" id="OperationGroup.with_slot"><a class="viewcode-back" href="../../../operation_groups.html#pytezos.operation.group.OperationGroup.with_slot">[docs]</a>    <span class="k">def</span> <span class="nf">with_slot</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;OperationGroup&#39;</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Wrap endorsement operation</span>
-
-<span class="sd">        :rtype: OperationGroup</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;kind&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;endorsement&#39;</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;Works for endorsement only&#39;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">branch</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Do .fill() first&#39;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">signature</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Do .sign() first&#39;</span><span class="p">)</span>
-
-        <span class="n">level</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;level&#39;</span><span class="p">])</span>
-        <span class="n">delegate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">public_key_hash</span><span class="p">()</span>
-        <span class="n">rights</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shell</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">helpers</span><span class="o">.</span><span class="n">endorsing_rights</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span> <span class="n">delegate</span><span class="o">=</span><span class="n">delegate</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">rights</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;No endorsing rights for delegate `</span><span class="si">{</span><span class="n">delegate</span><span class="si">}</span><span class="s1">` at level `</span><span class="si">{</span><span class="n">level</span><span class="si">}</span><span class="s1">`&#39;</span><span class="p">)</span>
-
-        <span class="n">slot</span> <span class="o">=</span> <span class="n">rights</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;slots&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">endorsement</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;branch&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">branch</span><span class="p">,</span> <span class="s1">&#39;operations&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;kind&#39;</span><span class="p">:</span> <span class="s1">&#39;endorsement&#39;</span><span class="p">,</span> <span class="s1">&#39;level&#39;</span><span class="p">:</span> <span class="n">level</span><span class="p">},</span> <span class="s1">&#39;signature&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">signature</span><span class="p">}</span>
-
-        <span class="k">return</span> <span class="n">OperationGroup</span><span class="p">(</span>
-            <span class="n">context</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="p">,</span>
-            <span class="n">branch</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">branch</span><span class="p">,</span>
-            <span class="n">chain_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">chain_id</span><span class="p">,</span>
-            <span class="n">protocol</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">protocol</span><span class="p">,</span>
-            <span class="n">contents</span><span class="o">=</span><span class="p">[</span><span class="n">ContentMixin</span><span class="p">()</span><span class="o">.</span><span class="n">endorsement_with_slot</span><span class="p">(</span><span class="n">endorsement</span><span class="o">=</span><span class="n">endorsement</span><span class="p">,</span> <span class="n">slot</span><span class="o">=</span><span class="n">slot</span><span class="p">)],</span>
-        <span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="n">OperationResult</span><span class="o">.</span><span class="n">from_operation_group</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">preapply</span><span class="p">())</span></div></div>
 </pre></div>
 
            </div>
