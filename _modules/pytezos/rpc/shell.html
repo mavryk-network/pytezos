@@ -256,7 +256,7 @@
 
         <span class="k">if</span> <span class="n">time_between_blocks</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">constants</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">blocks</span><span class="p">[</span><span class="n">current_block_hash</span><span class="p">]</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">constants</span><span class="p">()</span>
-            <span class="n">time_between_blocks</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;minimal_block_delay&#39;</span><span class="p">))</span>
+            <span class="n">time_between_blocks</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;minimal_block_delay&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
 
         <span class="k">if</span> <span class="n">block_timeout</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">block_timeout</span> <span class="o">=</span> <span class="n">MAX_BLOCK_TIMEOUT</span>
