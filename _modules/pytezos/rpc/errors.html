@@ -81,6 +81,18 @@
 <span></span><span class="kn">from</span> <span class="nn">pytezos.rpc.node</span> <span class="kn">import</span> <span class="n">RpcError</span>
 
 
+<div class="viewcode-block" id="ReorgError"><a class="viewcode-back" href="../../../rpc_queries.html#pytezos.rpc.errors.ReorgError">[docs]</a><span class="k">class</span> <span class="nc">ReorgError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">old_hash</span><span class="p">,</span> <span class="n">new_hash</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ReorgError</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">old_hash</span><span class="p">,</span> <span class="n">new_hash</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">level</span> <span class="o">=</span> <span class="n">level</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">old_hash</span> <span class="o">=</span> <span class="n">old_hash</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">new_hash</span> <span class="o">=</span> <span class="n">new_hash</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;Reorg detected at level </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">level</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">old_hash</span><span class="si">}</span><span class="s1"> -&gt; </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">new_hash</span><span class="si">}</span><span class="s1">&#39;</span></div>
+
+
 <div class="viewcode-block" id="MichelsonBadContractParameter"><a class="viewcode-back" href="../../../rpc_queries.html#pytezos.rpc.errors.MichelsonBadContractParameter">[docs]</a><span class="k">class</span> <span class="nc">MichelsonBadContractParameter</span><span class="p">(</span><span class="n">RpcError</span><span class="p">,</span> <span class="n">error_id</span><span class="o">=</span><span class="s1">&#39;michelson_v1.bad_contract_parameter&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Either no parameter was supplied to a contract with a non-unit parameter type, a non-unit parameter was passed</span>
 <span class="sd">    to an account, or a parameter was supplied of the wrong type</span>
