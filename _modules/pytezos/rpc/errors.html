@@ -12,10 +12,10 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -26,11 +26,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../contents.html" class="icon icon-home"> PyTezos
+
+          
+          
+          <a href="../../../contents.html" class="icon icon-home">
+            PyTezos
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -66,9 +70,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../contents.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>pytezos.rpc.errors</li>
+      <li><a href="../../../contents.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pytezos.rpc.errors</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -82,9 +86,8 @@
 
 
 <div class="viewcode-block" id="ReorgError"><a class="viewcode-back" href="../../../rpc_queries.html#pytezos.rpc.errors.ReorgError">[docs]</a><span class="k">class</span> <span class="nc">ReorgError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">old_hash</span><span class="p">,</span> <span class="n">new_hash</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">ReorgError</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">old_hash</span><span class="p">,</span> <span class="n">new_hash</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">old_hash</span><span class="p">,</span> <span class="n">new_hash</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">level</span> <span class="o">=</span> <span class="n">level</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">old_hash</span> <span class="o">=</span> <span class="n">old_hash</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">new_hash</span> <span class="o">=</span> <span class="n">new_hash</span>
@@ -94,29 +97,25 @@
 
 
 <div class="viewcode-block" id="MichelsonBadContractParameter"><a class="viewcode-back" href="../../../rpc_queries.html#pytezos.rpc.errors.MichelsonBadContractParameter">[docs]</a><span class="k">class</span> <span class="nc">MichelsonBadContractParameter</span><span class="p">(</span><span class="n">RpcError</span><span class="p">,</span> <span class="n">error_id</span><span class="o">=</span><span class="s1">&#39;michelson_v1.bad_contract_parameter&#39;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Either no parameter was supplied to a contract with a non-unit parameter type, a non-unit parameter was passed</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Either no parameter was supplied to a contract with a non-unit parameter type, a non-unit parameter was passed</span>
 <span class="sd">    to an account, or a parameter was supplied of the wrong type</span>
 <span class="sd">    &quot;&quot;&quot;</span></div>
 
 
 <div class="viewcode-block" id="MichelsonBadReturn"><a class="viewcode-back" href="../../../rpc_queries.html#pytezos.rpc.errors.MichelsonBadReturn">[docs]</a><span class="k">class</span> <span class="nc">MichelsonBadReturn</span><span class="p">(</span><span class="n">RpcError</span><span class="p">,</span> <span class="n">error_id</span><span class="o">=</span><span class="s1">&#39;michelson_v1.bad_return&#39;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Unexpected stack at the end of a lambda or script</span>
-<span class="sd">    &quot;&quot;&quot;</span></div>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Unexpected stack at the end of a lambda or script&quot;&quot;&quot;</span></div>
 
 
 <div class="viewcode-block" id="MichelsonError"><a class="viewcode-back" href="../../../rpc_queries.html#pytezos.rpc.errors.MichelsonError">[docs]</a><span class="k">class</span> <span class="nc">MichelsonError</span><span class="p">(</span><span class="n">RpcError</span><span class="p">,</span> <span class="n">error_id</span><span class="o">=</span><span class="s1">&#39;michelson_v1&#39;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Catch all michelson_v1 errors</span>
-<span class="sd">    &quot;&quot;&quot;</span></div>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Catch all michelson_v1 errors&quot;&quot;&quot;</span></div>
 
 
 <div class="viewcode-block" id="TezArithmeticError"><a class="viewcode-back" href="../../../rpc_queries.html#pytezos.rpc.errors.TezArithmeticError">[docs]</a><span class="k">class</span> <span class="nc">TezArithmeticError</span><span class="p">(</span><span class="n">RpcError</span><span class="p">,</span> <span class="n">error_id</span><span class="o">=</span><span class="s1">&#39;tez&#39;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Catch all tez errors</span>
-<span class="sd">    &quot;&quot;&quot;</span></div>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Catch all tez errors&quot;&quot;&quot;</span></div>
 
 
 <div class="viewcode-block" id="MichelsonScriptRejected"><a class="viewcode-back" href="../../../rpc_queries.html#pytezos.rpc.errors.MichelsonScriptRejected">[docs]</a><span class="k">class</span> <span class="nc">MichelsonScriptRejected</span><span class="p">(</span><span class="n">RpcError</span><span class="p">,</span> <span class="n">error_id</span><span class="o">=</span><span class="s1">&#39;script_rejected&#39;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; A FAILWITH instruction was reached</span>
-<span class="sd">    &quot;&quot;&quot;</span></div>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A FAILWITH instruction was reached&quot;&quot;&quot;</span></div>
 </pre></div>
 
            </div>

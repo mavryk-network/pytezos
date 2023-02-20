@@ -12,10 +12,10 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
@@ -26,11 +26,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../contents.html" class="icon icon-home"> PyTezos
+
+          
+          
+          <a href="../../../../contents.html" class="icon icon-home">
+            PyTezos
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -66,9 +70,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../contents.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../index.html">Module code</a> &raquo;</li>
-      <li>pytezos.michelson.types.core</li>
+      <li><a href="../../../../contents.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pytezos.michelson.types.core</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -80,13 +84,16 @@
   <h1>Source code for pytezos.michelson.types.core</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Type</span>
 
-<span class="kn">from</span> <span class="nn">pytezos.context.abstract</span> <span class="kn">import</span> <span class="n">AbstractContext</span>  <span class="c1"># type: ignore</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.micheline</span> <span class="kn">import</span> <span class="n">Micheline</span><span class="p">,</span> <span class="n">MichelineLiteral</span><span class="p">,</span> <span class="n">blind_unpack</span><span class="p">,</span> <span class="n">parse_micheline_literal</span><span class="p">,</span> <span class="n">parse_micheline_value</span>
+<span class="kn">from</span> <span class="nn">pytezos.context.abstract</span> <span class="kn">import</span> <span class="n">AbstractContext</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.micheline</span> <span class="kn">import</span> <span class="n">Micheline</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.micheline</span> <span class="kn">import</span> <span class="n">MichelineLiteral</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.micheline</span> <span class="kn">import</span> <span class="n">blind_unpack</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.micheline</span> <span class="kn">import</span> <span class="n">parse_micheline_literal</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.micheline</span> <span class="kn">import</span> <span class="n">parse_micheline_value</span>
 <span class="kn">from</span> <span class="nn">pytezos.michelson.types.base</span> <span class="kn">import</span> <span class="n">MichelsonType</span>
 
 
-<div class="viewcode-block" id="unit"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.core.unit">[docs]</a><span class="k">class</span> <span class="nc">unit</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-
+<div class="viewcode-block" id="unit"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.core.unit">[docs]</a><span class="k">class</span> <span class="nc">unit</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s1">&#39;Unit&#39;</span>
 
@@ -113,7 +120,6 @@
 
 
 <div class="viewcode-block" id="StringType"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.core.StringType">[docs]</a><span class="k">class</span> <span class="nc">StringType</span><span class="p">(</span><span class="n">MichelsonType</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">):</span>
-
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">StringType</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
@@ -170,11 +176,10 @@
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">slice</span><span class="p">),</span> <span class="sa">f</span><span class="s1">&#39;expected start:end, got </span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s1">&#39;</span>
         <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;string is empty&#39;</span>
         <span class="k">assert</span> <span class="n">item</span><span class="o">.</span><span class="n">stop</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">),</span> <span class="sa">f</span><span class="s1">&#39;out of bounds </span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">stop</span><span class="si">}</span><span class="s1"> &lt;= </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span>
-        <span class="k">return</span> <span class="n">StringType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">start</span><span class="p">:</span><span class="n">item</span><span class="o">.</span><span class="n">stop</span><span class="p">])</span></div>
+        <span class="k">return</span> <span class="n">StringType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">start</span> <span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">stop</span><span class="p">])</span></div>
 
 
 <div class="viewcode-block" id="IntType"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.core.IntType">[docs]</a><span class="k">class</span> <span class="nc">IntType</span><span class="p">(</span><span class="n">MichelsonType</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;int&#39;</span><span class="p">):</span>
-
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">IntType</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
@@ -225,7 +230,6 @@
 
 
 <div class="viewcode-block" id="NatType"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.core.NatType">[docs]</a><span class="k">class</span> <span class="nc">NatType</span><span class="p">(</span><span class="n">IntType</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;nat&#39;</span><span class="p">):</span>
-
 <div class="viewcode-block" id="NatType.from_value"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.core.NatType.from_value">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_value</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;NatType&#39;</span><span class="p">:</span>
         <span class="k">assert</span> <span class="n">value</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;expected natural number, got </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s1">&#39;</span>
@@ -243,7 +247,6 @@
 
 
 <div class="viewcode-block" id="BytesType"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.core.BytesType">[docs]</a><span class="k">class</span> <span class="nc">BytesType</span><span class="p">(</span><span class="n">MichelsonType</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;bytes&#39;</span><span class="p">):</span>
-
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">BytesType</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
@@ -290,7 +293,7 @@
                 <span class="n">py_obj</span> <span class="o">=</span> <span class="n">py_obj</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
             <span class="n">value</span> <span class="o">=</span> <span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="n">py_obj</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">assert</span> <span class="kc">False</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;unexpected value type </span><span class="si">{</span><span class="n">py_obj</span><span class="si">}</span><span class="s1">&#39;</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;unexpected value type </span><span class="si">{</span><span class="n">py_obj</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="BytesType.to_literal"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.core.BytesType.to_literal">[docs]</a>    <span class="k">def</span> <span class="nf">to_literal</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">Micheline</span><span class="p">]:</span>
@@ -307,11 +310,10 @@
     <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">slice</span><span class="p">),</span> <span class="sa">f</span><span class="s1">&#39;expected start:stop, got </span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s1">&#39;</span>
         <span class="k">assert</span> <span class="n">item</span><span class="o">.</span><span class="n">stop</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">),</span> <span class="sa">f</span><span class="s1">&#39;index out of bounds&#39;</span>
-        <span class="k">return</span> <span class="n">BytesType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">start</span><span class="p">:</span><span class="n">item</span><span class="o">.</span><span class="n">stop</span><span class="p">])</span></div>
+        <span class="k">return</span> <span class="n">BytesType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">start</span> <span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">stop</span><span class="p">])</span></div>
 
 
 <div class="viewcode-block" id="BoolType"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.core.BoolType">[docs]</a><span class="k">class</span> <span class="nc">BoolType</span><span class="p">(</span><span class="n">MichelsonType</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;bool&#39;</span><span class="p">):</span>
-
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">BoolType</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
@@ -343,10 +345,13 @@
 
 <div class="viewcode-block" id="BoolType.from_micheline_value"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.core.BoolType.from_micheline_value">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_micheline_value</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">val_expr</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;BoolType&#39;</span><span class="p">:</span>
-        <span class="n">value</span> <span class="o">=</span> <span class="n">parse_micheline_value</span><span class="p">(</span><span class="n">val_expr</span><span class="p">,</span> <span class="p">{</span>
-            <span class="p">(</span><span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-            <span class="p">(</span><span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="kc">True</span>
-        <span class="p">})</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">parse_micheline_value</span><span class="p">(</span>
+            <span class="n">val_expr</span><span class="p">,</span>
+            <span class="p">{</span>
+                <span class="p">(</span><span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                <span class="p">(</span><span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="BoolType.from_python_object"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.core.BoolType.from_python_object">[docs]</a>    <span class="nd">@classmethod</span>
@@ -365,7 +370,6 @@
 
 
 <div class="viewcode-block" id="UnitType"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.core.UnitType">[docs]</a><span class="k">class</span> <span class="nc">UnitType</span><span class="p">(</span><span class="n">MichelsonType</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;unit&#39;</span><span class="p">):</span>
-
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">UnitType</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
@@ -406,7 +410,6 @@
 
 
 <div class="viewcode-block" id="NeverType"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.core.NeverType">[docs]</a><span class="k">class</span> <span class="nc">NeverType</span><span class="p">(</span><span class="n">MichelsonType</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;never&#39;</span><span class="p">):</span>
-
     <span class="k">def</span> <span class="fm">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s1">&#39;NeverType&#39;</span><span class="p">):</span>  <span class="c1"># type: ignore</span>
         <span class="k">return</span> <span class="kc">False</span>
 

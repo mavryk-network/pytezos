@@ -12,10 +12,10 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
@@ -26,11 +26,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../contents.html" class="icon icon-home"> PyTezos
+
+          
+          
+          <a href="../../../../contents.html" class="icon icon-home">
+            PyTezos
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -66,9 +70,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../contents.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../index.html">Module code</a> &raquo;</li>
-      <li>pytezos.michelson.sections.parameter</li>
+      <li><a href="../../../../contents.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pytezos.michelson.sections.parameter</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -78,13 +82,22 @@
            <div itemprop="articleBody">
              
   <h1>Source code for pytezos.michelson.sections.parameter</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">cast</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Type</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">cast</span>
 
-<span class="kn">from</span> <span class="nn">pytezos.context.abstract</span> <span class="kn">import</span> <span class="n">AbstractContext</span>  <span class="c1"># type: ignore</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.micheline</span> <span class="kn">import</span> <span class="n">Micheline</span><span class="p">,</span> <span class="n">MichelsonRuntimeError</span>
+<span class="kn">from</span> <span class="nn">pytezos.context.abstract</span> <span class="kn">import</span> <span class="n">AbstractContext</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.micheline</span> <span class="kn">import</span> <span class="n">Micheline</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.micheline</span> <span class="kn">import</span> <span class="n">MichelsonRuntimeError</span>
 <span class="kn">from</span> <span class="nn">pytezos.michelson.types</span> <span class="kn">import</span> <span class="n">OrType</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.types.adt</span> <span class="kn">import</span> <span class="n">wrap_or</span><span class="p">,</span> <span class="n">wrap_parameters</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.types.base</span> <span class="kn">import</span> <span class="n">MichelsonType</span><span class="p">,</span> <span class="n">parse_name</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.types.adt</span> <span class="kn">import</span> <span class="n">wrap_or</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.types.adt</span> <span class="kn">import</span> <span class="n">wrap_parameters</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.types.base</span> <span class="kn">import</span> <span class="n">MichelsonType</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.types.base</span> <span class="kn">import</span> <span class="n">parse_name</span>
 <span class="kn">from</span> <span class="nn">pytezos.michelson.types.core</span> <span class="kn">import</span> <span class="n">Unit</span>
 
 
@@ -110,22 +123,23 @@
         <span class="k">return</span> <span class="bp">cls</span></div>
 
 <div class="viewcode-block" id="ParameterSection.create_type"><a class="viewcode-back" href="../../../../code.html#pytezos.michelson.sections.parameter.ParameterSection.create_type">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">create_type</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span>
-                    <span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="s1">&#39;Micheline&#39;</span><span class="p">],</span> <span class="n">Any</span><span class="p">]],</span>
-                    <span class="n">annots</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                    <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="s1">&#39;ParameterSection&#39;</span><span class="p">]:</span>
-        <span class="n">root_name</span> <span class="o">=</span> <span class="n">parse_name</span><span class="p">(</span><span class="n">annots</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;%&#39;</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+    <span class="k">def</span> <span class="nf">create_type</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="s1">&#39;Micheline&#39;</span><span class="p">],</span> <span class="n">Any</span><span class="p">]],</span>
+        <span class="n">annots</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="s1">&#39;ParameterSection&#39;</span><span class="p">]:</span>
+        <span class="k">assert</span> <span class="ow">not</span> <span class="n">annots</span><span class="p">,</span> <span class="s1">&#39;top level parameter annotations not supported&#39;</span>
+
         <span class="n">root_type</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Type</span><span class="p">[</span><span class="n">MichelsonType</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">root_type</span><span class="p">,</span> <span class="n">OrType</span><span class="p">):</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">root_name</span><span class="p">:</span>
-                <span class="n">root_name</span> <span class="o">=</span> <span class="n">root_type</span><span class="o">.</span><span class="n">field_name</span>  <span class="c1"># type: ignore</span>
+            <span class="n">root_name</span> <span class="o">=</span> <span class="n">root_type</span><span class="o">.</span><span class="n">field_name</span>  <span class="c1"># type: ignore</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">root_name</span><span class="p">:</span>
                 <span class="n">flat_args</span> <span class="o">=</span> <span class="n">root_type</span><span class="o">.</span><span class="n">get_flat_args</span><span class="p">(</span><span class="n">entrypoints</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
                 <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">flat_args</span><span class="p">,</span> <span class="nb">dict</span><span class="p">),</span> <span class="sa">f</span><span class="s1">&#39;expected a named type, got </span><span class="si">{</span><span class="n">flat_args</span><span class="si">}</span><span class="s1">&#39;</span>
                 <span class="n">root_name</span> <span class="o">=</span> <span class="s1">&#39;root&#39;</span> <span class="k">if</span> <span class="s1">&#39;default&#39;</span> <span class="ow">in</span> <span class="n">flat_args</span> <span class="k">else</span> <span class="s1">&#39;default&#39;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">root_name</span><span class="p">:</span>
-                <span class="n">root_name</span> <span class="o">=</span> <span class="n">root_type</span><span class="o">.</span><span class="n">field_name</span> <span class="ow">or</span> <span class="s1">&#39;default&#39;</span>
+            <span class="n">root_name</span> <span class="o">=</span> <span class="n">root_type</span><span class="o">.</span><span class="n">field_name</span> <span class="ow">or</span> <span class="s1">&#39;default&#39;</span>
         <span class="n">res</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="p">(</span><span class="bp">cls</span><span class="p">,),</span> <span class="nb">dict</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span> <span class="n">root_name</span><span class="o">=</span><span class="n">root_name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">Type</span><span class="p">[</span><span class="s1">&#39;ParameterSection&#39;</span><span class="p">],</span> <span class="n">res</span><span class="p">)</span></div>
 
@@ -136,7 +150,7 @@
 
 <div class="viewcode-block" id="ParameterSection.list_entrypoints"><a class="viewcode-back" href="../../../../code.html#pytezos.michelson.sections.parameter.ParameterSection.list_entrypoints">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">list_entrypoints</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Type</span><span class="p">[</span><span class="n">MichelsonType</span><span class="p">]]:</span>
-        <span class="n">entrypoints</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="n">entrypoints</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">root_type</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">root_type</span><span class="p">,</span> <span class="n">OrType</span><span class="p">):</span>
             <span class="n">flat_args</span> <span class="o">=</span> <span class="n">root_type</span><span class="o">.</span><span class="n">get_flat_args</span><span class="p">(</span><span class="n">entrypoints</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -150,8 +164,10 @@
     <span class="k">def</span> <span class="nf">from_parameters</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;ParameterSection&#39;</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;entrypoint&#39;</span><span class="p">:</span> <span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;prim&#39;</span><span class="p">:</span> <span class="s1">&#39;Unit&#39;</span><span class="p">}}</span>
-        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="n">parameters</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="o">==</span> <span class="p">{</span><span class="s1">&#39;entrypoint&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">},</span> \
-            <span class="sa">f</span><span class="s1">&#39;expected </span><span class="se">{{</span><span class="s1">entrypoint, value</span><span class="se">}}</span><span class="s1">, got </span><span class="si">{</span><span class="n">parameters</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="n">parameters</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="o">==</span> <span class="p">{</span>
+            <span class="s1">&#39;entrypoint&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;value&#39;</span><span class="p">,</span>
+        <span class="p">},</span> <span class="sa">f</span><span class="s1">&#39;expected </span><span class="se">{{</span><span class="s1">entrypoint, value</span><span class="se">}}</span><span class="s1">, got </span><span class="si">{</span><span class="n">parameters</span><span class="si">}</span><span class="s1">&#39;</span>
         <span class="n">entrypoint</span> <span class="o">=</span> <span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;entrypoint&#39;</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">entrypoint</span> <span class="o">==</span> <span class="bp">cls</span><span class="o">.</span><span class="n">root_name</span><span class="p">:</span>
             <span class="n">res</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_micheline_value</span><span class="p">(</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">])</span>
@@ -171,8 +187,10 @@
             <span class="n">flat_values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">item</span><span class="o">.</span><span class="n">get_flat_values</span><span class="p">(</span><span class="n">entrypoints</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">flat_values</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">flat_values</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;expected named type&#39;</span>
             <span class="n">entrypoint</span><span class="p">,</span> <span class="n">item</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">flat_values</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;entrypoint&#39;</span><span class="p">:</span> <span class="n">entrypoint</span><span class="p">,</span>
-                <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">to_micheline_value</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span> <span class="n">lazy_diff</span><span class="o">=</span><span class="kc">None</span><span class="p">)}</span></div>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;entrypoint&#39;</span><span class="p">:</span> <span class="n">entrypoint</span><span class="p">,</span>
+            <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">to_micheline_value</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span> <span class="n">lazy_diff</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span>
+        <span class="p">}</span></div>
 
 <div class="viewcode-block" id="ParameterSection.generate_pydoc"><a class="viewcode-back" href="../../../../code.html#pytezos.michelson.sections.parameter.ParameterSection.generate_pydoc">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">generate_pydoc</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -213,7 +231,10 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">item</span><span class="o">.</span><span class="n">to_micheline_value</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span> <span class="n">lazy_diff</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="ParameterSection.to_python_object"><a class="viewcode-back" href="../../../../code.html#pytezos.michelson.sections.parameter.ParameterSection.to_python_object">[docs]</a>    <span class="k">def</span> <span class="nf">to_python_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">try_unpack</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">lazy_diff</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-        <span class="n">py_obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">item</span><span class="o">.</span><span class="n">to_python_object</span><span class="p">(</span><span class="n">try_unpack</span><span class="o">=</span><span class="n">try_unpack</span><span class="p">,</span> <span class="n">lazy_diff</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+        <span class="n">py_obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">item</span><span class="o">.</span><span class="n">to_python_object</span><span class="p">(</span>
+            <span class="n">try_unpack</span><span class="o">=</span><span class="n">try_unpack</span><span class="p">,</span>
+            <span class="n">lazy_diff</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="p">)</span>
         <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">OrType</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">py_obj</span>
         <span class="k">else</span><span class="p">:</span>

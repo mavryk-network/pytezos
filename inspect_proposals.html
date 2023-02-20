@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Inspecting proposals &mdash; PyTezos  documentation</title>
@@ -13,10 +13,10 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="contents.html" class="icon icon-home"> PyTezos
+
+          
+          
+          <a href="contents.html" class="icon icon-home">
+            PyTezos
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -52,7 +56,26 @@
 <li class="toctree-l1"><a class="reference internal" href="instructions.html">Michelson instructions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code.html">Working with Michelson code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="repl.html">Michelson REPL</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Inspecting proposals</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Inspecting proposals</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pytezos.protocol.protocol.Protocol"><code class="docutils literal notranslate"><span class="pre">Protocol</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pytezos.protocol.protocol.Protocol.diff"><code class="docutils literal notranslate"><span class="pre">Protocol.diff</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytezos.protocol.protocol.Protocol.export_html"><code class="docutils literal notranslate"><span class="pre">Protocol.export_html</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytezos.protocol.protocol.Protocol.export_tar"><code class="docutils literal notranslate"><span class="pre">Protocol.export_tar</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytezos.protocol.protocol.Protocol.from_uri"><code class="docutils literal notranslate"><span class="pre">Protocol.from_uri()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytezos.protocol.protocol.Protocol.hash"><code class="docutils literal notranslate"><span class="pre">Protocol.hash()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytezos.protocol.protocol.Protocol.index"><code class="docutils literal notranslate"><span class="pre">Protocol.index</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytezos.protocol.protocol.Protocol.patch"><code class="docutils literal notranslate"><span class="pre">Protocol.patch</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pytezos.protocol.protocol.dir_to_files"><code class="docutils literal notranslate"><span class="pre">dir_to_files()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pytezos.protocol.protocol.files_to_proto"><code class="docutils literal notranslate"><span class="pre">files_to_proto()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pytezos.protocol.protocol.files_to_tar"><code class="docutils literal notranslate"><span class="pre">files_to_tar()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pytezos.protocol.protocol.proto_to_bytes"><code class="docutils literal notranslate"><span class="pre">proto_to_bytes()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pytezos.protocol.protocol.proto_to_files"><code class="docutils literal notranslate"><span class="pre">proto_to_files()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pytezos.protocol.protocol.tar_to_files"><code class="docutils literal notranslate"><span class="pre">tar_to_files()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pytezos.protocol.protocol.url_to_files"><code class="docutils literal notranslate"><span class="pre">url_to_files()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="michelson_kernel.html">Michelson IPython kernel</a></li>
 </ul>
 
@@ -69,8 +92,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="contents.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Inspecting proposals</li>
+      <li><a href="contents.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Inspecting proposals</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/inspect_proposals.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -81,23 +104,23 @@
            <div itemprop="articleBody">
              
   <section id="module-pytezos.protocol.protocol">
-<span id="inspecting-proposals"></span><h1>Inspecting proposals<a class="headerlink" href="#module-pytezos.protocol.protocol" title="Permalink to this headline"></a></h1>
+<span id="inspecting-proposals"></span><h1>Inspecting proposals<a class="headerlink" href="#module-pytezos.protocol.protocol" title="Permalink to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="pytezos.protocol.protocol.Protocol">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytezos.protocol.protocol.</span></span><span class="sig-name descname"><span class="pre">Protocol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proto</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytezos/protocol/protocol.html#Protocol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.protocol.protocol.Protocol" title="Permalink to this definition"></a></dt>
 <dd><dl class="py attribute">
 <dt class="sig sig-object py" id="pytezos.protocol.protocol.Protocol.diff">
-<span class="sig-name descname"><span class="pre">diff</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;function</span> <span class="pre">Protocol.diff&gt;</span>&#160; <span class="pre">Calculates</span> <span class="pre">file</span> <span class="pre">diff</span> <span class="pre">between</span> <span class="pre">two</span> <span class="pre">protocol</span> <span class="pre">versions.</span>&#160; <span class="pre">:param</span> <span class="pre">proto:</span> <span class="pre">an</span> <span class="pre">instance</span> <span class="pre">of</span> <span class="pre">Protocol</span> <span class="pre">:param</span> <span class="pre">context_size:</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">context</span> <span class="pre">lines</span> <span class="pre">before</span> <span class="pre">and</span> <span class="pre">after</span> <span class="pre">the</span> <span class="pre">change</span> <span class="pre">:returns:</span> <span class="pre">patch</span> <span class="pre">in</span> <span class="pre">proto</span> <span class="pre">format</span> </em><a class="reference internal" href="_modules/pytezos/protocol/protocol.html#Protocol.diff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.protocol.protocol.Protocol.diff" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">diff</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;function</span> <span class="pre">Protocol.diff&gt;</span> <span class="pre">Calculates</span> <span class="pre">file</span> <span class="pre">diff</span> <span class="pre">between</span> <span class="pre">two</span> <span class="pre">protocol</span> <span class="pre">versions.</span>&#160; <span class="pre">:param</span> <span class="pre">proto:</span> <span class="pre">an</span> <span class="pre">instance</span> <span class="pre">of</span> <span class="pre">Protocol</span> <span class="pre">:param</span> <span class="pre">context_size:</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">context</span> <span class="pre">lines</span> <span class="pre">before</span> <span class="pre">and</span> <span class="pre">after</span> <span class="pre">the</span> <span class="pre">change</span> <span class="pre">:returns:</span> <span class="pre">patch</span> <span class="pre">in</span> <span class="pre">proto</span> <span class="pre">format</span> </em><a class="reference internal" href="_modules/pytezos/protocol/protocol.html#Protocol.diff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.protocol.protocol.Protocol.diff" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pytezos.protocol.protocol.Protocol.export_html">
-<span class="sig-name descname"><span class="pre">export_html</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;function</span> <span class="pre">Protocol.export_html&gt;</span>&#160; <span class="pre">Generates</span> <span class="pre">github-like</span> <span class="pre">side-by-side</span> <span class="pre">diff</span> <span class="pre">viewe,</span> <span class="pre">powered</span> <span class="pre">by</span> <span class="pre">diff2html.js</span>&#160; <span class="pre">:param</span> <span class="pre">output_path:</span> <span class="pre">will</span> <span class="pre">write</span> <span class="pre">to</span> <span class="pre">this</span> <span class="pre">file</span> <span class="pre">if</span> <span class="pre">specified</span> <span class="pre">:returns:</span> <span class="pre">html</span> <span class="pre">string</span> <span class="pre">if</span> <span class="pre">path</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">specified</span> </em><a class="reference internal" href="_modules/pytezos/protocol/protocol.html#Protocol.export_html"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.protocol.protocol.Protocol.export_html" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">export_html</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;function</span> <span class="pre">Protocol.export_html&gt;</span> <span class="pre">Generates</span> <span class="pre">github-like</span> <span class="pre">side-by-side</span> <span class="pre">diff</span> <span class="pre">viewe,</span> <span class="pre">powered</span> <span class="pre">by</span> <span class="pre">diff2html.js</span>&#160; <span class="pre">:param</span> <span class="pre">output_path:</span> <span class="pre">will</span> <span class="pre">write</span> <span class="pre">to</span> <span class="pre">this</span> <span class="pre">file</span> <span class="pre">if</span> <span class="pre">specified</span> <span class="pre">:returns:</span> <span class="pre">html</span> <span class="pre">string</span> <span class="pre">if</span> <span class="pre">path</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">specified</span> </em><a class="reference internal" href="_modules/pytezos/protocol/protocol.html#Protocol.export_html"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.protocol.protocol.Protocol.export_html" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pytezos.protocol.protocol.Protocol.export_tar">
-<span class="sig-name descname"><span class="pre">export_tar</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;function</span> <span class="pre">Protocol.export_tar&gt;</span>&#160; <span class="pre">Creates</span> <span class="pre">a</span> <span class="pre">tarball</span> <span class="pre">and</span> <span class="pre">dumps</span> <span class="pre">to</span> <span class="pre">a</span> <span class="pre">file</span> <span class="pre">or</span> <span class="pre">returns</span> <span class="pre">bytes.</span>&#160; <span class="pre">:param</span> <span class="pre">output_path:</span> <span class="pre">Path</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">tarball</span> <span class="pre">[optional].</span> <span class="pre">You</span> <span class="pre">can</span> <span class="pre">add</span> <span class="pre">.bz2</span> <span class="pre">or</span> <span class="pre">.gz</span> <span class="pre">extension</span> <span class="pre">to</span> <span class="pre">make</span> <span class="pre">it</span> <span class="pre">compressed</span> <span class="pre">:returns:</span> <span class="pre">bytes</span> <span class="pre">if</span> <span class="pre">path</span> <span class="pre">is</span> <span class="pre">None</span> <span class="pre">or</span> <span class="pre">nothing</span> </em><a class="reference internal" href="_modules/pytezos/protocol/protocol.html#Protocol.export_tar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.protocol.protocol.Protocol.export_tar" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">export_tar</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;function</span> <span class="pre">Protocol.export_tar&gt;</span> <span class="pre">Creates</span> <span class="pre">a</span> <span class="pre">tarball</span> <span class="pre">and</span> <span class="pre">dumps</span> <span class="pre">to</span> <span class="pre">a</span> <span class="pre">file</span> <span class="pre">or</span> <span class="pre">returns</span> <span class="pre">bytes.</span>&#160; <span class="pre">:param</span> <span class="pre">output_path:</span> <span class="pre">Path</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">tarball</span> <span class="pre">[optional].</span> <span class="pre">You</span> <span class="pre">can</span> <span class="pre">add</span> <span class="pre">.bz2</span> <span class="pre">or</span> <span class="pre">.gz</span> <span class="pre">extension</span> <span class="pre">to</span> <span class="pre">make</span> <span class="pre">it</span> <span class="pre">compressed</span> <span class="pre">:returns:</span> <span class="pre">bytes</span> <span class="pre">if</span> <span class="pre">path</span> <span class="pre">is</span> <span class="pre">None</span> <span class="pre">or</span> <span class="pre">nothing</span> </em><a class="reference internal" href="_modules/pytezos/protocol/protocol.html#Protocol.export_tar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.protocol.protocol.Protocol.export_tar" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -105,10 +128,10 @@
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_uri</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uri</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytezos/protocol/protocol.html#Protocol.from_uri"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.protocol.protocol.Protocol.from_uri" title="Permalink to this definition"></a></dt>
 <dd><p>Loads protocol implementation from various sources and converts it to the RPC-like format.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>uri</strong> – link/path to a tar archive or path to a folder with extracted contents</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Protocol instance</p>
 </dd>
 </dl>
@@ -121,12 +144,12 @@
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pytezos.protocol.protocol.Protocol.index">
-<span class="sig-name descname"><span class="pre">index</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;function</span> <span class="pre">Protocol.index&gt;</span>&#160; <span class="pre">Generates</span> <span class="pre">TEZOS_PROTOCOL</span> <span class="pre">file.</span>&#160; <span class="pre">:returns:</span> <span class="pre">dict</span> <span class="pre">with</span> <span class="pre">protocol</span> <span class="pre">hash</span> <span class="pre">and</span> <span class="pre">modules</span> </em><a class="reference internal" href="_modules/pytezos/protocol/protocol.html#Protocol.index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.protocol.protocol.Protocol.index" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">index</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;function</span> <span class="pre">Protocol.index&gt;</span> <span class="pre">Generates</span> <span class="pre">TEZOS_PROTOCOL</span> <span class="pre">file.</span>&#160; <span class="pre">:returns:</span> <span class="pre">dict</span> <span class="pre">with</span> <span class="pre">protocol</span> <span class="pre">hash</span> <span class="pre">and</span> <span class="pre">modules</span> </em><a class="reference internal" href="_modules/pytezos/protocol/protocol.html#Protocol.index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.protocol.protocol.Protocol.index" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pytezos.protocol.protocol.Protocol.patch">
-<span class="sig-name descname"><span class="pre">patch</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;function</span> <span class="pre">Protocol.patch&gt;</span>&#160; <span class="pre">Applies</span> <span class="pre">unified</span> <span class="pre">diff</span> <span class="pre">and</span> <span class="pre">returns</span> <span class="pre">full-fledged</span> <span class="pre">protocol.</span>&#160; <span class="pre">:param</span> <span class="pre">patch:</span> <span class="pre">an</span> <span class="pre">instance</span> <span class="pre">of</span> <span class="pre">Protocol</span> <span class="pre">containing</span> <span class="pre">diff</span> <span class="pre">of</span> <span class="pre">files</span> <span class="pre">:returns:</span> <span class="pre">Protocol</span> <span class="pre">instance</span> </em><a class="reference internal" href="_modules/pytezos/protocol/protocol.html#Protocol.patch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.protocol.protocol.Protocol.patch" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">patch</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;function</span> <span class="pre">Protocol.patch&gt;</span> <span class="pre">Applies</span> <span class="pre">unified</span> <span class="pre">diff</span> <span class="pre">and</span> <span class="pre">returns</span> <span class="pre">full-fledged</span> <span class="pre">protocol.</span>&#160; <span class="pre">:param</span> <span class="pre">patch:</span> <span class="pre">an</span> <span class="pre">instance</span> <span class="pre">of</span> <span class="pre">Protocol</span> <span class="pre">containing</span> <span class="pre">diff</span> <span class="pre">of</span> <span class="pre">files</span> <span class="pre">:returns:</span> <span class="pre">Protocol</span> <span class="pre">instance</span> </em><a class="reference internal" href="_modules/pytezos/protocol/protocol.html#Protocol.patch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.protocol.protocol.Protocol.patch" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>

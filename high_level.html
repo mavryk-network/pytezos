@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>High-level interfaces &mdash; PyTezos  documentation</title>
@@ -13,10 +13,10 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="contents.html" class="icon icon-home"> PyTezos
+
+          
+          
+          <a href="contents.html" class="icon icon-home">
+            PyTezos
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -45,12 +49,122 @@
 <li class="toctree-l1"><a class="reference internal" href="integration_tests.html">Michelson integration tests</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pytezos_cli.html">PyTezos CLI</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">High-level interfaces</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#pytezos-client">PyTezos client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#contract-interface">Contract interface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#contract-entrypoint-proxy">Contract entrypoint proxy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#contract-call-proxy">Contract call proxy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#contract-call-result">Contract call result</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#contract-storage-proxy">Contract storage proxy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pytezos-client">PyTezos client</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pytezos.client.PyTezosClient"><code class="docutils literal notranslate"><span class="pre">PyTezosClient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.client.PyTezosClient.account"><code class="docutils literal notranslate"><span class="pre">PyTezosClient.account</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.client.PyTezosClient.activate_account"><code class="docutils literal notranslate"><span class="pre">PyTezosClient.activate_account</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.client.PyTezosClient.activate_protocol"><code class="docutils literal notranslate"><span class="pre">PyTezosClient.activate_protocol</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.client.PyTezosClient.bake_block"><code class="docutils literal notranslate"><span class="pre">PyTezosClient.bake_block</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.client.PyTezosClient.balance"><code class="docutils literal notranslate"><span class="pre">PyTezosClient.balance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.client.PyTezosClient.ballot"><code class="docutils literal notranslate"><span class="pre">PyTezosClient.ballot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.client.PyTezosClient.bulk"><code class="docutils literal notranslate"><span class="pre">PyTezosClient.bulk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.client.PyTezosClient.check_message"><code class="docutils literal notranslate"><span class="pre">PyTezosClient.check_message</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.client.PyTezosClient.contract"><code class="docutils literal notranslate"><span class="pre">PyTezosClient.contract</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.client.PyTezosClient.delegation"><code class="docutils literal notranslate"><span class="pre">PyTezosClient.delegation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.client.PyTezosClient.double_baking_evidence"><code class="docutils literal notranslate"><span class="pre">PyTezosClient.double_baking_evidence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.client.PyTezosClient.double_endorsement_evidence"><code class="docutils literal notranslate"><span class="pre">PyTezosClient.double_endorsement_evidence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.client.PyTezosClient.endorsement"><code class="docutils literal notranslate"><span class="pre">PyTezosClient.endorsement</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.client.PyTezosClient.endorsement_with_slot"><code class="docutils literal notranslate"><span class="pre">PyTezosClient.endorsement_with_slot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.client.PyTezosClient.failing_noop"><code class="docutils literal notranslate"><span class="pre">PyTezosClient.failing_noop</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.client.PyTezosClient.now"><code class="docutils literal notranslate"><span class="pre">PyTezosClient.now</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.client.PyTezosClient.operation"><code class="docutils literal notranslate"><span class="pre">PyTezosClient.operation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.client.PyTezosClient.operation_group"><code class="docutils literal notranslate"><span class="pre">PyTezosClient.operation_group</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.client.PyTezosClient.origination"><code class="docutils literal notranslate"><span class="pre">PyTezosClient.origination</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.client.PyTezosClient.proposals"><code class="docutils literal notranslate"><span class="pre">PyTezosClient.proposals</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.client.PyTezosClient.register_global_constant"><code class="docutils literal notranslate"><span class="pre">PyTezosClient.register_global_constant</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.client.PyTezosClient.reveal"><code class="docutils literal notranslate"><span class="pre">PyTezosClient.reveal</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.client.PyTezosClient.seed_nonce_revelation"><code class="docutils literal notranslate"><span class="pre">PyTezosClient.seed_nonce_revelation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.client.PyTezosClient.sign_message"><code class="docutils literal notranslate"><span class="pre">PyTezosClient.sign_message</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.client.PyTezosClient.sleep"><code class="docutils literal notranslate"><span class="pre">PyTezosClient.sleep</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.client.PyTezosClient.transaction"><code class="docutils literal notranslate"><span class="pre">PyTezosClient.transaction</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.client.PyTezosClient.using"><code class="docutils literal notranslate"><span class="pre">PyTezosClient.using</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.client.PyTezosClient.wait"><code class="docutils literal notranslate"><span class="pre">PyTezosClient.wait</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#contract-interface">Contract interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pytezos.contract.interface.ContractInterface"><code class="docutils literal notranslate"><span class="pre">ContractInterface</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.interface.ContractInterface.big_map_get"><code class="docutils literal notranslate"><span class="pre">ContractInterface.big_map_get</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.interface.ContractInterface.call"><code class="docutils literal notranslate"><span class="pre">ContractInterface.call</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.interface.ContractInterface.code"><code class="docutils literal notranslate"><span class="pre">ContractInterface.code</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.interface.ContractInterface.contract"><code class="docutils literal notranslate"><span class="pre">ContractInterface.contract</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.interface.ContractInterface.create_from"><code class="docutils literal notranslate"><span class="pre">ContractInterface.create_from()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.interface.ContractInterface.from_context"><code class="docutils literal notranslate"><span class="pre">ContractInterface.from_context</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.interface.ContractInterface.from_file"><code class="docutils literal notranslate"><span class="pre">ContractInterface.from_file</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.interface.ContractInterface.from_micheline"><code class="docutils literal notranslate"><span class="pre">ContractInterface.from_micheline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.interface.ContractInterface.from_michelson"><code class="docutils literal notranslate"><span class="pre">ContractInterface.from_michelson</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.interface.ContractInterface.from_url"><code class="docutils literal notranslate"><span class="pre">ContractInterface.from_url</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.interface.ContractInterface.metadata"><code class="docutils literal notranslate"><span class="pre">ContractInterface.metadata</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.interface.ContractInterface.operation_result"><code class="docutils literal notranslate"><span class="pre">ContractInterface.operation_result</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.interface.ContractInterface.originate"><code class="docutils literal notranslate"><span class="pre">ContractInterface.originate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.interface.ContractInterface.script"><code class="docutils literal notranslate"><span class="pre">ContractInterface.script</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.interface.ContractInterface.storage_from_file"><code class="docutils literal notranslate"><span class="pre">ContractInterface.storage_from_file</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.interface.ContractInterface.storage_from_micheline"><code class="docutils literal notranslate"><span class="pre">ContractInterface.storage_from_micheline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.interface.ContractInterface.storage_from_michelson"><code class="docutils literal notranslate"><span class="pre">ContractInterface.storage_from_michelson</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.interface.ContractInterface.text"><code class="docutils literal notranslate"><span class="pre">ContractInterface.text</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.interface.ContractInterface.to_file"><code class="docutils literal notranslate"><span class="pre">ContractInterface.to_file</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.interface.ContractInterface.to_micheline"><code class="docutils literal notranslate"><span class="pre">ContractInterface.to_micheline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.interface.ContractInterface.to_michelson"><code class="docutils literal notranslate"><span class="pre">ContractInterface.to_michelson</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.interface.ContractInterface.token_metadata"><code class="docutils literal notranslate"><span class="pre">ContractInterface.token_metadata</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.interface.ContractInterface.using"><code class="docutils literal notranslate"><span class="pre">ContractInterface.using</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#contract-entrypoint-proxy">Contract entrypoint proxy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pytezos.contract.entrypoint.ContractEntrypoint"><code class="docutils literal notranslate"><span class="pre">ContractEntrypoint</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.entrypoint.ContractEntrypoint.__call__"><code class="docutils literal notranslate"><span class="pre">ContractEntrypoint.__call__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.entrypoint.ContractEntrypoint.decode"><code class="docutils literal notranslate"><span class="pre">ContractEntrypoint.decode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.entrypoint.ContractEntrypoint.encode"><code class="docutils literal notranslate"><span class="pre">ContractEntrypoint.encode</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#contract-call-proxy">Contract call proxy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pytezos.contract.call.ContractCall"><code class="docutils literal notranslate"><span class="pre">ContractCall</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.call.ContractCall.as_transaction"><code class="docutils literal notranslate"><span class="pre">ContractCall.as_transaction</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.call.ContractCall.callback_view"><code class="docutils literal notranslate"><span class="pre">ContractCall.callback_view</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.call.ContractCall.cmdline"><code class="docutils literal notranslate"><span class="pre">ContractCall.cmdline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.call.ContractCall.inject"><code class="docutils literal notranslate"><span class="pre">ContractCall.inject</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.call.ContractCall.interpret"><code class="docutils literal notranslate"><span class="pre">ContractCall.interpret</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.call.ContractCall.operation_group"><code class="docutils literal notranslate"><span class="pre">ContractCall.operation_group</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.call.ContractCall.result"><code class="docutils literal notranslate"><span class="pre">ContractCall.result</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.call.ContractCall.run_code"><code class="docutils literal notranslate"><span class="pre">ContractCall.run_code</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.call.ContractCall.run_operation"><code class="docutils literal notranslate"><span class="pre">ContractCall.run_operation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.call.ContractCall.send"><code class="docutils literal notranslate"><span class="pre">ContractCall.send</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.call.ContractCall.send_async"><code class="docutils literal notranslate"><span class="pre">ContractCall.send_async</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.call.ContractCall.view"><code class="docutils literal notranslate"><span class="pre">ContractCall.view</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.call.ContractCall.with_amount"><code class="docutils literal notranslate"><span class="pre">ContractCall.with_amount</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#contract-call-result">Contract call result</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pytezos.contract.result.ContractCallResult"><code class="docutils literal notranslate"><span class="pre">ContractCallResult</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.result.ContractCallResult.from_run_code"><code class="docutils literal notranslate"><span class="pre">ContractCallResult.from_run_code()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.result.ContractCallResult.from_run_operation"><code class="docutils literal notranslate"><span class="pre">ContractCallResult.from_run_operation()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#contract-storage-proxy">Contract storage proxy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pytezos.contract.data.ContractData"><code class="docutils literal notranslate"><span class="pre">ContractData</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.data.ContractData.__call__"><code class="docutils literal notranslate"><span class="pre">ContractData.__call__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.data.ContractData.decode"><code class="docutils literal notranslate"><span class="pre">ContractData.decode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.data.ContractData.default"><code class="docutils literal notranslate"><span class="pre">ContractData.default</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.data.ContractData.dummy"><code class="docutils literal notranslate"><span class="pre">ContractData.dummy</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.data.ContractData.encode"><code class="docutils literal notranslate"><span class="pre">ContractData.encode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.data.ContractData.to_micheline"><code class="docutils literal notranslate"><span class="pre">ContractData.to_micheline</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.contract.data.ContractData.to_michelson"><code class="docutils literal notranslate"><span class="pre">ContractData.to_michelson</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#contract-view-proxy">Contract view proxy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pytezos.contract.view.ContractView"><code class="docutils literal notranslate"><span class="pre">ContractView</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="crypto.html">Cryptography</a></li>
@@ -77,8 +191,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="contents.html" class="icon icon-home"></a> &raquo;</li>
-      <li>High-level interfaces</li>
+      <li><a href="contents.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">High-level interfaces</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/high_level.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -89,12 +203,12 @@
            <div itemprop="articleBody">
              
   <section id="high-level-interfaces">
-<h1>High-level interfaces<a class="headerlink" href="#high-level-interfaces" title="Permalink to this headline"></a></h1>
+<h1>High-level interfaces<a class="headerlink" href="#high-level-interfaces" title="Permalink to this heading"></a></h1>
 <section id="pytezos-client">
-<h2>PyTezos client<a class="headerlink" href="#pytezos-client" title="Permalink to this headline"></a></h2>
+<h2>PyTezos client<a class="headerlink" href="#pytezos-client" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pytezos.client.PyTezosClient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytezos.client.</span></span><span class="sig-name descname"><span class="pre">PyTezosClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="repl.html#pytezos.context.impl.ExecutionContext" title="pytezos.context.impl.ExecutionContext"><span class="pre">pytezos.context.impl.ExecutionContext</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytezos/client.html#PyTezosClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.client.PyTezosClient" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytezos.client.</span></span><span class="sig-name descname"><span class="pre">PyTezosClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="repl.html#pytezos.context.impl.ExecutionContext" title="pytezos.context.impl.ExecutionContext"><span class="pre">ExecutionContext</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytezos/client.html#PyTezosClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.client.PyTezosClient" title="Permalink to this definition"></a></dt>
 <dd><p>Entry point for a developer, start your script with:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pytezos</span> <span class="kn">import</span> <span class="n">pytezos</span>
 </pre></div>
@@ -243,10 +357,10 @@
 
 </section>
 <section id="contract-interface">
-<h2>Contract interface<a class="headerlink" href="#contract-interface" title="Permalink to this headline"></a></h2>
+<h2>Contract interface<a class="headerlink" href="#contract-interface" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pytezos.contract.interface.ContractInterface">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytezos.contract.interface.</span></span><span class="sig-name descname"><span class="pre">ContractInterface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="repl.html#pytezos.context.impl.ExecutionContext" title="pytezos.context.impl.ExecutionContext"><span class="pre">pytezos.context.impl.ExecutionContext</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytezos/contract/interface.html#ContractInterface"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.contract.interface.ContractInterface" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytezos.contract.interface.</span></span><span class="sig-name descname"><span class="pre">ContractInterface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="repl.html#pytezos.context.impl.ExecutionContext" title="pytezos.context.impl.ExecutionContext"><span class="pre">ExecutionContext</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytezos/contract/interface.html#ContractInterface"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.contract.interface.ContractInterface" title="Permalink to this definition"></a></dt>
 <dd><p>Proxy class for interacting with a contract.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pytezos.contract.interface.ContractInterface.big_map_get">
@@ -255,7 +369,7 @@
 
 <dl class="py property">
 <dt class="sig sig-object py" id="pytezos.contract.interface.ContractInterface.call">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">call</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pytezos.contract.entrypoint.ContractEntrypoint" title="pytezos.contract.entrypoint.ContractEntrypoint"><span class="pre">pytezos.contract.entrypoint.ContractEntrypoint</span></a></em><a class="headerlink" href="#pytezos.contract.interface.ContractInterface.call" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">call</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pytezos.contract.entrypoint.ContractEntrypoint" title="pytezos.contract.entrypoint.ContractEntrypoint"><span class="pre">ContractEntrypoint</span></a></em><a class="headerlink" href="#pytezos.contract.interface.ContractInterface.call" title="Permalink to this definition"></a></dt>
 <dd><div class="deprecated">
 <p><span class="versionmodified deprecated">Deprecated since version 3.0.0.</span></p>
 </div>
@@ -273,7 +387,7 @@
 
 <dl class="py property">
 <dt class="sig sig-object py" id="pytezos.contract.interface.ContractInterface.contract">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">contract</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pytezos.contract.interface.ContractInterface" title="pytezos.contract.interface.ContractInterface"><span class="pre">pytezos.contract.interface.ContractInterface</span></a></em><a class="headerlink" href="#pytezos.contract.interface.ContractInterface.contract" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">contract</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pytezos.contract.interface.ContractInterface" title="pytezos.contract.interface.ContractInterface"><span class="pre">ContractInterface</span></a></em><a class="headerlink" href="#pytezos.contract.interface.ContractInterface.contract" title="Permalink to this definition"></a></dt>
 <dd><div class="deprecated">
 <p><span class="versionmodified deprecated">Deprecated since version 3.0.0.</span></p>
 </div>
@@ -285,10 +399,10 @@
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_from</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytezos/contract/interface.html#ContractInterface.create_from"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.contract.interface.ContractInterface.create_from" title="Permalink to this definition"></a></dt>
 <dd><p>Create contract interface from its code.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>source</strong> – Michelson code, filename, or Micheline JSON</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#pytezos.contract.interface.ContractInterface" title="pytezos.contract.interface.ContractInterface">ContractInterface</a></p>
 </dd>
 </dl>
@@ -297,94 +411,37 @@
 </div>
 </dd></dl>
 
-<dl class="py method">
+<dl class="py attribute">
 <dt class="sig sig-object py" id="pytezos.contract.interface.ContractInterface.from_context">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="repl.html#pytezos.context.impl.ExecutionContext" title="pytezos.context.impl.ExecutionContext"><span class="pre">pytezos.context.impl.ExecutionContext</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytezos.contract.interface.ContractInterface" title="pytezos.contract.interface.ContractInterface"><span class="pre">pytezos.contract.interface.ContractInterface</span></a></span></span><a class="reference internal" href="_modules/pytezos/contract/interface.html#ContractInterface.from_context"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.contract.interface.ContractInterface.from_context" title="Permalink to this definition"></a></dt>
-<dd><p>Create contract from the previously loaded context data.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>context</strong> – execution context</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>ContractInterface</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pytezos.contract.interface.ContractInterface.from_file">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="repl.html#pytezos.context.impl.ExecutionContext" title="pytezos.context.impl.ExecutionContext"><span class="pre">pytezos.context.impl.ExecutionContext</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytezos.contract.interface.ContractInterface" title="pytezos.contract.interface.ContractInterface"><span class="pre">pytezos.contract.interface.ContractInterface</span></a></span></span><a class="reference internal" href="_modules/pytezos/contract/interface.html#ContractInterface.from_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.contract.interface.ContractInterface.from_file" title="Permalink to this definition"></a></dt>
-<dd><p>Create contract from michelson source code stored in a file.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>path</strong> – Path to the <cite>.tz</cite> file</p></li>
-<li><p><strong>context</strong> – optional execution context</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="#pytezos.contract.interface.ContractInterface" title="pytezos.contract.interface.ContractInterface">ContractInterface</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pytezos.contract.interface.ContractInterface.from_micheline">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_micheline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expression</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="repl.html#pytezos.context.impl.ExecutionContext" title="pytezos.context.impl.ExecutionContext"><span class="pre">pytezos.context.impl.ExecutionContext</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytezos.contract.interface.ContractInterface" title="pytezos.contract.interface.ContractInterface"><span class="pre">pytezos.contract.interface.ContractInterface</span></a></span></span><a class="reference internal" href="_modules/pytezos/contract/interface.html#ContractInterface.from_micheline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.contract.interface.ContractInterface.from_micheline" title="Permalink to this definition"></a></dt>
-<dd><p>Create contract from micheline expression.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>expression</strong> – [{‘prim’: ‘parameter’}, {‘prim’: ‘storage’}, {‘prim’: ‘code’}]</p></li>
-<li><p><strong>context</strong> – optional execution context</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="#pytezos.contract.interface.ContractInterface" title="pytezos.contract.interface.ContractInterface">ContractInterface</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pytezos.contract.interface.ContractInterface.from_michelson">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_michelson</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="repl.html#pytezos.context.impl.ExecutionContext" title="pytezos.context.impl.ExecutionContext"><span class="pre">pytezos.context.impl.ExecutionContext</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytezos.contract.interface.ContractInterface" title="pytezos.contract.interface.ContractInterface"><span class="pre">pytezos.contract.interface.ContractInterface</span></a></span></span><a class="reference internal" href="_modules/pytezos/contract/interface.html#ContractInterface.from_michelson"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.contract.interface.ContractInterface.from_michelson" title="Permalink to this definition"></a></dt>
-<dd><p>Create contract from michelson source code.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>source</strong> – Michelson source code</p></li>
-<li><p><strong>context</strong> – optional execution context</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="#pytezos.contract.interface.ContractInterface" title="pytezos.contract.interface.ContractInterface">ContractInterface</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pytezos.contract.interface.ContractInterface.from_url">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="repl.html#pytezos.context.impl.ExecutionContext" title="pytezos.context.impl.ExecutionContext"><span class="pre">pytezos.context.impl.ExecutionContext</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytezos.contract.interface.ContractInterface" title="pytezos.contract.interface.ContractInterface"><span class="pre">pytezos.contract.interface.ContractInterface</span></a></span></span><a class="reference internal" href="_modules/pytezos/contract/interface.html#ContractInterface.from_url"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.contract.interface.ContractInterface.from_url" title="Permalink to this definition"></a></dt>
-<dd><p>Create contract from michelson source code available via URL</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>url</strong> – link to the Michelson file</p></li>
-<li><p><strong>context</strong> – optional execution context</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="#pytezos.contract.interface.ContractInterface" title="pytezos.contract.interface.ContractInterface">ContractInterface</a></p>
-</dd>
-</dl>
-</dd></dl>
+<span class="sig-name descname"><span class="pre">from_context</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;staticmethod(&lt;function</span> <span class="pre">ContractInterface.from_context&gt;)&gt;</span> <span class="pre">Create</span> <span class="pre">contract</span> <span class="pre">from</span> <span class="pre">the</span> <span class="pre">previously</span> <span class="pre">loaded</span> <span class="pre">context</span> <span class="pre">data.</span>&#160; <span class="pre">:param</span> <span class="pre">context:</span> <span class="pre">execution</span> <span class="pre">context</span> <span class="pre">:return:</span> <span class="pre">ContractInterface</span> </em><a class="reference internal" href="_modules/pytezos/contract/interface.html#ContractInterface.from_context"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.contract.interface.ContractInterface.from_context" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="pytezos.contract.interface.ContractInterface.from_file">
+<span class="sig-name descname"><span class="pre">from_file</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;staticmethod(&lt;function</span> <span class="pre">ContractInterface.from_file&gt;)&gt;</span> <span class="pre">Create</span> <span class="pre">contract</span> <span class="pre">from</span> <span class="pre">michelson</span> <span class="pre">source</span> <span class="pre">code</span> <span class="pre">stored</span> <span class="pre">in</span> <span class="pre">a</span> <span class="pre">file.</span>&#160; <span class="pre">:param</span> <span class="pre">path:</span> <span class="pre">Path</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">`.tz`</span> <span class="pre">file</span> <span class="pre">:param</span> <span class="pre">context:</span> <span class="pre">optional</span> <span class="pre">execution</span> <span class="pre">context</span> <span class="pre">:rtype:</span> <span class="pre">ContractInterface</span> </em><a class="reference internal" href="_modules/pytezos/contract/interface.html#ContractInterface.from_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.contract.interface.ContractInterface.from_file" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pytezos.contract.interface.ContractInterface.from_micheline">
+<span class="sig-name descname"><span class="pre">from_micheline</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;staticmethod(&lt;function</span> <span class="pre">ContractInterface.from_micheline&gt;)&gt;</span> <span class="pre">Create</span> <span class="pre">contract</span> <span class="pre">from</span> <span class="pre">micheline</span> <span class="pre">expression.</span>&#160; <span class="pre">:param</span> <span class="pre">expression:</span> <span class="pre">[{'prim':</span> <span class="pre">'parameter'},</span> <span class="pre">{'prim':</span> <span class="pre">'storage'},</span> <span class="pre">{'prim':</span> <span class="pre">'code'}]</span> <span class="pre">:param</span> <span class="pre">context:</span> <span class="pre">optional</span> <span class="pre">execution</span> <span class="pre">context</span> <span class="pre">:rtype:</span> <span class="pre">ContractInterface</span> </em><a class="reference internal" href="_modules/pytezos/contract/interface.html#ContractInterface.from_micheline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.contract.interface.ContractInterface.from_micheline" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pytezos.contract.interface.ContractInterface.from_michelson">
+<span class="sig-name descname"><span class="pre">from_michelson</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;staticmethod(&lt;function</span> <span class="pre">ContractInterface.from_michelson&gt;)&gt;</span> <span class="pre">Create</span> <span class="pre">contract</span> <span class="pre">from</span> <span class="pre">michelson</span> <span class="pre">source</span> <span class="pre">code.</span>&#160; <span class="pre">:param</span> <span class="pre">source:</span> <span class="pre">Michelson</span> <span class="pre">source</span> <span class="pre">code</span> <span class="pre">:param</span> <span class="pre">context:</span> <span class="pre">optional</span> <span class="pre">execution</span> <span class="pre">context</span> <span class="pre">:rtype:</span> <span class="pre">ContractInterface</span> </em><a class="reference internal" href="_modules/pytezos/contract/interface.html#ContractInterface.from_michelson"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.contract.interface.ContractInterface.from_michelson" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pytezos.contract.interface.ContractInterface.from_url">
+<span class="sig-name descname"><span class="pre">from_url</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;staticmethod(&lt;function</span> <span class="pre">ContractInterface.from_url&gt;)&gt;</span> <span class="pre">Create</span> <span class="pre">contract</span> <span class="pre">from</span> <span class="pre">michelson</span> <span class="pre">source</span> <span class="pre">code</span> <span class="pre">available</span> <span class="pre">via</span> <span class="pre">URL</span>&#160; <span class="pre">:param</span> <span class="pre">url:</span> <span class="pre">link</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">Michelson</span> <span class="pre">file</span> <span class="pre">:param</span> <span class="pre">context:</span> <span class="pre">optional</span> <span class="pre">execution</span> <span class="pre">context</span> <span class="pre">:rtype:</span> <span class="pre">ContractInterface</span> </em><a class="reference internal" href="_modules/pytezos/contract/interface.html#ContractInterface.from_url"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.contract.interface.ContractInterface.from_url" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
 <dt class="sig sig-object py" id="pytezos.contract.interface.ContractInterface.metadata">
-<span class="sig-name descname"><span class="pre">metadata</span></span><a class="headerlink" href="#pytezos.contract.interface.ContractInterface.metadata" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ContractMetadata</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pytezos.contract.interface.ContractInterface.metadata" title="Permalink to this definition"></a></dt>
 <dd><p>Get TZIP-016 contract metadata, if exists</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>ContractMetadata</p>
 </dd>
 </dl>
@@ -446,10 +503,10 @@
 
 <dl class="py property">
 <dt class="sig sig-object py" id="pytezos.contract.interface.ContractInterface.token_metadata">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">token_metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">pytezos.contract.interface.ContractTokenMetadataProxy</span></em><a class="headerlink" href="#pytezos.contract.interface.ContractInterface.token_metadata" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">token_metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ContractTokenMetadataProxy</span></em><a class="headerlink" href="#pytezos.contract.interface.ContractInterface.token_metadata" title="Permalink to this definition"></a></dt>
 <dd><p>Get TZIP-021 contract token metadata proxy</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>ContractTokenMetadataProxy</p>
 </dd>
 </dl>
@@ -464,23 +521,23 @@
 
 </section>
 <section id="contract-entrypoint-proxy">
-<h2>Contract entrypoint proxy<a class="headerlink" href="#contract-entrypoint-proxy" title="Permalink to this headline"></a></h2>
+<h2>Contract entrypoint proxy<a class="headerlink" href="#contract-entrypoint-proxy" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pytezos.contract.entrypoint.ContractEntrypoint">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytezos.contract.entrypoint.</span></span><span class="sig-name descname"><span class="pre">ContractEntrypoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="repl.html#pytezos.context.impl.ExecutionContext" title="pytezos.context.impl.ExecutionContext"><span class="pre">pytezos.context.impl.ExecutionContext</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">entrypoint</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytezos/contract/entrypoint.html#ContractEntrypoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.contract.entrypoint.ContractEntrypoint" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytezos.contract.entrypoint.</span></span><span class="sig-name descname"><span class="pre">ContractEntrypoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="repl.html#pytezos.context.impl.ExecutionContext" title="pytezos.context.impl.ExecutionContext"><span class="pre">ExecutionContext</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">entrypoint</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytezos/contract/entrypoint.html#ContractEntrypoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.contract.entrypoint.ContractEntrypoint" title="Permalink to this definition"></a></dt>
 <dd><p>Proxy class for spawning ContractCall instances.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pytezos.contract.entrypoint.ContractEntrypoint.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytezos.contract.call.ContractCall" title="pytezos.contract.call.ContractCall"><span class="pre">pytezos.contract.call.ContractCall</span></a></span></span><a class="reference internal" href="_modules/pytezos/contract/entrypoint.html#ContractEntrypoint.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.contract.entrypoint.ContractEntrypoint.__call__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytezos.contract.call.ContractCall" title="pytezos.contract.call.ContractCall"><span class="pre">ContractCall</span></a></span></span><a class="reference internal" href="_modules/pytezos/contract/entrypoint.html#ContractEntrypoint.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.contract.entrypoint.ContractEntrypoint.__call__" title="Permalink to this definition"></a></dt>
 <dd><p>Spawn a contract call proxy initialized with the entrypoint name</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>args</strong> – entrypoint args</p></li>
 <li><p><strong>kwargs</strong> – entrypoint key-value args</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#pytezos.contract.call.ContractCall" title="pytezos.contract.call.ContractCall">ContractCall</a></p>
 </dd>
 </dl>
@@ -500,10 +557,10 @@
 
 </section>
 <section id="contract-call-proxy">
-<h2>Contract call proxy<a class="headerlink" href="#contract-call-proxy" title="Permalink to this headline"></a></h2>
+<h2>Contract call proxy<a class="headerlink" href="#contract-call-proxy" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pytezos.contract.call.ContractCall">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytezos.contract.call.</span></span><span class="sig-name descname"><span class="pre">ContractCall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="repl.html#pytezos.context.impl.ExecutionContext" title="pytezos.context.impl.ExecutionContext"><span class="pre">pytezos.context.impl.ExecutionContext</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">decimal.Decimal</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytezos/contract/call.html#ContractCall"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.contract.call.ContractCall" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytezos.contract.call.</span></span><span class="sig-name descname"><span class="pre">ContractCall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="repl.html#pytezos.context.impl.ExecutionContext" title="pytezos.context.impl.ExecutionContext"><span class="pre">ExecutionContext</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Decimal</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytezos/contract/call.html#ContractCall"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.contract.call.ContractCall" title="Permalink to this definition"></a></dt>
 <dd><p>Proxy class encapsulating a contract call: contract type scheme, contract address, parameters, and amount</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pytezos.contract.call.ContractCall.as_transaction">
@@ -512,7 +569,7 @@
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pytezos.contract.call.ContractCall.callback_view">
-<span class="sig-name descname"><span class="pre">callback_view</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;function</span> <span class="pre">ContractCall.callback_view&gt;</span> <span class="pre">Get</span> <span class="pre">return</span> <span class="pre">value</span> <span class="pre">of</span> <span class="pre">an</span> <span class="pre">on-chain</span> <span class="pre">callback</span> <span class="pre">method.</span>&#160; <span class="pre">:returns:</span> <span class="pre">Decoded</span> <span class="pre">parameters</span> <span class="pre">of</span> <span class="pre">a</span> <span class="pre">callback</span> </em><a class="reference internal" href="_modules/pytezos/contract/call.html#ContractCall.callback_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.contract.call.ContractCall.callback_view" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">callback_view</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;function</span> <span class="pre">ContractCall.callback_view&gt;</span> <span class="pre">Get</span> <span class="pre">return</span> <span class="pre">value</span> <span class="pre">of</span> <span class="pre">an</span> <span class="pre">on-chain</span> <span class="pre">callback</span> <span class="pre">method.</span>&#160; <span class="pre">:param</span> <span class="pre">storage:</span> <span class="pre">initial</span> <span class="pre">storage</span> <span class="pre">as</span> <span class="pre">Python</span> <span class="pre">object,</span> <span class="pre">if</span> <span class="pre">None</span> <span class="pre">then</span> <span class="pre">the</span> <span class="pre">current</span> <span class="pre">one</span> <span class="pre">will</span> <span class="pre">be</span> <span class="pre">taken</span> <span class="pre">(if</span> <span class="pre">context</span> <span class="pre">attached),</span> <span class="pre">otherwise</span> <span class="pre">empty</span> <span class="pre">(dummy)</span> <span class="pre">:returns:</span> <span class="pre">Decoded</span> <span class="pre">parameters</span> <span class="pre">of</span> <span class="pre">a</span> <span class="pre">callback</span> </em><a class="reference internal" href="_modules/pytezos/contract/call.html#ContractCall.callback_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.contract.call.ContractCall.callback_view" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -532,7 +589,7 @@
 
 <dl class="py property">
 <dt class="sig sig-object py" id="pytezos.contract.call.ContractCall.operation_group">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">operation_group</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="operation_groups.html#pytezos.operation.group.OperationGroup" title="pytezos.operation.group.OperationGroup"><span class="pre">pytezos.operation.group.OperationGroup</span></a></em><a class="headerlink" href="#pytezos.contract.call.ContractCall.operation_group" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">operation_group</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="operation_groups.html#pytezos.operation.group.OperationGroup" title="pytezos.operation.group.OperationGroup"><span class="pre">OperationGroup</span></a></em><a class="headerlink" href="#pytezos.contract.call.ContractCall.operation_group" title="Permalink to this definition"></a></dt>
 <dd><div class="deprecated">
 <p><span class="versionmodified deprecated">Deprecated since version 3.0.0.</span></p>
 </div>
@@ -578,24 +635,24 @@
 
 </section>
 <section id="contract-call-result">
-<h2>Contract call result<a class="headerlink" href="#contract-call-result" title="Permalink to this headline"></a></h2>
+<h2>Contract call result<a class="headerlink" href="#contract-call-result" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pytezos.contract.result.ContractCallResult">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytezos.contract.result.</span></span><span class="sig-name descname"><span class="pre">ContractCallResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">props</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytezos/contract/result.html#ContractCallResult"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.contract.result.ContractCallResult" title="Permalink to this definition"></a></dt>
 <dd><p>Encapsulates the result of a contract invocation.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pytezos.contract.result.ContractCallResult.from_run_code">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_run_code</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="repl.html#pytezos.context.impl.ExecutionContext" title="pytezos.context.impl.ExecutionContext"><span class="pre">pytezos.context.impl.ExecutionContext</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytezos.contract.result.ContractCallResult" title="pytezos.contract.result.ContractCallResult"><span class="pre">pytezos.contract.result.ContractCallResult</span></a></span></span><a class="reference internal" href="_modules/pytezos/contract/result.html#ContractCallResult.from_run_code"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.contract.result.ContractCallResult.from_run_code" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_run_code</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">response</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="repl.html#pytezos.context.impl.ExecutionContext" title="pytezos.context.impl.ExecutionContext"><span class="pre">ExecutionContext</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pytezos.contract.result.ContractCallResult" title="pytezos.contract.result.ContractCallResult"><span class="pre">ContractCallResult</span></a></span></span><a class="reference internal" href="_modules/pytezos/contract/result.html#ContractCallResult.from_run_code"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.contract.result.ContractCallResult.from_run_code" title="Permalink to this definition"></a></dt>
 <dd><p>Parse a result of <a class="reference internal" href="#pytezos.contract.call.ContractCall.run_code" title="pytezos.contract.call.ContractCall.run_code"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pytezos.contract.call.ContractCall.run_code()</span></code></a> execution.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>response</strong> – RPC response (JSON)</p></li>
 <li><p><strong>parameters</strong> – {“entrypoint”: str, “value”: $Micheline}</p></li>
 <li><p><strong>context</strong> – execution context</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#pytezos.contract.result.ContractCallResult" title="pytezos.contract.result.ContractCallResult">ContractCallResult</a></p>
 </dd>
 </dl>
@@ -603,16 +660,16 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytezos.contract.result.ContractCallResult.from_run_operation">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_run_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">operation_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="repl.html#pytezos.context.impl.ExecutionContext" title="pytezos.context.impl.ExecutionContext"><span class="pre">pytezos.context.impl.ExecutionContext</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pytezos.contract.result.ContractCallResult" title="pytezos.contract.result.ContractCallResult"><span class="pre">pytezos.contract.result.ContractCallResult</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/pytezos/contract/result.html#ContractCallResult.from_run_operation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.contract.result.ContractCallResult.from_run_operation" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_run_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">operation_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="repl.html#pytezos.context.impl.ExecutionContext" title="pytezos.context.impl.ExecutionContext"><span class="pre">ExecutionContext</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pytezos.contract.result.ContractCallResult" title="pytezos.contract.result.ContractCallResult"><span class="pre">ContractCallResult</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/pytezos/contract/result.html#ContractCallResult.from_run_operation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.contract.result.ContractCallResult.from_run_operation" title="Permalink to this definition"></a></dt>
 <dd><p>Get a list of results from an operation group content with metadata.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>operation_group</strong> – {…, “contents”: [{…, kind: “transaction”, …}]}</p></li>
 <li><p><strong>context</strong> – execution context</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#pytezos.contract.result.ContractCallResult" title="pytezos.contract.result.ContractCallResult">ContractCallResult</a></p>
 </dd>
 </dl>
@@ -622,16 +679,16 @@
 
 </section>
 <section id="contract-storage-proxy">
-<h2>Contract storage proxy<a class="headerlink" href="#contract-storage-proxy" title="Permalink to this headline"></a></h2>
+<h2>Contract storage proxy<a class="headerlink" href="#contract-storage-proxy" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pytezos.contract.data.ContractData">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytezos.contract.data.</span></span><span class="sig-name descname"><span class="pre">ContractData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="repl.html#pytezos.context.impl.ExecutionContext" title="pytezos.context.impl.ExecutionContext"><span class="pre">pytezos.context.impl.ExecutionContext</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="types.html#pytezos.michelson.types.base.MichelsonType" title="pytezos.michelson.types.base.MichelsonType"><span class="pre">pytezos.michelson.types.base.MichelsonType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytezos/contract/data.html#ContractData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.contract.data.ContractData" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytezos.contract.data.</span></span><span class="sig-name descname"><span class="pre">ContractData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="repl.html#pytezos.context.impl.ExecutionContext" title="pytezos.context.impl.ExecutionContext"><span class="pre">ExecutionContext</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="types.html#pytezos.michelson.types.base.MichelsonType" title="pytezos.michelson.types.base.MichelsonType"><span class="pre">MichelsonType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytezos/contract/data.html#ContractData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.contract.data.ContractData" title="Permalink to this definition"></a></dt>
 <dd><dl class="py method">
 <dt class="sig sig-object py" id="pytezos.contract.data.ContractData.__call__">
 <span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">try_unpack</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytezos/contract/data.html#ContractData.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.contract.data.ContractData.__call__" title="Permalink to this definition"></a></dt>
 <dd><p>Get Michelson value as a Python object</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>try_unpack</strong> – try to unpack utf8-encoded strings or PACKed Michelson expressions</p>
 </dd>
 </dl>
@@ -667,6 +724,15 @@
 <span class="sig-name descname"><span class="pre">to_michelson</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;function</span> <span class="pre">ContractData.to_michelson&gt;</span> <span class="pre">Get</span> <span class="pre">as</span> <span class="pre">Michelson</span> <span class="pre">value</span>&#160; <span class="pre">:param</span> <span class="pre">optimized:</span> <span class="pre">use</span> <span class="pre">optimized</span> <span class="pre">data</span> <span class="pre">form</span> <span class="pre">for</span> <span class="pre">some</span> <span class="pre">domain</span> <span class="pre">types</span> <span class="pre">(timestamp,</span> <span class="pre">address,</span> <span class="pre">etc.)</span> </em><a class="reference internal" href="_modules/pytezos/contract/data.html#ContractData.to_michelson"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.contract.data.ContractData.to_michelson" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
+</dd></dl>
+
+</section>
+<section id="contract-view-proxy">
+<h2>Contract view proxy<a class="headerlink" href="#contract-view-proxy" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pytezos.contract.view.ContractView">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytezos.contract.view.</span></span><span class="sig-name descname"><span class="pre">ContractView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="repl.html#pytezos.context.impl.ExecutionContext" title="pytezos.context.impl.ExecutionContext"><span class="pre">ExecutionContext</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytezos/contract/view.html#ContractView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.contract.view.ContractView" title="Permalink to this definition"></a></dt>
+<dd><p>Proxy class for handling off-chain and on-chain views</p>
 </dd></dl>
 
 </section>

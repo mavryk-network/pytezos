@@ -12,10 +12,10 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
@@ -26,11 +26,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../contents.html" class="icon icon-home"> PyTezos
+
+          
+          
+          <a href="../../../../contents.html" class="icon icon-home">
+            PyTezos
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -66,9 +70,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../contents.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../index.html">Module code</a> &raquo;</li>
-      <li>pytezos.michelson.instructions.arithmetic</li>
+      <li><a href="../../../../contents.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pytezos.michelson.instructions.arithmetic</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -78,19 +82,33 @@
            <div itemprop="articleBody">
              
   <h1>Source code for pytezos.michelson.instructions.arithmetic</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">cast</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Type</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">cast</span>
 
 <span class="kn">from</span> <span class="nn">py_ecc</span> <span class="kn">import</span> <span class="n">optimized_bls12_381</span> <span class="k">as</span> <span class="n">bls12_381</span>
 
-<span class="kn">from</span> <span class="nn">pytezos.context.abstract</span> <span class="kn">import</span> <span class="n">AbstractContext</span>  <span class="c1"># type: ignore</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.instructions.base</span> <span class="kn">import</span> <span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">dispatch_types</span><span class="p">,</span> <span class="n">format_stdout</span>
+<span class="kn">from</span> <span class="nn">pytezos.context.abstract</span> <span class="kn">import</span> <span class="n">AbstractContext</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.instructions.base</span> <span class="kn">import</span> <span class="n">MichelsonInstruction</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.instructions.base</span> <span class="kn">import</span> <span class="n">dispatch_types</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.instructions.base</span> <span class="kn">import</span> <span class="n">format_stdout</span>
 <span class="kn">from</span> <span class="nn">pytezos.michelson.stack</span> <span class="kn">import</span> <span class="n">MichelsonStack</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.types</span> <span class="kn">import</span> <span class="p">(</span><span class="n">BLS12_381_FrType</span><span class="p">,</span> <span class="n">BLS12_381_G1Type</span><span class="p">,</span> <span class="n">BLS12_381_G2Type</span><span class="p">,</span> <span class="n">IntType</span><span class="p">,</span> <span class="n">MutezType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">,</span> <span class="n">OptionType</span><span class="p">,</span>
-                                     <span class="n">PairType</span><span class="p">,</span> <span class="n">TimestampType</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.types</span> <span class="kn">import</span> <span class="n">BLS12_381_FrType</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.types</span> <span class="kn">import</span> <span class="n">BLS12_381_G1Type</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.types</span> <span class="kn">import</span> <span class="n">BLS12_381_G2Type</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.types</span> <span class="kn">import</span> <span class="n">IntType</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.types</span> <span class="kn">import</span> <span class="n">MutezType</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.types</span> <span class="kn">import</span> <span class="n">NatType</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.types</span> <span class="kn">import</span> <span class="n">OptionType</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.types</span> <span class="kn">import</span> <span class="n">PairType</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.types</span> <span class="kn">import</span> <span class="n">TimestampType</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.types.base</span> <span class="kn">import</span> <span class="n">MichelsonType</span>
 
 
 <div class="viewcode-block" id="AbsInstruction"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.arithmetic.AbsInstruction">[docs]</a><span class="k">class</span> <span class="nc">AbsInstruction</span><span class="p">(</span><span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;ABS&#39;</span><span class="p">):</span>
-
 <div class="viewcode-block" id="AbsInstruction.execute"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.arithmetic.AbsInstruction.execute">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="n">MichelsonStack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">context</span><span class="p">:</span> <span class="n">AbstractContext</span><span class="p">):</span>
         <span class="n">a</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">IntType</span><span class="p">,</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop1</span><span class="p">())</span>
@@ -102,27 +120,43 @@
 
 
 <div class="viewcode-block" id="AddInstruction"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.arithmetic.AddInstruction">[docs]</a><span class="k">class</span> <span class="nc">AddInstruction</span><span class="p">(</span><span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;ADD&#39;</span><span class="p">):</span>
-
 <div class="viewcode-block" id="AddInstruction.execute"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.arithmetic.AddInstruction.execute">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="n">MichelsonStack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">context</span><span class="p">:</span> <span class="n">AbstractContext</span><span class="p">):</span>
-        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">IntType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">,</span> <span class="n">MutezType</span><span class="p">,</span> <span class="n">TimestampType</span><span class="p">,</span>
-                                <span class="n">BLS12_381_G1Type</span><span class="p">,</span> <span class="n">BLS12_381_G2Type</span><span class="p">,</span> <span class="n">BLS12_381_FrType</span><span class="p">],</span> <span class="o">...</span><span class="p">],</span>
-                    <span class="n">stack</span><span class="o">.</span><span class="n">pop2</span><span class="p">())</span>
-        <span class="n">res_type</span><span class="p">,</span> <span class="o">=</span> <span class="n">dispatch_types</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="n">mapping</span><span class="o">=</span><span class="p">{</span>
-            <span class="p">(</span><span class="n">NatType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">):</span> <span class="p">(</span><span class="n">NatType</span><span class="p">,),</span>
-            <span class="p">(</span><span class="n">NatType</span><span class="p">,</span> <span class="n">IntType</span><span class="p">):</span> <span class="p">(</span><span class="n">IntType</span><span class="p">,),</span>
-            <span class="p">(</span><span class="n">IntType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">):</span> <span class="p">(</span><span class="n">IntType</span><span class="p">,),</span>
-            <span class="p">(</span><span class="n">IntType</span><span class="p">,</span> <span class="n">IntType</span><span class="p">):</span> <span class="p">(</span><span class="n">IntType</span><span class="p">,),</span>
-            <span class="p">(</span><span class="n">TimestampType</span><span class="p">,</span> <span class="n">IntType</span><span class="p">):</span> <span class="p">(</span><span class="n">TimestampType</span><span class="p">,),</span>
-            <span class="p">(</span><span class="n">IntType</span><span class="p">,</span> <span class="n">TimestampType</span><span class="p">):</span> <span class="p">(</span><span class="n">TimestampType</span><span class="p">,),</span>
-            <span class="p">(</span><span class="n">MutezType</span><span class="p">,</span> <span class="n">MutezType</span><span class="p">):</span> <span class="p">(</span><span class="n">MutezType</span><span class="p">,),</span>
-            <span class="p">(</span><span class="n">BLS12_381_FrType</span><span class="p">,</span> <span class="n">BLS12_381_FrType</span><span class="p">):</span> <span class="p">(</span><span class="n">BLS12_381_FrType</span><span class="p">,),</span>
-            <span class="p">(</span><span class="n">BLS12_381_G1Type</span><span class="p">,</span> <span class="n">BLS12_381_G1Type</span><span class="p">):</span> <span class="p">(</span><span class="n">BLS12_381_G1Type</span><span class="p">,),</span>
-            <span class="p">(</span><span class="n">BLS12_381_G2Type</span><span class="p">,</span> <span class="n">BLS12_381_G2Type</span><span class="p">):</span> <span class="p">(</span><span class="n">BLS12_381_G2Type</span><span class="p">,)</span>
-        <span class="p">})</span>
-        <span class="n">res_type</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Union</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="n">IntType</span><span class="p">],</span> <span class="n">Type</span><span class="p">[</span><span class="n">NatType</span><span class="p">],</span> <span class="n">Type</span><span class="p">[</span><span class="n">TimestampType</span><span class="p">],</span> <span class="n">Type</span><span class="p">[</span><span class="n">MutezType</span><span class="p">],</span>
-                              <span class="n">Type</span><span class="p">[</span><span class="n">BLS12_381_G1Type</span><span class="p">],</span> <span class="n">Type</span><span class="p">[</span><span class="n">BLS12_381_G2Type</span><span class="p">],</span> <span class="n">Type</span><span class="p">[</span><span class="n">BLS12_381_FrType</span><span class="p">]],</span>
-                        <span class="n">res_type</span><span class="p">)</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="n">Tuple</span><span class="p">[</span>
+                <span class="n">Union</span><span class="p">[</span><span class="n">IntType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">,</span> <span class="n">MutezType</span><span class="p">,</span> <span class="n">TimestampType</span><span class="p">,</span> <span class="n">BLS12_381_G1Type</span><span class="p">,</span> <span class="n">BLS12_381_G2Type</span><span class="p">,</span> <span class="n">BLS12_381_FrType</span><span class="p">],</span>
+                <span class="o">...</span><span class="p">,</span>
+            <span class="p">],</span>
+            <span class="n">stack</span><span class="o">.</span><span class="n">pop2</span><span class="p">(),</span>
+        <span class="p">)</span>
+        <span class="p">(</span><span class="n">res_type</span><span class="p">,)</span> <span class="o">=</span> <span class="n">dispatch_types</span><span class="p">(</span>
+            <span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">),</span>
+            <span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">),</span>
+            <span class="n">mapping</span><span class="o">=</span><span class="p">{</span>
+                <span class="p">(</span><span class="n">NatType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">):</span> <span class="p">(</span><span class="n">NatType</span><span class="p">,),</span>
+                <span class="p">(</span><span class="n">NatType</span><span class="p">,</span> <span class="n">IntType</span><span class="p">):</span> <span class="p">(</span><span class="n">IntType</span><span class="p">,),</span>
+                <span class="p">(</span><span class="n">IntType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">):</span> <span class="p">(</span><span class="n">IntType</span><span class="p">,),</span>
+                <span class="p">(</span><span class="n">IntType</span><span class="p">,</span> <span class="n">IntType</span><span class="p">):</span> <span class="p">(</span><span class="n">IntType</span><span class="p">,),</span>
+                <span class="p">(</span><span class="n">TimestampType</span><span class="p">,</span> <span class="n">IntType</span><span class="p">):</span> <span class="p">(</span><span class="n">TimestampType</span><span class="p">,),</span>
+                <span class="p">(</span><span class="n">IntType</span><span class="p">,</span> <span class="n">TimestampType</span><span class="p">):</span> <span class="p">(</span><span class="n">TimestampType</span><span class="p">,),</span>
+                <span class="p">(</span><span class="n">MutezType</span><span class="p">,</span> <span class="n">MutezType</span><span class="p">):</span> <span class="p">(</span><span class="n">MutezType</span><span class="p">,),</span>
+                <span class="p">(</span><span class="n">BLS12_381_FrType</span><span class="p">,</span> <span class="n">BLS12_381_FrType</span><span class="p">):</span> <span class="p">(</span><span class="n">BLS12_381_FrType</span><span class="p">,),</span>
+                <span class="p">(</span><span class="n">BLS12_381_G1Type</span><span class="p">,</span> <span class="n">BLS12_381_G1Type</span><span class="p">):</span> <span class="p">(</span><span class="n">BLS12_381_G1Type</span><span class="p">,),</span>
+                <span class="p">(</span><span class="n">BLS12_381_G2Type</span><span class="p">,</span> <span class="n">BLS12_381_G2Type</span><span class="p">):</span> <span class="p">(</span><span class="n">BLS12_381_G2Type</span><span class="p">,),</span>
+            <span class="p">},</span>
+        <span class="p">)</span>
+        <span class="n">res_type</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="n">Union</span><span class="p">[</span>
+                <span class="n">Type</span><span class="p">[</span><span class="n">IntType</span><span class="p">],</span>
+                <span class="n">Type</span><span class="p">[</span><span class="n">NatType</span><span class="p">],</span>
+                <span class="n">Type</span><span class="p">[</span><span class="n">TimestampType</span><span class="p">],</span>
+                <span class="n">Type</span><span class="p">[</span><span class="n">MutezType</span><span class="p">],</span>
+                <span class="n">Type</span><span class="p">[</span><span class="n">BLS12_381_G1Type</span><span class="p">],</span>
+                <span class="n">Type</span><span class="p">[</span><span class="n">BLS12_381_G2Type</span><span class="p">],</span>
+                <span class="n">Type</span><span class="p">[</span><span class="n">BLS12_381_FrType</span><span class="p">],</span>
+            <span class="p">],</span>
+            <span class="n">res_type</span><span class="p">,</span>
+        <span class="p">)</span>
         <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">res_type</span><span class="p">,</span> <span class="n">IntType</span><span class="p">):</span>
             <span class="n">res</span> <span class="o">=</span> <span class="n">res_type</span><span class="o">.</span><span class="n">from_value</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>  <span class="c1"># type: ignore</span>
         <span class="k">else</span><span class="p">:</span>
@@ -133,18 +167,24 @@
 
 
 <div class="viewcode-block" id="EdivInstruction"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.arithmetic.EdivInstruction">[docs]</a><span class="k">class</span> <span class="nc">EdivInstruction</span><span class="p">(</span><span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;EDIV&#39;</span><span class="p">):</span>
-
 <div class="viewcode-block" id="EdivInstruction.execute"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.arithmetic.EdivInstruction.execute">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="n">MichelsonStack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">context</span><span class="p">:</span> <span class="n">AbstractContext</span><span class="p">):</span>
-        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">IntType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">,</span> <span class="n">MutezType</span><span class="p">,</span> <span class="n">TimestampType</span><span class="p">],</span> <span class="o">...</span><span class="p">],</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop2</span><span class="p">())</span>
-        <span class="n">q_type</span><span class="p">,</span> <span class="n">r_type</span> <span class="o">=</span> <span class="n">dispatch_types</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="n">mapping</span><span class="o">=</span><span class="p">{</span>  <span class="c1"># type: ignore</span>
-            <span class="p">(</span><span class="n">NatType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">):</span> <span class="p">(</span><span class="n">NatType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">),</span>
-            <span class="p">(</span><span class="n">NatType</span><span class="p">,</span> <span class="n">IntType</span><span class="p">):</span> <span class="p">(</span><span class="n">IntType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">),</span>
-            <span class="p">(</span><span class="n">IntType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">):</span> <span class="p">(</span><span class="n">IntType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">),</span>
-            <span class="p">(</span><span class="n">IntType</span><span class="p">,</span> <span class="n">IntType</span><span class="p">):</span> <span class="p">(</span><span class="n">IntType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">),</span>
-            <span class="p">(</span><span class="n">MutezType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">):</span> <span class="p">(</span><span class="n">MutezType</span><span class="p">,</span> <span class="n">MutezType</span><span class="p">),</span>
-            <span class="p">(</span><span class="n">MutezType</span><span class="p">,</span> <span class="n">MutezType</span><span class="p">):</span> <span class="p">(</span><span class="n">NatType</span><span class="p">,</span> <span class="n">MutezType</span><span class="p">)</span>
-        <span class="p">})</span>  <span class="c1"># type: Union[Type[IntType], Type[NatType], Type[TimestampType], Type[MutezType]]</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="n">Tuple</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">IntType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">,</span> <span class="n">MutezType</span><span class="p">,</span> <span class="n">TimestampType</span><span class="p">],</span> <span class="n">Union</span><span class="p">[</span><span class="n">IntType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">,</span> <span class="n">MutezType</span><span class="p">,</span> <span class="n">TimestampType</span><span class="p">]],</span>
+            <span class="n">stack</span><span class="o">.</span><span class="n">pop2</span><span class="p">(),</span>
+        <span class="p">)</span>
+        <span class="n">q_type</span><span class="p">,</span> <span class="n">r_type</span> <span class="o">=</span> <span class="n">dispatch_types</span><span class="p">(</span>
+            <span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">),</span>
+            <span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">),</span>
+            <span class="n">mapping</span><span class="o">=</span><span class="p">{</span>  <span class="c1"># type: ignore</span>
+                <span class="p">(</span><span class="n">NatType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">):</span> <span class="p">(</span><span class="n">NatType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">),</span>
+                <span class="p">(</span><span class="n">NatType</span><span class="p">,</span> <span class="n">IntType</span><span class="p">):</span> <span class="p">(</span><span class="n">IntType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">),</span>
+                <span class="p">(</span><span class="n">IntType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">):</span> <span class="p">(</span><span class="n">IntType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">),</span>
+                <span class="p">(</span><span class="n">IntType</span><span class="p">,</span> <span class="n">IntType</span><span class="p">):</span> <span class="p">(</span><span class="n">IntType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">),</span>
+                <span class="p">(</span><span class="n">MutezType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">):</span> <span class="p">(</span><span class="n">MutezType</span><span class="p">,</span> <span class="n">MutezType</span><span class="p">),</span>
+                <span class="p">(</span><span class="n">MutezType</span><span class="p">,</span> <span class="n">MutezType</span><span class="p">):</span> <span class="p">(</span><span class="n">NatType</span><span class="p">,</span> <span class="n">MutezType</span><span class="p">),</span>
+            <span class="p">},</span>
+        <span class="p">)</span>  <span class="c1"># type: Tuple[Union[Type[IntType], Type[NatType], Type[TimestampType], Type[MutezType]], Union[Type[IntType], Type[NatType], Type[TimestampType], Type[MutezType]]]</span>
         <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">res</span> <span class="o">=</span> <span class="n">OptionType</span><span class="o">.</span><span class="n">none</span><span class="p">(</span><span class="n">PairType</span><span class="o">.</span><span class="n">create_type</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">q_type</span><span class="p">,</span> <span class="n">r_type</span><span class="p">]))</span>
         <span class="k">else</span><span class="p">:</span>
@@ -152,7 +192,7 @@
             <span class="k">if</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="n">r</span> <span class="o">+=</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
                 <span class="n">q</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="n">q_type</span><span class="o">.</span><span class="n">from_value</span><span class="p">(</span><span class="n">q</span><span class="p">),</span> <span class="n">r_type</span><span class="o">.</span><span class="n">from_value</span><span class="p">(</span><span class="n">r</span><span class="p">)]</span>
+            <span class="n">items</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">MichelsonType</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">q_type</span><span class="o">.</span><span class="n">from_value</span><span class="p">(</span><span class="n">q</span><span class="p">),</span> <span class="n">r_type</span><span class="o">.</span><span class="n">from_value</span><span class="p">(</span><span class="n">r</span><span class="p">)]</span>
             <span class="n">res</span> <span class="o">=</span> <span class="n">OptionType</span><span class="o">.</span><span class="n">from_some</span><span class="p">(</span><span class="n">PairType</span><span class="o">.</span><span class="n">from_comb</span><span class="p">(</span><span class="n">items</span><span class="p">))</span>
         <span class="n">stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
         <span class="n">stdout</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">format_stdout</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">prim</span><span class="p">,</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">],</span> <span class="p">[</span><span class="n">res</span><span class="p">]))</span>  <span class="c1"># type: ignore</span>
@@ -171,7 +211,6 @@
 
 
 <div class="viewcode-block" id="LslInstruction"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.arithmetic.LslInstruction">[docs]</a><span class="k">class</span> <span class="nc">LslInstruction</span><span class="p">(</span><span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;LSL&#39;</span><span class="p">):</span>
-
 <div class="viewcode-block" id="LslInstruction.execute"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.arithmetic.LslInstruction.execute">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="n">MichelsonStack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">context</span><span class="p">:</span> <span class="n">AbstractContext</span><span class="p">):</span>
         <span class="n">execute_shift</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">prim</span><span class="p">,</span> <span class="n">stack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># type: ignore</span>
@@ -179,7 +218,6 @@
 
 
 <div class="viewcode-block" id="LsrInstruction"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.arithmetic.LsrInstruction">[docs]</a><span class="k">class</span> <span class="nc">LsrInstruction</span><span class="p">(</span><span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;LSR&#39;</span><span class="p">):</span>
-
 <div class="viewcode-block" id="LsrInstruction.execute"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.arithmetic.LsrInstruction.execute">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="n">MichelsonStack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">context</span><span class="p">:</span> <span class="n">AbstractContext</span><span class="p">):</span>
         <span class="n">execute_shift</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">prim</span><span class="p">,</span> <span class="n">stack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># type: ignore</span>
@@ -187,29 +225,43 @@
 
 
 <div class="viewcode-block" id="MulInstruction"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.arithmetic.MulInstruction">[docs]</a><span class="k">class</span> <span class="nc">MulInstruction</span><span class="p">(</span><span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;MUL&#39;</span><span class="p">):</span>
-
 <div class="viewcode-block" id="MulInstruction.execute"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.arithmetic.MulInstruction.execute">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="n">MichelsonStack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">context</span><span class="p">:</span> <span class="n">AbstractContext</span><span class="p">):</span>
         <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
             <span class="n">Tuple</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">IntType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">,</span> <span class="n">MutezType</span><span class="p">,</span> <span class="n">BLS12_381_FrType</span><span class="p">,</span> <span class="n">BLS12_381_G1Type</span><span class="p">,</span> <span class="n">BLS12_381_G2Type</span><span class="p">],</span> <span class="o">...</span><span class="p">],</span>
-            <span class="n">stack</span><span class="o">.</span><span class="n">pop2</span><span class="p">())</span>
-        <span class="n">res_type</span><span class="p">,</span> <span class="o">=</span> <span class="n">dispatch_types</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="n">mapping</span><span class="o">=</span><span class="p">{</span>
-            <span class="p">(</span><span class="n">NatType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">):</span> <span class="p">(</span><span class="n">NatType</span><span class="p">,),</span>
-            <span class="p">(</span><span class="n">NatType</span><span class="p">,</span> <span class="n">IntType</span><span class="p">):</span> <span class="p">(</span><span class="n">IntType</span><span class="p">,),</span>
-            <span class="p">(</span><span class="n">IntType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">):</span> <span class="p">(</span><span class="n">IntType</span><span class="p">,),</span>
-            <span class="p">(</span><span class="n">IntType</span><span class="p">,</span> <span class="n">IntType</span><span class="p">):</span> <span class="p">(</span><span class="n">IntType</span><span class="p">,),</span>
-            <span class="p">(</span><span class="n">MutezType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">):</span> <span class="p">(</span><span class="n">MutezType</span><span class="p">,),</span>
-            <span class="p">(</span><span class="n">NatType</span><span class="p">,</span> <span class="n">MutezType</span><span class="p">):</span> <span class="p">(</span><span class="n">MutezType</span><span class="p">,),</span>
-            <span class="p">(</span><span class="n">NatType</span><span class="p">,</span> <span class="n">BLS12_381_FrType</span><span class="p">):</span> <span class="p">(</span><span class="n">BLS12_381_FrType</span><span class="p">,),</span>
-            <span class="p">(</span><span class="n">IntType</span><span class="p">,</span> <span class="n">BLS12_381_FrType</span><span class="p">):</span> <span class="p">(</span><span class="n">BLS12_381_FrType</span><span class="p">,),</span>
-            <span class="p">(</span><span class="n">BLS12_381_FrType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">):</span> <span class="p">(</span><span class="n">BLS12_381_FrType</span><span class="p">,),</span>
-            <span class="p">(</span><span class="n">BLS12_381_FrType</span><span class="p">,</span> <span class="n">IntType</span><span class="p">):</span> <span class="p">(</span><span class="n">BLS12_381_FrType</span><span class="p">,),</span>
-            <span class="p">(</span><span class="n">BLS12_381_FrType</span><span class="p">,</span> <span class="n">BLS12_381_FrType</span><span class="p">):</span> <span class="p">(</span><span class="n">BLS12_381_FrType</span><span class="p">,),</span>
-            <span class="p">(</span><span class="n">BLS12_381_G1Type</span><span class="p">,</span> <span class="n">BLS12_381_FrType</span><span class="p">):</span> <span class="p">(</span><span class="n">BLS12_381_G1Type</span><span class="p">,),</span>
-            <span class="p">(</span><span class="n">BLS12_381_G2Type</span><span class="p">,</span> <span class="n">BLS12_381_FrType</span><span class="p">):</span> <span class="p">(</span><span class="n">BLS12_381_G2Type</span><span class="p">,),</span>
-        <span class="p">})</span>
-        <span class="n">res_type</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Union</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="n">IntType</span><span class="p">],</span> <span class="n">Type</span><span class="p">[</span><span class="n">NatType</span><span class="p">],</span> <span class="n">Type</span><span class="p">[</span><span class="n">TimestampType</span><span class="p">],</span> <span class="n">Type</span><span class="p">[</span><span class="n">MutezType</span><span class="p">],</span>
-                              <span class="n">Type</span><span class="p">[</span><span class="n">BLS12_381_FrType</span><span class="p">],</span> <span class="n">Type</span><span class="p">[</span><span class="n">BLS12_381_G1Type</span><span class="p">],</span> <span class="n">Type</span><span class="p">[</span><span class="n">BLS12_381_G2Type</span><span class="p">]],</span> <span class="n">res_type</span><span class="p">)</span>
+            <span class="n">stack</span><span class="o">.</span><span class="n">pop2</span><span class="p">(),</span>
+        <span class="p">)</span>
+        <span class="p">(</span><span class="n">res_type</span><span class="p">,)</span> <span class="o">=</span> <span class="n">dispatch_types</span><span class="p">(</span>
+            <span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">),</span>
+            <span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">),</span>
+            <span class="n">mapping</span><span class="o">=</span><span class="p">{</span>
+                <span class="p">(</span><span class="n">NatType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">):</span> <span class="p">(</span><span class="n">NatType</span><span class="p">,),</span>
+                <span class="p">(</span><span class="n">NatType</span><span class="p">,</span> <span class="n">IntType</span><span class="p">):</span> <span class="p">(</span><span class="n">IntType</span><span class="p">,),</span>
+                <span class="p">(</span><span class="n">IntType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">):</span> <span class="p">(</span><span class="n">IntType</span><span class="p">,),</span>
+                <span class="p">(</span><span class="n">IntType</span><span class="p">,</span> <span class="n">IntType</span><span class="p">):</span> <span class="p">(</span><span class="n">IntType</span><span class="p">,),</span>
+                <span class="p">(</span><span class="n">MutezType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">):</span> <span class="p">(</span><span class="n">MutezType</span><span class="p">,),</span>
+                <span class="p">(</span><span class="n">NatType</span><span class="p">,</span> <span class="n">MutezType</span><span class="p">):</span> <span class="p">(</span><span class="n">MutezType</span><span class="p">,),</span>
+                <span class="p">(</span><span class="n">NatType</span><span class="p">,</span> <span class="n">BLS12_381_FrType</span><span class="p">):</span> <span class="p">(</span><span class="n">BLS12_381_FrType</span><span class="p">,),</span>
+                <span class="p">(</span><span class="n">IntType</span><span class="p">,</span> <span class="n">BLS12_381_FrType</span><span class="p">):</span> <span class="p">(</span><span class="n">BLS12_381_FrType</span><span class="p">,),</span>
+                <span class="p">(</span><span class="n">BLS12_381_FrType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">):</span> <span class="p">(</span><span class="n">BLS12_381_FrType</span><span class="p">,),</span>
+                <span class="p">(</span><span class="n">BLS12_381_FrType</span><span class="p">,</span> <span class="n">IntType</span><span class="p">):</span> <span class="p">(</span><span class="n">BLS12_381_FrType</span><span class="p">,),</span>
+                <span class="p">(</span><span class="n">BLS12_381_FrType</span><span class="p">,</span> <span class="n">BLS12_381_FrType</span><span class="p">):</span> <span class="p">(</span><span class="n">BLS12_381_FrType</span><span class="p">,),</span>
+                <span class="p">(</span><span class="n">BLS12_381_G1Type</span><span class="p">,</span> <span class="n">BLS12_381_FrType</span><span class="p">):</span> <span class="p">(</span><span class="n">BLS12_381_G1Type</span><span class="p">,),</span>
+                <span class="p">(</span><span class="n">BLS12_381_G2Type</span><span class="p">,</span> <span class="n">BLS12_381_FrType</span><span class="p">):</span> <span class="p">(</span><span class="n">BLS12_381_G2Type</span><span class="p">,),</span>
+            <span class="p">},</span>
+        <span class="p">)</span>
+        <span class="n">res_type</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="n">Union</span><span class="p">[</span>
+                <span class="n">Type</span><span class="p">[</span><span class="n">IntType</span><span class="p">],</span>
+                <span class="n">Type</span><span class="p">[</span><span class="n">NatType</span><span class="p">],</span>
+                <span class="n">Type</span><span class="p">[</span><span class="n">TimestampType</span><span class="p">],</span>
+                <span class="n">Type</span><span class="p">[</span><span class="n">MutezType</span><span class="p">],</span>
+                <span class="n">Type</span><span class="p">[</span><span class="n">BLS12_381_FrType</span><span class="p">],</span>
+                <span class="n">Type</span><span class="p">[</span><span class="n">BLS12_381_G1Type</span><span class="p">],</span>
+                <span class="n">Type</span><span class="p">[</span><span class="n">BLS12_381_G2Type</span><span class="p">],</span>
+            <span class="p">],</span>
+            <span class="n">res_type</span><span class="p">,</span>
+        <span class="p">)</span>
         <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">res_type</span><span class="p">,</span> <span class="n">IntType</span><span class="p">):</span>
             <span class="n">res</span> <span class="o">=</span> <span class="n">res_type</span><span class="o">.</span><span class="n">from_value</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>  <span class="c1"># type: ignore</span>
         <span class="k">else</span><span class="p">:</span>
@@ -220,17 +272,19 @@
 
 
 <div class="viewcode-block" id="NegInstruction"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.arithmetic.NegInstruction">[docs]</a><span class="k">class</span> <span class="nc">NegInstruction</span><span class="p">(</span><span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;NEG&#39;</span><span class="p">):</span>
-
 <div class="viewcode-block" id="NegInstruction.execute"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.arithmetic.NegInstruction.execute">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="n">MichelsonStack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">context</span><span class="p">:</span> <span class="n">AbstractContext</span><span class="p">):</span>
         <span class="n">a</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Union</span><span class="p">[</span><span class="n">IntType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">,</span> <span class="n">BLS12_381_FrType</span><span class="p">,</span> <span class="n">BLS12_381_G1Type</span><span class="p">,</span> <span class="n">BLS12_381_G2Type</span><span class="p">],</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop1</span><span class="p">())</span>
-        <span class="n">res_type</span><span class="p">,</span> <span class="o">=</span> <span class="n">dispatch_types</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">mapping</span><span class="o">=</span><span class="p">{</span>
-            <span class="p">(</span><span class="n">IntType</span><span class="p">,):</span> <span class="p">(</span><span class="n">IntType</span><span class="p">,),</span>
-            <span class="p">(</span><span class="n">NatType</span><span class="p">,):</span> <span class="p">(</span><span class="n">IntType</span><span class="p">,),</span>
-            <span class="p">(</span><span class="n">BLS12_381_FrType</span><span class="p">,):</span> <span class="p">(</span><span class="n">BLS12_381_FrType</span><span class="p">,),</span>
-            <span class="p">(</span><span class="n">BLS12_381_G1Type</span><span class="p">,):</span> <span class="p">(</span><span class="n">BLS12_381_G1Type</span><span class="p">,),</span>
-            <span class="p">(</span><span class="n">BLS12_381_G2Type</span><span class="p">,):</span> <span class="p">(</span><span class="n">BLS12_381_G2Type</span><span class="p">,)</span>
-        <span class="p">})</span>
+        <span class="p">(</span><span class="n">res_type</span><span class="p">,)</span> <span class="o">=</span> <span class="n">dispatch_types</span><span class="p">(</span>
+            <span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">),</span>
+            <span class="n">mapping</span><span class="o">=</span><span class="p">{</span>
+                <span class="p">(</span><span class="n">IntType</span><span class="p">,):</span> <span class="p">(</span><span class="n">IntType</span><span class="p">,),</span>
+                <span class="p">(</span><span class="n">NatType</span><span class="p">,):</span> <span class="p">(</span><span class="n">IntType</span><span class="p">,),</span>
+                <span class="p">(</span><span class="n">BLS12_381_FrType</span><span class="p">,):</span> <span class="p">(</span><span class="n">BLS12_381_FrType</span><span class="p">,),</span>
+                <span class="p">(</span><span class="n">BLS12_381_G1Type</span><span class="p">,):</span> <span class="p">(</span><span class="n">BLS12_381_G1Type</span><span class="p">,),</span>
+                <span class="p">(</span><span class="n">BLS12_381_G2Type</span><span class="p">,):</span> <span class="p">(</span><span class="n">BLS12_381_G2Type</span><span class="p">,),</span>
+            <span class="p">},</span>
+        <span class="p">)</span>
         <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">res_type</span><span class="p">,</span> <span class="n">IntType</span><span class="p">):</span>
             <span class="n">res</span> <span class="o">=</span> <span class="n">IntType</span><span class="o">.</span><span class="n">from_value</span><span class="p">(</span><span class="o">-</span><span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>  <span class="c1"># type: ignore</span>
         <span class="k">else</span><span class="p">:</span>
@@ -241,19 +295,22 @@
 
 
 <div class="viewcode-block" id="SubInstruction"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.arithmetic.SubInstruction">[docs]</a><span class="k">class</span> <span class="nc">SubInstruction</span><span class="p">(</span><span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;SUB&#39;</span><span class="p">):</span>
-
 <div class="viewcode-block" id="SubInstruction.execute"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.arithmetic.SubInstruction.execute">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="n">MichelsonStack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">context</span><span class="p">:</span> <span class="n">AbstractContext</span><span class="p">):</span>
         <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">IntType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">,</span> <span class="n">MutezType</span><span class="p">,</span> <span class="n">TimestampType</span><span class="p">],</span> <span class="o">...</span><span class="p">],</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop2</span><span class="p">())</span>
-        <span class="n">res_type</span><span class="p">,</span> <span class="o">=</span> <span class="n">dispatch_types</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="n">mapping</span><span class="o">=</span><span class="p">{</span>  <span class="c1"># type: ignore</span>
-            <span class="p">(</span><span class="n">NatType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">):</span> <span class="p">(</span><span class="n">IntType</span><span class="p">,),</span>
-            <span class="p">(</span><span class="n">NatType</span><span class="p">,</span> <span class="n">IntType</span><span class="p">):</span> <span class="p">(</span><span class="n">IntType</span><span class="p">,),</span>
-            <span class="p">(</span><span class="n">IntType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">):</span> <span class="p">(</span><span class="n">IntType</span><span class="p">,),</span>
-            <span class="p">(</span><span class="n">IntType</span><span class="p">,</span> <span class="n">IntType</span><span class="p">):</span> <span class="p">(</span><span class="n">IntType</span><span class="p">,),</span>
-            <span class="p">(</span><span class="n">TimestampType</span><span class="p">,</span> <span class="n">IntType</span><span class="p">):</span> <span class="p">(</span><span class="n">TimestampType</span><span class="p">,),</span>
-            <span class="p">(</span><span class="n">TimestampType</span><span class="p">,</span> <span class="n">TimestampType</span><span class="p">):</span> <span class="p">(</span><span class="n">IntType</span><span class="p">,),</span>
-            <span class="p">(</span><span class="n">MutezType</span><span class="p">,</span> <span class="n">MutezType</span><span class="p">):</span> <span class="p">(</span><span class="n">MutezType</span><span class="p">,)</span>
-        <span class="p">})</span>  <span class="c1"># type: Union[Type[IntType], Type[NatType], Type[TimestampType], Type[MutezType]]</span>
+        <span class="p">(</span><span class="n">res_type</span><span class="p">,)</span> <span class="o">=</span> <span class="n">dispatch_types</span><span class="p">(</span>
+            <span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">),</span>
+            <span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">),</span>
+            <span class="n">mapping</span><span class="o">=</span><span class="p">{</span>  <span class="c1"># type: ignore</span>
+                <span class="p">(</span><span class="n">NatType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">):</span> <span class="p">(</span><span class="n">IntType</span><span class="p">,),</span>
+                <span class="p">(</span><span class="n">NatType</span><span class="p">,</span> <span class="n">IntType</span><span class="p">):</span> <span class="p">(</span><span class="n">IntType</span><span class="p">,),</span>
+                <span class="p">(</span><span class="n">IntType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">):</span> <span class="p">(</span><span class="n">IntType</span><span class="p">,),</span>
+                <span class="p">(</span><span class="n">IntType</span><span class="p">,</span> <span class="n">IntType</span><span class="p">):</span> <span class="p">(</span><span class="n">IntType</span><span class="p">,),</span>
+                <span class="p">(</span><span class="n">TimestampType</span><span class="p">,</span> <span class="n">IntType</span><span class="p">):</span> <span class="p">(</span><span class="n">TimestampType</span><span class="p">,),</span>
+                <span class="p">(</span><span class="n">TimestampType</span><span class="p">,</span> <span class="n">TimestampType</span><span class="p">):</span> <span class="p">(</span><span class="n">IntType</span><span class="p">,),</span>
+                <span class="p">(</span><span class="n">MutezType</span><span class="p">,</span> <span class="n">MutezType</span><span class="p">):</span> <span class="p">(</span><span class="n">MutezType</span><span class="p">,),</span>
+            <span class="p">},</span>
+        <span class="p">)</span>  <span class="c1"># type: Tuple[Union[Type[IntType], Type[NatType], Type[TimestampType], Type[MutezType]]]</span>
         <span class="n">res</span> <span class="o">=</span> <span class="n">res_type</span><span class="o">.</span><span class="n">from_value</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
         <span class="n">stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
         <span class="n">stdout</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">format_stdout</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">prim</span><span class="p">,</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">],</span> <span class="p">[</span><span class="n">res</span><span class="p">]))</span>  <span class="c1"># type: ignore</span>
@@ -261,7 +318,6 @@
 
 
 <div class="viewcode-block" id="SubMutezInstruction"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.arithmetic.SubMutezInstruction">[docs]</a><span class="k">class</span> <span class="nc">SubMutezInstruction</span><span class="p">(</span><span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;SUB_MUTEZ&#39;</span><span class="p">):</span>
-
 <div class="viewcode-block" id="SubMutezInstruction.execute"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.arithmetic.SubMutezInstruction.execute">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="n">MichelsonStack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">context</span><span class="p">:</span> <span class="n">AbstractContext</span><span class="p">):</span>
         <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Tuple</span><span class="p">[</span><span class="n">MutezType</span><span class="p">,</span> <span class="n">MutezType</span><span class="p">],</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop2</span><span class="p">())</span>
@@ -277,7 +333,6 @@
 
 
 <div class="viewcode-block" id="IntInstruction"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.arithmetic.IntInstruction">[docs]</a><span class="k">class</span> <span class="nc">IntInstruction</span><span class="p">(</span><span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;INT&#39;</span><span class="p">):</span>
-
 <div class="viewcode-block" id="IntInstruction.execute"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.arithmetic.IntInstruction.execute">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="n">MichelsonStack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">context</span><span class="p">:</span> <span class="n">AbstractContext</span><span class="p">):</span>
         <span class="n">a</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Union</span><span class="p">[</span><span class="n">NatType</span><span class="p">,</span> <span class="n">BLS12_381_FrType</span><span class="p">],</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop1</span><span class="p">())</span>
@@ -289,7 +344,6 @@
 
 
 <div class="viewcode-block" id="IsNatInstruction"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.arithmetic.IsNatInstruction">[docs]</a><span class="k">class</span> <span class="nc">IsNatInstruction</span><span class="p">(</span><span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;ISNAT&#39;</span><span class="p">):</span>
-
 <div class="viewcode-block" id="IsNatInstruction.execute"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.arithmetic.IsNatInstruction.execute">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="n">MichelsonStack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">context</span><span class="p">:</span> <span class="n">AbstractContext</span><span class="p">):</span>
         <span class="n">a</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">IntType</span><span class="p">,</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop1</span><span class="p">())</span>

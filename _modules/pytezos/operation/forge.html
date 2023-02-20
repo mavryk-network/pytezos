@@ -12,10 +12,10 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -26,11 +26,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../contents.html" class="icon icon-home"> PyTezos
+
+          
+          
+          <a href="../../../contents.html" class="icon icon-home">
+            PyTezos
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -66,9 +70,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../contents.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>pytezos.operation.forge</li>
+      <li><a href="../../../contents.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pytezos.operation.forge</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -78,21 +82,20 @@
            <div itemprop="articleBody">
              
   <h1>Source code for pytezos.operation.forge</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
 
-<span class="kn">from</span> <span class="nn">pytezos.michelson.forge</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">forge_address</span><span class="p">,</span>
-    <span class="n">forge_array</span><span class="p">,</span>
-    <span class="n">forge_base58</span><span class="p">,</span>
-    <span class="n">forge_bool</span><span class="p">,</span>
-    <span class="n">forge_int</span><span class="p">,</span>
-    <span class="n">forge_int16</span><span class="p">,</span>
-    <span class="n">forge_int32</span><span class="p">,</span>
-    <span class="n">forge_micheline</span><span class="p">,</span>
-    <span class="n">forge_nat</span><span class="p">,</span>
-    <span class="n">forge_public_key</span><span class="p">,</span>
-    <span class="n">forge_script</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.forge</span> <span class="kn">import</span> <span class="n">forge_address</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.forge</span> <span class="kn">import</span> <span class="n">forge_array</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.forge</span> <span class="kn">import</span> <span class="n">forge_base58</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.forge</span> <span class="kn">import</span> <span class="n">forge_bool</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.forge</span> <span class="kn">import</span> <span class="n">forge_int</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.forge</span> <span class="kn">import</span> <span class="n">forge_int16</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.forge</span> <span class="kn">import</span> <span class="n">forge_int32</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.forge</span> <span class="kn">import</span> <span class="n">forge_micheline</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.forge</span> <span class="kn">import</span> <span class="n">forge_nat</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.forge</span> <span class="kn">import</span> <span class="n">forge_public_key</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.forge</span> <span class="kn">import</span> <span class="n">forge_script</span>
 <span class="kn">from</span> <span class="nn">pytezos.rpc.kind</span> <span class="kn">import</span> <span class="n">operation_tags</span>
 
 <span class="n">reserved_entrypoints</span> <span class="o">=</span> <span class="p">{</span>
@@ -101,6 +104,7 @@
     <span class="s1">&#39;do&#39;</span><span class="p">:</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x02</span><span class="s1">&#39;</span><span class="p">,</span>
     <span class="s1">&#39;set_delegate&#39;</span><span class="p">:</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x03</span><span class="s1">&#39;</span><span class="p">,</span>
     <span class="s1">&#39;remove_delegate&#39;</span><span class="p">:</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x04</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;deposit&#39;</span><span class="p">:</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x05</span><span class="s1">&#39;</span><span class="p">,</span>
 <span class="p">}</span>
 
 
@@ -113,7 +117,7 @@
 
 
 <div class="viewcode-block" id="forge_entrypoint"><a class="viewcode-back" href="../../../operation_groups.html#pytezos.operation.forge.forge_entrypoint">[docs]</a><span class="k">def</span> <span class="nf">forge_entrypoint</span><span class="p">(</span><span class="n">entrypoint</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Encode Michelson contract entrypoint into the byte form.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Encode Michelson contract entrypoint into the byte form.</span>
 
 <span class="sd">    :param entrypoint: string</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -124,7 +128,7 @@
 
 
 <div class="viewcode-block" id="forge_operation"><a class="viewcode-back" href="../../../operation_groups.html#pytezos.operation.forge.forge_operation">[docs]</a><span class="k">def</span> <span class="nf">forge_operation</span><span class="p">(</span><span class="n">content</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Forge operation content (locally).</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Forge operation content (locally).</span>
 
 <span class="sd">    :param content: {.., &quot;kind&quot;: &quot;transaction&quot;, ...}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -147,7 +151,7 @@
 
 
 <div class="viewcode-block" id="forge_operation_group"><a class="viewcode-back" href="../../../operation_groups.html#pytezos.operation.forge.forge_operation_group">[docs]</a><span class="k">def</span> <span class="nf">forge_operation_group</span><span class="p">(</span><span class="n">operation_group</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Forge operation group (locally).</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Forge operation group (locally).</span>
 
 <span class="sd">    :param operation_group: {&quot;branch&quot;: &quot;B...&quot;, &quot;contents&quot;: [], ...}</span>
 <span class="sd">    &quot;&quot;&quot;</span>

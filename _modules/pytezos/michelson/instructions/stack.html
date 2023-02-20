@@ -12,10 +12,10 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
@@ -26,11 +26,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../contents.html" class="icon icon-home"> PyTezos
+
+          
+          
+          <a href="../../../../contents.html" class="icon icon-home">
+            PyTezos
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -66,9 +70,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../contents.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../index.html">Module code</a> &raquo;</li>
-      <li>pytezos.michelson.instructions.stack</li>
+      <li><a href="../../../../contents.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pytezos.michelson.instructions.stack</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -79,17 +83,23 @@
              
   <h1>Source code for pytezos.michelson.instructions.stack</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Type</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">cast</span>
 
-<span class="kn">from</span> <span class="nn">pytezos.context.abstract</span> <span class="kn">import</span> <span class="n">AbstractContext</span>  <span class="c1"># type: ignore</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.instructions.base</span> <span class="kn">import</span> <span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">Wildcard</span><span class="p">,</span> <span class="n">format_stdout</span>
+<span class="kn">from</span> <span class="nn">pytezos.context.abstract</span> <span class="kn">import</span> <span class="n">AbstractContext</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.instructions.base</span> <span class="kn">import</span> <span class="n">MichelsonInstruction</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.instructions.base</span> <span class="kn">import</span> <span class="n">Wildcard</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.instructions.base</span> <span class="kn">import</span> <span class="n">format_stdout</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.micheline</span> <span class="kn">import</span> <span class="n">Micheline</span>
 <span class="kn">from</span> <span class="nn">pytezos.michelson.stack</span> <span class="kn">import</span> <span class="n">MichelsonStack</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.types.base</span> <span class="kn">import</span> <span class="n">MichelsonType</span>
 
 
 <div class="viewcode-block" id="PushInstruction"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.stack.PushInstruction">[docs]</a><span class="k">class</span> <span class="nc">PushInstruction</span><span class="p">(</span><span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;PUSH&#39;</span><span class="p">,</span> <span class="n">args_len</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
-
 <div class="viewcode-block" id="PushInstruction.execute"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.stack.PushInstruction.execute">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="n">MichelsonStack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">context</span><span class="p">:</span> <span class="n">AbstractContext</span><span class="p">):</span>
-        <span class="n">res_type</span><span class="p">,</span> <span class="n">literal</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">args</span>  <span class="c1"># type: Type[MichelsonType], Type[Micheline]  # type: ignore</span>
+        <span class="n">res_type</span><span class="p">,</span> <span class="n">literal</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="n">MichelsonType</span><span class="p">],</span> <span class="n">Type</span><span class="p">[</span><span class="n">Micheline</span><span class="p">]],</span> <span class="bp">cls</span><span class="o">.</span><span class="n">args</span><span class="p">)</span>
         <span class="k">assert</span> <span class="n">res_type</span><span class="o">.</span><span class="n">is_pushable</span><span class="p">(),</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">res_type</span><span class="o">.</span><span class="n">prim</span><span class="si">}</span><span class="s1"> contains non-pushable arguments&#39;</span>
         <span class="n">res</span> <span class="o">=</span> <span class="n">res_type</span><span class="o">.</span><span class="n">from_literal</span><span class="p">(</span><span class="n">literal</span><span class="p">)</span>
         <span class="n">stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
@@ -98,7 +108,6 @@
 
 
 <div class="viewcode-block" id="DropnInstruction"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.stack.DropnInstruction">[docs]</a><span class="k">class</span> <span class="nc">DropnInstruction</span><span class="p">(</span><span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;DROP&#39;</span><span class="p">,</span> <span class="n">args_len</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-
 <div class="viewcode-block" id="DropnInstruction.execute"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.stack.DropnInstruction.execute">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="n">MichelsonStack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">context</span><span class="p">:</span> <span class="n">AbstractContext</span><span class="p">):</span>
         <span class="n">count</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_int</span><span class="p">()</span>  <span class="c1"># type: ignore</span>
@@ -108,7 +117,6 @@
 
 
 <div class="viewcode-block" id="DropInstruction"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.stack.DropInstruction">[docs]</a><span class="k">class</span> <span class="nc">DropInstruction</span><span class="p">(</span><span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;DROP&#39;</span><span class="p">):</span>
-
 <div class="viewcode-block" id="DropInstruction.execute"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.stack.DropInstruction.execute">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="n">MichelsonStack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">context</span><span class="p">:</span> <span class="n">AbstractContext</span><span class="p">):</span>
         <span class="n">dropped</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop1</span><span class="p">()</span>
@@ -117,7 +125,6 @@
 
 
 <div class="viewcode-block" id="DupnInstruction"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.stack.DupnInstruction">[docs]</a><span class="k">class</span> <span class="nc">DupnInstruction</span><span class="p">(</span><span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;DUP&#39;</span><span class="p">,</span> <span class="n">args_len</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-
 <div class="viewcode-block" id="DupnInstruction.execute"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.stack.DupnInstruction.execute">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="n">MichelsonStack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">context</span><span class="p">:</span> <span class="n">AbstractContext</span><span class="p">):</span>
         <span class="n">depth</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_int</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span>  <span class="c1"># type: ignore</span>
@@ -130,7 +137,6 @@
 
 
 <div class="viewcode-block" id="DupInstruction"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.stack.DupInstruction">[docs]</a><span class="k">class</span> <span class="nc">DupInstruction</span><span class="p">(</span><span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;DUP&#39;</span><span class="p">):</span>
-
 <div class="viewcode-block" id="DupInstruction.execute"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.stack.DupInstruction.execute">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="n">MichelsonStack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">context</span><span class="p">:</span> <span class="n">AbstractContext</span><span class="p">):</span>
         <span class="n">res</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">peek</span><span class="p">()</span><span class="o">.</span><span class="n">duplicate</span><span class="p">()</span>
@@ -140,7 +146,6 @@
 
 
 <div class="viewcode-block" id="SwapInstruction"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.stack.SwapInstruction">[docs]</a><span class="k">class</span> <span class="nc">SwapInstruction</span><span class="p">(</span><span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;SWAP&#39;</span><span class="p">):</span>
-
 <div class="viewcode-block" id="SwapInstruction.execute"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.stack.SwapInstruction.execute">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="n">MichelsonStack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">context</span><span class="p">:</span> <span class="n">AbstractContext</span><span class="p">):</span>
         <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop2</span><span class="p">()</span>
@@ -151,7 +156,6 @@
 
 
 <div class="viewcode-block" id="DigInstruction"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.stack.DigInstruction">[docs]</a><span class="k">class</span> <span class="nc">DigInstruction</span><span class="p">(</span><span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;DIG&#39;</span><span class="p">,</span> <span class="n">args_len</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-
 <div class="viewcode-block" id="DigInstruction.execute"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.stack.DigInstruction.execute">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="n">MichelsonStack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">context</span><span class="p">:</span> <span class="n">AbstractContext</span><span class="p">):</span>
         <span class="n">depth</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_int</span><span class="p">()</span>  <span class="c1"># type: ignore</span>
@@ -164,7 +168,6 @@
 
 
 <div class="viewcode-block" id="DugInstruction"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.stack.DugInstruction">[docs]</a><span class="k">class</span> <span class="nc">DugInstruction</span><span class="p">(</span><span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;DUG&#39;</span><span class="p">,</span> <span class="n">args_len</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-
 <div class="viewcode-block" id="DugInstruction.execute"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.stack.DugInstruction.execute">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="n">MichelsonStack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">context</span><span class="p">:</span> <span class="n">AbstractContext</span><span class="p">):</span>
         <span class="n">depth</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_int</span><span class="p">()</span>  <span class="c1"># type: ignore</span>
@@ -177,7 +180,6 @@
 
 
 <div class="viewcode-block" id="CastIntruction"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.stack.CastIntruction">[docs]</a><span class="k">class</span> <span class="nc">CastIntruction</span><span class="p">(</span><span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;CAST&#39;</span><span class="p">,</span> <span class="n">args_len</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-
 <div class="viewcode-block" id="CastIntruction.execute"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.stack.CastIntruction.execute">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="n">MichelsonStack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">context</span><span class="p">:</span> <span class="n">AbstractContext</span><span class="p">):</span>
         <span class="n">res</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop1</span><span class="p">()</span>
@@ -190,7 +192,6 @@
 
 
 <div class="viewcode-block" id="RenameInstruction"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.stack.RenameInstruction">[docs]</a><span class="k">class</span> <span class="nc">RenameInstruction</span><span class="p">(</span><span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;RENAME&#39;</span><span class="p">):</span>
-
 <div class="viewcode-block" id="RenameInstruction.execute"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.stack.RenameInstruction.execute">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="n">MichelsonStack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">context</span><span class="p">:</span> <span class="n">AbstractContext</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">()</span></div></div>

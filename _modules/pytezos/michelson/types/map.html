@@ -12,10 +12,10 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
@@ -26,11 +26,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../contents.html" class="icon icon-home"> PyTezos
+
+          
+          
+          <a href="../../../../contents.html" class="icon icon-home">
+            PyTezos
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -66,9 +70,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../contents.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../index.html">Module code</a> &raquo;</li>
-      <li>pytezos.michelson.types.map</li>
+      <li><a href="../../../../contents.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pytezos.michelson.types.map</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -78,10 +82,17 @@
            <div itemprop="articleBody">
              
   <h1>Source code for pytezos.michelson.types.map</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Generator</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Type</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Generator</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Type</span>
 
-<span class="kn">from</span> <span class="nn">pytezos.context.abstract</span> <span class="kn">import</span> <span class="n">AbstractContext</span>  <span class="c1"># type: ignore</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.micheline</span> <span class="kn">import</span> <span class="n">Micheline</span><span class="p">,</span> <span class="n">MichelineSequence</span><span class="p">,</span> <span class="n">parse_micheline_value</span>
+<span class="kn">from</span> <span class="nn">pytezos.context.abstract</span> <span class="kn">import</span> <span class="n">AbstractContext</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.micheline</span> <span class="kn">import</span> <span class="n">Micheline</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.micheline</span> <span class="kn">import</span> <span class="n">MichelineSequence</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.micheline</span> <span class="kn">import</span> <span class="n">parse_micheline_value</span>
 <span class="kn">from</span> <span class="nn">pytezos.michelson.types.base</span> <span class="kn">import</span> <span class="n">MichelsonType</span>
 
 
@@ -90,7 +101,6 @@
 
 
 <div class="viewcode-block" id="MapType"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.map.MapType">[docs]</a><span class="k">class</span> <span class="nc">MapType</span><span class="p">(</span><span class="n">MichelsonType</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;map&#39;</span><span class="p">,</span> <span class="n">args_len</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
-
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">items</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">MichelsonType</span><span class="p">,</span> <span class="n">MichelsonType</span><span class="p">]]):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MapType</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="o">=</span> <span class="n">items</span>
@@ -130,16 +140,20 @@
     <span class="k">def</span> <span class="nf">check_constraints</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">items</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">MichelsonType</span><span class="p">,</span> <span class="n">MichelsonType</span><span class="p">]]):</span>
         <span class="n">keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">items</span><span class="p">))</span>
         <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">keys</span><span class="p">))</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">),</span> <span class="sa">f</span><span class="s1">&#39;duplicate keys found&#39;</span>
-        <span class="k">assert</span> <span class="n">keys</span> <span class="o">==</span> <span class="nb">list</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">keys</span><span class="p">)),</span> <span class="sa">f</span><span class="s1">&#39;keys are unsorted&#39;</span></div>
+        <span class="k">assert</span> <span class="n">keys</span> <span class="o">==</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">keys</span><span class="p">),</span> <span class="sa">f</span><span class="s1">&#39;keys are unsorted&#39;</span></div>
 
 <div class="viewcode-block" id="MapType.generate_pydoc"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.map.MapType.generate_pydoc">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">generate_pydoc</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">definitions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]],</span> <span class="n">inferred_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">comparable</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="n">name</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">field_name</span> <span class="ow">or</span> <span class="bp">cls</span><span class="o">.</span><span class="n">type_name</span> <span class="ow">or</span> <span class="n">inferred_name</span>
-        <span class="n">key</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">generate_pydoc</span><span class="p">(</span><span class="n">definitions</span><span class="p">,</span>
-                                         <span class="n">inferred_name</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">_key&#39;</span> <span class="k">if</span> <span class="n">name</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-                                         <span class="n">comparable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">val</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">generate_pydoc</span><span class="p">(</span><span class="n">definitions</span><span class="p">,</span>
-                                         <span class="n">inferred_name</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">_value&#39;</span> <span class="k">if</span> <span class="n">name</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">generate_pydoc</span><span class="p">(</span>
+            <span class="n">definitions</span><span class="p">,</span>
+            <span class="n">inferred_name</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">_key&#39;</span> <span class="k">if</span> <span class="n">name</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">comparable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">generate_pydoc</span><span class="p">(</span>
+            <span class="n">definitions</span><span class="p">,</span>
+            <span class="n">inferred_name</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">_value&#39;</span> <span class="k">if</span> <span class="n">name</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">)</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="se">{{</span><span class="s1"> </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s1">, … </span><span class="se">}}</span><span class="s1">&#39;</span></div>
 
 <div class="viewcode-block" id="MapType.dummy"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.map.MapType.dummy">[docs]</a>    <span class="nd">@classmethod</span>
@@ -151,9 +165,10 @@
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val_expr</span><span class="p">,</span> <span class="nb">list</span><span class="p">),</span> <span class="sa">f</span><span class="s1">&#39;expected list, got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">val_expr</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">&#39;</span>
 
         <span class="k">def</span> <span class="nf">parse_elt</span><span class="p">(</span><span class="n">elt_expr</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">MichelsonType</span><span class="p">,</span> <span class="n">MichelsonType</span><span class="p">]:</span>
-            <span class="k">return</span> <span class="n">parse_micheline_value</span><span class="p">(</span><span class="n">elt_expr</span><span class="p">,</span> <span class="p">{</span>
-                <span class="p">(</span><span class="s1">&#39;Elt&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">from_micheline_value</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">arg</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-            <span class="p">})</span>
+            <span class="k">return</span> <span class="n">parse_micheline_value</span><span class="p">(</span>
+                <span class="n">elt_expr</span><span class="p">,</span>
+                <span class="p">{(</span><span class="s1">&#39;Elt&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">from_micheline_value</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">arg</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x</span><span class="p">))},</span>
+            <span class="p">)</span>
 
         <span class="n">items</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">parse_elt</span><span class="p">,</span> <span class="n">val_expr</span><span class="p">))</span>
         <span class="bp">cls</span><span class="o">.</span><span class="n">check_constraints</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
@@ -166,33 +181,42 @@
 <div class="viewcode-block" id="MapType.parse_python_object"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.map.MapType.parse_python_object">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">parse_python_object</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">py_obj</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">MichelsonType</span><span class="p">,</span> <span class="n">MichelsonType</span><span class="p">]]:</span>
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">py_obj</span><span class="p">,</span> <span class="nb">dict</span><span class="p">),</span> <span class="sa">f</span><span class="s1">&#39;expected dict, got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">py_obj</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">&#39;</span>
-        <span class="n">items</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">from_python_object</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="bp">cls</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">from_python_object</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
-            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">py_obj</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-        <span class="p">]</span>
-        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span></div>
+        <span class="n">items</span> <span class="o">=</span> <span class="p">[(</span><span class="bp">cls</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">from_python_object</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="bp">cls</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">from_python_object</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">py_obj</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+        <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></div>
 
 <div class="viewcode-block" id="MapType.from_python_object"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.map.MapType.from_python_object">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_python_object</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">py_obj</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;MapType&#39;</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">parse_python_object</span><span class="p">(</span><span class="n">py_obj</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="MapType.to_literal"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.map.MapType.to_literal">[docs]</a>    <span class="k">def</span> <span class="nf">to_literal</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">Micheline</span><span class="p">]:</span>
-        <span class="k">return</span> <span class="n">MichelineSequence</span><span class="o">.</span><span class="n">create_type</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="p">[</span>
-            <span class="n">EltLiteral</span><span class="o">.</span><span class="n">create_type</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">k</span><span class="o">.</span><span class="n">to_literal</span><span class="p">(),</span> <span class="n">v</span><span class="o">.</span><span class="n">to_literal</span><span class="p">()])</span>
-            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span>
-        <span class="p">])</span></div>
+        <span class="k">return</span> <span class="n">MichelineSequence</span><span class="o">.</span><span class="n">create_type</span><span class="p">(</span>
+            <span class="n">args</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">EltLiteral</span><span class="o">.</span><span class="n">create_type</span><span class="p">(</span>
+                    <span class="n">args</span><span class="o">=</span><span class="p">[</span>
+                        <span class="n">k</span><span class="o">.</span><span class="n">to_literal</span><span class="p">(),</span>
+                        <span class="n">v</span><span class="o">.</span><span class="n">to_literal</span><span class="p">(),</span>
+                    <span class="p">]</span>
+                <span class="p">)</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span>
+            <span class="p">]</span>
+        <span class="p">)</span></div>
 
 <div class="viewcode-block" id="MapType.to_micheline_value"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.map.MapType.to_micheline_value">[docs]</a>    <span class="k">def</span> <span class="nf">to_micheline_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;readable&#39;</span><span class="p">,</span> <span class="n">lazy_diff</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">[</span>
-            <span class="p">{</span><span class="s1">&#39;prim&#39;</span><span class="p">:</span> <span class="s1">&#39;Elt&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">to_micheline_value</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span> <span class="n">lazy_diff</span><span class="o">=</span><span class="n">lazy_diff</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">elt</span><span class="p">]}</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;prim&#39;</span><span class="p">:</span> <span class="s1">&#39;Elt&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">to_micheline_value</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span> <span class="n">lazy_diff</span><span class="o">=</span><span class="n">lazy_diff</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">elt</span><span class="p">],</span>
+            <span class="p">}</span>
             <span class="k">for</span> <span class="n">elt</span> <span class="ow">in</span> <span class="bp">self</span>
         <span class="p">]</span></div>
 
 <div class="viewcode-block" id="MapType.to_python_object"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.map.MapType.to_python_object">[docs]</a>    <span class="k">def</span> <span class="nf">to_python_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">try_unpack</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">lazy_diff</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">comparable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
         <span class="k">assert</span> <span class="ow">not</span> <span class="n">comparable</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">prim</span><span class="si">}</span><span class="s1"> is not comparable&#39;</span>
         <span class="k">return</span> <span class="p">{</span>
-            <span class="n">k</span><span class="o">.</span><span class="n">to_python_object</span><span class="p">(</span><span class="n">try_unpack</span><span class="o">=</span><span class="n">try_unpack</span><span class="p">,</span> <span class="n">comparable</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-                <span class="n">v</span><span class="o">.</span><span class="n">to_python_object</span><span class="p">(</span><span class="n">try_unpack</span><span class="o">=</span><span class="n">try_unpack</span><span class="p">,</span> <span class="n">lazy_diff</span><span class="o">=</span><span class="n">lazy_diff</span><span class="p">)</span>
+            <span class="n">k</span><span class="o">.</span><span class="n">to_python_object</span><span class="p">(</span><span class="n">try_unpack</span><span class="o">=</span><span class="n">try_unpack</span><span class="p">,</span> <span class="n">comparable</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span> <span class="n">v</span><span class="o">.</span><span class="n">to_python_object</span><span class="p">(</span>
+                <span class="n">try_unpack</span><span class="o">=</span><span class="n">try_unpack</span><span class="p">,</span>
+                <span class="n">lazy_diff</span><span class="o">=</span><span class="n">lazy_diff</span><span class="p">,</span>
+            <span class="p">)</span>
             <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span>
         <span class="p">}</span></div>
 
@@ -235,7 +259,7 @@
                 <span class="n">items</span> <span class="o">=</span> <span class="p">[(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="k">if</span> <span class="n">k</span> <span class="o">!=</span> <span class="n">key</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">val</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">items</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="o">+</span> <span class="p">[(</span><span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="p">)],</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+                <span class="n">items</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="o">+</span> <span class="p">[(</span><span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="p">)],</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
             <span class="k">else</span><span class="p">:</span>  <span class="c1"># do nothing</span>
                 <span class="n">items</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span>
         <span class="k">return</span> <span class="n">prev_val</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)(</span><span class="n">items</span><span class="p">)</span></div>

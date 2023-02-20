@@ -12,10 +12,10 @@
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
@@ -26,11 +26,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../contents.html" class="icon icon-home"> PyTezos
+
+          
+          
+          <a href="../../../../contents.html" class="icon icon-home">
+            PyTezos
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -66,9 +70,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../contents.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../index.html">Module code</a> &raquo;</li>
-      <li>pytezos.michelson.types.bls</li>
+      <li><a href="../../../../contents.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pytezos.michelson.types.bls</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -82,12 +86,14 @@
 
 <span class="kn">from</span> <span class="nn">py_ecc</span> <span class="kn">import</span> <span class="n">optimized_bls12_381</span> <span class="k">as</span> <span class="n">bls12_381</span>
 <span class="kn">from</span> <span class="nn">py_ecc.bls.constants</span> <span class="kn">import</span> <span class="n">POW_2_382</span>
-<span class="kn">from</span> <span class="nn">py_ecc.bls.typing</span> <span class="kn">import</span> <span class="n">G1Uncompressed</span><span class="p">,</span> <span class="n">G2Uncompressed</span>
+<span class="kn">from</span> <span class="nn">py_ecc.bls.typing</span> <span class="kn">import</span> <span class="n">G1Uncompressed</span>
+<span class="kn">from</span> <span class="nn">py_ecc.bls.typing</span> <span class="kn">import</span> <span class="n">G2Uncompressed</span>
 <span class="kn">from</span> <span class="nn">py_ecc.fields</span> <span class="kn">import</span> <span class="n">optimized_bls12_381_FQ</span> <span class="k">as</span> <span class="n">FQ</span>
 <span class="kn">from</span> <span class="nn">py_ecc.fields</span> <span class="kn">import</span> <span class="n">optimized_bls12_381_FQ2</span> <span class="k">as</span> <span class="n">FQ2</span>
 
 <span class="kn">from</span> <span class="nn">pytezos.michelson.micheline</span> <span class="kn">import</span> <span class="n">parse_micheline_literal</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.types.core</span> <span class="kn">import</span> <span class="n">BytesType</span><span class="p">,</span> <span class="n">IntType</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.types.core</span> <span class="kn">import</span> <span class="n">BytesType</span>
+<span class="kn">from</span> <span class="nn">pytezos.michelson.types.core</span> <span class="kn">import</span> <span class="n">IntType</span>
 
 
 <div class="viewcode-block" id="BLS12_381_FrType"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.bls.BLS12_381_FrType">[docs]</a><span class="k">class</span> <span class="nc">BLS12_381_FrType</span><span class="p">(</span><span class="n">IntType</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;bls12_381_fr&#39;</span><span class="p">):</span>
@@ -117,15 +123,18 @@
                 <span class="n">py_obj</span> <span class="o">=</span> <span class="n">py_obj</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
             <span class="n">value</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">bytes_to_int</span><span class="p">(</span><span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="n">py_obj</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">assert</span> <span class="kc">False</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;unexpected value </span><span class="si">{</span><span class="n">py_obj</span><span class="si">}</span><span class="s1">&#39;</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;unexpected value </span><span class="si">{</span><span class="n">py_obj</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="BLS12_381_FrType.from_micheline_value"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.bls.BLS12_381_FrType.from_micheline_value">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_micheline_value</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">val_expr</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;IntType&#39;</span><span class="p">:</span>
-        <span class="n">value</span> <span class="o">=</span> <span class="n">parse_micheline_literal</span><span class="p">(</span><span class="n">val_expr</span><span class="p">,</span> <span class="p">{</span>
-            <span class="s1">&#39;int&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-            <span class="s1">&#39;bytes&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">bytes_to_int</span><span class="p">(</span><span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-        <span class="p">})</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">parse_micheline_literal</span><span class="p">(</span>
+            <span class="n">val_expr</span><span class="p">,</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;int&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                <span class="s1">&#39;bytes&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">bytes_to_int</span><span class="p">(</span><span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span>
+            <span class="p">},</span>
+        <span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="BLS12_381_FrType.to_micheline_value"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.bls.BLS12_381_FrType.to_micheline_value">[docs]</a>    <span class="k">def</span> <span class="nf">to_micheline_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;readable&#39;</span><span class="p">,</span> <span class="n">lazy_diff</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -140,7 +149,6 @@
 
 
 <div class="viewcode-block" id="BLS12_381_G1Type"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.bls.BLS12_381_G1Type">[docs]</a><span class="k">class</span> <span class="nc">BLS12_381_G1Type</span><span class="p">(</span><span class="n">BytesType</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;bls12_381_g1&#39;</span><span class="p">):</span>
-
 <div class="viewcode-block" id="BLS12_381_G1Type.from_value"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.bls.BLS12_381_G1Type.from_value">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_value</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">):</span>
         <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">==</span> <span class="mi">96</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;expected 98 bytes, got </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span>
@@ -168,7 +176,6 @@
 
 
 <div class="viewcode-block" id="BLS12_381_G2Type"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.bls.BLS12_381_G2Type">[docs]</a><span class="k">class</span> <span class="nc">BLS12_381_G2Type</span><span class="p">(</span><span class="n">BytesType</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;bls12_381_g2&#39;</span><span class="p">):</span>
-
 <div class="viewcode-block" id="BLS12_381_G2Type.from_value"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.bls.BLS12_381_G2Type.from_value">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_value</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">):</span>
         <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">==</span> <span class="mi">192</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;expected 98 bytes, got </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span>
@@ -182,8 +189,9 @@
             <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">bls12_381</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
             <span class="n">x_re</span><span class="p">,</span> <span class="n">x_im</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">coeffs</span>
             <span class="n">y_re</span><span class="p">,</span> <span class="n">y_im</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">coeffs</span>
-        <span class="n">value</span> <span class="o">=</span> <span class="n">x_im</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="mi">48</span><span class="p">,</span> <span class="s1">&#39;big&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">x_re</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="mi">48</span><span class="p">,</span> <span class="s1">&#39;big&#39;</span><span class="p">)</span> \
-            <span class="o">+</span> <span class="n">y_im</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="mi">48</span><span class="p">,</span> <span class="s1">&#39;big&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">y_re</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="mi">48</span><span class="p">,</span> <span class="s1">&#39;big&#39;</span><span class="p">)</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">x_im</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="mi">48</span><span class="p">,</span> <span class="s1">&#39;big&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">x_re</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="mi">48</span><span class="p">,</span> <span class="s1">&#39;big&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">y_im</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="mi">48</span><span class="p">,</span> <span class="s1">&#39;big&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">y_re</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="mi">48</span><span class="p">,</span> <span class="s1">&#39;big&#39;</span><span class="p">)</span>
+        <span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="BLS12_381_G2Type.to_point"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.bls.BLS12_381_G2Type.to_point">[docs]</a>    <span class="k">def</span> <span class="nf">to_point</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">G2Uncompressed</span><span class="p">:</span>
