@@ -144,7 +144,8 @@
             <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">(),</span>
             <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Payload&#39;</span><span class="p">,</span>
             <span class="n">pformat</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">json_payload</span><span class="p">()),</span>
-            <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Helpers&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Hash&#39;</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">opg_hash</span> <span class="ow">or</span> <span class="s1">&#39;(Not sent)&#39;</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Helpers&#39;</span><span class="p">,</span>
             <span class="n">get_class_docstring</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">),</span>
         <span class="p">]</span>
         <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
@@ -198,7 +199,8 @@
 <span class="sd">        (not optimal, use `autofill` to simulate operation and get precise values).</span>
 
 <span class="sd">        :param counter: Override counter value (for manual handling)</span>
-<span class="sd">        :param ttl: Number of blocks to wait in the mempool before removal (default is 5 for public network, 60 for sandbox)</span>
+<span class="sd">        :param ttl: Number of blocks to wait in the mempool before removal (default is 5 for public network, MAX for sandbox),</span>
+<span class="sd">            -1 for MAX (if you have a private network and issues with block RPC queries)</span>
 <span class="sd">        :param gas_limit: Override gas_limit value (for manual handling)</span>
 <span class="sd">        :param storage_limit: Override storage_limit value (for manual handling)</span>
 <span class="sd">        :param minimal_nanotez_per_gas_unit: Override minimal_nanotez_per_gas_unit constant (for manual handling)</span>
@@ -210,6 +212,8 @@
 
         <span class="k">if</span> <span class="n">ttl</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">ttl</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">get_operations_ttl</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">ttl</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">ttl</span> <span class="o">=</span> <span class="n">MAX_OPERATIONS_TTL</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">ttl</span> <span class="o">&lt;=</span> <span class="n">MAX_OPERATIONS_TTL</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;`ttl` has to be in range (0, </span><span class="si">{</span><span class="n">MAX_OPERATIONS_TTL</span><span class="si">}</span><span class="s1">]&#39;</span><span class="p">)</span>
 

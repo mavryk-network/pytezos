@@ -138,6 +138,11 @@
 <li class="toctree-l4"><a class="reference internal" href="#pytezos.michelson.instructions.arithmetic.AddInstruction.prim"><code class="docutils literal notranslate"><span class="pre">AddInstruction.prim</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#pytezos.michelson.instructions.arithmetic.BytesInstruction"><code class="docutils literal notranslate"><span class="pre">BytesInstruction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.michelson.instructions.arithmetic.BytesInstruction.execute"><code class="docutils literal notranslate"><span class="pre">BytesInstruction.execute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.michelson.instructions.arithmetic.BytesInstruction.prim"><code class="docutils literal notranslate"><span class="pre">BytesInstruction.prim</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#pytezos.michelson.instructions.arithmetic.EdivInstruction"><code class="docutils literal notranslate"><span class="pre">EdivInstruction</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#pytezos.michelson.instructions.arithmetic.EdivInstruction.execute"><code class="docutils literal notranslate"><span class="pre">EdivInstruction.execute()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pytezos.michelson.instructions.arithmetic.EdivInstruction.prim"><code class="docutils literal notranslate"><span class="pre">EdivInstruction.prim</span></code></a></li>
@@ -166,6 +171,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#pytezos.michelson.instructions.arithmetic.MulInstruction"><code class="docutils literal notranslate"><span class="pre">MulInstruction</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#pytezos.michelson.instructions.arithmetic.MulInstruction.execute"><code class="docutils literal notranslate"><span class="pre">MulInstruction.execute()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pytezos.michelson.instructions.arithmetic.MulInstruction.prim"><code class="docutils literal notranslate"><span class="pre">MulInstruction.prim</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pytezos.michelson.instructions.arithmetic.NatInstruction"><code class="docutils literal notranslate"><span class="pre">NatInstruction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.michelson.instructions.arithmetic.NatInstruction.execute"><code class="docutils literal notranslate"><span class="pre">NatInstruction.execute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytezos.michelson.instructions.arithmetic.NatInstruction.prim"><code class="docutils literal notranslate"><span class="pre">NatInstruction.prim</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#pytezos.michelson.instructions.arithmetic.NegInstruction"><code class="docutils literal notranslate"><span class="pre">NegInstruction</span></code></a><ul>
@@ -957,6 +967,21 @@
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="pytezos.michelson.instructions.arithmetic.BytesInstruction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytezos.michelson.instructions.arithmetic.</span></span><span class="sig-name descname"><span class="pre">BytesInstruction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stack_items_added</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytezos/michelson/instructions/arithmetic.html#BytesInstruction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.michelson.instructions.arithmetic.BytesInstruction" title="Permalink to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="pytezos.michelson.instructions.arithmetic.BytesInstruction.execute">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stack</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="repl.html#pytezos.michelson.stack.MichelsonStack" title="pytezos.michelson.stack.MichelsonStack"><span class="pre">MichelsonStack</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">stdout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AbstractContext</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytezos/michelson/instructions/arithmetic.html#BytesInstruction.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.michelson.instructions.arithmetic.BytesInstruction.execute" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pytezos.michelson.instructions.arithmetic.BytesInstruction.prim">
+<span class="sig-name descname"><span class="pre">prim</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'BYTES'</span></em><a class="headerlink" href="#pytezos.michelson.instructions.arithmetic.BytesInstruction.prim" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="pytezos.michelson.instructions.arithmetic.EdivInstruction">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytezos.michelson.instructions.arithmetic.</span></span><span class="sig-name descname"><span class="pre">EdivInstruction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stack_items_added</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytezos/michelson/instructions/arithmetic.html#EdivInstruction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.michelson.instructions.arithmetic.EdivInstruction" title="Permalink to this definition"></a></dt>
 <dd><dl class="py method">
@@ -1042,6 +1067,21 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pytezos.michelson.instructions.arithmetic.MulInstruction.prim">
 <span class="sig-name descname"><span class="pre">prim</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'MUL'</span></em><a class="headerlink" href="#pytezos.michelson.instructions.arithmetic.MulInstruction.prim" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pytezos.michelson.instructions.arithmetic.NatInstruction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytezos.michelson.instructions.arithmetic.</span></span><span class="sig-name descname"><span class="pre">NatInstruction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stack_items_added</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytezos/michelson/instructions/arithmetic.html#NatInstruction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.michelson.instructions.arithmetic.NatInstruction" title="Permalink to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="pytezos.michelson.instructions.arithmetic.NatInstruction.execute">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stack</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="repl.html#pytezos.michelson.stack.MichelsonStack" title="pytezos.michelson.stack.MichelsonStack"><span class="pre">MichelsonStack</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">stdout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AbstractContext</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytezos/michelson/instructions/arithmetic.html#NatInstruction.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.michelson.instructions.arithmetic.NatInstruction.execute" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pytezos.michelson.instructions.arithmetic.NatInstruction.prim">
+<span class="sig-name descname"><span class="pre">prim</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'NAT'</span></em><a class="headerlink" href="#pytezos.michelson.instructions.arithmetic.NatInstruction.prim" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
