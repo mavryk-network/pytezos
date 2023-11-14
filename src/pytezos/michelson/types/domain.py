@@ -110,7 +110,7 @@ class AddressType(StringType, prim='address'):
     def from_value(cls, value: str) -> 'AddressType':
         if value.endswith('%default'):
             value = value.split('%')[0]
-        assert is_address(value), f'expected tz/KT/sr address, got {value}'
+        assert is_address(value), f'expected mv/KT/sr address, got {value}'
         return cls(value)
 
     @classmethod
@@ -263,7 +263,7 @@ class KeyHashType(StringType, prim='key_hash'):
 
     @classmethod
     def from_value(cls, value: str) -> 'KeyHashType':
-        assert is_pkh(value), f'expected tz1/tz2/tz3 key hash, got {value}'
+        assert is_pkh(value), f'expected mv1/mv2/mv3 key hash, got {value}'
         return cls(value)
 
     @classmethod

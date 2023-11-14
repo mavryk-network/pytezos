@@ -19,11 +19,11 @@ from pytezos.rpc.errors import RpcError
 # NOTE: Built-in key for PyTezos client, please, use responsibly.
 default_network = 'ghostnet'
 default_key = 'edsk33N474hxzA4sKeWVM6iuGNGDpX2mGwHNxEA4UbWS8sW3Ta3NKH'
-default_key_hash = 'tz1grSQDByRpnVs7sPtaprNZRp531ZKz6Jmm'
+default_key_hash = 'mv1VDuhoWLjBMmeM1iTS4g4aapw1Zwkz9ziU'
 
 # NOTE: For flextesa sandbox
 alice_key = 'edsk3QoqBuvdamxouPhin7swCvkQNgq4jP5KZPbwWNnwdZpSpJiEbq'
-alice_key_hash = 'tz1VSUr8wwNhLAzempoch5d6hLRiTh8Cjcjb'
+alice_key_hash = 'mv1Hox9jGJg3uSmsv9NTvuK7rMHh25cq44nv'
 
 # NOTE: For tezos-node in sandboxed mode
 dictator_key = 'edsk31vznjHSSpGExDMHYASz45VZqXN4DPxvsa4hAyY8dHM28cZzp6'

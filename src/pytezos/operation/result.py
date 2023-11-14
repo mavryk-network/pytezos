@@ -126,7 +126,7 @@ class OperationResult:
 
         :param operation_group: {"branch": "B...", "contents": [...], ...} \
         OR a single content {"kind": "transaction", ...}
-        :returns: list of addresses ["tz12345...", ...]
+        :returns: list of addresses ["mv12345...", ...]
         """
         originated_contracts = []
         for result in OperationResult.iter_results(operation_group):

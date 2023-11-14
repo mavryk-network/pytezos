@@ -48,18 +48,18 @@ sandbox_commitment = {
     ],
     "activation_code": "7375ef222cc038001b6c8fb768246c86e994745b",
     "amount": "38323962971",
-    "pkh": "tz1W86h1XuWy6awbNUTRUgs6nk8q5vqXQwgk",
+    "pkh": "mv1JVZzbrGpKfripWo2GiWZ7wkzoeKHna498",
     "password": "ZuPOpZgMNM",
     "email": "nbhcylbg.xllfjgrk@tezos.example.org",
 }
 
 sandbox_addresses = {
-    'activator': 'tz1TGu6TN5GSez2ndXXeDX6LgUDvLzPLqgYV',
-    'bootstrap5': 'tz1ddb9NMYHZi5UzPdzTZMYQQZoMub195zgv',
-    'bootstrap4': 'tz1b7tUupMgCNw2cCLpKTkSD1NZzB5TkP2sv',
-    'bootstrap3': 'tz1faswCTDciRzE4oJ9jn2Vm2dvjeyA9fUzU',
-    'bootstrap2': 'tz1gjaF81ZRRvdzjobyfVNsAeSC6PScjfQwN',
-    'bootstrap1': 'tz1KqTpEZ7Yob7QbPE4Hy4Wo8fHG8LhKxZSx',
+    'activator': 'mv1FeNQ3gSZoEFp1mr6VTLnMqV5tuNwHTgw5',
+    'bootstrap5': 'mv1S14SxfuavHMGDXxZJoBERZafLTyX3Z6Dx',
+    'bootstrap4': 'mv1PVMnW8iyYxCoqLfPAha8EAPRxjTx7wqbn',
+    'bootstrap3': 'mv1TxMEnmav51G1Hwcib1rBnBeniDMgG8nkJ',
+    'bootstrap2': 'mv1V73YiKvinVumxwvYWjCZBoT44wqBNhta7',
+    'bootstrap1': 'mv18Cw7psUrAAPBpXYd9CtCpHg9EgjHP9KTe',
 }
 
 sandbox_params: Dict[str, Any] = {

@@ -11,5 +11,5 @@ class TestMetadata(TestCase):
 
     def test_domains(self):
         td = pytezos.using('mainnet').contract('KT1GBZmSxmnKJXGMdMLbugPfLyUPmuLSMwKS')
-        res = td.metadata.resolveAddress('tz2Li3UTeiQQzh32EH4VriVa7owyUWFj1NKJ').storage_view()
-        self.assertEqual('tz2Li3UTeiQQzh32EH4VriVa7owyUWFj1NKJ', res['address'])
+        res = td.metadata.resolveAddress('mv2SWyttJCrigv3XdHaS8XJF33AMoLGYLttC').storage_view()
+        self.assertEqual('mv2SWyttJCrigv3XdHaS8XJF33AMoLGYLttC', res['address'])

@@ -9,7 +9,7 @@ parameter (big_map nat nat);
 storage (big_map nat nat);
 code { CAR ; NIL operation ; PAIR }
 """
-bob = "tz1iBobBobBobBobBobBobBobBobBodTWLCX"
+bob = "mv1iBobBobBobBobBobBobBobBobBodTWLCX"
 
 
 class BigMapArgTest(TestCase):

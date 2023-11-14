@@ -3,7 +3,7 @@
   "isBooleanAmount": true,
   "name": "Carnival Asada",
   "description": "Deceptively simple by reputation; don't underestimate this cunning taco. It's packing a secret weapon!",
-  "minter": "tz1codeYURj5z49HKX9zmLHms2vJN2qDjrtt",
+  "minter": "mv1V4StoW77wRU9QnNAWyEuBnfsNeijeZhy8",
   "creators": ["CryptoTacos, Inc."],
   "date": "2020-11-13T00:00:00+00:00",
   "type": "Digital Taco",

@@ -219,7 +219,7 @@ class InterpreterTest(TestCase):
         # Arrange
         interpreter = Interpreter()
         code = """
-            PATCH SENDER "tz1VSUr8wwNhLAzempoch5d6hLRiTh8Cjcjb" ;
+            PATCH SENDER "mv1Hox9jGJg3uSmsv9NTvuK7rMHh25cq44nv" ;
             PATCH BALANCE 200 ;
             
             parameter mutez ;
@@ -268,13 +268,13 @@ class InterpreterTest(TestCase):
                 "COMPARE / 0.0002 : 0.0001 => 1",
                 "LT / 1 => False",
                 "IF / False => _",
-                "SENDER / _ => tz1VSU…cjb",
-                "CONTRACT: skip type checking for tz1VSUr8wwNhLAzempoch5d6hLRiTh8Cjcjb",
-                "CONTRACT / tz1VSU…cjb => tz1VSU…cjb%default?",
-                "IF_NONE / tz1VSU…cjb%default? => tz1VSU…cjb%default",
-                "SWAP / tz1VSU…cjb%default : 0.0001 => 0.0001 : tz1VSU…cjb%default",
+                "SENDER / _ => mv1Hox…4nv",
+                "CONTRACT: skip type checking for mv1Hox9jGJg3uSmsv9NTvuK7rMHh25cq44nv",
+                "CONTRACT / mv1Hox…4nv => mv1Hox…4nv%default?",
+                "IF_NONE / mv1Hox…4nv%default? => mv1Hox…4nv%default",
+                "SWAP / mv1Hox…4nv%default : 0.0001 => 0.0001 : mv1Hox…4nv%default",
                 "UNIT / _ => Unit",
-                "TRANSFER_TOKENS / Unit : 0.0001 : tz1VSU…cjb%default => transaction",
+                "TRANSFER_TOKENS / Unit : 0.0001 : mv1Hox…4nv%default => transaction",
                 "NIL / _ => []",
                 "SWAP / [] : transaction => transaction : []",
                 "CONS / transaction : [] => [transaction]",
@@ -297,7 +297,7 @@ class InterpreterTest(TestCase):
                                 {
                                     "kind": "transaction",
                                     "source": "KT1BEqzn5Wx8uJrZNvuS9DVHmLvG9td3fDLi",
-                                    "destination": "tz1VSUr8wwNhLAzempoch5d6hLRiTh8Cjcjb",
+                                    "destination": "mv1Hox9jGJg3uSmsv9NTvuK7rMHh25cq44nv",
                                     "amount": "100",
                                     "parameters": {
                                         "entrypoint": "default",

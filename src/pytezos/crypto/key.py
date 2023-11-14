@@ -410,7 +410,7 @@ class Key(metaclass=InlineDocstring):
         :returns: the public key hash for this key
         """
         pkh = blake2b(self.public_point, digest_size=20).digest()
-        prefix = {b'ed': b'tz1', b'sp': b'tz2', b'p2': b'tz3'}[self.curve]
+        prefix = {b'ed': b'mv1', b'sp': b'mv2', b'p2': b'mv3'}[self.curve]
         return base58_encode(pkh, prefix).decode()
 
     def blinded_public_key_hash(self) -> str:
@@ -424,7 +424,7 @@ class Key(metaclass=InlineDocstring):
         pkh = blake2b(self.public_point, digest_size=20).digest()
         key = bytes.fromhex(self.activation_code)
         blinded_pkh = blake2b(pkh, key=key, digest_size=20).digest()
-        return base58_encode(blinded_pkh, b'btz1').decode()
+        return base58_encode(blinded_pkh, b'bmv1').decode()
 
     def sign(self, message: Union[str, bytes], generic: bool = False):
         """Sign a raw sequence of bytes.

@@ -2,12 +2,12 @@ from unittest import TestCase
 
 from pytezos import ContractInterface
 
-bob = "tz1iBobBobBobBobBobBobBobBobBodTWLCX"
+bob = "mv1iBobBobBobBobBobBobBobBobBodTWLCX"
 code = """
 { parameter address ;
   storage nat ;
   code { LAMBDA (pair (option nat) nat) nat { UNPAIR ; IF_NONE {} { SWAP ; DROP } } ;
-         PUSH address "tz1iA1iceA1iceA1iceA1iceA1ice9ydjsaW" ;
+         PUSH address "mv1iA1iceA1iceA1iceA1iceA1ice9ydjsaW" ;
          DIG 2 ;
          CAR ;
          EMPTY_BIG_MAP address nat ;

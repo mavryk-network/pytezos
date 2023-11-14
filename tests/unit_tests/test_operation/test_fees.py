@@ -16,13 +16,13 @@ class FeesTest(TestCase):
     def setUp(self) -> None:
         self.content = {
             "kind": "transaction",
-            "source": "tz1KqTpEZ7Yob7QbPE4Hy4Wo8fHG8LhKxZSx",
+            "source": "mv18Cw7psUrAAPBpXYd9CtCpHg9EgjHP9KTe",
             "fee": "404",
             "counter": "1",
             "gas_limit": "1527",
             "storage_limit": "0",
             "amount": "42000000",
-            "destination": "tz1gjaF81ZRRvdzjobyfVNsAeSC6PScjfQwN",
+            "destination": "mv1RQjfTWvtFVpqoQqB7qb8tgPfRvPqzWCDH",
         }
 
     def test_calculate_fee(self) -> None:

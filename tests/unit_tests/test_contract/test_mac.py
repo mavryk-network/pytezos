@@ -73,7 +73,7 @@ class TestMac(TestCase):
                 {
                     'amount': 1000,
                     'from_': pkh,
-                    'to_': 'tz1abavrqYNzpcDPiQURyCt1THti8J27W6mR',
+                    'to_': 'mv1Q1GMULqh686DQLWLcdXvnzWiem8k8L19M',
                     'token_id': 0,
                 }
             ]
@@ -82,7 +82,7 @@ class TestMac(TestCase):
         self.assertDictEqual(
             {
                 (pkh, 0): 41000,
-                ('tz1abavrqYNzpcDPiQURyCt1THti8J27W6mR', 0): 1000,
+                ('mv1Q1GMULqh686DQLWLcdXvnzWiem8k8L19M', 0): 1000,
             },
             res.storage['assets']['ledger'],
         )

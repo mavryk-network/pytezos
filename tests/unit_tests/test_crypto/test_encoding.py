@@ -20,9 +20,9 @@ class TestEncoding(TestCase):
             (b'LLoabcny4pVg1k6x3AktnNhwe1KSVBZh5Di45JeZPhUCmCu5Xj6ND', b'LLo'),
             (b'PtCJ7pwoxe8JasnHY8YonnLYjcVHmhiARPJvqcC6VfHT5s8k8sY', b'P'),
             (b'CoUeRwFZbV7NaAYRTz6n4ZLUkwiWcm7oKYdKCGcsEYHgVxSQxa4h', b'Co'),
-            (b'tz1eKkWU5hGtfLUiqNpucHrXymm83z3DG9Sq', b'tz1'),
-            (b'tz28YZoayJjVz2bRgGeVjxE8NonMiJ3r2Wdu', b'tz2'),
-            (b'tz3agP9LGe2cXmKQyYn6T68BHKjjktDbbSWX', b'tz3'),
+            (b'mv1ShDp4Q4aFEcFwyhPkr7YZ8nd6cNbxntvN', b'mv1'),
+            (b'mv2LFe6Haxk32BC5xgEmK6QGocGqXdAtJDHT', b'mv2'),
+            (b'mv3P3rSvb1Ky736e7sLwgupCSLbiKGgm4EDJ', b'mv3'),
             (b'txr1YNMEtkj5Vkqsbdmt7xaxBTMRZjzS96UAi', b'txr1'),
             (b'edpku976gpuAD2bXyx1XGraeKuCo1gUZ3LAJcHM12W1ecxZwoiu22R', b'edpk'),
             (b'sppk7aMNM3xh14haqEyaxNjSt7hXanCDyoWtRcxF8wbtya859ak6yZT', b'sppk'),
@@ -64,13 +64,13 @@ class TestEncoding(TestCase):
 
     @parameterized.expand(
         [
-            ('tz1eKkWU5hGtfLUiqNpucHrXymm83z3DG9Sq', True),
-            ('tz28YZoayJjVz2bRgGeVjxE8NonMiJ3r2Wdu', True),
-            ('tz3agP9LGe2cXmKQyYn6T68BHKjjktDbbSWX', True),
+            ('mv1ShDp4Q4aFEcFwyhPkr7YZ8nd6cNbxntvN', True),
+            ('mv2LFe6Haxk32BC5xgEmK6QGocGqXdAtJDHT', True),
+            ('mv3P3rSvb1Ky736e7sLwgupCSLbiKGgm4EDJ', True),
             ('txr1YNMEtkj5Vkqsbdmt7xaxBTMRZjzS96UAi', False),
             ('KT1ExvG3EjTrvDcAU7EqLNb77agPa5u6KvnY', False),
             ('qwerty', False),
-            ('tz1eKkWU5hGtfLUiq', False),
+            ('mv1eKkWU5hGtfLUiq', False),
         ]
     )
     def test_is_pkh(self, value, expected):
@@ -78,13 +78,13 @@ class TestEncoding(TestCase):
 
     @parameterized.expand(
         [
-            ('tz1eKkWU5hGtfLUiqNpucHrXymm83z3DG9Sq', False),
-            ('tz28YZoayJjVz2bRgGeVjxE8NonMiJ3r2Wdu', False),
-            ('tz3agP9LGe2cXmKQyYn6T68BHKjjktDbbSWX', False),
+            ('mv1ShDp4Q4aFEcFwyhPkr7YZ8nd6cNbxntvN', False),
+            ('mv2LFe6Haxk32BC5xgEmK6QGocGqXdAtJDHT', False),
+            ('mv3P3rSvb1Ky736e7sLwgupCSLbiKGgm4EDJ', False),
             ('txr1YNMEtkj5Vkqsbdmt7xaxBTMRZjzS96UAi', True),
             ('KT1ExvG3EjTrvDcAU7EqLNb77agPa5u6KvnY', False),
             ('qwerty', False),
-            ('tz1eKkWU5hGtfLUiq', False),
+            ('mv1eKkWU5hGtfLUiq', False),
         ]
     )
     def test_is_l2_pkh(self, value, expected):

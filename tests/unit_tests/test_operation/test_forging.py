@@ -12,9 +12,9 @@ from pytezos.operation.group import OperationGroup
 class TestOperationForging(TestCase):
     @parameterized.expand(
         [
-            ("ooFdR2Anyv7pHaehM2rK5DaUWaVv3wUkyR5mkm9u7Wd8jtQaXA9",),
-            ("onewnQxJgwk384Bk6fuLmq7rFM5AePy2xLV1v475H4nog9Y9Haz",),
-            ("onpsXDeuWpVH9oNd9XHDvUZMwekVrNS9rsdbp9f3LDbimLqZDrw",),
+            ("ooDVUV9EKeSWntCt56qgjtrHkLxRoHnTcqVVdaPTLvXQiY8xT4u",),
+            ("opJfNSFsfjW26kpuyVByAF2Ha3avghrYS4u11uSFpjr8ZUsoHbs",),
+            ("ooYuPSt5UNe3unMmBsM55JgHzMBsJAMxyebw9vTbaC6YWtxcdQ3",),
         ]
     )
     def test_operation_hash_is_correct(self, opg_hash):

@@ -11,7 +11,7 @@ from pytezos.michelson.repl import Interpreter
 CHAIN_ID = 'NetXdQprcVkpaWU'
 PUBLIC_KEY = 'edpktpPTi9MLK2wabnNny1kD5LvBmGtFdRjnCiUT3ZZgNDjjM4mpoh'
 SIGNATURE = 'edsigu3QszDjUpeqYqbvhyRxMpVFamEnvm9FYnt7YiiNt9nmjYfh8ZTbsybZ5WnBkhA7zfHsRVyuTnRsGLR6fNHt1Up1FxgyRtF'
-KEY_HASH = 'tz1grSQDByRpnVs7sPtaprNZRp531ZKz6Jmm'
+KEY_HASH = 'mv1VDuhoWLjBMmeM1iTS4g4aapw1Zwkz9ziU'
 BALANCE = 4000000000000
 VOTING_POWER = 500
 TOTAL_VOTING_POWER = 2500
@@ -725,13 +725,13 @@ class OpcodesTestCase(TestCase):
                 'hash_key.tz',
                 'None',
                 '"edpkuBknW28nW72KG6RoHtYW7p12T6GKc7nAbwYX5m8Wd9sDVC9yav"',
-                '(Some "tz1KqTpEZ7Yob7QbPE4Hy4Wo8fHG8LhKxZSx")',
+                '(Some "mv18Cw7psUrAAPBpXYd9CtCpHg9EgjHP9KTe")',
             ),
             (
                 'hash_key.tz',
                 'None',
                 '"edpkuJqtDcA2m2muMxViSM47MPsGQzmyjnNTawUPqR8vZTAMcx61ES"',
-                '(Some "tz1XPTDmvT3vVE5Uunngmixm7gj7zmdbPq6k")',
+                '(Some "mv1KkvXNEpMH4Vri47MY1YenGhb6ZA4ew1F2")',
             ),
             # Test timestamp operations
             (
@@ -803,18 +803,18 @@ class OpcodesTestCase(TestCase):
                 'packunpack_rev.tz',
                 'Unit',
                 '(Pair -1  (Pair 1 (Pair "foobar" (Pair 0x00AABBCC (Pair 1000 '
-                + '(Pair False (Pair "tz1cxcwwnzENRdhe2Kb8ZdTrdNy4bFNyScx5" '
+                + '(Pair False (Pair "mv1NnoXstBrcox9Nr6krYNKYPJFDecGaxWG8" '
                 + '(Pair "2019-09-09T08:35:33Z" '
-                + '"tz1cxcwwnzENRdhe2Kb8ZdTrdNy4bFNyScx5"))))))))',
+                + '"mv1NnoXstBrcox9Nr6krYNKYPJFDecGaxWG8"))))))))',
                 'Unit',
             ),
             (
                 'packunpack_rev.tz',
                 'Unit',
                 '(Pair -1  (Pair 1 (Pair "foobar" (Pair 0x00AABBCC (Pair 1000 '
-                + '(Pair False (Pair "tz1cxcwwnzENRdhe2Kb8ZdTrdNy4bFNyScx5" '
+                + '(Pair False (Pair "mv1NnoXstBrcox9Nr6krYNKYPJFDecGaxWG8" '
                 + '(Pair "2019-09-09T08:35:33Z" '
-                + '"tz1cxcwwnzENRdhe2Kb8ZdTrdNy4bFNyScx5"))))))))',
+                + '"mv1NnoXstBrcox9Nr6krYNKYPJFDecGaxWG8"))))))))',
                 'Unit',
             ),
             (
@@ -826,8 +826,8 @@ class OpcodesTestCase(TestCase):
                 + 'V2w8ayB5dMJzrYCHhD8C7" (Pair (Some "edsigthTzJ8X7MPmN'
                 + 'eEwybRAvdxS1pupqcM5Mk4uCuyZAe7uEk68YpuGDeViW8wSXMrCi5'
                 + 'CwoNgqs8V2w8ayB5dMJzrYCHhD8C7") (Pair { Unit }  (Pair'
-                + ' { True }  (Pair (Pair 19 10) (Pair (Left "tz1cxcwwnz'
-                + 'ENRdhe2Kb8ZdTrdNy4bFNyScx5") (Pair { Elt 0 "foo" ; El'
+                + ' { True }  (Pair (Pair 19 10) (Pair (Left "mv18Cw7psU'
+                + 'rAAPBpXYd9CtCpHg9EgjHP9KTe") (Pair { Elt 0 "foo" ; El'
                 + 't 1 "bar" }  { PACK } )))))))))',
                 'Unit',
             ),
@@ -929,14 +929,14 @@ class OpcodesTestCase(TestCase):
             (
                 'address.tz',
                 'None',
-                '"tz1cxcwwnzENRdhe2Kb8ZdTrdNy4bFNyScx5"',
-                '(Some "tz1cxcwwnzENRdhe2Kb8ZdTrdNy4bFNyScx5")',
+                '"mv1NnoXstBrcox9Nr6krYNKYPJFDecGaxWG8"',
+                '(Some "mv1NnoXstBrcox9Nr6krYNKYPJFDecGaxWG8")',
             ),
             # Test (CONTRACT unit)
             (
                 'contract.tz',
                 'Unit',
-                '"tz1cxcwwnzENRdhe2Kb8ZdTrdNy4bFNyScx5"',
+                '"mv1NnoXstBrcox9Nr6krYNKYPJFDecGaxWG8"',
                 'Unit',
             ),
             # Test create_contract

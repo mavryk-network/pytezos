@@ -16,10 +16,10 @@ base58_encodings = [
     (b"LLo", 53, tb([29, 159, 109]), 32, "operation list list hash"),
     (b"P", 51, tb([2, 170]), 32, "protocol hash"),
     (b"Co", 52, tb([79, 199]), 32, "context hash"),
-    (b"tz1", 36, tb([6, 161, 159]), 20, "ed25519 public key hash"),
-    (b"tz2", 36, tb([6, 161, 161]), 20, "secp256k1 public key hash"),
-    (b"tz3", 36, tb([6, 161, 164]), 20, "p256 public key hash"),
-    (b"tz4", 36, tb([6, 161, 16]), 20, "BLS-MinPk"),
+    (b"mv1", 36, tb([5, 186, 196]), 20, "ed25519 public key hash"),
+    (b"mv2", 36, tb([5, 186, 199]), 20, "secp256k1 public key hash"),
+    (b"mv3", 36, tb([5, 186, 201]), 20, "p256 public key hash"),
+    (b"mv4", 36, tb([5, 186, 204]), 20, "BLS-MinPk"),
     (b"KT1", 36, tb([2, 90, 121]), 20, "originated address"),
     (b"txr1", 37, tb([1, 128, 120, 31]), 20, "tx_rollup_l2_address"),
     (b"sr1", 36, tb([6, 124, 117]), 20, "address prefix for originated smart rollup"),
@@ -44,7 +44,7 @@ base58_encodings = [
     (b"sig", 96, tb([4, 130, 43]), 64, "generic signature"),
     (b'Net', 15, tb([87, 82, 0]), 4, "chain id"),
     (b'nce', 53, tb([69, 220, 169]), 32, 'seed nonce hash'),
-    (b'btz1', 37, tb([1, 2, 49, 223]), 20, 'blinded public key hash'),
+    (b'bmv1', 37, tb([1, 1, 75, 4]), 20, 'blinded public key hash'),
     (b'vh', 52, tb([1, 106, 242]), 32, 'block_payload_hash'),
 ]
 
@@ -121,12 +121,12 @@ def _validate(v: Union[str, bytes], prefixes: list):
 
 
 def validate_pkh(v: Union[str, bytes]):
-    """Ensure parameter is a public key hash (starts with b'tz1', b'tz2', b'tz3')
+    """Ensure parameter is a public key hash (starts with b'mv1', b'mv2', b'mv3')
 
     :param v: string or bytes
     :raises ValueError: if parameter is not a public key hash
     """
-    return _validate(v, prefixes=[b'tz1', b'tz2', b'tz3', b'tz4'])
+    return _validate(v, prefixes=[b'mv1', b'mv2', b'mv3', b'mv4'])
 
 
 def validate_l2_pkh(v: Union[str, bytes]):

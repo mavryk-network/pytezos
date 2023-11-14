@@ -79,14 +79,14 @@ class TestPacking(TestCase):
     @parameterized.expand(
         [
             (
-                {"bytes": "000018896fcfc6690baefa9aedc6d759f9bf05727e8c"},
+                {"bytes": "000025a63145dba82ce3935324407fe36d791ea6206a"},
                 {"prim": "address"},
-                "expru2YV8AanTTUSV4K21P7X4DzbuWQFVk7NewDuP1A5uamffiiFA3",
+                "expruTmu465CjNZTqkFEg3DYtuVQ6kWFVX1tYkgKWYmCS5R9MCGwh3",
             ),
             (
-                {"string": "tz1MsmYzmqxHs9trE1qQugZxxcLPqAXdQaX9"},
+                {"string": "mv1BSa64fX1MaY4f4B5JaShtftiwbjAfr2ko"},
                 {"prim": "address"},
-                "expru2YV8AanTTUSV4K21P7X4DzbuWQFVk7NewDuP1A5uamffiiFA3",
+                "expruTmu465CjNZTqkFEg3DYtuVQ6kWFVX1tYkgKWYmCS5R9MCGwh3",
             ),
             ({"string": "Game one!"}, {"prim": "string"}, "exprtiRSZkLKYRess9GZ3ryb4cVQD36WLo2oysZBFxKTZ2jXqcHWGj"),
             ({"int": "505506"}, {"prim": "int"}, "exprufzwVGdAX7zG91UpiAkR2yVxEDE75tHD5YgSBmYMUx22teZTCM"),
@@ -120,7 +120,7 @@ class TestPacking(TestCase):
                     'gas_limit': '1040000',
                     'kind': 'transaction',
                     'parameters': {'entrypoint': 'default', 'value': {'prim': 'Unit'}},
-                    'source': 'tz1grSQDByRpnVs7sPtaprNZRp531ZKz6Jmm',
+                    'source': 'mv1VDuhoWLjBMmeM1iTS4g4aapw1Zwkz9ziU',
                     'storage_limit': '60000',
                 }
             ],

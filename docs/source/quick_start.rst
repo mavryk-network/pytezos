@@ -76,7 +76,7 @@ All active interaction with the blockchain starts with the PyTezosClient:
    <pytezos.client.PyTezosClient object at 0x7f95b0c9e5b0>
 
     Properties
-    .key		tz1grSQDByRpnVs7sPtaprNZRp531ZKz6Jmm
+    .key		mv1VDuhoWLjBMmeM1iTS4g4aapw1Zwkz9ziU
     .shell		['https://rpc.tzkt.io/ghostnet']
     .block_id	head
 
@@ -476,7 +476,7 @@ And for the wallet:
         int  /* Natural number */
 
     $address:
-        str  /* Base58 encoded `tz` or `KT` address */
+        str  /* Base58 encoded `mv` or `KT` address */
 
 
     Helpers
@@ -600,7 +600,7 @@ In order to see type definition, just remove the trailing brackets:
         { address: nat, … } || int /* Big_map ID */
 
     $address:
-        str  /* Base58 encoded `tz` or `KT` address */
+        str  /* Base58 encoded `mv` or `KT` address */
 
     $nat:
         int  /* Natural number */
@@ -665,7 +665,7 @@ We can do the same using special entrypoint ``balance_of``. Let's give a look at
         }
 
     $address:
-        str  /* Base58 encoded `tz` or `KT` address */
+        str  /* Base58 encoded `mv` or `KT` address */
 
     $nat:
         int  /* Natural number */

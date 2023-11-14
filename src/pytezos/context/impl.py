@@ -447,7 +447,7 @@ class ExecutionContext(AbstractContext):
         if self.key:
             return self.key.public_key_hash()
         else:
-            return base58_encode(b'\x00' * 20, b'tz1').decode()
+            return base58_encode(b'\x00' * 20, b'mv1').decode()
 
     def get_dummy_signature(self) -> str:
         return base58_encode(b'\x00' * 64, b'sig').decode()

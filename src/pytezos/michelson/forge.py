@@ -157,13 +157,13 @@ def forge_address(value: str, tz_only=False) -> bytes:
     prefix = value[:prefix_len]
     address = base58.b58decode_check(value)[prefix_len:]
 
-    if prefix == 'tz1':
+    if prefix == 'mv1':
         res = b'\x00\x00' + address
-    elif prefix == 'tz2':
+    elif prefix == 'mv2':
         res = b'\x00\x01' + address
-    elif prefix == 'tz3':
+    elif prefix == 'mv3':
         res = b'\x00\x02' + address
-    elif prefix == 'tz4':
+    elif prefix == 'mv4':
         res = b'\x00\x03' + address
     elif prefix == 'KT1':
         res = b'\x01' + address + b'\x00'
@@ -184,10 +184,10 @@ def unforge_address(data: bytes) -> str:
     :returns: base58 encoded address
     """
     tz_prefixes = {
-        b'\x00\x00': b'tz1',
-        b'\x00\x01': b'tz2',
-        b'\x00\x02': b'tz3',
-        b'\x00\x03': b'tz4',
+        b'\x00\x00': b'mv1',
+        b'\x00\x01': b'mv2',
+        b'\x00\x02': b'mv3',
+        b'\x00\x03': b'mv4',
     }
 
     for bin_prefix, tz_prefix in tz_prefixes.items():
@@ -207,7 +207,7 @@ def unforge_address(data: bytes) -> str:
 def forge_contract(value: str) -> bytes:
     """Encode a value of contract type (address + optional entrypoint) into bytes.
 
-    :param value: 'tz12345' or 'tz12345%default'
+    :param value: 'mv12345' or 'mv12345%default'
     """
     parts = value.split('%')
     address, entrypoint = (parts[0], parts[1]) if len(parts) == 2 else (parts[0], 'default')
