@@ -10,7 +10,7 @@ code {
                 SWAP;
 
                 # amount for transferring
-                PUSH mutez 0;
+                PUSH mumav 0;
                 SWAP;
 
                 # create a ticket

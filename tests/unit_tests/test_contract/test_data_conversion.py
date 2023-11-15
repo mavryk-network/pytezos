@@ -4,7 +4,7 @@ from unittest import TestCase
 
 from parameterized import parameterized  # type: ignore
 
-from pytezos import ContractInterface
+from pymavryk import ContractInterface
 
 asset_directory = Path(__file__).parent.joinpath('contracts')
 

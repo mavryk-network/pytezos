@@ -2,9 +2,9 @@ import json
 from unittest.case import TestCase
 from unittest.mock import MagicMock
 
-from pytezos.contract.interface import ContractInterface
-from pytezos.contract.metadata import ContractMetadata
-from pytezos.michelson.types.core import UnitType
+from pymavryk.contract.interface import ContractInterface
+from pymavryk.contract.metadata import ContractMetadata
+from pymavryk.michelson.types.core import UnitType
 
 TEST_VIEW_CONTRACT_MICHELSON = """
 { parameter unit ; storage unit ; code { CDR ; NIL operation ; PAIR } }

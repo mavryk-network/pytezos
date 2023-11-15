@@ -5,14 +5,14 @@ from os.path import join
 from unittest import TestCase
 from unittest.mock import patch
 
-from pytezos.client import PyTezosClient
-from pytezos.operation.result import OperationResult
+from pymavryk.client import PyMavrykClient
+from pymavryk.operation.result import OperationResult
 
 
 class TestOperationGroup(TestCase):
     maxDiff = None
 
-    @patch("pytezos.rpc.protocol.BlocksQuery.__getitem__")
+    @patch("pymavryk.rpc.protocol.BlocksQuery.__getitem__")
     def test_fill(self, rpc_mock):
         # Arrange
         testmap = {
@@ -24,7 +24,7 @@ class TestOperationGroup(TestCase):
             "ttl_not_sandboxed_default": [None, None, False, 'head~235'],
         }
 
-        client = PyTezosClient()
+        client = PyMavrykClient()
         client.context.chain_id = 'NetXxkAx4woPLyu'
         client.context.protocol = 'PsFLorenaUUuikDWvMDr6fGBRG8kt3e3D3fHoXK1j1BFRxeSH4i'
         op = client.transaction(destination="")

@@ -1,7 +1,7 @@
 from unittest import TestCase
 from unittest import skip
 
-from pytezos import ContractInterface
+from pymavryk import ContractInterface
 
 code = """
 parameter unit;

@@ -26,8 +26,8 @@ jobs:
     strategy:
       matrix:
         image:
-          - name: pytezos
-            dockerfile: pytezos.dockerfile
+          - name: pymavryk
+            dockerfile: pymavryk.dockerfile
             platforms: linux/amd64,linux/arm64
 
           - name: michelson-kernel

@@ -209,7 +209,7 @@
                 {
                     "michelson-storage-view": {
                         "return-type": {
-                            "prim": "mutez",
+                            "prim": "mumav",
                             "args": [],
                             "annots": []
                         },
@@ -255,7 +255,7 @@
                                             ]
                                         },
                                         {
-                                            "prim": "mutez",
+                                            "prim": "mumav",
                                             "args": [],
                                             "annots": [
                                                 "%arg_two"
@@ -288,7 +288,7 @@
                                             ]
                                         },
                                         {
-                                            "prim": "mutez",
+                                            "prim": "mumav",
                                             "args": [],
                                             "annots": [
                                                 "%arg_two"

@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from pytezos.michelson.parse import MichelsonParser
-from pytezos.michelson.types import TimestampType
+from pymavryk.michelson.parse import MichelsonParser
+from pymavryk.michelson.types import TimestampType
 
 
 class TestParsing(TestCase):

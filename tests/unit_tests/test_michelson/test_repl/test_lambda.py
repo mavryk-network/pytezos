@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from pytezos import ContractInterface
+from pymavryk import ContractInterface
 
 bob = "mv1iBobBobBobBobBobBobBobBobBodTWLCX"
 code = """

@@ -17,7 +17,7 @@ logging.basicConfig(level=logging.INFO, format='%(message)s')
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
-from pytezos.logging import logger
+from pymavryk.logging import logger
 
 TZKT_API = 'https://api.tzkt.io/v1'
 RPC_API = 'https://mainnet-tezos.giganode.io'

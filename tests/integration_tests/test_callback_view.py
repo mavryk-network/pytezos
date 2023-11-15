@@ -1,11 +1,11 @@
 from unittest import TestCase
 
-from pytezos import pytezos
+from pymavryk import pymavryk
 
 
 class CallbackViewTestCase(TestCase):
     def test_balance_of(self):
-        usds = pytezos.using('mainnet').contract('KT1REEb5VxWRjcHm5GzDMwErMmNFftsE5Gpf')
+        usds = pymavryk.using('mainnet').contract('KT1REEb5VxWRjcHm5GzDMwErMmNFftsE5Gpf')
         res = usds.balance_of(
             requests=[
                 {'owner': 'mv1N913itbcFVECQPzKLzXfgN8jgZ6MaEPwE', 'token_id': 0},
@@ -17,7 +17,7 @@ class CallbackViewTestCase(TestCase):
         print(res)
 
     def test_initial_storage(self):
-        usds = pytezos.using('mainnet').contract('KT1REEb5VxWRjcHm5GzDMwErMmNFftsE5Gpf')
+        usds = pymavryk.using('mainnet').contract('KT1REEb5VxWRjcHm5GzDMwErMmNFftsE5Gpf')
         storage = usds.storage()
         storage['ledger'] = {'mv1N913itbcFVECQPzKLzXfgN8jgZ6MaEPwE': 42}
         res = usds.balance_of(
@@ -29,6 +29,6 @@ class CallbackViewTestCase(TestCase):
         self.assertEqual(42, res[0]['balance'])
 
     def test_onchain_view(self):
-        ci = pytezos.using('mainnet').contract('KT1F6Amndd62P8yySM5NkyF4b1Kz27Ft4QeT')
+        ci = pymavryk.using('mainnet').contract('KT1F6Amndd62P8yySM5NkyF4b1Kz27Ft4QeT')
         res = ci.get_price().run_view()
         print(res)

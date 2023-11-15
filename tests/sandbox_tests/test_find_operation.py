@@ -1,6 +1,6 @@
-from pytezos.operation.result import OperationResult
-from pytezos.sandbox.node import SandboxedNodeAutoBakeTestCase
-from pytezos.sandbox.parameters import sandbox_addresses
+from pymavryk.operation.result import OperationResult
+from pymavryk.sandbox.node import SandboxedNodeAutoBakeTestCase
+from pymavryk.sandbox.parameters import sandbox_addresses
 
 
 class FindOperationTestCase(SandboxedNodeAutoBakeTestCase):

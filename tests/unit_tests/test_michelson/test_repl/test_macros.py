@@ -4,8 +4,8 @@ from unittest import TestCase
 
 from parameterized import parameterized  # type: ignore
 
-from pytezos.michelson.parse import michelson_to_micheline
-from pytezos.michelson.repl import Interpreter
+from pymavryk.michelson.parse import michelson_to_micheline
+from pymavryk.michelson.repl import Interpreter
 
 
 class MacrosTestCase(TestCase):

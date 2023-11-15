@@ -1,4 +1,4 @@
-# PyTezos
+# PyMavryk
 
 [![PyPI version](https://badge.fury.io/py/pytezos.svg?)](https://badge.fury.io/py/pytezos)
 [![Tests](https://github.com/baking-bad/pytezos/workflows/Tests/badge.svg?)](https://github.com/baking-bad/pytezos/actions?query=workflow%3ATests)
@@ -15,7 +15,7 @@
 * Local forging/packing & vice versa
 * Working with Michelson AST
 
-#### PyTezos CLI
+#### PyMavryk CLI
 * Generating contract parameter/storage schema
 * Activating and revealing accounts
 * Deploying contracts (+ GitHub integration)
@@ -66,7 +66,7 @@ $ brew install libsodium libsecp256k1 gmp pkg-config
 
 In case `secp256k1` or `gmp` cannot find either include or lib paths, try explicitly set environment vars:
 ```
-CFLAGS="-I/opt/homebrew/Cellar/gmp/6.2.1_1/include/ -L/opt/homebrew/Cellar/gmp/6.2.1_1/lib/" LIB_DIR="/opt/homebrew/Cellar/libsecp256k1/0.1/lib" INCLUDE_DIR=/opt/homebrew/Cellar/libsecp256k1/0.1/include pip3 install --user pytezos
+CFLAGS="-I/opt/homebrew/Cellar/gmp/6.2.1_1/include/ -L/opt/homebrew/Cellar/gmp/6.2.1_1/lib/" LIB_DIR="/opt/homebrew/Cellar/libsecp256k1/0.1/lib" INCLUDE_DIR=/opt/homebrew/Cellar/libsecp256k1/0.1/include pip3 install --user pymavryk
 ```
 
 For running tests you might also need to export `LD_LIBRARY_PATH`:
@@ -89,23 +89,23 @@ but if you feel lucky you can try to install natively:
 
 ```shell
 $ pip install wheel setuptools pkginfo cryptography
-$ pip install pytezos
+$ pip install pymavryk
 ```
 
 ### [Google Colab](https://colab.research.google.com)
 
 `````python
 >>> !apt install libsodium-dev libsecp256k1-dev libgmp-dev
->>> !pip install pytezos
+>>> !pip install pymavryk
 `````
 
 ### Docker container
-Verified & minified images for CI/CD https://hub.docker.com/r/bakingbad/pytezos/tags
+Verified & minified images for CI/CD https://hub.docker.com/r/mavrykdynamics/pymavryk/tags
 ```shell
 $ # 1. Use image from registry
-$ docker pull bakingbad/pytezos
+$ docker pull mavrykdynamics/pymavryk
 $ # or build it yourself
-$ docker build . -t pytezos
+$ docker build . -t pymavryk
 $ # 2. Use included docker-compose.yml
 $ docker-compose up -d notebook
 ```
@@ -136,16 +136,16 @@ If you are working in Jupyter/Google Colab or any other interactive console,
 you can display documentation for a particular class/method:
 
 ```python
->>> from pytezos import pytezos
->>> pytezos
+>>> from pymavryk import pymavryk
+>>> pymavryk
 ```
 
 ### Publications
 
-* Pytezos 2.0 release with embedded docs and smart contract interaction engine  
+* Pymavryk 2.0 release with embedded docs and smart contract interaction engine  
 https://medium.com/coinmonks/high-level-interface-for-michelson-contracts-and-not-only-7264db76d7ae
 
-* Materials from TQuorum:Berlin workshop - building an app on top of PyTezos and ConseilPy  
+* Materials from TQuorum:Berlin workshop - building an app on top of PyMavryk and ConseilPy  
 https://medium.com/coinmonks/atomic-tips-berlin-workshop-materials-c5c8ee3f46aa
 
 * Materials from the EETH hackathon - setting up a local development infrastructure, deploying and interacting with a contract  

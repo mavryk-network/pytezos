@@ -4,10 +4,10 @@ from os.path import dirname
 from os.path import join
 from unittest.case import TestCase
 
-from pytezos.logging import logger
-from pytezos.michelson.parse import MichelsonParser
-from pytezos.michelson.parse import michelson_to_micheline
-from pytezos.michelson.repl import Interpreter
+from pymavryk.logging import logger
+from pymavryk.michelson.parse import MichelsonParser
+from pymavryk.michelson.parse import michelson_to_micheline
+from pymavryk.michelson.repl import Interpreter
 
 
 class TztTest(TestCase):
@@ -15,8 +15,8 @@ class TztTest(TestCase):
     exclude = [
         ".git",
         "LICENSE",
-        # NOTE: unknown primitive `MutezOverflow`
-        "add_mutez-mutez_01.tzt",
+        # NOTE: unknown primitive `MumavOverflow`
+        "add_mumav-mumav_01.tzt",
         # NOTE: unknown primitive `Contract`
         "address_00.tzt",
         "address_01.tzt",
@@ -36,18 +36,18 @@ class TztTest(TestCase):
         "lsl_01.tzt",
         # NOTE: unknown primitive `GeneralOverflow`
         "lsr_01.tzt",
-        # NOTE: unknown primitive `MutezOverflow`
-        "mul_mutez-nat_01.tzt",
-        # NOTE: unknown primitive `MutezOverflow
-        "mul_nat-mutez_01.tzt",
+        # NOTE: unknown primitive `MumavOverflow`
+        "mul_mumav-nat_01.tzt",
+        # NOTE: unknown primitive `MumavOverflow
+        "mul_nat-mumav_01.tzt",
         # NOTE: parameter type is not defined
         "self_00.tzt",
         # NOTE: failed to parse expression LexToken(_,'_',1,199)
         "setdelegate_00.tzt",
         # NOTE: ('SLICE', 'string is empty')
         "slice_string_05.tzt",
-        # NOTE: unknown primitive `MutezUnderflow`
-        "sub_mutez-mutez_01.tzt",
+        # NOTE: unknown primitive `MumavUnderflow`
+        "sub_mumav-mumav_01.tzt",
         # NOTE: failed to parse expression LexToken(_,'_',1,238)
         "transfertokens_00.tzt",
         "transfertokens_01.tzt",

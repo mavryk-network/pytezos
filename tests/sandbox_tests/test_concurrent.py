@@ -1,7 +1,7 @@
-from pytezos import ContractInterface
-from pytezos.operation import MAX_OPERATIONS_TTL
-from pytezos.operation.result import OperationResult
-from pytezos.sandbox.node import SandboxedNodeAutoBakeTestCase
+from pymavryk import ContractInterface
+from pymavryk.operation import MAX_OPERATIONS_TTL
+from pymavryk.operation.result import OperationResult
+from pymavryk.sandbox.node import SandboxedNodeAutoBakeTestCase
 
 code = """
 parameter (or (int %decrement) (int %increment));

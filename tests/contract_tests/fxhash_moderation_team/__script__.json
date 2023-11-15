@@ -524,7 +524,7 @@
                           "prim": "option",
                           "args": [
                             {
-                              "prim": "mutez"
+                              "prim": "mumav"
                             }
                           ],
                           "annots": [
@@ -828,7 +828,7 @@
                                                   "prim": "option",
                                                   "args": [
                                                     {
-                                                      "prim": "mutez"
+                                                      "prim": "mumav"
                                                     }
                                                   ],
                                                   "annots": [
@@ -1902,7 +1902,7 @@
                                       "prim": "option",
                                       "args": [
                                         {
-                                          "prim": "mutez"
+                                          "prim": "mumav"
                                         }
                                       ]
                                     }

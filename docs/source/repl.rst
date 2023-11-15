@@ -3,18 +3,18 @@ Michelson REPL
 
 Interpreter
 +++++++++++++++++++
-.. automodule:: pytezos.michelson.repl
+.. automodule:: pymavryk.michelson.repl
     :members:
     :undoc-members:
 
 Michelson stack
 ++++++++++++++++++++
-.. automodule:: pytezos.michelson.stack
+.. automodule:: pymavryk.michelson.stack
    :members:
    :undoc-members:
 
 Execution context
 ++++++++++++++++++++
-.. automodule:: pytezos.context.impl
+.. automodule:: pymavryk.context.impl
    :members:
    :undoc-members:

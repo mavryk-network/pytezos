@@ -1,8 +1,8 @@
 import logging
 
-from pytezos.rpc.errors import RpcError
-from pytezos.sandbox.node import SandboxedNodeTestCase
-from pytezos.sandbox.parameters import sandbox_addresses
+from pymavryk.rpc.errors import RpcError
+from pymavryk.sandbox.node import SandboxedNodeTestCase
+from pymavryk.sandbox.parameters import sandbox_addresses
 
 logging.basicConfig(level=logging.DEBUG)
 

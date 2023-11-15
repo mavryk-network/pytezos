@@ -2,13 +2,13 @@ from unittest import TestCase
 
 from parameterized import parameterized  # type: ignore
 
-from pytezos.crypto.encoding import base58_decode
-from pytezos.crypto.encoding import base58_encode
-from pytezos.crypto.encoding import is_bh
-from pytezos.crypto.encoding import is_l2_pkh
-from pytezos.crypto.encoding import is_pkh
-from pytezos.crypto.encoding import is_sig
-from pytezos.crypto.encoding import scrub_input
+from pymavryk.crypto.encoding import base58_decode
+from pymavryk.crypto.encoding import base58_encode
+from pymavryk.crypto.encoding import is_bh
+from pymavryk.crypto.encoding import is_l2_pkh
+from pymavryk.crypto.encoding import is_pkh
+from pymavryk.crypto.encoding import is_sig
+from pymavryk.crypto.encoding import scrub_input
 
 
 class TestEncoding(TestCase):

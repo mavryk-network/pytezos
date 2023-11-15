@@ -5,7 +5,7 @@ from unittest import skip
 import pytest
 from click.testing import CliRunner
 
-from pytezos.cli.cli import cli
+from pymavryk.cli.cli import cli
 
 TEST_SCRIPT_CONTENT = """# SmartPy Code
 import smartpy as sp

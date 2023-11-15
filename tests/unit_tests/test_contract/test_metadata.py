@@ -4,7 +4,7 @@ from os.path import dirname
 from os.path import join
 from unittest import TestCase
 
-from pytezos.contract.metadata import ContractMetadata
+from pymavryk.contract.metadata import ContractMetadata
 
 
 class MetadataTest(TestCase):

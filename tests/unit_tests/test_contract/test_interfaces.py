@@ -2,9 +2,9 @@ from os.path import dirname
 from os.path import join
 from unittest import TestCase
 
-from pytezos import ContractInterface
-from pytezos import Unit
-from pytezos.jupyter import is_interactive
+from pymavryk import ContractInterface
+from pymavryk import Unit
+from pymavryk.jupyter import is_interactive
 
 
 class TestInterfaces(TestCase):

@@ -463,7 +463,7 @@ code { LAMBDA
                                        PAIR ;
                                        DIP { DROP 2 } } ;
                                  DUP ;
-                                 DIP { DIP { DUP } ; SWAP ; CAR ; PUSH mutez 0 } ;
+                                 DIP { DIP { DUP } ; SWAP ; CAR ; PUSH mumav 0 } ;
                                  TRANSFER_TOKENS ;
                                  DIP { DROP 3 } ;
                                  DUP ;
@@ -487,7 +487,7 @@ code { LAMBDA
                                  DUP ;
                                  DIP { DIP { DUP } ; SWAP ; CDR } ;
                                  PAIR ;
-                                 DIP { DIP { DUP } ; SWAP ; CAR ; PUSH mutez 0 } ;
+                                 DIP { DIP { DUP } ; SWAP ; CAR ; PUSH mumav 0 } ;
                                  TRANSFER_TOKENS ;
                                  DIP { DROP 3 } ;
                                  DUP ;
@@ -508,7 +508,7 @@ code { LAMBDA
                                  EXEC ;
                                  DUP ;
                                  CDR ;
-                                 DIP { DIP { DUP } ; SWAP ; PUSH mutez 0 } ;
+                                 DIP { DIP { DUP } ; SWAP ; PUSH mumav 0 } ;
                                  TRANSFER_TOKENS ;
                                  DUP ;
                                  NIL operation ;
@@ -532,7 +532,7 @@ code { LAMBDA
                                          { DUP ; CAR ; DIP { DROP } } ;
                                        DIP { DROP } } ;
                                  DUP ;
-                                 DIP { DIP { DUP } ; SWAP ; CAR ; PUSH mutez 0 } ;
+                                 DIP { DIP { DUP } ; SWAP ; CAR ; PUSH mumav 0 } ;
                                  TRANSFER_TOKENS ;
                                  DIP { DROP 3 } ;
                                  DUP ;
@@ -563,7 +563,7 @@ code { LAMBDA
                                          { DIP { DUP } ; SWAP ; DIP { DUP ; CDR } ; PAIR ; DIP { DROP } } ;
                                        DIP { DROP } } ;
                                  DUP ;
-                                 DIP { DIP { DUP } ; SWAP ; CAR ; PUSH mutez 0 } ;
+                                 DIP { DIP { DUP } ; SWAP ; CAR ; PUSH mumav 0 } ;
                                  TRANSFER_TOKENS ;
                                  DIP { DROP 3 } ;
                                  DUP ;
@@ -682,7 +682,7 @@ code { LAMBDA
                                  EXEC ;
                                  DIP { DUP } ;
                                  SWAP ;
-                                 DIP { DUP ; PUSH mutez 0 } ;
+                                 DIP { DUP ; PUSH mumav 0 } ;
                                  TRANSFER_TOKENS ;
                                  DIP { DROP 7 ; DUP } ;
                                  SWAP ;
@@ -1015,7 +1015,7 @@ code { LAMBDA
                      PAIR ;
                      DIP { DROP } ;
                      DUP ;
-                     DIP { DIP { DUP } ; SWAP ; PUSH mutez 0 } ;
+                     DIP { DIP { DUP } ; SWAP ; PUSH mumav 0 } ;
                      TRANSFER_TOKENS ;
                      DIP 5 { DUP } ;
                      DIG 5 ;
@@ -1182,7 +1182,7 @@ code { LAMBDA
                  PAIR ;
                  DIP { DROP } ;
                  DUP ;
-                 DIP { DIP { DUP } ; SWAP ; PUSH mutez 0 } ;
+                 DIP { DIP { DUP } ; SWAP ; PUSH mumav 0 } ;
                  TRANSFER_TOKENS ;
                  DIP 5 { DUP } ;
                  DIG 5 ;

@@ -16,7 +16,7 @@ sys.path.insert(0, os.path.abspath('../..'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'PyTezos'
+project = 'PyMavryk'
 copyright = '2020, Baking Bad'
 author = 'Arthur Breitman, Michael Zaikin'
 

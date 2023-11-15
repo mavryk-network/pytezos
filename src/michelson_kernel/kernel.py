@@ -14,24 +14,24 @@ from tabulate import tabulate
 
 from michelson_kernel import __version__
 from michelson_kernel.docs import docs
-from pytezos import micheline_to_michelson
-from pytezos.michelson.instructions import BigMapDiffInstruction
-from pytezos.michelson.instructions import CommitInstruction
-from pytezos.michelson.instructions.base import MichelsonInstruction
-from pytezos.michelson.instructions.jupyter import RunInstruction
-from pytezos.michelson.micheline import MichelineSequence
-from pytezos.michelson.micheline import MichelsonRuntimeError
-from pytezos.michelson.parse import MichelsonParserError
-from pytezos.michelson.repl import Interpreter
-from pytezos.michelson.stack import MichelsonStack
-from pytezos.michelson.tags import prim_tags
-from pytezos.michelson.types import OperationType
-from pytezos.michelson.types import PairType
-from pytezos.michelson.types.domain import LambdaType
-from pytezos.michelson.types.list import ListType
-from pytezos.michelson.types.map import MapType
-from pytezos.michelson.types.option import OptionType
-from pytezos.michelson.types.set import SetType
+from pymavryk import micheline_to_michelson
+from pymavryk.michelson.instructions import BigMapDiffInstruction
+from pymavryk.michelson.instructions import CommitInstruction
+from pymavryk.michelson.instructions.base import MichelsonInstruction
+from pymavryk.michelson.instructions.jupyter import RunInstruction
+from pymavryk.michelson.micheline import MichelineSequence
+from pymavryk.michelson.micheline import MichelsonRuntimeError
+from pymavryk.michelson.parse import MichelsonParserError
+from pymavryk.michelson.repl import Interpreter
+from pymavryk.michelson.stack import MichelsonStack
+from pymavryk.michelson.tags import prim_tags
+from pymavryk.michelson.types import OperationType
+from pymavryk.michelson.types import PairType
+from pymavryk.michelson.types.domain import LambdaType
+from pymavryk.michelson.types.list import ListType
+from pymavryk.michelson.types.map import MapType
+from pymavryk.michelson.types.option import OptionType
+from pymavryk.michelson.types.set import SetType
 
 static_macros = [
     'CMPEQ',

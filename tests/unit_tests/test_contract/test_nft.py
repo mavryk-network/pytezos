@@ -2,8 +2,8 @@ from os.path import dirname
 from os.path import join
 from unittest import TestCase
 
-from pytezos import ContractInterface
-from pytezos import MichelsonRuntimeError
+from pymavryk import ContractInterface
+from pymavryk import MichelsonRuntimeError
 
 
 class NftContractTest(TestCase):

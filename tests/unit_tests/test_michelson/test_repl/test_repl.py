@@ -1,15 +1,15 @@
 from unittest.case import TestCase
 from unittest.case import skip
 
-from pytezos import MichelsonRuntimeError
-from pytezos.michelson.instructions import CommitInstruction
-from pytezos.michelson.repl import Interpreter
-from pytezos.michelson.types import BigMapType
-from pytezos.michelson.types import IntType
-from pytezos.michelson.types import ListType
-from pytezos.michelson.types import OperationType
-from pytezos.michelson.types import PairType
-from pytezos.michelson.types import UnitType
+from pymavryk import MichelsonRuntimeError
+from pymavryk.michelson.instructions import CommitInstruction
+from pymavryk.michelson.repl import Interpreter
+from pymavryk.michelson.types import BigMapType
+from pymavryk.michelson.types import IntType
+from pymavryk.michelson.types import ListType
+from pymavryk.michelson.types import OperationType
+from pymavryk.michelson.types import PairType
+from pymavryk.michelson.types import UnitType
 
 
 class InterpreterTest(TestCase):
@@ -222,7 +222,7 @@ class InterpreterTest(TestCase):
             PATCH SENDER "mv1Hox9jGJg3uSmsv9NTvuK7rMHh25cq44nv" ;
             PATCH BALANCE 200 ;
             
-            parameter mutez ;
+            parameter mumav ;
             storage unit ;
             
             BEGIN 100 Unit ;

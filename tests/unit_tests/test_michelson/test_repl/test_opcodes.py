@@ -4,9 +4,9 @@ from unittest import TestCase
 
 from parameterized import parameterized  # type: ignore
 
-from pytezos import MichelsonRuntimeError
-from pytezos.michelson.parse import michelson_to_micheline
-from pytezos.michelson.repl import Interpreter
+from pymavryk import MichelsonRuntimeError
+from pymavryk.michelson.parse import michelson_to_micheline
+from pymavryk.michelson.repl import Interpreter
 
 CHAIN_ID = 'NetXdQprcVkpaWU'
 PUBLIC_KEY = 'edpktpPTi9MLK2wabnNny1kD5LvBmGtFdRjnCiUT3ZZgNDjjM4mpoh'
@@ -861,45 +861,45 @@ class OpcodesTestCase(TestCase):
                 '(Pair -8 2)',
                 '(Pair (Some (Pair -4 0)) (Some (Pair -4 0)) ' + '(Some (Pair 4 0)) (Some (Pair 4 0)))',
             ),
-            # Test EDIV on mutez
+            # Test EDIV on mumav
             (
-                'ediv_mutez.tz',
+                'ediv_mumav.tz',
                 '(Left None)',
                 '(Pair 10 (Left 10))',
                 '(Left (Some (Pair 1 0)))',
             ),
             (
-                'ediv_mutez.tz',
+                'ediv_mumav.tz',
                 '(Left None)',
                 '(Pair 10 (Left 3))',
                 '(Left (Some (Pair 3 1)))',
             ),
             (
-                'ediv_mutez.tz',
+                'ediv_mumav.tz',
                 '(Left None)',
                 '(Pair 10 (Left 0))',
                 '(Left None)',
             ),
             (
-                'ediv_mutez.tz',
+                'ediv_mumav.tz',
                 '(Left None)',
                 '(Pair 10 (Right 10))',
                 '(Right (Some (Pair 1 0)))',
             ),
             (
-                'ediv_mutez.tz',
+                'ediv_mumav.tz',
                 '(Left None)',
                 '(Pair 10 (Right 3))',
                 '(Right (Some (Pair 3 1)))',
             ),
             (
-                'ediv_mutez.tz',
+                'ediv_mumav.tz',
                 '(Left None)',
                 '(Pair 10 (Right 0))',
                 '(Right None)',
             ),
             (
-                'ediv_mutez.tz',
+                'ediv_mumav.tz',
                 '(Left None)',
                 '(Pair 5 (Right 10))',
                 '(Right (Some (Pair 0 5)))',
@@ -1426,22 +1426,22 @@ class OpcodesTestCase(TestCase):
                 '0xb9e8abf8dc324a010007addde986fe0f7c81fab16d26819d0534b7691c' + '0b0719',
                 '1132026582925658583078152196614952946047676740821044523890286' + '9222031333517497',
             ),
-            # Mutez -> Fr
+            # Mumav -> Fr
             (
-                'mutez_to_bls12_381_fr.tz',
+                'mumav_to_bls12_381_fr.tz',
                 '0x02',
                 '16',
                 '0x100000000000000000000000000000000000000000000000000000000' + '0000000',
             ),
-            # # would fail if trying to PACK mutez and UNPACK to Fr
+            # # would fail if trying to PACK mumav and UNPACK to Fr
             (
-                'mutez_to_bls12_381_fr.tz',
+                'mumav_to_bls12_381_fr.tz',
                 '0x00',
                 '257',
                 '0x010100000000000000000000000000000000000000000000000000000' + '0000000',
             ),
-            # Fr -> Mutez
-            ('bls12_381_fr_to_mutez.tz', '0', '0x10', '16'),
+            # Fr -> Mumav
+            ('bls12_381_fr_to_mumav.tz', '0', '0x10', '16'),
             # GROTH16
             (
                 'groth16.tz',
@@ -1472,8 +1472,8 @@ class OpcodesTestCase(TestCase):
             ('shifts.tz', 'None', '(Left (Pair 123 257))', 'shift overflow 257, should not exceed 256'),
             ('shifts.tz', 'None', '(Right (Pair 1 257))', 'shift overflow 257, should not exceed 256'),
             ('shifts.tz', 'None', '(Right (Pair 123 257))', 'shift overflow 257, should not exceed 256'),
-            ('mul_overflow.tz', 'Unit', 'Left Unit', 'mutez overflow, got 73 bits, should not exceed 63'),
-            ('mul_overflow.tz', 'Unit', 'Right Unit', 'mutez overflow, got 73 bits, should not exceed 63'),
+            ('mul_overflow.tz', 'Unit', 'Left Unit', 'mumav overflow, got 73 bits, should not exceed 63'),
+            ('mul_overflow.tz', 'Unit', 'Right Unit', 'mumav overflow, got 73 bits, should not exceed 63'),
             # Test PACK/UNPACK and binary format.
             (
                 'packunpack.tz',

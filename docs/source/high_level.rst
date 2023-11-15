@@ -1,45 +1,45 @@
 High-level interfaces
 ================================
 
-PyTezos client
+PyMavryk client
 ++++++++++++++++
-.. autoclass:: pytezos.client.PyTezosClient
+.. autoclass:: pymavryk.client.PyMavrykClient
    :members:
    :inherited-members:
 
 Contract interface
 ++++++++++++++++++++
-.. autoclass:: pytezos.contract.interface.ContractInterface
+.. autoclass:: pymavryk.contract.interface.ContractInterface
    :members:
    :inherited-members:
 
 Contract entrypoint proxy
 +++++++++++++++++++++++++++
-.. autoclass:: pytezos.contract.entrypoint.ContractEntrypoint
+.. autoclass:: pymavryk.contract.entrypoint.ContractEntrypoint
    :members:
    :special-members: __call__
    :inherited-members:
 
 Contract call proxy
 +++++++++++++++++++++
-.. autoclass:: pytezos.contract.call.ContractCall
+.. autoclass:: pymavryk.contract.call.ContractCall
    :members:
    :inherited-members:
 
 Contract call result
 ++++++++++++++++++++++
-.. autoclass:: pytezos.contract.result.ContractCallResult
+.. autoclass:: pymavryk.contract.result.ContractCallResult
    :members:
 
 Contract storage proxy
 ++++++++++++++++++++++
-.. autoclass:: pytezos.contract.data.ContractData
+.. autoclass:: pymavryk.contract.data.ContractData
    :members:
    :special-members: __call__
    :inherited-members:
 
 Contract view proxy
 +++++++++++++++++++
-.. autoclass:: pytezos.contract.view.ContractView
+.. autoclass:: pymavryk.contract.view.ContractView
    :members:
    :inherited-members:

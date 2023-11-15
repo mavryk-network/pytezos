@@ -3,9 +3,9 @@ from os.path import dirname
 from os.path import join
 from unittest import TestCase
 
-from pytezos.michelson.forge import forge_micheline
-from pytezos.michelson.forge import unforge_micheline
-from pytezos.michelson.program import MichelsonProgram
+from pymavryk.michelson.forge import forge_micheline
+from pymavryk.michelson.forge import unforge_micheline
+from pymavryk.michelson.program import MichelsonProgram
 
 folder = 'typed_minter'
 entrypoint = 'mint_TYPED'

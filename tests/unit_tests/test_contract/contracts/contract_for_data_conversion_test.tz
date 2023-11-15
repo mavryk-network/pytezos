@@ -270,7 +270,7 @@
                          DROP 2 ;
                          SWAP ;
                          CDR ;
-                         PUSH mutez 0 ;
+                         PUSH mumav 0 ;
                          DIG 2 ;
                          TRANSFER_TOKENS ;
                          SWAP ;

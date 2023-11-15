@@ -2,12 +2,12 @@ from unittest import TestCase
 
 from parameterized import parameterized  # type: ignore
 
-from pytezos.michelson.forge import forge_micheline
-from pytezos.michelson.forge import forge_script_expr
-from pytezos.michelson.forge import unforge_micheline
-from pytezos.michelson.micheline import blind_unpack
-from pytezos.michelson.types.base import MichelsonType
-from pytezos.operation.forge import forge_operation_group
+from pymavryk.michelson.forge import forge_micheline
+from pymavryk.michelson.forge import forge_script_expr
+from pymavryk.michelson.forge import unforge_micheline
+from pymavryk.michelson.micheline import blind_unpack
+from pymavryk.michelson.types.base import MichelsonType
+from pymavryk.operation.forge import forge_operation_group
 
 unknown_data = [
     '0501000000056f776e6572',
@@ -172,7 +172,7 @@ class TestPacking(TestCase):
                 'annots': ['%launch_callback'],
             },
             {'prim': 'IF_NONE', 'args': [[{'prim': 'FAILWITH'}], [{'prim': 'SWAP'}, {'prim': 'DROP'}]]},
-            {'prim': 'PUSH', 'args': [{'prim': 'mutez'}, {'int': '0'}]},
+            {'prim': 'PUSH', 'args': [{'prim': 'mumav'}, {'int': '0'}]},
             {'prim': 'DUP', 'args': [{'int': '3'}]},
             {'prim': 'PUSH', 'args': [{'prim': 'bool'}, {'prim': 'True'}]},
             {'prim': 'PUSH', 'args': [{'prim': 'key_hash'}, {'bytes': '002523250b271e153be6c2668954114be101d04d3d'}]},

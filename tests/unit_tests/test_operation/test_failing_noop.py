@@ -2,7 +2,7 @@ from unittest import TestCase
 
 from parameterized import parameterized  # type: ignore
 
-from pytezos import pytezos
+from pymavryk import pymavryk
 
 
 class FailingNoopCase(TestCase):
@@ -17,7 +17,7 @@ class FailingNoopCase(TestCase):
         ]
     )
     def test_sign_verify_message(self, alias, message, block, expected):
-        client = pytezos.using(key=alias)
+        client = pymavryk.using(key=alias)
         sig = client.sign_message(message, block=block)
         self.assertEqual(expected, sig)
-        pytezos.check_message(message, public_key=client.key.public_key(), signature=expected, block=block)
+        pymavryk.check_message(message, public_key=client.key.public_key(), signature=expected, block=block)

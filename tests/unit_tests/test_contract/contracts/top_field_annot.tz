@@ -4,7 +4,7 @@ parameter (nat %buyTicket);
 code { CAST (pair nat (pair (pair nat nat) (pair (list address) (map nat address)))) ;
        UNPAIR ;
        AMOUNT ;
-       PUSH mutez 1000000 ;
+       PUSH mumav 1000000 ;
        DUP 3 ;
        MUL ;
        COMPARE ;
@@ -13,7 +13,7 @@ code { CAST (pair nat (pair (pair nat nat) (pair (list address) (map nat address
          {}
          { PUSH string "WrongCondition: sp.mul(params, sp.tez(1)) == sp.amount" ;
            FAILWITH } ;
-       PUSH mutez 0 ;
+       PUSH mumav 0 ;
        SWAP ;
        DUP ;
        DUG 2 ;
@@ -46,7 +46,7 @@ code { CAST (pair nat (pair (pair nat nat) (pair (list address) (map nat address
            SUB ;
            ISNAT ;
            IF_NONE { PUSH int 18 ; FAILWITH } {} ;
-           PUSH mutez 1000000 ;
+           PUSH mumav 1000000 ;
            DIG 3 ;
            DUP ;
            CAR ;
@@ -98,7 +98,7 @@ code { CAST (pair nat (pair (pair nat nat) (pair (list address) (map nat address
               COMPARE ;
               GT } ;
        DROP 2 ;
-       PUSH mutez 0 ;
+       PUSH mumav 0 ;
        DUP 3 ;
        COMPARE ;
        GT ;
@@ -131,7 +131,7 @@ code { CAST (pair nat (pair (pair nat nat) (pair (list address) (map nat address
            IF_NONE { PUSH int 38 ; FAILWITH } {} ;
            CONTRACT unit ;
            IF_NONE { PUSH int 38 ; FAILWITH } {} ;
-           PUSH mutez 5000000 ;
+           PUSH mumav 5000000 ;
            UNIT ;
            TRANSFER_TOKENS ;
            CONS ;

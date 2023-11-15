@@ -5,9 +5,9 @@ from unittest import TestCase
 
 from parameterized import parameterized  # type: ignore
 
-from pytezos.logging import logger
-from pytezos.michelson.parse import michelson_to_micheline
-from pytezos.michelson.repl import Interpreter
+from pymavryk.logging import logger
+from pymavryk.michelson.parse import michelson_to_micheline
+from pymavryk.michelson.repl import Interpreter
 
 logger.setLevel(DEBUG)
 

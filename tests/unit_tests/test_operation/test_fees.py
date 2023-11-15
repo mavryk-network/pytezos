@@ -3,13 +3,13 @@ from typing import Dict
 from typing import List
 from unittest import TestCase
 
-from pytezos.operation.fees import DEFAULT_CONSTANTS
-from pytezos.operation.fees import DEFAULT_TRANSACTION_GAS_LIMIT
-from pytezos.operation.fees import DEFAULT_TRANSACTION_STORAGE_LIMIT
-from pytezos.operation.fees import calculate_fee
-from pytezos.operation.fees import default_fee
-from pytezos.operation.fees import default_gas_limit
-from pytezos.operation.fees import default_storage_limit
+from pymavryk.operation.fees import DEFAULT_CONSTANTS
+from pymavryk.operation.fees import DEFAULT_TRANSACTION_GAS_LIMIT
+from pymavryk.operation.fees import DEFAULT_TRANSACTION_STORAGE_LIMIT
+from pymavryk.operation.fees import calculate_fee
+from pymavryk.operation.fees import default_fee
+from pymavryk.operation.fees import default_gas_limit
+from pymavryk.operation.fees import default_storage_limit
 
 
 class FeesTest(TestCase):

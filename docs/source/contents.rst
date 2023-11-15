@@ -1,9 +1,9 @@
-.. pytezos documentation master file, created by
+.. pymavryk documentation master file, created by
    sphinx-quickstart on Fri Jun 12 19:36:31 2020.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to PyTezos reference!
+Welcome to PyMavryk reference!
 ===================================
 
 .. title:: Baking Bad
@@ -13,12 +13,12 @@ Welcome to PyTezos reference!
    :keywords: tezos, blockchain, python, library, sdk, cli, repl, testing, framework, rpc, michelson, micheline, contract
    :twitter:card: summary
    :twitter:creator: @TezosBakingBad
-   :twitter:title: PyTezos documentation | Baking Bad
+   :twitter:title: PyMavryk documentation | Baking Bad
    :twitter:description: Python SDK & CLI for Tezos, Michelson REPL and integration testing framework
    :twitter:image: https://repository-images.githubusercontent.com/169243460/eb3da980-c1e1-11e9-9e60-6f32b60ddf38
    :og:url: https://pytezos.baking-bad.org
    :og:type: website
-   :og:title: PyTezos documentation | Baking Bad
+   :og:title: PyMavryk documentation | Baking Bad
    :og:description: Python SDK & CLI for Tezos, Michelson REPL and integration testing framework
    :og:image: https://repository-images.githubusercontent.com/169243460/eb3da980-c1e1-11e9-9e60-6f32b60ddf38
 
@@ -28,7 +28,7 @@ Welcome to PyTezos reference!
 
    quick_start
    integration_tests
-   pytezos_cli
+   pymavryk_cli
    high_level
    crypto
    operation_groups

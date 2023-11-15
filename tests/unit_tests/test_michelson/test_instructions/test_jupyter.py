@@ -2,18 +2,18 @@ from unittest.case import TestCase
 from unittest.mock import Mock
 from unittest.mock import patch
 
-from pytezos import ContractInterface
-from pytezos.context.impl import ExecutionContext
-from pytezos.michelson.micheline import MichelineSequence
-from pytezos.michelson.parse import michelson_to_micheline
-from pytezos.michelson.program import MichelsonProgram
-from pytezos.michelson.sections import ParameterSection
-from pytezos.michelson.sections import StorageSection
-from pytezos.michelson.stack import MichelsonStack
-from pytezos.michelson.types import IntType
-from pytezos.michelson.types import UnitType
-from pytezos.rpc import RpcNode
-from pytezos.rpc import ShellQuery
+from pymavryk import ContractInterface
+from pymavryk.context.impl import ExecutionContext
+from pymavryk.michelson.micheline import MichelineSequence
+from pymavryk.michelson.parse import michelson_to_micheline
+from pymavryk.michelson.program import MichelsonProgram
+from pymavryk.michelson.sections import ParameterSection
+from pymavryk.michelson.sections import StorageSection
+from pymavryk.michelson.stack import MichelsonStack
+from pymavryk.michelson.types import IntType
+from pymavryk.michelson.types import UnitType
+from pymavryk.rpc import RpcNode
+from pymavryk.rpc import ShellQuery
 
 
 class JupyterInstructionsTest(TestCase):
@@ -195,7 +195,7 @@ class JupyterInstructionsTest(TestCase):
         self.assertEqual(None, self.context.network)
         self.assertEqual(None, self.context.chain_id)
 
-    @patch('pytezos.rpc.node.RpcNode.get', Mock(return_value='some_chain_id'))
+    @patch('pymavryk.rpc.node.RpcNode.get', Mock(return_value='some_chain_id'))
     def test_reset_value(self):
         self.context.shell = ShellQuery(RpcNode('https://testnet-tezos.giganode.io/'))
         self.context.network = 'testnet'

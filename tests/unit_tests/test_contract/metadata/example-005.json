@@ -41,7 +41,7 @@
               "prim": "pair",
               "args": [
                 {
-                  "prim": "mutez",
+                  "prim": "mumav",
                   "annots": [
                     "%amount"
                   ]
@@ -97,7 +97,7 @@
             "annotations": [
               {
                 "name": "%amount",
-                "description": "The amount which should mean something in context. It's in `mutez` which should also mean something more than lorem ipsum dolor whatever …"
+                "description": "The amount which should mean something in context. It's in `mumav` which should also mean something more than lorem ipsum dolor whatever …"
               },
               {
                 "name": "%name",

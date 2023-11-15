@@ -4,41 +4,41 @@ Working with Michelson code
 
 Expanding macros
 +++++++++++++++++++++++++
-.. automodule:: pytezos.michelson.macros
+.. automodule:: pymavryk.michelson.macros
    :members:
    :undoc-members:
 
 Parsing AST
 +++++++++++++++++
-.. automodule:: pytezos.michelson.parse
+.. automodule:: pymavryk.michelson.parse
    :members:
    :undoc-members:
 
 Code formatter
 ++++++++++++++++
-.. automodule:: pytezos.michelson.format
+.. automodule:: pymavryk.michelson.format
    :members:
 
 Parameter section
 ++++++++++++++++++++
-.. automodule:: pytezos.michelson.sections.parameter
+.. automodule:: pymavryk.michelson.sections.parameter
    :members:
    :undoc-members:
 
 Storage section
 ++++++++++++++++++++
-.. automodule:: pytezos.michelson.sections.storage
+.. automodule:: pymavryk.michelson.sections.storage
    :members:
    :undoc-members:
 
 Code section
 ++++++++++++++++++++
-.. automodule:: pytezos.michelson.sections.code
+.. automodule:: pymavryk.michelson.sections.code
    :members:
    :undoc-members:
 
 Script wrapper
 ++++++++++++++++++++
-.. automodule:: pytezos.michelson.program
+.. automodule:: pymavryk.michelson.program
    :members:
    :undoc-members:

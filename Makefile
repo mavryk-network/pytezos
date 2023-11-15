@@ -1,7 +1,7 @@
 .ONESHELL:
 .PHONY: $(MAKECMDGOALS)
 ##
-##    🚧 PyTezos developer tools
+##    🚧 PyMavryk developer tools
 ##
 ##  DEV=1               Whether to install dev dependencies
 DEV=1
@@ -36,7 +36,7 @@ lint:              ## Lint with all tools
 
 test:              ## Run test suite
 	# FIXME: https://github.com/pytest-dev/pytest-xdist/issues/385#issuecomment-1177147322
-	poetry run sh -c "pytest --cov-report=term-missing --cov=pytezos --cov=michelson_kernel --cov-report=xml -n auto -s -v tests/contract_tests tests/integration_tests tests/unit_tests && pytest -xv tests/sandbox_tests"
+	poetry run sh -c "pytest --cov-report=term-missing --cov=pymavryk --cov=michelson_kernel --cov-report=xml -n auto -s -v tests/contract_tests tests/integration_tests tests/unit_tests && pytest -xv tests/sandbox_tests"
 
 test-ci:
 	poetry run sh -c "pytest --junitxml="unit_test_results.xml" -sv tests/unit_tests"
@@ -74,7 +74,7 @@ build:             ## Build Python wheel package
 	poetry build
 
 image:             ## Build Docker image
-	docker buildx build . --file pytezos.dockerfile -t pytezos:${TAG} --load
+	docker buildx build . --file pymavryk.dockerfile -t pymavryk:${TAG} --load
 	docker buildx build . --file michelson-kernel.dockerfile -t michelson-kernel:${TAG} --load
 
 release-patch:     ## Release patch version
@@ -125,7 +125,7 @@ notebook:          ## Run Jupyter notebook
 ##
 
 update-tzips:      ## Update TZIP-16 schema and tests
-	wget https://gitlab.com/tzip/tzip/-/raw/master/proposals/tzip-16/metadata-schema.json -O src/pytezos/contract/metadata-schema.json
+	wget https://gitlab.com/tzip/tzip/-/raw/master/proposals/tzip-16/metadata-schema.json -O src/pymavryk/contract/metadata-schema.json
 	wget https://gitlab.com/tzip/tzip/-/raw/master/proposals/tzip-16/examples/example-000.json -O tests/unit_tests/test_contract/metadata/example-000.json
 	wget https://gitlab.com/tzip/tzip/-/raw/master/proposals/tzip-16/examples/example-001.json -O tests/unit_tests/test_contract/metadata/example-001.json
 	wget https://gitlab.com/tzip/tzip/-/raw/master/proposals/tzip-16/examples/example-002.json -O tests/unit_tests/test_contract/metadata/example-002.json

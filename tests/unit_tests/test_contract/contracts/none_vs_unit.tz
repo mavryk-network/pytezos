@@ -3,7 +3,7 @@ parameter (or (option %callAnotherContract (contract unit))
 storage unit;
 code {
     CAR ; NIL operation ; SWAP ;
-    IF_LEFT { IF_NONE { } { PUSH mutez 0 ; UNIT ; TRANSFER_TOKENS ; CONS } }
+    IF_LEFT { IF_NONE { } { PUSH mumav 0 ; UNIT ; TRANSFER_TOKENS ; CONS } }
             { DROP } ;
     UNIT ; SWAP ; PAIR
 }

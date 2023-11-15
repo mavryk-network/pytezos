@@ -5,8 +5,8 @@ from unittest import TestCase
 
 from parameterized import parameterized  # type: ignore
 
-from pytezos import pytezos
-from pytezos.operation.group import OperationGroup
+from pymavryk import pymavryk
+from pymavryk.operation.group import OperationGroup
 
 
 class TestOperationForging(TestCase):
@@ -22,7 +22,7 @@ class TestOperationForging(TestCase):
             data = json.loads(f.read())
 
         group = OperationGroup(
-            context=pytezos.using('mumbainet').context,
+            context=pymavryk.using('mumbainet').context,
             contents=data['contents'],
             chain_id=data['chain_id'],
             protocol=data['protocol'],

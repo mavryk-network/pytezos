@@ -1,8 +1,8 @@
 from typing import List
 from unittest import TestCase
 
-from pytezos.crypto.hash import block_payload_hash
-from pytezos.crypto.hash import operation_list_list_hash
+from pymavryk.crypto.hash import block_payload_hash
+from pymavryk.crypto.hash import operation_list_list_hash
 
 # https://rpc.tzkt.io/mainnet/chains/main/blocks/2223648
 operation_hashes_llo = 'LLoaQ8vjCwYooVy6nRSUP9VRBk1YHaHgqWrHw3J9j4VmEvVZCbaYB'
