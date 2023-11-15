@@ -196,7 +196,7 @@ class MichelsonKernel(Kernel):
         'file_extension': '.tz',
         'codemirror_mode': 'michelson',
     }
-    banner = 'Michelson (Tezos VM language)'
+    banner = 'Michelson (Mavryk VM language)'
     help_links = traitlets.List(
         [
             'https://michelson.nomadic-labs.com/',

@@ -131,7 +131,7 @@ class BlockHeader(ContextMixin):
         """Fill missing fields essential for preapply
 
         :param timestamp: override header timestamp (unix seconds).
-            NOTE that the minimal block granularity in Tezos is 1 sec, so you cannot bake faster that once per second.
+            NOTE that the minimal block granularity in Mavryk is 1 sec, so you cannot bake faster that once per second.
             You also cannot bake with timestamp in the future, it will end with error.
             The workaround is to set the genesis block timestamp to zero (or very old date)
             so that you can continuously increase it by 1 sec.

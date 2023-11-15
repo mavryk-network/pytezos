@@ -25,7 +25,7 @@ default_key_hash = 'mv1VDuhoWLjBMmeM1iTS4g4aapw1Zwkz9ziU'
 alice_key = 'edsk3QoqBuvdamxouPhin7swCvkQNgq4jP5KZPbwWNnwdZpSpJiEbq'
 alice_key_hash = 'mv1Hox9jGJg3uSmsv9NTvuK7rMHh25cq44nv'
 
-# NOTE: For tezos-node in sandboxed mode
+# NOTE: For octez-node in sandboxed mode
 dictator_key = 'edsk31vznjHSSpGExDMHYASz45VZqXN4DPxvsa4hAyY8dHM28cZzp6'
 
 nodes = {

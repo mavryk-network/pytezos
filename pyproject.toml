@@ -1,24 +1,24 @@
 [tool.poetry]
 name = "pymavryk"
 version = "3.10.3"
-description = "Python toolkit for Tezos"
+description = "Python toolkit for Mavryk"
 license = "MIT"
 authors = [
+    "Tristan Allaire <tristan@mavryk.io>",
     "Michael Zaikin <mz@baking-bad.org>",
     "Lev Gorodetskii <pytezos@drsr.io>",
     "Arthur Breitman",
     "Roman Serikov",
-    "Tristan Allaire <tristan@mavryk.io>",
 ]
 maintainers = [
+    "Tristan Allaire <tristan@mavryk.io>",
     "Michael Zaikin <mz@baking-bad.org>",
     "Lev Gorodetskii <pytezos@drsr.io>",
-    "Tristan Allaire <tristan@mavryk.io>",
 ]
 readme = "README.md"
 repository = "https://github.com/mavryk-network/pymavryk"
 homepage = "https://pytezos.org"
-keywords = ['tezos', 'blockchain', 'sdk', 'michelson', 'repl', 'cryptocurrencies', 'smart-contracts', 'jupyter', 'ipython', 'docker', 'crypto']
+keywords = ['mavryk', 'blockchain', 'sdk', 'michelson', 'repl', 'cryptocurrencies', 'smart-contracts', 'jupyter', 'ipython', 'docker', 'crypto']
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Environment :: Console",

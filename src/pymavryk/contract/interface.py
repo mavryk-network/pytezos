@@ -242,7 +242,7 @@ class ContractInterface(ContextMixin):
         Also, if address is undefined you can specify RPC endpoint, and private key.
 
         :param shell: one of 'mainnet', '***net', or RPC node uri, or instance of :class:`pymavryk.rpc.shell.ShellQuery`
-        :param key: base58 encoded key, path to the faucet file, alias from tezos-client, or instance of `Key`
+        :param key: base58 encoded key, path to the faucet file, alias from octez-client, or instance of `Key`
         :param block_id: block height / hash / offset to use, default is `head`
         :param mode: whether to use `readable` or `optimized` encoding for parameters/storage/other
         :param ipfs_gateway: override IPFS gateway URI
@@ -325,7 +325,7 @@ class ContractInterface(ContextMixin):
             # NOTE: KT1AFA2mwNUMNd4SsujE1YYp29vd8BZejyKW
             metadata = ContractMetadata.from_ipfs(parsed_url.netloc, self.context)
 
-        elif parsed_url.scheme == 'tezos-storage':
+        elif parsed_url.scheme == 'mavryk-storage':
             parts = parsed_url.path.split('/')
             if len(parts) == 1:
                 # NOTE: KT1JBThDEqyqrEHimhxoUBCSnsKAqFcuHMkP
@@ -380,7 +380,7 @@ class ContractInterface(ContextMixin):
         elif parsed_url.scheme == 'ipfs':
             token_metadata = ContractTokenMetadata.from_ipfs(parsed_url.netloc, self.context)
 
-        elif parsed_url.scheme == 'tezos-storage':
+        elif parsed_url.scheme == 'mavryk-storage':
             parts = parsed_url.path.split('/')
             if len(parts) == 1:
                 storage = self.storage

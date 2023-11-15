@@ -25,7 +25,7 @@ from pymavryk.sandbox.parameters import sandbox_addresses
 DOCKER_IMAGE = 'bakingbad/sandboxed-node:v17.0-1'
 MAX_ATTEMPTS = 100
 ATTEMPT_DELAY = 0.1
-TEZOS_NODE_PORT = 8732
+MAVRYK_NODE_PORT = 8732
 
 
 def kill_existing_containers():
@@ -77,9 +77,9 @@ def get_next_baker_key(client: PyMavrykClient) -> str:
 
 
 class SandboxedNodeContainer(DockerContainer):
-    def __init__(self, image=DOCKER_IMAGE, port=TEZOS_NODE_PORT):
+    def __init__(self, image=DOCKER_IMAGE, port=MAVRYK_NODE_PORT):
         super().__init__(image)
-        self.with_bind_ports(TEZOS_NODE_PORT, port)
+        self.with_bind_ports(MAVRYK_NODE_PORT, port)
         self.url = f'http://localhost:{port}'
         self.client = PyMavrykClient().using(shell=self.url)
 
@@ -115,7 +115,7 @@ class SandboxedNodeTestCase(unittest.TestCase):
     IMAGE: str = DOCKER_IMAGE
     "Docker image to use"
 
-    PORT: int = TEZOS_NODE_PORT
+    PORT: int = MAVRYK_NODE_PORT
     "Port to expose to host machine"
 
     PROTOCOL: str = LATEST

@@ -16,7 +16,7 @@ class TestContext(TestCase):
                 "additional_info": "release",
             },
             "network_version": {
-                "chain_name": "TEZOS_EDO2NET_2021-02-11T14:00:00Z",
+                "chain_name": "MAVRYK_EDO2NET_2021-02-11T14:00:00Z",
                 "distributed_db_version": 1,
                 "p2p_version": 1,
             },
@@ -32,7 +32,7 @@ class TestContext(TestCase):
                 "additional_info": "release",
             },
             "network_version": {
-                "chain_name": "SANDBOXED_TEZOS",
+                "chain_name": "SANDBOXED_MAVRYK",
                 "distributed_db_version": 1,
                 "p2p_version": 1,
             },

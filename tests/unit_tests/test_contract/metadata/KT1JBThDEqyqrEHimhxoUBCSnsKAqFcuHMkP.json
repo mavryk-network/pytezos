@@ -1,6 +1,6 @@
 {
     "name": "NFTz.app Collection",
-    "description": "NFTz minted on NFTz.app, proudly built on Tezos with OpenMinter by Alon Goren from Draper Goren Holm. Alon Rulez.",
+    "description": "NFTz minted on NFTz.app, proudly built on Mavryk with OpenMinter by Alon Goren from Draper Goren Holm. Alon Rulez.",
     "interfaces": [
         "TZIP-012",
         "TZIP-016",

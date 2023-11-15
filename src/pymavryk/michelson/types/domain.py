@@ -202,7 +202,7 @@ class KeyType(StringType, prim='key'):
     def __lt__(self, other: 'KeyType') -> bool:  # type: ignore
         """
         Keys are ordered as follows: edpk < sppk < p2pk
-        All keys are in compressed form in Tezos (flag | X) where flag specifies if Y is odd or even
+        All keys are in compressed form in Mavryk (flag | X) where flag specifies if Y is odd or even
         https://crypto.stackexchange.com/questions/70754/ec-key-compression
         For secp256r1 (aka p256) we need to cut the first byte (for unknown reason)
         """

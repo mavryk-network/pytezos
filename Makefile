@@ -141,5 +141,5 @@ update-contracts:  ## Update contract tests
 kernel-docs:       ## Build docs for Michelson IPython kernel
 	poetry run python scripts/generate_kernel_docs.py
 
-rpc-docs:          ## Build docs for Tezos node RPC
+rpc-docs:          ## Build docs for Mavryk node RPC
 	poetry run python scripts/fetch_rpc_docs.py

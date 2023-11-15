@@ -4,7 +4,7 @@ Quick start
 Introduction
 ------------
 
-PyMavryk library is a Python toolset for Tezos blockchain, including work with keys, signatures, contracts, operations,
+PyMavryk library is a Python toolset for Mavryk blockchain, including work with keys, signatures, contracts, operations,
 RPC query builder, and a high-level interface for smart contract interaction. It can be used to build a full-fledged
 application, but also it's perfect for doing researches in Jupyter interactive notebooks.
 In this quick start guide, we'll go through the main concepts and inspect one of the common use cases.
@@ -121,7 +121,7 @@ We are interested in ``using`` method, which is responsible for setting up manag
     Change current RPC endpoint and account (private key).
 
     :param shell: one of 'mainnet', '***net', or RPC node uri, or instance of :class:`pymavryk.rpc.shell.ShellQuery`
-    :param key: base58 encoded key, path to the faucet file, faucet file itself, alias from tezos-client, or `Key`
+    :param key: base58 encoded key, path to the faucet file, faucet file itself, alias from octez-client, or `Key`
     :param mode: whether to use `readable` or `optimized` encoding for parameters/storage/other
     :returns: A copy of current object with changes applied
 
@@ -676,7 +676,7 @@ We can do the same using special entrypoint ``balance_of``. Let's give a look at
     .encode()
 
 Apparently, we need to pass a list of requests, where each item contains owner address and token ID.
-In addition to that a callback address is expected which should accept the response (currently there are no on-chain views in Tezos, this async pattern is a workaround for them).
+In addition to that a callback address is expected which should accept the response (currently there are no on-chain views in Mavryk, this async pattern is a workaround for them).
 PyMavryk allows you to keep that address empty and get the view result:
 
 .. code-block:: python

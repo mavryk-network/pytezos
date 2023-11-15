@@ -155,7 +155,7 @@ def micheline_to_michelson(data, inline=False, wrap=False) -> str:
     """Converts micheline expression into formatted Michelson source.
 
     :param data: Micheline expression
-    :param inline: produce single line, used for tezos-client arguments (False by default)
+    :param inline: produce single line, used for octez-client arguments (False by default)
     :param wrap: ensure expression is wrapped in brackets
     """
     try:

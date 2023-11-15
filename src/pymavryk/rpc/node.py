@@ -72,7 +72,7 @@ class RpcError(Exception):
 
 
 class RpcNode:
-    """Request proxy for a single Tezos node."""
+    """Request proxy for a single Mavryk node."""
 
     def __init__(self, uri: Union[str, List[str]], headers: Optional[Dict[str, str]] = None) -> None:
         if not uri:

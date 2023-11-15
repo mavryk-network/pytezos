@@ -9,17 +9,17 @@ Welcome to PyMavryk reference!
 .. title:: Baking Bad
 
 .. meta::
-   :description: Python SDK & CLI for Tezos, Michelson REPL and integration testing framework
-   :keywords: tezos, blockchain, python, library, sdk, cli, repl, testing, framework, rpc, michelson, micheline, contract
+   :description: Python SDK & CLI for Mavryk, Michelson REPL and integration testing framework
+   :keywords: mavryk, blockchain, python, library, sdk, cli, repl, testing, framework, rpc, michelson, micheline, contract
    :twitter:card: summary
    :twitter:creator: @TezosBakingBad
    :twitter:title: PyMavryk documentation | Baking Bad
-   :twitter:description: Python SDK & CLI for Tezos, Michelson REPL and integration testing framework
-   :twitter:image: https://repository-images.githubusercontent.com/169243460/eb3da980-c1e1-11e9-9e60-6f32b60ddf38
+   :twitter:description: Python SDK & CLI for Mavryk, Michelson REPL and integration testing framework
+   :twitter:image: https://repository-images.Mavryk.com/169243460/eb3da980-c1e1-11e9-9e60-6f32b60ddf38
    :og:url: https://pytezos.baking-bad.org
    :og:type: website
    :og:title: PyMavryk documentation | Baking Bad
-   :og:description: Python SDK & CLI for Tezos, Michelson REPL and integration testing framework
+   :og:description: Python SDK & CLI for Mavryk, Michelson REPL and integration testing framework
    :og:image: https://repository-images.githubusercontent.com/169243460/eb3da980-c1e1-11e9-9e60-6f32b60ddf38
 
 .. toctree::

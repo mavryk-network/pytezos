@@ -113,7 +113,7 @@ Expands Michelson macros:
 `EXPAND { PAPAIIR }`
 
 #### `INCLUDE path`
-Loads Michelson source from the filesystem (absolute or relative path) `INCLUDE "test.tz"`, or from one of the Tezos networks `INCLUDE "mainnet:KT1VG2WtYdSWz5E7chTeAdDPZNy2MpP8pTfL"`. Initializes `parameter`, `storage`, and `code` sections. If loaded from the network, current storage is also written to the `STORAGE` variable and can be accessed later. 
+Loads Michelson source from the filesystem (absolute or relative path) `INCLUDE "test.tz"`, or from one of the Mavryk networks `INCLUDE "mainnet:KT1VG2WtYdSWz5E7chTeAdDPZNy2MpP8pTfL"`. Initializes `parameter`, `storage`, and `code` sections. If loaded from the network, current storage is also written to the `STORAGE` variable and can be accessed later. 
 
 #### `PATCH prim value`
 Sets value for on of the context-dependent Michelson instructions: `AMOUNT`, `BALANCE`, `NOW`, `SOURCE`, `SENDER`, `CHAIN_ID`.
