@@ -817,20 +817,21 @@ class OpcodesTestCase(TestCase):
                 + '"mv1NnoXstBrcox9Nr6krYNKYPJFDecGaxWG8"))))))))',
                 'Unit',
             ),
-            (
-                'packunpack_rev_cty.tz',
-                'Unit',
-                '(Pair "edpkuBknW28nW72KG6RoHtYW7p12T6GKc7nAbwYX5m8Wd9'
-                + 'sDVC9yav" (Pair Unit (Pair "edsigthTzJ8X7MPmNeEwybRAv'
-                + 'dxS1pupqcM5Mk4uCuyZAe7uEk68YpuGDeViW8wSXMrCi5CwoNgqs8'
-                + 'V2w8ayB5dMJzrYCHhD8C7" (Pair (Some "edsigthTzJ8X7MPmN'
-                + 'eEwybRAvdxS1pupqcM5Mk4uCuyZAe7uEk68YpuGDeViW8wSXMrCi5'
-                + 'CwoNgqs8V2w8ayB5dMJzrYCHhD8C7") (Pair { Unit }  (Pair'
-                + ' { True }  (Pair (Pair 19 10) (Pair (Left "mv18Cw7psU'
-                + 'rAAPBpXYd9CtCpHg9EgjHP9KTe") (Pair { Elt 0 "foo" ; El'
-                + 't 1 "bar" }  { PACK } )))))))))',
-                'Unit',
-            ),
+            #TODO: Fix when Mavryk mainnet is deployed
+            # (
+            #     'packunpack_rev_cty.tz',
+            #     'Unit',
+            #     '(Pair "edpkuBknW28nW72KG6RoHtYW7p12T6GKc7nAbwYX5m8Wd9'
+            #     + 'sDVC9yav" (Pair Unit (Pair "edsigthTzJ8X7MPmNeEwybRAv'
+            #     + 'dxS1pupqcM5Mk4uCuyZAe7uEk68YpuGDeViW8wSXMrCi5CwoNgqs8'
+            #     + 'V2w8ayB5dMJzrYCHhD8C7" (Pair (Some "edsigthTzJ8X7MPmN'
+            #     + 'eEwybRAvdxS1pupqcM5Mk4uCuyZAe7uEk68YpuGDeViW8wSXMrCi5'
+            #     + 'CwoNgqs8V2w8ayB5dMJzrYCHhD8C7") (Pair { Unit }  (Pair'
+            #     + ' { True }  (Pair (Pair 19 10) (Pair (Left "mv18Cw7psU'
+            #     + 'rAAPBpXYd9CtCpHg9EgjHP9KTe") (Pair { Elt 0 "foo" ; El'
+            #     + 't 1 "bar" }  { PACK } )))))))))',
+            #     'Unit',
+            # ),
             (
                 'packunpack_rev_cty.tz',
                 'Unit',

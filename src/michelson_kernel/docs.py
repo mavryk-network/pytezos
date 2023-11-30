@@ -6,13 +6,13 @@ docs = {   'ABS': 'ABS\nABS :: int : A => nat : A\nObtain the absolute value of 
            'ADD :: int : int : A => int : A\n'
            'ADD :: timestamp : int : A => timestamp : A\n'
            'ADD :: int : timestamp : A => timestamp : A\n'
-           'ADD :: mutez : mutez : A => mutez : A\n'
+           'ADD :: mumav : mumav : A => mumav : A\n'
            'ADD :: bls12_381_g1 : bls12_381_g1 : A => bls12_381_g1 : A\n'
            'ADD :: bls12_381_g2 : bls12_381_g2 : A => bls12_381_g2 : A\n'
            'ADD :: bls12_381_fr : bls12_381_fr : A => bls12_381_fr : A\n'
            'Add two numerical values',
     'ADDRESS': 'ADDRESS\nADDRESS :: contract ty1 : A => address : A\nPush the address of a contract',
-    'AMOUNT': 'AMOUNT\nAMOUNT :: A => mutez : A\nPush the amount of the current transaction',
+    'AMOUNT': 'AMOUNT\nAMOUNT :: A => mumav : A\nPush the amount of the current transaction',
     'AND': 'AND\n'
            'AND :: bool : bool : A => bool : A\n'
            'AND :: nat : nat : A => nat : A\n'
@@ -22,7 +22,7 @@ docs = {   'ABS': 'ABS\nABS :: int : A => nat : A\nObtain the absolute value of 
     'APPLY': 'APPLY\n'
              'APPLY :: ty1 : lambda ( pair ty1 ty2 ) ty3 : A => lambda ty2 ty3 : A\n'
              'Partially apply a tuplified function from the stack',
-    'BALANCE': 'BALANCE\nBALANCE :: A => mutez : A\nPush the current amount of mutez of the executing contract',
+    'BALANCE': 'BALANCE\nBALANCE :: A => mumav : A\nPush the current amount of mumav of the executing contract',
     'BLAKE2B': 'BLAKE2B\nBLAKE2B :: bytes : A => bytes : A\nCompute a Blake2B cryptographic hash',
     'BYTES': 'BYTES\n'
              'BYTES :: int : A => bytes : A\n'
@@ -48,7 +48,7 @@ docs = {   'ABS': 'ABS\nABS :: int : A => nat : A\nObtain the absolute value of 
                 'Cast an address to a typed contract',
     'CREATE_ACCOUNT': '\nPush an account creation operation',
     'CREATE_CONTRACT': 'CREATE_CONTRACT { parameter ty1 ; storage ty2 ; code instr1 }\n'
-                       'CREATE_CONTRACT { parameter ty1 ; storage ty2 ; code instr1 } :: option key_hash : mutez : ty2 '
+                       'CREATE_CONTRACT { parameter ty1 ; storage ty2 ; code instr1 } :: option key_hash : mumav : ty2 '
                        ': A => operation : address : A\n'
                        'Push a contract creation operation',
     'DIG': 'DIG n\nDIG n :: A @ ( ty1 : B ) => ty1 : ( A @ B )\nRetrieve the n\\ th element of the stack',
@@ -64,8 +64,8 @@ docs = {   'ABS': 'ABS\nABS :: int : A => nat : A\nObtain the absolute value of 
             'EDIV :: nat : int : A => option ( pair int nat ) : A\n'
             'EDIV :: int : nat : A => option ( pair int nat ) : A\n'
             'EDIV :: int : int : A => option ( pair int nat ) : A\n'
-            'EDIV :: mutez : nat : A => option ( pair mutez mutez ) : A\n'
-            'EDIV :: mutez : mutez : A => option ( pair nat mutez ) : A\n'
+            'EDIV :: mumav : nat : A => option ( pair mumav mumav ) : A\n'
+            'EDIV :: mumav : mumav : A => option ( pair nat mumav ) : A\n'
             'Euclidean division',
     'EMIT': 'EMIT ty\nEMIT ty :: ty : A => operation : A\nWrite an event into the transaction receipt',
     'EMPTY_BIG_MAP': 'EMPTY_BIG_MAP kty vty\n'
@@ -149,8 +149,8 @@ docs = {   'ABS': 'ABS\nABS :: int : A => nat : A\nObtain the absolute value of 
            'MUL :: nat : int : A => int : A\n'
            'MUL :: int : nat : A => int : A\n'
            'MUL :: int : int : A => int : A\n'
-           'MUL :: mutez : nat : A => mutez : A\n'
-           'MUL :: nat : mutez : A => mutez : A\n'
+           'MUL :: mumav : nat : A => mumav : A\n'
+           'MUL :: nat : mumav : A => mumav : A\n'
            'MUL :: bls12_381_g1 : bls12_381_fr : A => bls12_381_g1 : A\n'
            'MUL :: bls12_381_g2 : bls12_381_fr : A => bls12_381_g2 : A\n'
            'MUL :: bls12_381_fr : bls12_381_fr : A => bls12_381_fr : A\n'
@@ -242,7 +242,7 @@ docs = {   'ABS': 'ABS\nABS :: int : A => nat : A\nObtain the absolute value of 
            'SUB :: timestamp : int : A => timestamp : A\n'
            'SUB :: timestamp : timestamp : A => int : A\n'
            'Subtract two numerical values',
-    'SUB_MUTEZ': 'SUB_MUTEZ\nSUB :: mutez : mutez : A => option mutez : A\nSubtract two mutez',
+    'SUB_MUMAV': 'SUB_MUMAV\nSUB :: mumav : mumav : A => option mumav : A\nSubtract two mumav',
     'SWAP': 'SWAP\nSWAP :: ty1 : ty2 : A => ty2 : ty1 : A\nSwap the top two elements of the stack',
     'TICKET': 'TICKET\nTICKET :: cty : nat : A => option ( ticket cty ) : A\nCreate a ticket',
     'TOP': '',
@@ -250,7 +250,7 @@ docs = {   'ABS': 'ABS\nABS :: int : A => nat : A\nObtain the absolute value of 
                           'TOTAL_VOTING_POWER :: A => nat : A\n'
                           'Return the total voting power of all contracts',
     'TRANSFER_TOKENS': 'TRANSFER_TOKENS\n'
-                       'TRANSFER_TOKENS :: ty : mutez : contract ty : A => operation : A\n'
+                       'TRANSFER_TOKENS :: ty : mumav : contract ty : A => operation : A\n'
                        'Push a transaction operation',
     'UNIT': 'UNIT\nUNIT :: A => unit : A\nPush the unit value onto the stack',
     'UNPACK': 'UNPACK ty\nUNPACK ty :: bytes : A => option ty : A\nDeserialize data, if valid',
@@ -294,7 +294,7 @@ docs = {   'ABS': 'ABS\nABS :: int : A => nat : A\nObtain the absolute value of 
     'lambda': 'lambda ty1 ty2\nA lambda with given parameter and return types',
     'list': 'list type\nA single, immutable, homogeneous linked list',
     'map': 'map kty vty\nAn immutable map from kty to vty',
-    'mutez': 'mutez\nA specific type for manipulating tokens',
+    'mumav': 'mumav\nA specific type for manipulating tokens',
     'nat': 'nat\nAn arbitrary-precision natural number',
     'never': 'never\nThe empty type',
     'operation': 'operation\nAn internal operation emitted by a contract',

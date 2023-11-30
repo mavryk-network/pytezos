@@ -870,7 +870,7 @@ rpc_docs = {
   },
   "/chains/{}/mempool/filter": {
     "GET": {
-      "descr": "Get the configuration of the mempool's filter and bounds. Values of the form [ \"21\", \"20\" ] are rational numbers given as a numerator and a denominator, e.g. 21/20 = 1.05. The minimal_fees (in mutez), minimal_nanotez_per_gas_unit, and minimal_nanotez_per_byte are requirements that a manager operation must meet to be considered by the mempool. replace_by_fee_factor is how much better a manager operation must be to replace a previous valid operation **from the same manager** (both its fee and its fee/gas ratio must exceed the old operation's by at least this factor). max_operations and max_total_bytes are the bounds on respectively the number of valid operations in the mempool and the sum of their sizes in bytes.",
+      "descr": "Get the configuration of the mempool's filter and bounds. Values of the form [ \"21\", \"20\" ] are rational numbers given as a numerator and a denominator, e.g. 21/20 = 1.05. The minimal_fees (in mumav), minimal_nanotez_per_gas_unit, and minimal_nanotez_per_byte are requirements that a manager operation must meet to be considered by the mempool. replace_by_fee_factor is how much better a manager operation must be to replace a previous valid operation **from the same manager** (both its fee and its fee/gas ratio must exceed the old operation's by at least this factor). max_operations and max_total_bytes are the bounds on respectively the number of valid operations in the mempool and the sum of their sizes in bytes.",
       "args": [
         {
           "name": "include_default",
@@ -1436,7 +1436,7 @@ rpc_docs = {
   },
   "/chains/{}/blocks/{}/context/delegates/{}/current_frozen_deposits": {
     "GET": {
-      "descr": "Returns the current amount of the frozen deposits (in mutez).",
+      "descr": "Returns the current amount of the frozen deposits (in mumav).",
       "args": [],
       "ret": "Object"
     }
@@ -1450,7 +1450,7 @@ rpc_docs = {
   },
   "/chains/{}/blocks/{}/context/delegates/{}/delegated_balance": {
     "GET": {
-      "descr": "Returns the sum (in mutez) of all balances of all the contracts that delegate to a given delegate. This excludes the delegate's own balance, its frozen deposits and its frozen bonds.",
+      "descr": "Returns the sum (in mumav) of all balances of all the contracts that delegate to a given delegate. This excludes the delegate's own balance, its frozen deposits and its frozen bonds.",
       "args": [],
       "ret": "Object"
     }
@@ -1464,7 +1464,7 @@ rpc_docs = {
   },
   "/chains/{}/blocks/{}/context/delegates/{}/frozen_deposits": {
     "GET": {
-      "descr": "Returns the initial amount (that is, at the beginning of a cycle) of the frozen deposits (in mutez). This amount is the same as the current amount of the frozen deposits, unless the delegate has been punished.",
+      "descr": "Returns the initial amount (that is, at the beginning of a cycle) of the frozen deposits (in mumav). This amount is the same as the current amount of the frozen deposits, unless the delegate has been punished.",
       "args": [],
       "ret": "Object"
     }
@@ -1478,7 +1478,7 @@ rpc_docs = {
   },
   "/chains/{}/blocks/{}/context/delegates/{}/full_balance": {
     "GET": {
-      "descr": "Returns the full balance (in mutez) of a given delegate, including the frozen deposits and the frozen bonds. It does not include its delegated balance.",
+      "descr": "Returns the full balance (in mumav) of a given delegate, including the frozen deposits and the frozen bonds. It does not include its delegated balance.",
       "args": [],
       "ret": "Object"
     }
@@ -1499,7 +1499,7 @@ rpc_docs = {
   },
   "/chains/{}/blocks/{}/context/delegates/{}/staking_balance": {
     "GET": {
-      "descr": "Returns the total amount of tokens (in mutez) delegated to a given delegate. This includes the balances of all the contracts that delegate to it, but also the balance of the delegate itself, its frozen deposits, and its frozen bonds.",
+      "descr": "Returns the total amount of tokens (in mumav) delegated to a given delegate. This includes the balances of all the contracts that delegate to it, but also the balance of the delegate itself, its frozen deposits, and its frozen bonds.",
       "args": [],
       "ret": "Object"
     }

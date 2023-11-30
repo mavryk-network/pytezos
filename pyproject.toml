@@ -4,7 +4,6 @@ version = "3.10.3"
 description = "Python toolkit for Mavryk"
 license = "MIT"
 authors = [
-    "Tristan Allaire <tristan@mavryk.io>",
     "Michael Zaikin <mz@baking-bad.org>",
     "Lev Gorodetskii <pytezos@drsr.io>",
     "Arthur Breitman",
