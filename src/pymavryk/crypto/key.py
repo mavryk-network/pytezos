@@ -21,7 +21,7 @@ from pymavryk.jupyter import get_class_docstring
 
 VALID_MNEMONIC_LENGTHS = [12, 15, 18, 21, 24]
 DEFAULT_LANGUAGE = 'english'
-DEFAULT_MAVRYK_DIR = '~/.mavryk-client'
+DEFAULT_TEZOS_DIR = '~/.tezos-client'
 
 PassphraseInput = Optional[Union[str, bytes]]
 
@@ -330,13 +330,13 @@ class Key(metaclass=InlineDocstring):
         cls,
         alias: str,
         passphrase: PassphraseInput = None,
-        mavryk_client_dir: str = DEFAULT_MAVRYK_DIR,
+        mavryk_client_dir: str = DEFAULT_TEZOS_DIR,
     ) -> 'Key':
         """Import secret key from octez-client keychain.
 
         :param alias: key alias
         :param passphrase: if key is encrypted (optional)
-        :param mavryk_client_dir: path to the octez client directory (default is `~/.mavryk-client`)
+        :param mavryk_client_dir: path to the octez client directory (default is `~/.tezos-client`)
         :rtype: Key
         """
         path = expanduser(join(mavryk_client_dir, 'secret_keys'))
