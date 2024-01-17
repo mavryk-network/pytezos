@@ -79,6 +79,6 @@ googleanalytics_id = 'UA-160856677-2'
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = True
 
-html_baseurl = 'https://pytezos.org/'
+html_baseurl = 'https://pymavryk.mavryk.org/'
 html_extra_path = ['robots.txt']
 html_favicon = 'favicon.ico'

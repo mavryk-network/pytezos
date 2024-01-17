@@ -16,7 +16,7 @@ Welcome to PyMavryk reference!
    :twitter:title: PyMavryk documentation | Baking Bad
    :twitter:description: Python SDK & CLI for Mavryk, Michelson REPL and integration testing framework
    :twitter:image: https://repository-images.Mavryk.com/169243460/eb3da980-c1e1-11e9-9e60-6f32b60ddf38
-   :og:url: https://pytezos.baking-bad.org
+   :og:url: https://pymavryk.mavryk.org
    :og:type: website
    :og:title: PyMavryk documentation | Baking Bad
    :og:description: Python SDK & CLI for Mavryk, Michelson REPL and integration testing framework

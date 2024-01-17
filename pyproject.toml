@@ -16,7 +16,7 @@ maintainers = [
 ]
 readme = "README.md"
 repository = "https://github.com/mavryk-network/pymavryk"
-homepage = "https://pytezos.org"
+homepage = "https://pymavryk.mavryk.org"
 keywords = ['mavryk', 'blockchain', 'sdk', 'michelson', 'repl', 'cryptocurrencies', 'smart-contracts', 'jupyter', 'ipython', 'docker', 'crypto']
 classifiers = [
     "Development Status :: 5 - Production/Stable",

@@ -1,8 +1,8 @@
 # PyMavryk
 
 [![PyPI version](https://badge.fury.io/py/pytezos.svg?)](https://badge.fury.io/py/pytezos)
-[![Tests](https://github.com/baking-bad/pytezos/workflows/Tests/badge.svg?)](https://github.com/baking-bad/pytezos/actions?query=workflow%3ATests)
-[![Docker images](https://github.com/baking-bad/pytezos/workflows/Dockerhub/badge.svg?)](https://hub.docker.com/r/bakingbad/pytezos)
+[![Tests](https://github.com/mavryk-network/pymavryk/workflows/Tests/badge.svg?)](https://github.com/mavryk-network/pymavryk/actions?query=workflow%3ATests)
+[![Docker images](https://github.com/mavryk-network/pymavryk/workflows/Dockerhub/badge.svg?)](https://hub.docker.com/r/mavrykdynamics/pymavryk)
 [![Made With](https://img.shields.io/badge/made%20with-python-blue.svg?)](ttps://www.python.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/baking-bad/pytezos/master?filepath=michelson_quickstart.ipynb)
@@ -125,11 +125,11 @@ $ make
 ```
 
 ## Quick start
-Read [quick start guide](https://pytezos.org/quick_start.html)  
+Read [quick start guide](https://pymavryk.mavryk.org/quick_start.html)  
 Learn how to [enable Jupyter with Michelson](./src/michelson_kernel/README.md)
 
 ## API reference
-Check out a complete [API reference](https://pytezos.org/contents.html)
+Check out a complete [API reference](https://pymavryk.mavryk.org/contents.html)
 
 ### Inline documentation
 If you are working in Jupyter/Google Colab or any other interactive console, 

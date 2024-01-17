@@ -27,7 +27,7 @@ pyenv local 3.7.0   # per folder
 pyenv global 3.7.9  # per system
 ```
 
-2. Ensure you have several crypto libraries installed (see [pymavryk docs](https://baking-bad.github.io/pytezos/#requirements)):
+2. Ensure you have several crypto libraries installed (see [pymavryk docs](https://pymavryk.mavryk.org/#requirements)):
 ```
 sudo apt install libsodium-dev libsecp256k1-dev libgmp-dev
 ```
