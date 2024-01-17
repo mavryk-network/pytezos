@@ -100,7 +100,7 @@ class PyMavrykClient(ContextMixin, ContentMixin):
     def balance(self) -> Decimal:
         """Get account balance.
 
-        :return: amount in tez
+        :return: amount in mav
         """
         balance_str = self.account()['balance']
         return (Decimal(balance_str) / 10**6).quantize(Decimal('0.000001'))

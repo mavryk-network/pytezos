@@ -26,8 +26,8 @@ class MichelsonError(RpcError, error_id='michelson_v1'):
     """Catch all michelson_v1 errors"""
 
 
-class TezArithmeticError(RpcError, error_id='tez'):
-    """Catch all tez errors"""
+class TezArithmeticError(RpcError, error_id='mav'):
+    """Catch all mav errors"""
 
 
 class MichelsonScriptRejected(RpcError, error_id='script_rejected'):

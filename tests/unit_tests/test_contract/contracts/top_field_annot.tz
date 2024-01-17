@@ -11,7 +11,7 @@ code { CAST (pair nat (pair (pair nat nat) (pair (list address) (map nat address
        EQ ;
        IF
          {}
-         { PUSH string "WrongCondition: sp.mul(params, sp.tez(1)) == sp.amount" ;
+         { PUSH string "WrongCondition: sp.mul(params, sp.mav(1)) == sp.amount" ;
            FAILWITH } ;
        PUSH mumav 0 ;
        SWAP ;

@@ -655,7 +655,7 @@ class OpcodesTestCase(TestCase):
             # Get the current level of the block
             # Test the produced variable annotation
             ('level.tz', '111', 'Unit', '1'),
-            # Test addition and subtraction on tez
+            # Test addition and subtraction on mav
             (
                 'tez_add_sub.tz',
                 'None',

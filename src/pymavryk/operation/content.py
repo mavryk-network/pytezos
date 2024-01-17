@@ -11,7 +11,7 @@ from pymavryk.jupyter import inline_doc
 def format_mumav(value: Optional[Union[int, Decimal]]) -> str:
     """Format amount in mumav (10^-6).
 
-    :param value: can be None (==0), Decimal (treated as tez), int (treated as mumav)
+    :param value: can be None (==0), Decimal (treated as mav), int (treated as mumav)
     :returns: amount in mumav, stringified
     """
     if value is None:
@@ -24,13 +24,13 @@ def format_mumav(value: Optional[Union[int, Decimal]]) -> str:
 
 
 def format_tez(value: Optional[Union[int, Decimal]]) -> Decimal:
-    """Format amount in tez.
+    """Format amount in mav.
 
-    :param value: can be None (==0), Decimal (treated as tez), int (treated as mumav)
+    :param value: can be None (==0), Decimal (treated as mav), int (treated as mumav)
     :rtype: Decimal
     """
-    tez = Decimal(format_mumav(value)) / 10**6
-    return tez.quantize(Decimal('0.000001'))
+    mav = Decimal(format_mumav(value)) / 10**6
+    return mav.quantize(Decimal('0.000001'))
 
 
 class ContentMixin:
@@ -240,13 +240,13 @@ class ContentMixin:
         gas_limit=0,
         storage_limit=0,
     ):
-        """Transfer tez to a given address (implicit or originated).
+        """Transfer mav to a given address (implicit or originated).
 
         If the receiver is a smart contract, then optional parameters may be passed.
 
         :param source: Address from which funds will be sent, leave None to use signatory address
         :param destination: Address
-        :param amount: Amount to send in microtez (int) or tez (Decimal) (optional)
+        :param amount: Amount to send in microtez (int) or mav (Decimal) (optional)
         :param counter: Current account counter, leave None for autocomplete
         :param parameters: { "entrypoint": $string, "value": $Micheline expression } (optional)
         :param fee: Leave None for autocomplete

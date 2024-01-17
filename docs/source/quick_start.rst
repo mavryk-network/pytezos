@@ -139,7 +139,7 @@ Generate keys
     <pymavryk.crypto.key.Key object at 0x7f958bd3b7f0>
 
     Public key hash
-    tz1N7bRGGxE6pGXS92apoybheJxNKe1jU8FB
+    mv1MGgJxyRyNK8vAiE6oCdazu3yZobxuZYNo
 
     Helpers
     .blinded_public_key_hash()
@@ -166,7 +166,7 @@ Set key as default
     <pymavryk.client.PyMavrykClient object at 0x7f958b64f190>
 
     Properties
-    .key		tz1QeVeCHFMBd3fRj5aPxwqcAaqUDiARjwJp
+    .key		mv1Ue5qMgJFNFKkjF9x7z867ciE8imnKX8V3
     .shell		['https://rpc.tzkt.io/ghostnet']
     .block_id	head
 
@@ -204,7 +204,7 @@ Top up account
 ^^^^^^^^^^^^^^
 
 Go to the `https://faucet.ghostnet.teztnets.xyz/ <https://faucet.ghostnet.teztnets.xyz/>` and paste your public key hash key file to the "Wallet address" field.  
-Press "Request 2001 tez" and wait for transaction to be completed.  
+Press "Request 2001 mav" and wait for transaction to be completed.  
 
 Check that your balance is non-zero:
 
@@ -228,7 +228,7 @@ Now, in order to start using this key we need to send the according public key t
    <pymavryk.operation.group.OperationGroup object at 0x7f95d73ff3d0>
 
     Properties
-    .key		tz1QeVeCHFMBd3fRj5aPxwqcAaqUDiARjwJp
+    .key		mv1Ue5qMgJFNFKkjF9x7z867ciE8imnKX8V3
     .shell		['https://rpc.tzkt.io/ghostnet']
     .block_id	head
 
@@ -242,7 +242,7 @@ Now, in order to start using this key we need to send the according public key t
                 'gas_limit': '1000',
                 'kind': 'reveal',
                 'public_key': 'edpkvHehVYEFJss7VxieJydkdbAwbSNqV9hN4SHo2P6WtsceZ24eaj',
-                'source': 'tz1QeVeCHFMBd3fRj5aPxwqcAaqUDiARjwJp',
+                'source': 'mv1Ue5qMgJFNFKkjF9x7z867ciE8imnKX8V3',
                 'storage_limit': '0'}],
     'protocol': 'PtLimaPtLMwfNinJi9rCfDPWea8dFgTZ1MeJ9f1m2SRic6ayiwW',
     'signature': 'sigPcdMpWx48qsCyotSaHg3RYskNq6RWD2cJT2Nno53yUiJBpTAkGNuMnPvNc17iDqM994TNqckGm85Dxv3C6smKaKYnf7xp'}
@@ -289,14 +289,14 @@ We can also search for operation by hash if we know exact block level or that it
     'hash': 'oo6e7UjGkvoqXG49VRNuN5cEAjo5TqyiRJtVhTvXETbYDDahDNR',
     'branch': 'BLvDnmxUXwLMB3UyREj8ckLDdSBgzajyxZJfmoCrifZXhaRaHAL',
     'contents': [{'kind': 'reveal',
-    'source': 'tz1QeVeCHFMBd3fRj5aPxwqcAaqUDiARjwJp',
+    'source': 'mv1Ue5qMgJFNFKkjF9x7z867ciE8imnKX8V3',
     'fee': '370',
     'counter': '15404829',
     'gas_limit': '1000',
     'storage_limit': '0',
     'public_key': 'edpkvHehVYEFJss7VxieJydkdbAwbSNqV9hN4SHo2P6WtsceZ24eaj',
     'metadata': {'balance_updates': [{'kind': 'contract',
-        'contract': 'tz1QeVeCHFMBd3fRj5aPxwqcAaqUDiARjwJp',
+        'contract': 'mv1Ue5qMgJFNFKkjF9x7z867ciE8imnKX8V3',
         'change': '-370',
         'origin': 'block'},
         {'kind': 'accumulator',
@@ -333,7 +333,7 @@ Let's attach shell and key to the contract interface and see the default storage
 
     >>> ci = contract.using(key=key)
     ... ci.storage.dummy()
-    {'manager': 'tz1QeVeCHFMBd3fRj5aPxwqcAaqUDiARjwJp', 'tickets': {}}
+    {'manager': 'mv1Ue5qMgJFNFKkjF9x7z867ciE8imnKX8V3', 'tickets': {}}
 
 Perfect! Now we are ready to deploy the contract:
 
@@ -392,7 +392,7 @@ We have our contracts deployed and ready to be invoked, let's see the list of en
     <pymavryk.contract.entrypoint.ContractEntrypoint object at 0x7f95d57f54c0>
 
     Properties
-    .key		tz1QeVeCHFMBd3fRj5aPxwqcAaqUDiARjwJp
+    .key		mv1Ue5qMgJFNFKkjF9x7z867ciE8imnKX8V3
     .shell		['https://rpc.tzkt.io/ghostnet']
     .address	KT1Si4t6ETLoj6eEsjp8hvfJeiFe3b6Z7eM5
     .block_id	head
@@ -440,7 +440,7 @@ And for the wallet:
     <pymavryk.contract.entrypoint.ContractEntrypoint object at 0x7f95d57f5fd0>
 
     Properties
-    .key		tz1QeVeCHFMBd3fRj5aPxwqcAaqUDiARjwJp
+    .key		mv1Ue5qMgJFNFKkjF9x7z867ciE8imnKX8V3
     .shell		['https://rpc.tzkt.io/ghostnet']
     .address	KT1S4UmLNwVcmLBE9VgHKpJJWpKE1JE8VjwN
     .block_id	head
@@ -510,7 +510,7 @@ as it has BigMap entries, named entrypoints, and a non-trivial data scheme.
     <pymavryk.jupyter.ContractInterface object at 0x7fc17689f2b0>
 
     Properties
-    .key  # tz1Ne4yzDRQPd5HFz6sTaCYCNHwFubT2MWsB
+    .key  # mv1LDPE2n2mZXbQt3MwR5ZbQU432eag71grX
     .shell  # https://mainnet-tezos.giganode.io/ (mainnet)
     .address  # KT1REEb5VxWRjcHm5GzDMwErMmNFftsE5Gpf
     .block_id  # head
@@ -561,15 +561,15 @@ You can access contract storage at any block level, just pass block id into the 
     {'default_expiry': 300000,
      'ledger': -1,
      'metadata': -2,
-     'minting_allowances': {'tz1PNsHbJRejCnnYzbsQ1CR8wUdEQqVjWen1': 999989000000,
-      'tz1i2tE6hic2ASe9Kvy85ar5hGSSc58bYejT': 999985800000},
+     'minting_allowances': {'mv1N913itbcFVECQPzKLzXfgN8jgZ6MaEPwE': 999989000000,
+      'mv19bzdiWWzVhwLHCCbPjeyLjiUMgdKAxsbF': 999985800000},
      'operators': -3,
      'paused': False,
      'permit_counter': 0,
      'permits': -4,
-     'roles': {'master_minter': 'tz1i2tE6hic2ASe9Kvy85ar5hGSSc58bYejT',
-      'owner': 'tz1i2tE6hic2ASe9Kvy85ar5hGSSc58bYejT',
-      'pauser': 'tz1i2tE6hic2ASe9Kvy85ar5hGSSc58bYejT',
+     'roles': {'master_minter': 'mv19bzdiWWzVhwLHCCbPjeyLjiUMgdKAxsbF',
+      'owner': 'mv19bzdiWWzVhwLHCCbPjeyLjiUMgdKAxsbF',
+      'pauser': 'mv19bzdiWWzVhwLHCCbPjeyLjiUMgdKAxsbF',
       'pending_owner': None},
      'total_supply': 20200000,
      'transferlist_contract': None}
@@ -585,7 +585,7 @@ In order to see type definition, just remove the trailing brackets:
     <pymavryk.contract.data.ContractData object at 0x7f21aaeaca30>
 
     Properties
-    .key  # tz1Ne4yzDRQPd5HFz6sTaCYCNHwFubT2MWsB
+    .key  # mv1LDPE2n2mZXbQt3MwR5ZbQU432eag71grX
     .shell  # https://mainnet-tezos.giganode.io/ (mainnet)
     .address  # KT1REEb5VxWRjcHm5GzDMwErMmNFftsE5Gpf
     .block_id  # head
@@ -622,7 +622,7 @@ The approach described in the previous section also works for lazy storage, here
 
 .. code-block:: python
 
-   >>> usds.storage['ledger']['tz1PNsHbJRejCnnYzbsQ1CR8wUdEQqVjWen1']()
+   >>> usds.storage['ledger']['mv1N913itbcFVECQPzKLzXfgN8jgZ6MaEPwE']()
    11000000
 
 Pretty cool, hah?
@@ -639,7 +639,7 @@ We can do the same using special entrypoint ``balance_of``. Let's give a look at
     <pymavryk.contract.entrypoint.ContractEntrypoint object at 0x7f4789170dc0>
 
     Properties
-    .key  # tz1Ne4yzDRQPd5HFz6sTaCYCNHwFubT2MWsB
+    .key  # mv1LDPE2n2mZXbQt3MwR5ZbQU432eag71grX
     .shell  # https://mainnet-tezos.giganode.io/ (mainnet)
     .address  # KT1REEb5VxWRjcHm5GzDMwErMmNFftsE5Gpf
     .block_id  # head
@@ -682,17 +682,17 @@ PyMavryk allows you to keep that address empty and get the view result:
 .. code-block:: python
 
    >>> usds.balance_of(requests=[
-   ...   {'owner': 'tz1PNsHbJRejCnnYzbsQ1CR8wUdEQqVjWen1', 'token_id': 0},
-   ...   {'owner': 'tz1i2tE6hic2ASe9Kvy85ar5hGSSc58bYejT', 'token_id': 0},
-   ...   {'owner': 'tz2QegZQXyz8b74iTdaqKsGRF7YQb88Wu9CS', 'token_id': 0}
+   ...   {'owner': 'mv1N913itbcFVECQPzKLzXfgN8jgZ6MaEPwE', 'token_id': 0},
+   ...   {'owner': 'mv19bzdiWWzVhwLHCCbPjeyLjiUMgdKAxsbF', 'token_id': 0},
+   ...   {'owner': 'mv2e9VsSX7VxigA4Z9eqMiEtQZdvnS7Go4j4', 'token_id': 0}
    ...], callback=None).view()
-   [{'owner': 'tz1PNsHbJRejCnnYzbsQ1CR8wUdEQqVjWen1',
+   [{'owner': 'mv1N913itbcFVECQPzKLzXfgN8jgZ6MaEPwE',
      'token_id': 0,
      'nat_2': 11000000},
-    {'owner': 'tz1i2tE6hic2ASe9Kvy85ar5hGSSc58bYejT',
+    {'owner': 'mv19bzdiWWzVhwLHCCbPjeyLjiUMgdKAxsbF',
      'token_id': 0,
      'nat_2': 8200000},
-    {'owner': 'tz2QegZQXyz8b74iTdaqKsGRF7YQb88Wu9CS', 'token_id': 0, 'nat_2': 0}]
+    {'owner': 'mv2e9VsSX7VxigA4Z9eqMiEtQZdvnS7Go4j4', 'token_id': 0, 'nat_2': 0}]
 
 Get Contract Balance
 --------------------

@@ -108,7 +108,7 @@ class OperationGroup(ContextMixin, ContentMixin):
         ttl: Optional[int] = None,
         gas_limit: Optional[int] = None,
         storage_limit: Optional[int] = None,
-        minimal_nanotez_per_gas_unit: Optional[int] = None,
+        minimal_nanomav_per_gas_unit: Optional[int] = None,
         **kwargs,
     ) -> 'OperationGroup':
         """Try to fill all fields left unfilled, use approximate fees
@@ -119,7 +119,7 @@ class OperationGroup(ContextMixin, ContentMixin):
             -1 for MAX (if you have a private network and issues with block RPC queries)
         :param gas_limit: Override gas_limit value (for manual handling)
         :param storage_limit: Override storage_limit value (for manual handling)
-        :param minimal_nanotez_per_gas_unit: Override minimal_nanotez_per_gas_unit constant (for manual handling)
+        :param minimal_nanomav_per_gas_unit: Override minimal_nanomav_per_gas_unit constant (for manual handling)
         :rtype: OperationGroup
         """
         if kwargs.get('branch_offset') is not None:
@@ -172,7 +172,7 @@ class OperationGroup(ContextMixin, ContentMixin):
                     storage_limit if storage_limit is not None else default_storage_limit(x, constants),
                 )
             ),
-            'fee': lambda i, x: str(default_fee(x, gas_limit, minimal_nanotez_per_gas_unit) if i == 0 else 0),
+            'fee': lambda i, x: str(default_fee(x, gas_limit, minimal_nanomav_per_gas_unit) if i == 0 else 0),
         }
 
         def fill_content(idx, content):
@@ -385,7 +385,7 @@ class OperationGroup(ContextMixin, ContentMixin):
         counter: int,
         gas_limit: int,
         storage_limit: int,
-        minimal_nanotez_per_gas_unit: Optional[int] = None,
+        minimal_nanomav_per_gas_unit: Optional[int] = None,
     ) -> 'OperationGroup':
         """
         Send operation without simulation or pre-validation
@@ -394,7 +394,7 @@ class OperationGroup(ContextMixin, ContentMixin):
         :param counter: Set counter value
         :param gas_limit: Set gas_limit value
         :param storage_limit: Set storage_limit value
-        :param minimal_nanotez_per_gas_unit: Override minimal_nanotez_per_gas_unit constant
+        :param minimal_nanomav_per_gas_unit: Override minimal_nanomav_per_gas_unit constant
         :rtype: OperationGroup
         """
         opg = self.fill(
@@ -402,7 +402,7 @@ class OperationGroup(ContextMixin, ContentMixin):
             ttl=ttl,
             gas_limit=gas_limit,
             storage_limit=storage_limit,
-            minimal_nanotez_per_gas_unit=minimal_nanotez_per_gas_unit,
+            minimal_nanomav_per_gas_unit=minimal_nanomav_per_gas_unit,
         ).sign()
         res = opg.inject(prevalidate=False)
         return opg._spawn(opg_hash=res['hash'])

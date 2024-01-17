@@ -206,7 +206,7 @@ class ExecutionContext(AbstractContext):
 
     def spend_balance(self, amount: int):
         balance = self.get_balance()
-        assert amount <= balance, f'cannot spend {amount} tez, {balance} tez left'
+        assert amount <= balance, f'cannot spend {amount} mav, {balance} mav left'
         self.balance_update -= amount
 
     def get_parameter_expr(self, address=None) -> Optional[dict]:

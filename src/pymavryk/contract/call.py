@@ -48,7 +48,7 @@ class ContractCall(ContextMixin):
     def with_amount(self, amount: Union[int, Decimal]) -> 'ContractCall':
         """Set amount of funds to send with transaction to the contract.
 
-        :param amount: amount in microtez (int) or tez (Decimal)
+        :param amount: amount in microtez (int) or mav (Decimal)
         :rtype: ContractCall
         """
         return ContractCall(
@@ -99,7 +99,7 @@ class ContractCall(ContextMixin):
         counter: int,
         gas_limit: int,
         storage_limit: int,
-        minimal_nanotez_per_gas_unit: Optional[int] = None,
+        minimal_nanomav_per_gas_unit: Optional[int] = None,
     ) -> 'OperationGroup':
         """
         Send operation without simulation or pre-validation
@@ -108,7 +108,7 @@ class ContractCall(ContextMixin):
         :param counter: Set counter value
         :param gas_limit: Set gas_limit value
         :param storage_limit: Set storage_limit value
-        :param minimal_nanotez_per_gas_unit: Override minimal_nanotez_per_gas_unit constant
+        :param minimal_nanomav_per_gas_unit: Override minimal_nanomav_per_gas_unit constant
         :rtype: OperationGroup
         """
         return self.as_transaction().send_async(
@@ -116,7 +116,7 @@ class ContractCall(ContextMixin):
             counter=counter,
             gas_limit=gas_limit,
             storage_limit=storage_limit,
-            minimal_nanotez_per_gas_unit=minimal_nanotez_per_gas_unit,
+            minimal_nanomav_per_gas_unit=minimal_nanomav_per_gas_unit,
         )
 
     @deprecated(deprecated_in='3.2.2', removed_in='4.0.0', details='use `send()` instead')

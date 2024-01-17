@@ -292,8 +292,8 @@ class MempoolQuery(RpcQuery, path='/chains/{}/mempool'):
     def post(self, configuration):
         """Set operation filter rules.
 
-        :param configuration: a JSON dictionary, known keys are `minimal_fees`, `minimal_nanotez_per_gas_unit`,
-            `minimal_nanotez_per_byte`
+        :param configuration: a JSON dictionary, known keys are `minimal_fees`, `minimal_nanomav_per_gas_unit`,
+            `minimal_nanomav_per_byte`
         """
         return self._post(json=configuration)
 

@@ -43,7 +43,7 @@ class MacrosTestCase(TestCase):
                 '{ -10 ; -1 ; -20 ; -100 }',
                 '(Some -1)',
             ),
-            # Test comparisons on tez { EQ ; GT ; LT ; GE ; LE }
+            # Test comparisons on mav { EQ ; GT ; LT ; GE ; LE }
             (
                 'compare.tz',
                 '{}',
