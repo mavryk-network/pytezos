@@ -3,7 +3,7 @@ RPC query engine
 
 Shell-level endpoints
 +++++++++++++++++++++++
-.. automodule:: pytezos.rpc.shell
+.. automodule:: pymavryk.rpc.shell
     :members:
     :undoc-members:
     :inherited-members:
@@ -11,7 +11,7 @@ Shell-level endpoints
 
 Protocol-specific endpoints
 +++++++++++++++++++++++++++++
-.. automodule:: pytezos.rpc.protocol
+.. automodule:: pymavryk.rpc.protocol
     :members:
     :undoc-members:
     :inherited-members:
@@ -19,7 +19,7 @@ Protocol-specific endpoints
 
 RPC Helpers
 +++++++++++++
-.. automodule:: pytezos.rpc.helpers
+.. automodule:: pymavryk.rpc.helpers
     :members:
     :undoc-members:
     :inherited-members:
@@ -27,7 +27,7 @@ RPC Helpers
 
 Interval search
 +++++++++++++++++
-.. automodule:: pytezos.rpc.search
+.. automodule:: pymavryk.rpc.search
     :members:
     :undoc-members:
     :inherited-members:
@@ -35,10 +35,10 @@ Interval search
 
 Node wrapper and errors
 +++++++++++++++++++++++++
-.. automodule:: pytezos.rpc.node
+.. automodule:: pymavryk.rpc.node
     :members:
     :undoc-members:
     :inherited-members:
 
-.. automodule:: pytezos.rpc.errors
+.. automodule:: pymavryk.rpc.errors
     :members:

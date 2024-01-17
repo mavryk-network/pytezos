@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytezos.contract.data &mdash; PyTezos  documentation</title>
+  <title>pymavryk.contract.data &mdash; PyMavryk  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
-    <link rel="canonical" href="https://pytezos.org/_modules/pytezos/contract/data.html" />
+    <link rel="canonical" href="https://pymavryk.mavryk.org/_modules/pymavryk/contract/data.html" />
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -30,7 +30,7 @@
           
           
           <a href="../../../contents.html" class="icon icon-home">
-            PyTezos
+            PyMavryk
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -44,7 +44,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../quick_start.html">Quick start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../integration_tests.html">Michelson integration tests</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../pytezos_cli.html">PyTezos CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pymavryk_cli.html">PyMavryk CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../high_level.html">High-level interfaces</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../crypto.html">Cryptography</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../operation_groups.html">Building and parsing operations</a></li>
@@ -63,7 +63,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../contents.html">PyTezos</a>
+          <a href="../../../contents.html">PyMavryk</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -72,7 +72,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../contents.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">pytezos.contract.data</li>
+      <li class="breadcrumb-item active">pymavryk.contract.data</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -81,22 +81,22 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for pytezos.contract.data</h1><div class="highlight"><pre>
+  <h1>Source code for pymavryk.contract.data</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
 
 <span class="kn">from</span> <span class="nn">deprecation</span> <span class="kn">import</span> <span class="n">deprecated</span>  <span class="c1"># type: ignore</span>
 
-<span class="kn">from</span> <span class="nn">pytezos.context.impl</span> <span class="kn">import</span> <span class="n">ExecutionContext</span>
-<span class="kn">from</span> <span class="nn">pytezos.context.mixin</span> <span class="kn">import</span> <span class="n">ContextMixin</span>
-<span class="kn">from</span> <span class="nn">pytezos.jupyter</span> <span class="kn">import</span> <span class="n">get_class_docstring</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.format</span> <span class="kn">import</span> <span class="n">micheline_to_michelson</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.parse</span> <span class="kn">import</span> <span class="n">michelson_to_micheline</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.types.base</span> <span class="kn">import</span> <span class="n">MichelsonType</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.types.base</span> <span class="kn">import</span> <span class="n">generate_pydoc</span>
+<span class="kn">from</span> <span class="nn">pymavryk.context.impl</span> <span class="kn">import</span> <span class="n">ExecutionContext</span>
+<span class="kn">from</span> <span class="nn">pymavryk.context.mixin</span> <span class="kn">import</span> <span class="n">ContextMixin</span>
+<span class="kn">from</span> <span class="nn">pymavryk.jupyter</span> <span class="kn">import</span> <span class="n">get_class_docstring</span>
+<span class="kn">from</span> <span class="nn">pymavryk.michelson.format</span> <span class="kn">import</span> <span class="n">micheline_to_michelson</span>
+<span class="kn">from</span> <span class="nn">pymavryk.michelson.parse</span> <span class="kn">import</span> <span class="n">michelson_to_micheline</span>
+<span class="kn">from</span> <span class="nn">pymavryk.michelson.types.base</span> <span class="kn">import</span> <span class="n">MichelsonType</span>
+<span class="kn">from</span> <span class="nn">pymavryk.michelson.types.base</span> <span class="kn">import</span> <span class="n">generate_pydoc</span>
 
 
-<div class="viewcode-block" id="ContractData"><a class="viewcode-back" href="../../../high_level.html#pytezos.contract.data.ContractData">[docs]</a><span class="k">class</span> <span class="nc">ContractData</span><span class="p">(</span><span class="n">ContextMixin</span><span class="p">):</span>
+<div class="viewcode-block" id="ContractData"><a class="viewcode-back" href="../../../high_level.html#pymavryk.contract.data.ContractData">[docs]</a><span class="k">class</span> <span class="nc">ContractData</span><span class="p">(</span><span class="n">ContextMixin</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">ExecutionContext</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">MichelsonType</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">context</span><span class="o">=</span><span class="n">context</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
@@ -126,28 +126,28 @@
             <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ContractData</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="ContractData.__call__"><a class="viewcode-back" href="../../../high_level.html#pytezos.contract.data.ContractData.__call__">[docs]</a>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">try_unpack</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="ContractData.__call__"><a class="viewcode-back" href="../../../high_level.html#pymavryk.contract.data.ContractData.__call__">[docs]</a>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">try_unpack</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get Michelson value as a Python object</span>
 
 <span class="sd">        :param try_unpack: try to unpack utf8-encoded strings or PACKed Michelson expressions</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">to_python_object</span><span class="p">(</span><span class="n">try_unpack</span><span class="o">=</span><span class="n">try_unpack</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ContractData.to_micheline"><a class="viewcode-back" href="../../../high_level.html#pytezos.contract.data.ContractData.to_micheline">[docs]</a>    <span class="k">def</span> <span class="nf">to_micheline</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">optimized</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="ContractData.to_micheline"><a class="viewcode-back" href="../../../high_level.html#pymavryk.contract.data.ContractData.to_micheline">[docs]</a>    <span class="k">def</span> <span class="nf">to_micheline</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">optimized</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get as Micheline JSON expression</span>
 
 <span class="sd">        :param optimized: use optimized data form for some domain types (timestamp, address, etc.)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">to_micheline_value</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;optimized&#39;</span> <span class="k">if</span> <span class="n">optimized</span> <span class="k">else</span> <span class="s1">&#39;readable&#39;</span><span class="p">,</span> <span class="n">lazy_diff</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ContractData.to_michelson"><a class="viewcode-back" href="../../../high_level.html#pytezos.contract.data.ContractData.to_michelson">[docs]</a>    <span class="k">def</span> <span class="nf">to_michelson</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">optimized</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="ContractData.to_michelson"><a class="viewcode-back" href="../../../high_level.html#pymavryk.contract.data.ContractData.to_michelson">[docs]</a>    <span class="k">def</span> <span class="nf">to_michelson</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">optimized</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get as Michelson value</span>
 
 <span class="sd">        :param optimized: use optimized data form for some domain types (timestamp, address, etc.)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">micheline_to_michelson</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_micheline</span><span class="p">(</span><span class="n">optimized</span><span class="o">=</span><span class="n">optimized</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="ContractData.decode"><a class="viewcode-back" href="../../../high_level.html#pytezos.contract.data.ContractData.decode">[docs]</a>    <span class="k">def</span> <span class="nf">decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<div class="viewcode-block" id="ContractData.decode"><a class="viewcode-back" href="../../../high_level.html#pymavryk.contract.data.ContractData.decode">[docs]</a>    <span class="k">def</span> <span class="nf">decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert from Michelson or Micheline to Python type system</span>
 
 <span class="sd">        :param value: Micheline JSON expression or Michelson value</span>
@@ -157,7 +157,7 @@
             <span class="n">value</span> <span class="o">=</span> <span class="n">michelson_to_micheline</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">from_micheline_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">to_python_object</span><span class="p">(</span><span class="n">lazy_diff</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ContractData.encode"><a class="viewcode-back" href="../../../high_level.html#pytezos.contract.data.ContractData.encode">[docs]</a>    <span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">py_obj</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="ContractData.encode"><a class="viewcode-back" href="../../../high_level.html#pymavryk.contract.data.ContractData.encode">[docs]</a>    <span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">py_obj</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert from Python to Micheline type system</span>
 
 <span class="sd">        :param py_obj: Python object</span>
@@ -170,14 +170,14 @@
             <span class="o">.</span><span class="n">to_micheline_value</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">mode</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span> <span class="n">lazy_diff</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="ContractData.dummy"><a class="viewcode-back" href="../../../high_level.html#pytezos.contract.data.ContractData.dummy">[docs]</a>    <span class="k">def</span> <span class="nf">dummy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ContractData.dummy"><a class="viewcode-back" href="../../../high_level.html#pymavryk.contract.data.ContractData.dummy">[docs]</a>    <span class="k">def</span> <span class="nf">dummy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Try to generate a dummy (empty) value</span>
 
 <span class="sd">        :return: Python object</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">dummy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="p">)</span><span class="o">.</span><span class="n">to_python_object</span><span class="p">(</span><span class="n">lazy_diff</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ContractData.default"><a class="viewcode-back" href="../../../high_level.html#pytezos.contract.data.ContractData.default">[docs]</a>    <span class="nd">@deprecated</span><span class="p">(</span><span class="n">deprecated_in</span><span class="o">=</span><span class="s1">&#39;3.0.0&#39;</span><span class="p">,</span> <span class="n">removed_in</span><span class="o">=</span><span class="s1">&#39;4.0.0&#39;</span><span class="p">)</span>
+<div class="viewcode-block" id="ContractData.default"><a class="viewcode-back" href="../../../high_level.html#pymavryk.contract.data.ContractData.default">[docs]</a>    <span class="nd">@deprecated</span><span class="p">(</span><span class="n">deprecated_in</span><span class="o">=</span><span class="s1">&#39;3.0.0&#39;</span><span class="p">,</span> <span class="n">removed_in</span><span class="o">=</span><span class="s1">&#39;4.0.0&#39;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">default</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dummy</span><span class="p">()</span></div></div>
 </pre></div>

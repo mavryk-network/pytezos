@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytezos.crypto.key &mdash; PyTezos  documentation</title>
+  <title>pymavryk.crypto.key &mdash; PyMavryk  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
-    <link rel="canonical" href="https://pytezos.org/_modules/pytezos/crypto/key.html" />
+    <link rel="canonical" href="https://pymavryk.mavryk.org/_modules/pymavryk/crypto/key.html" />
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -30,7 +30,7 @@
           
           
           <a href="../../../contents.html" class="icon icon-home">
-            PyTezos
+            PyMavryk
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -44,7 +44,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../quick_start.html">Quick start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../integration_tests.html">Michelson integration tests</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../pytezos_cli.html">PyTezos CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pymavryk_cli.html">PyMavryk CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../high_level.html">High-level interfaces</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../crypto.html">Cryptography</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../operation_groups.html">Building and parsing operations</a></li>
@@ -63,7 +63,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../contents.html">PyTezos</a>
+          <a href="../../../contents.html">PyMavryk</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -72,7 +72,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../contents.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">pytezos.crypto.key</li>
+      <li class="breadcrumb-item active">pymavryk.crypto.key</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -81,7 +81,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for pytezos.crypto.key</h1><div class="highlight"><pre>
+  <h1>Source code for pymavryk.crypto.key</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">binascii</span>
 <span class="kn">import</span> <span class="nn">hashlib</span>
 <span class="kn">import</span> <span class="nn">json</span>
@@ -97,11 +97,11 @@
 
 <span class="kn">from</span> <span class="nn">mnemonic</span> <span class="kn">import</span> <span class="n">Mnemonic</span>
 
-<span class="kn">from</span> <span class="nn">pytezos.crypto.encoding</span> <span class="kn">import</span> <span class="n">base58_decode</span>
-<span class="kn">from</span> <span class="nn">pytezos.crypto.encoding</span> <span class="kn">import</span> <span class="n">base58_encode</span>
-<span class="kn">from</span> <span class="nn">pytezos.crypto.encoding</span> <span class="kn">import</span> <span class="n">scrub_input</span>
-<span class="kn">from</span> <span class="nn">pytezos.jupyter</span> <span class="kn">import</span> <span class="n">InlineDocstring</span>
-<span class="kn">from</span> <span class="nn">pytezos.jupyter</span> <span class="kn">import</span> <span class="n">get_class_docstring</span>
+<span class="kn">from</span> <span class="nn">pymavryk.crypto.encoding</span> <span class="kn">import</span> <span class="n">base58_decode</span>
+<span class="kn">from</span> <span class="nn">pymavryk.crypto.encoding</span> <span class="kn">import</span> <span class="n">base58_encode</span>
+<span class="kn">from</span> <span class="nn">pymavryk.crypto.encoding</span> <span class="kn">import</span> <span class="n">scrub_input</span>
+<span class="kn">from</span> <span class="nn">pymavryk.jupyter</span> <span class="kn">import</span> <span class="n">InlineDocstring</span>
+<span class="kn">from</span> <span class="nn">pymavryk.jupyter</span> <span class="kn">import</span> <span class="n">get_class_docstring</span>
 
 <span class="n">VALID_MNEMONIC_LENGTHS</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">24</span><span class="p">]</span>
 <span class="n">DEFAULT_LANGUAGE</span> <span class="o">=</span> <span class="s1">&#39;english&#39;</span>
@@ -112,7 +112,7 @@
 
 <span class="k">def</span> <span class="nf">get_passphrase</span><span class="p">(</span><span class="n">passphrase</span><span class="p">:</span> <span class="n">PassphraseInput</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">alias</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">passphrase</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">passphrase</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;PYTEZOS_PASSPHRASE&#39;</span><span class="p">)</span>
+        <span class="n">passphrase</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;PYMAVRYK_PASSPHRASE&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">passphrase</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">passphrase</span> <span class="o">=</span> <span class="n">getpass</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Please enter passphrase</span><span class="si">{</span><span class="s2">&quot; for key `&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">alias</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;`&quot;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">alias</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="si">}</span><span class="s1">:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">passphrase</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -157,7 +157,7 @@
     <span class="k">return</span> <span class="n">__crypto__</span>
 
 
-<div class="viewcode-block" id="blake2b_32"><a class="viewcode-back" href="../../../crypto.html#pytezos.crypto.key.blake2b_32">[docs]</a><span class="k">def</span> <span class="nf">blake2b_32</span><span class="p">(</span><span class="n">v</span><span class="o">=</span><span class="sa">b</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="blake2b_32"><a class="viewcode-back" href="../../../crypto.html#pymavryk.crypto.key.blake2b_32">[docs]</a><span class="k">def</span> <span class="nf">blake2b_32</span><span class="p">(</span><span class="n">v</span><span class="o">=</span><span class="sa">b</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Get a BLAKE2B hash of bytes&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">blake2b</span><span class="p">(</span><span class="n">scrub_input</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="n">digest_size</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span></div>
 
@@ -182,8 +182,8 @@
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Mnemonic checksum verification failed&#39;</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="Key"><a class="viewcode-back" href="../../../crypto.html#pytezos.crypto.key.Key">[docs]</a><span class="k">class</span> <span class="nc">Key</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">InlineDocstring</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents a public or secret key for Tezos. Ed25519, Secp256k1 and P256</span>
+<div class="viewcode-block" id="Key"><a class="viewcode-back" href="../../../crypto.html#pymavryk.crypto.key.Key">[docs]</a><span class="k">class</span> <span class="nc">Key</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">InlineDocstring</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents a public or secret key for Mavryk. Ed25519, Secp256k1 and P256</span>
 <span class="sd">    are supported.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -213,7 +213,7 @@
     <span class="k">def</span> <span class="nf">is_secret</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">secret_exponent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="Key.from_secret_exponent"><a class="viewcode-back" href="../../../crypto.html#pytezos.crypto.key.Key.from_secret_exponent">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Key.from_secret_exponent"><a class="viewcode-back" href="../../../crypto.html#pymavryk.crypto.key.Key.from_secret_exponent">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_secret_exponent</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
         <span class="n">secret_exponent</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
@@ -246,7 +246,7 @@
 
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">public_point</span><span class="p">,</span> <span class="n">secret_exponent</span><span class="p">,</span> <span class="n">curve</span><span class="o">=</span><span class="n">curve</span><span class="p">,</span> <span class="n">activation_code</span><span class="o">=</span><span class="n">activation_code</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Key.from_public_point"><a class="viewcode-back" href="../../../crypto.html#pytezos.crypto.key.Key.from_public_point">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Key.from_public_point"><a class="viewcode-back" href="../../../crypto.html#pymavryk.crypto.key.Key.from_public_point">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_public_point</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
         <span class="n">public_point</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
@@ -259,7 +259,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">public_point</span><span class="p">,</span> <span class="n">curve</span><span class="o">=</span><span class="n">curve</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Key.from_encoded_key"><a class="viewcode-back" href="../../../crypto.html#pytezos.crypto.key.Key.from_encoded_key">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Key.from_encoded_key"><a class="viewcode-back" href="../../../crypto.html#pymavryk.crypto.key.Key.from_encoded_key">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_encoded_key</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
         <span class="n">key</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">],</span>
@@ -269,7 +269,7 @@
 
 <span class="sd">        :param key: a public or secret key in base58 encoding</span>
 <span class="sd">        :param passphrase: the passphrase used if the key provided is an encrypted private key,</span>
-<span class="sd">            if not set value from from PYTEZOS_PASSPHRASE env variable will be used or promted dynamically</span>
+<span class="sd">            if not set value from from PYMAVRYK_PASSPHRASE env variable will be used or promted dynamically</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">encoded_key</span> <span class="o">=</span> <span class="n">scrub_input</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
 
@@ -309,7 +309,7 @@
 
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_secret_exponent</span><span class="p">(</span><span class="n">encoded_key</span><span class="p">,</span> <span class="n">curve</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Key.generate"><a class="viewcode-back" href="../../../crypto.html#pytezos.crypto.key.Key.generate">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Key.generate"><a class="viewcode-back" href="../../../crypto.html#pymavryk.crypto.key.Key.generate">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
         <span class="n">passphrase</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
@@ -342,7 +342,7 @@
 
         <span class="k">return</span> <span class="n">key</span></div>
 
-<div class="viewcode-block" id="Key.from_mnemonic"><a class="viewcode-back" href="../../../crypto.html#pytezos.crypto.key.Key.from_mnemonic">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Key.from_mnemonic"><a class="viewcode-back" href="../../../crypto.html#pymavryk.crypto.key.Key.from_mnemonic">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_mnemonic</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
         <span class="n">mnemonic</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">str</span><span class="p">],</span>
@@ -383,7 +383,7 @@
 
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_secret_exponent</span><span class="p">(</span><span class="n">secret_exponent</span><span class="p">,</span> <span class="n">curve</span><span class="o">=</span><span class="n">curve</span><span class="p">,</span> <span class="n">activation_code</span><span class="o">=</span><span class="n">activation_code</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Key.from_faucet"><a class="viewcode-back" href="../../../crypto.html#pytezos.crypto.key.Key.from_faucet">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Key.from_faucet"><a class="viewcode-back" href="../../../crypto.html#pymavryk.crypto.key.Key.from_faucet">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_faucet</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">source</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;Key&#39;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Import key from a faucet file: https://teztnets.xyz/</span>
 
@@ -409,7 +409,7 @@
 
         <span class="k">return</span> <span class="n">key</span></div>
 
-<div class="viewcode-block" id="Key.from_alias"><a class="viewcode-back" href="../../../crypto.html#pytezos.crypto.key.Key.from_alias">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Key.from_alias"><a class="viewcode-back" href="../../../crypto.html#pymavryk.crypto.key.Key.from_alias">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_alias</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
         <span class="n">alias</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -439,14 +439,14 @@
 
         <span class="k">return</span> <span class="n">key</span></div>
 
-<div class="viewcode-block" id="Key.public_key"><a class="viewcode-back" href="../../../crypto.html#pytezos.crypto.key.Key.public_key">[docs]</a>    <span class="k">def</span> <span class="nf">public_key</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="Key.public_key"><a class="viewcode-back" href="../../../crypto.html#pymavryk.crypto.key.Key.public_key">[docs]</a>    <span class="k">def</span> <span class="nf">public_key</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates base58 encoded public key representation.</span>
 
 <span class="sd">        :returns: the public key associated with the private key</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">base58_encode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">public_point</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">curve</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;pk&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="Key.secret_key"><a class="viewcode-back" href="../../../crypto.html#pytezos.crypto.key.Key.secret_key">[docs]</a>    <span class="k">def</span> <span class="nf">secret_key</span><span class="p">(</span>
+<div class="viewcode-block" id="Key.secret_key"><a class="viewcode-back" href="../../../crypto.html#pymavryk.crypto.key.Key.secret_key">[docs]</a>    <span class="k">def</span> <span class="nf">secret_key</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">passphrase</span><span class="p">:</span> <span class="n">PassphraseInput</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">ed25519_seed</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
@@ -488,16 +488,16 @@
 
         <span class="k">return</span> <span class="n">base58_encode</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">prefix</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="Key.public_key_hash"><a class="viewcode-back" href="../../../crypto.html#pytezos.crypto.key.Key.public_key_hash">[docs]</a>    <span class="k">def</span> <span class="nf">public_key_hash</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="Key.public_key_hash"><a class="viewcode-back" href="../../../crypto.html#pymavryk.crypto.key.Key.public_key_hash">[docs]</a>    <span class="k">def</span> <span class="nf">public_key_hash</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates base58 encoded public key hash for this key.</span>
 
 <span class="sd">        :returns: the public key hash for this key</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">pkh</span> <span class="o">=</span> <span class="n">blake2b</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">public_point</span><span class="p">,</span> <span class="n">digest_size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
-        <span class="n">prefix</span> <span class="o">=</span> <span class="p">{</span><span class="sa">b</span><span class="s1">&#39;ed&#39;</span><span class="p">:</span> <span class="sa">b</span><span class="s1">&#39;tz1&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;sp&#39;</span><span class="p">:</span> <span class="sa">b</span><span class="s1">&#39;tz2&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;p2&#39;</span><span class="p">:</span> <span class="sa">b</span><span class="s1">&#39;tz3&#39;</span><span class="p">}[</span><span class="bp">self</span><span class="o">.</span><span class="n">curve</span><span class="p">]</span>
+        <span class="n">prefix</span> <span class="o">=</span> <span class="p">{</span><span class="sa">b</span><span class="s1">&#39;ed&#39;</span><span class="p">:</span> <span class="sa">b</span><span class="s1">&#39;mv1&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;sp&#39;</span><span class="p">:</span> <span class="sa">b</span><span class="s1">&#39;mv2&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;p2&#39;</span><span class="p">:</span> <span class="sa">b</span><span class="s1">&#39;mv3&#39;</span><span class="p">}[</span><span class="bp">self</span><span class="o">.</span><span class="n">curve</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">base58_encode</span><span class="p">(</span><span class="n">pkh</span><span class="p">,</span> <span class="n">prefix</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="Key.blinded_public_key_hash"><a class="viewcode-back" href="../../../crypto.html#pytezos.crypto.key.Key.blinded_public_key_hash">[docs]</a>    <span class="k">def</span> <span class="nf">blinded_public_key_hash</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="Key.blinded_public_key_hash"><a class="viewcode-back" href="../../../crypto.html#pymavryk.crypto.key.Key.blinded_public_key_hash">[docs]</a>    <span class="k">def</span> <span class="nf">blinded_public_key_hash</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates base58 encoded commitment out of activation code (required) and public key hash</span>
 
 <span class="sd">        :return: blinded public key hash</span>
@@ -508,9 +508,9 @@
         <span class="n">pkh</span> <span class="o">=</span> <span class="n">blake2b</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">public_point</span><span class="p">,</span> <span class="n">digest_size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
         <span class="n">key</span> <span class="o">=</span> <span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">activation_code</span><span class="p">)</span>
         <span class="n">blinded_pkh</span> <span class="o">=</span> <span class="n">blake2b</span><span class="p">(</span><span class="n">pkh</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">digest_size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">base58_encode</span><span class="p">(</span><span class="n">blinded_pkh</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;btz1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span></div>
+        <span class="k">return</span> <span class="n">base58_encode</span><span class="p">(</span><span class="n">blinded_pkh</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;bmv1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="Key.sign"><a class="viewcode-back" href="../../../crypto.html#pytezos.crypto.key.Key.sign">[docs]</a>    <span class="k">def</span> <span class="nf">sign</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">],</span> <span class="n">generic</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="Key.sign"><a class="viewcode-back" href="../../../crypto.html#pymavryk.crypto.key.Key.sign">[docs]</a>    <span class="k">def</span> <span class="nf">sign</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">],</span> <span class="n">generic</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Sign a raw sequence of bytes.</span>
 
 <span class="sd">        :param message: sequence of bytes, raw format or hexadecimal notation</span>
@@ -544,7 +544,7 @@
 
         <span class="k">return</span> <span class="n">base58_encode</span><span class="p">(</span><span class="n">signature</span><span class="p">,</span> <span class="n">prefix</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="Key.verify"><a class="viewcode-back" href="../../../crypto.html#pytezos.crypto.key.Key.verify">[docs]</a>    <span class="k">def</span> <span class="nf">verify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">signature</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">],</span> <span class="n">message</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<div class="viewcode-block" id="Key.verify"><a class="viewcode-back" href="../../../crypto.html#pymavryk.crypto.key.Key.verify">[docs]</a>    <span class="k">def</span> <span class="nf">verify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">signature</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">],</span> <span class="n">message</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Verify signature, raise exception if it is not valid.</span>
 
 <span class="sd">        :param message: sequance of bytes, raw format or hexadecimal notation</span>

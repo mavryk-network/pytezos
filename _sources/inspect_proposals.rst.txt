@@ -1,5 +1,5 @@
 Inspecting proposals
 ======================
-.. automodule:: pytezos.protocol.protocol
+.. automodule:: pymavryk.protocol.protocol
     :members:
     :undoc-members:

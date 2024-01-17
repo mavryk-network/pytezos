@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytezos.contract.view &mdash; PyTezos  documentation</title>
+  <title>pymavryk.contract.view &mdash; PyMavryk  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
-    <link rel="canonical" href="https://pytezos.org/_modules/pytezos/contract/view.html" />
+    <link rel="canonical" href="https://pymavryk.mavryk.org/_modules/pymavryk/contract/view.html" />
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -30,7 +30,7 @@
           
           
           <a href="../../../contents.html" class="icon icon-home">
-            PyTezos
+            PyMavryk
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -44,7 +44,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../quick_start.html">Quick start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../integration_tests.html">Michelson integration tests</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../pytezos_cli.html">PyTezos CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pymavryk_cli.html">PyMavryk CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../high_level.html">High-level interfaces</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../crypto.html">Cryptography</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../operation_groups.html">Building and parsing operations</a></li>
@@ -63,7 +63,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../contents.html">PyTezos</a>
+          <a href="../../../contents.html">PyMavryk</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -72,7 +72,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../contents.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">pytezos.contract.view</li>
+      <li class="breadcrumb-item active">pymavryk.contract.view</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -81,23 +81,23 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for pytezos.contract.view</h1><div class="highlight"><pre>
+  <h1>Source code for pymavryk.contract.view</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pformat</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
 
-<span class="kn">from</span> <span class="nn">pytezos.context.impl</span> <span class="kn">import</span> <span class="n">ExecutionContext</span>
-<span class="kn">from</span> <span class="nn">pytezos.context.mixin</span> <span class="kn">import</span> <span class="n">ContextMixin</span>
-<span class="kn">from</span> <span class="nn">pytezos.contract.call</span> <span class="kn">import</span> <span class="n">ContractCallResult</span>
-<span class="kn">from</span> <span class="nn">pytezos.contract.call</span> <span class="kn">import</span> <span class="n">skip_nones</span>
-<span class="kn">from</span> <span class="nn">pytezos.jupyter</span> <span class="kn">import</span> <span class="n">get_class_docstring</span>
-<span class="kn">from</span> <span class="nn">pytezos.logging</span> <span class="kn">import</span> <span class="n">logger</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.micheline</span> <span class="kn">import</span> <span class="n">MichelsonRuntimeError</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.repl</span> <span class="kn">import</span> <span class="n">Interpreter</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.types.base</span> <span class="kn">import</span> <span class="n">MichelsonType</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.types.base</span> <span class="kn">import</span> <span class="n">generate_pydoc</span>
+<span class="kn">from</span> <span class="nn">pymavryk.context.impl</span> <span class="kn">import</span> <span class="n">ExecutionContext</span>
+<span class="kn">from</span> <span class="nn">pymavryk.context.mixin</span> <span class="kn">import</span> <span class="n">ContextMixin</span>
+<span class="kn">from</span> <span class="nn">pymavryk.contract.call</span> <span class="kn">import</span> <span class="n">ContractCallResult</span>
+<span class="kn">from</span> <span class="nn">pymavryk.contract.call</span> <span class="kn">import</span> <span class="n">skip_nones</span>
+<span class="kn">from</span> <span class="nn">pymavryk.jupyter</span> <span class="kn">import</span> <span class="n">get_class_docstring</span>
+<span class="kn">from</span> <span class="nn">pymavryk.logging</span> <span class="kn">import</span> <span class="n">logger</span>
+<span class="kn">from</span> <span class="nn">pymavryk.michelson.micheline</span> <span class="kn">import</span> <span class="n">MichelsonRuntimeError</span>
+<span class="kn">from</span> <span class="nn">pymavryk.michelson.repl</span> <span class="kn">import</span> <span class="n">Interpreter</span>
+<span class="kn">from</span> <span class="nn">pymavryk.michelson.types.base</span> <span class="kn">import</span> <span class="n">MichelsonType</span>
+<span class="kn">from</span> <span class="nn">pymavryk.michelson.types.base</span> <span class="kn">import</span> <span class="n">generate_pydoc</span>
 
 
 <span class="k">def</span> <span class="nf">format_view_script</span><span class="p">(</span><span class="n">param_ty_expr</span><span class="p">,</span> <span class="n">storage_ty_expr</span><span class="p">,</span> <span class="n">return_ty_expr</span><span class="p">,</span> <span class="n">code_expr</span><span class="p">):</span>
@@ -155,7 +155,7 @@
     <span class="p">}</span>
 
 
-<div class="viewcode-block" id="ContractView"><a class="viewcode-back" href="../../../high_level.html#pytezos.contract.view.ContractView">[docs]</a><span class="k">class</span> <span class="nc">ContractView</span><span class="p">(</span><span class="n">ContextMixin</span><span class="p">):</span>
+<div class="viewcode-block" id="ContractView"><a class="viewcode-back" href="../../../high_level.html#pymavryk.contract.view.ContractView">[docs]</a><span class="k">class</span> <span class="nc">ContractView</span><span class="p">(</span><span class="n">ContextMixin</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Proxy class for handling off-chain and on-chain views&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>

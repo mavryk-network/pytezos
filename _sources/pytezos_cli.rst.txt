@@ -1,4 +1,4 @@
-PyTezos CLI
+PyMavryk CLI
 =============
 
 Tutorials
@@ -9,10 +9,10 @@ Check out this guide by Vadim from Airalab: https://blog.aira.life/tezos-dont-fo
 Examples
 ++++++++++
 
-See how PyTezos CLI is used in a Travis CI pipeline: https://github.com/atomex-me/atomex-fa12-ligo/blob/master/.travis.yml
+See how PyMavryk CLI is used in a Travis CI pipeline: https://github.com/atomex-me/atomex-fa12-ligo/blob/master/.travis.yml
 
 Reference
 +++++++++++
-.. click:: pytezos.cli.cli:cli
-   :prog: pytezos
+.. click:: pymavryk.cli.cli:cli
+   :prog: pymavryk
    :nested: full

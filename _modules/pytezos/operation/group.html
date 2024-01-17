@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytezos.operation.group &mdash; PyTezos  documentation</title>
+  <title>pymavryk.operation.group &mdash; PyMavryk  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
-    <link rel="canonical" href="https://pytezos.org/_modules/pytezos/operation/group.html" />
+    <link rel="canonical" href="https://pymavryk.mavryk.org/_modules/pymavryk/operation/group.html" />
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -30,7 +30,7 @@
           
           
           <a href="../../../contents.html" class="icon icon-home">
-            PyTezos
+            PyMavryk
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -44,7 +44,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../quick_start.html">Quick start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../integration_tests.html">Michelson integration tests</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../pytezos_cli.html">PyTezos CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pymavryk_cli.html">PyMavryk CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../high_level.html">High-level interfaces</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../crypto.html">Cryptography</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../operation_groups.html">Building and parsing operations</a></li>
@@ -63,7 +63,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../contents.html">PyTezos</a>
+          <a href="../../../contents.html">PyMavryk</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -72,7 +72,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../contents.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">pytezos.operation.group</li>
+      <li class="breadcrumb-item active">pymavryk.operation.group</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -81,7 +81,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for pytezos.operation.group</h1><div class="highlight"><pre>
+  <h1>Source code for pymavryk.operation.group</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pformat</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
@@ -91,30 +91,30 @@
 
 <span class="kn">from</span> <span class="nn">deprecation</span> <span class="kn">import</span> <span class="n">deprecated</span>  <span class="c1"># type: ignore</span>
 
-<span class="kn">from</span> <span class="nn">pytezos.context.impl</span> <span class="kn">import</span> <span class="n">ExecutionContext</span>
-<span class="kn">from</span> <span class="nn">pytezos.context.mixin</span> <span class="kn">import</span> <span class="n">ContextMixin</span>
-<span class="kn">from</span> <span class="nn">pytezos.crypto.encoding</span> <span class="kn">import</span> <span class="n">base58_decode</span>
-<span class="kn">from</span> <span class="nn">pytezos.crypto.encoding</span> <span class="kn">import</span> <span class="n">base58_encode</span>
-<span class="kn">from</span> <span class="nn">pytezos.crypto.encoding</span> <span class="kn">import</span> <span class="n">is_bh</span>
-<span class="kn">from</span> <span class="nn">pytezos.crypto.key</span> <span class="kn">import</span> <span class="n">blake2b_32</span>
-<span class="kn">from</span> <span class="nn">pytezos.jupyter</span> <span class="kn">import</span> <span class="n">get_class_docstring</span>
-<span class="kn">from</span> <span class="nn">pytezos.logging</span> <span class="kn">import</span> <span class="n">logger</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.forge</span> <span class="kn">import</span> <span class="n">forge_base58</span>
-<span class="kn">from</span> <span class="nn">pytezos.operation</span> <span class="kn">import</span> <span class="n">DEFAULT_BURN_RESERVE</span>
-<span class="kn">from</span> <span class="nn">pytezos.operation</span> <span class="kn">import</span> <span class="n">DEFAULT_GAS_RESERVE</span>
-<span class="kn">from</span> <span class="nn">pytezos.operation</span> <span class="kn">import</span> <span class="n">MAX_OPERATIONS_TTL</span>
-<span class="kn">from</span> <span class="nn">pytezos.operation.content</span> <span class="kn">import</span> <span class="n">ContentMixin</span>
-<span class="kn">from</span> <span class="nn">pytezos.operation.fees</span> <span class="kn">import</span> <span class="n">calculate_fee</span>
-<span class="kn">from</span> <span class="nn">pytezos.operation.fees</span> <span class="kn">import</span> <span class="n">default_fee</span>
-<span class="kn">from</span> <span class="nn">pytezos.operation.fees</span> <span class="kn">import</span> <span class="n">default_gas_limit</span>
-<span class="kn">from</span> <span class="nn">pytezos.operation.fees</span> <span class="kn">import</span> <span class="n">default_storage_limit</span>
-<span class="kn">from</span> <span class="nn">pytezos.operation.forge</span> <span class="kn">import</span> <span class="n">forge_operation_group</span>
-<span class="kn">from</span> <span class="nn">pytezos.operation.result</span> <span class="kn">import</span> <span class="n">OperationResult</span>
-<span class="kn">from</span> <span class="nn">pytezos.rpc.errors</span> <span class="kn">import</span> <span class="n">RpcError</span>
-<span class="kn">from</span> <span class="nn">pytezos.rpc.kind</span> <span class="kn">import</span> <span class="n">validation_passes</span>
+<span class="kn">from</span> <span class="nn">pymavryk.context.impl</span> <span class="kn">import</span> <span class="n">ExecutionContext</span>
+<span class="kn">from</span> <span class="nn">pymavryk.context.mixin</span> <span class="kn">import</span> <span class="n">ContextMixin</span>
+<span class="kn">from</span> <span class="nn">pymavryk.crypto.encoding</span> <span class="kn">import</span> <span class="n">base58_decode</span>
+<span class="kn">from</span> <span class="nn">pymavryk.crypto.encoding</span> <span class="kn">import</span> <span class="n">base58_encode</span>
+<span class="kn">from</span> <span class="nn">pymavryk.crypto.encoding</span> <span class="kn">import</span> <span class="n">is_bh</span>
+<span class="kn">from</span> <span class="nn">pymavryk.crypto.key</span> <span class="kn">import</span> <span class="n">blake2b_32</span>
+<span class="kn">from</span> <span class="nn">pymavryk.jupyter</span> <span class="kn">import</span> <span class="n">get_class_docstring</span>
+<span class="kn">from</span> <span class="nn">pymavryk.logging</span> <span class="kn">import</span> <span class="n">logger</span>
+<span class="kn">from</span> <span class="nn">pymavryk.michelson.forge</span> <span class="kn">import</span> <span class="n">forge_base58</span>
+<span class="kn">from</span> <span class="nn">pymavryk.operation</span> <span class="kn">import</span> <span class="n">DEFAULT_BURN_RESERVE</span>
+<span class="kn">from</span> <span class="nn">pymavryk.operation</span> <span class="kn">import</span> <span class="n">DEFAULT_GAS_RESERVE</span>
+<span class="kn">from</span> <span class="nn">pymavryk.operation</span> <span class="kn">import</span> <span class="n">MAX_OPERATIONS_TTL</span>
+<span class="kn">from</span> <span class="nn">pymavryk.operation.content</span> <span class="kn">import</span> <span class="n">ContentMixin</span>
+<span class="kn">from</span> <span class="nn">pymavryk.operation.fees</span> <span class="kn">import</span> <span class="n">calculate_fee</span>
+<span class="kn">from</span> <span class="nn">pymavryk.operation.fees</span> <span class="kn">import</span> <span class="n">default_fee</span>
+<span class="kn">from</span> <span class="nn">pymavryk.operation.fees</span> <span class="kn">import</span> <span class="n">default_gas_limit</span>
+<span class="kn">from</span> <span class="nn">pymavryk.operation.fees</span> <span class="kn">import</span> <span class="n">default_storage_limit</span>
+<span class="kn">from</span> <span class="nn">pymavryk.operation.forge</span> <span class="kn">import</span> <span class="n">forge_operation_group</span>
+<span class="kn">from</span> <span class="nn">pymavryk.operation.result</span> <span class="kn">import</span> <span class="n">OperationResult</span>
+<span class="kn">from</span> <span class="nn">pymavryk.rpc.errors</span> <span class="kn">import</span> <span class="n">RpcError</span>
+<span class="kn">from</span> <span class="nn">pymavryk.rpc.kind</span> <span class="kn">import</span> <span class="n">validation_passes</span>
 
 
-<div class="viewcode-block" id="OperationGroup"><a class="viewcode-back" href="../../../operation_groups.html#pytezos.operation.group.OperationGroup">[docs]</a><span class="k">class</span> <span class="nc">OperationGroup</span><span class="p">(</span><span class="n">ContextMixin</span><span class="p">,</span> <span class="n">ContentMixin</span><span class="p">):</span>
+<div class="viewcode-block" id="OperationGroup"><a class="viewcode-back" href="../../../operation_groups.html#pymavryk.operation.group.OperationGroup">[docs]</a><span class="k">class</span> <span class="nc">OperationGroup</span><span class="p">(</span><span class="n">ContextMixin</span><span class="p">,</span> <span class="n">ContentMixin</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Operation group representation: contents (single or multiple), signature, other fields,</span>
 <span class="sd">    and also useful helpers for filling with precise fees, signing, forging, and injecting.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -162,7 +162,7 @@
             <span class="n">opg_result</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;opg_result&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">opg_result</span><span class="p">),</span>
         <span class="p">)</span>
 
-<div class="viewcode-block" id="OperationGroup.json_payload"><a class="viewcode-back" href="../../../operation_groups.html#pytezos.operation.group.OperationGroup.json_payload">[docs]</a>    <span class="k">def</span> <span class="nf">json_payload</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<div class="viewcode-block" id="OperationGroup.json_payload"><a class="viewcode-back" href="../../../operation_groups.html#pymavryk.operation.group.OperationGroup.json_payload">[docs]</a>    <span class="k">def</span> <span class="nf">json_payload</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get JSON payload used for the injection.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">{</span>
             <span class="s1">&#39;protocol&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">protocol</span><span class="p">,</span>
@@ -171,14 +171,14 @@
             <span class="s1">&#39;signature&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">signature</span><span class="p">,</span>
         <span class="p">}</span></div>
 
-<div class="viewcode-block" id="OperationGroup.binary_payload"><a class="viewcode-back" href="../../../operation_groups.html#pytezos.operation.group.OperationGroup.binary_payload">[docs]</a>    <span class="k">def</span> <span class="nf">binary_payload</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+<div class="viewcode-block" id="OperationGroup.binary_payload"><a class="viewcode-back" href="../../../operation_groups.html#pymavryk.operation.group.OperationGroup.binary_payload">[docs]</a>    <span class="k">def</span> <span class="nf">binary_payload</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get binary payload used for injection/hash calculation.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">signature</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Not signed&#39;</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">forge</span><span class="p">())</span> <span class="o">+</span> <span class="n">forge_base58</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">signature</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="OperationGroup.operation"><a class="viewcode-back" href="../../../operation_groups.html#pytezos.operation.group.OperationGroup.operation">[docs]</a>    <span class="k">def</span> <span class="nf">operation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;OperationGroup&#39;</span><span class="p">:</span>
+<div class="viewcode-block" id="OperationGroup.operation"><a class="viewcode-back" href="../../../operation_groups.html#pymavryk.operation.group.OperationGroup.operation">[docs]</a>    <span class="k">def</span> <span class="nf">operation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;OperationGroup&#39;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create new operation group with extra content added.</span>
 
 <span class="sd">        :param content: Kind-specific operation body</span>
@@ -186,13 +186,13 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_spawn</span><span class="p">(</span><span class="n">contents</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">contents</span> <span class="o">+</span> <span class="p">[</span><span class="n">content</span><span class="p">])</span></div>
 
-<div class="viewcode-block" id="OperationGroup.fill"><a class="viewcode-back" href="../../../operation_groups.html#pytezos.operation.group.OperationGroup.fill">[docs]</a>    <span class="k">def</span> <span class="nf">fill</span><span class="p">(</span>
+<div class="viewcode-block" id="OperationGroup.fill"><a class="viewcode-back" href="../../../operation_groups.html#pymavryk.operation.group.OperationGroup.fill">[docs]</a>    <span class="k">def</span> <span class="nf">fill</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">counter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">ttl</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">gas_limit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">storage_limit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">minimal_nanotez_per_gas_unit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">minimal_nanomav_per_gas_unit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;OperationGroup&#39;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Try to fill all fields left unfilled, use approximate fees</span>
@@ -203,7 +203,7 @@
 <span class="sd">            -1 for MAX (if you have a private network and issues with block RPC queries)</span>
 <span class="sd">        :param gas_limit: Override gas_limit value (for manual handling)</span>
 <span class="sd">        :param storage_limit: Override storage_limit value (for manual handling)</span>
-<span class="sd">        :param minimal_nanotez_per_gas_unit: Override minimal_nanotez_per_gas_unit constant (for manual handling)</span>
+<span class="sd">        :param minimal_nanomav_per_gas_unit: Override minimal_nanomav_per_gas_unit constant (for manual handling)</span>
 <span class="sd">        :rtype: OperationGroup</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;branch_offset&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -256,7 +256,7 @@
                     <span class="n">storage_limit</span> <span class="k">if</span> <span class="n">storage_limit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">default_storage_limit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">constants</span><span class="p">),</span>
                 <span class="p">)</span>
             <span class="p">),</span>
-            <span class="s1">&#39;fee&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">default_fee</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">gas_limit</span><span class="p">,</span> <span class="n">minimal_nanotez_per_gas_unit</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="s1">&#39;fee&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">default_fee</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">gas_limit</span><span class="p">,</span> <span class="n">minimal_nanomav_per_gas_unit</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span><span class="p">),</span>
         <span class="p">}</span>
 
         <span class="k">def</span> <span class="nf">fill_content</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">content</span><span class="p">):</span>
@@ -273,7 +273,7 @@
             <span class="n">branch</span><span class="o">=</span><span class="n">branch</span><span class="p">,</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="OperationGroup.run"><a class="viewcode-back" href="../../../operation_groups.html#pytezos.operation.group.OperationGroup.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">block_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;head&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="OperationGroup.run"><a class="viewcode-back" href="../../../operation_groups.html#pymavryk.operation.group.OperationGroup.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">block_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;head&#39;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Simulate operation without signature checks.</span>
 
 <span class="sd">        :param block_id: Specify a level at which this operation should be applied (default is head)</span>
@@ -290,7 +290,7 @@
             <span class="p">}</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="OperationGroup.forge"><a class="viewcode-back" href="../../../operation_groups.html#pytezos.operation.group.OperationGroup.forge">[docs]</a>    <span class="k">def</span> <span class="nf">forge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="OperationGroup.forge"><a class="viewcode-back" href="../../../operation_groups.html#pymavryk.operation.group.OperationGroup.forge">[docs]</a>    <span class="k">def</span> <span class="nf">forge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert json representation of the operation group into bytes.</span>
 
 <span class="sd">        :param validate: Forge remotely also and compare results, default is False</span>
@@ -309,7 +309,7 @@
 
         <span class="k">return</span> <span class="n">local_data</span></div>
 
-<div class="viewcode-block" id="OperationGroup.message"><a class="viewcode-back" href="../../../operation_groups.html#pytezos.operation.group.OperationGroup.message">[docs]</a>    <span class="k">def</span> <span class="nf">message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">block</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;genesis&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+<div class="viewcode-block" id="OperationGroup.message"><a class="viewcode-back" href="../../../operation_groups.html#pymavryk.operation.group.OperationGroup.message">[docs]</a>    <span class="k">def</span> <span class="nf">message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">block</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;genesis&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get payload for the failing noop operation</span>
 
 <span class="sd">        :param block: Specify operation branch (default is genesis)</span>
@@ -321,7 +321,7 @@
         <span class="n">branch</span> <span class="o">=</span> <span class="n">block</span> <span class="k">if</span> <span class="n">is_bh</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">block</span><span class="p">))</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">shell</span><span class="o">.</span><span class="n">blocks</span><span class="p">[</span><span class="n">block</span><span class="p">]</span><span class="o">.</span><span class="n">hash</span><span class="p">()</span>
         <span class="k">return</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x03</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_spawn</span><span class="p">(</span><span class="n">branch</span><span class="o">=</span><span class="n">branch</span><span class="p">)</span><span class="o">.</span><span class="n">forge</span><span class="p">())</span></div>
 
-<div class="viewcode-block" id="OperationGroup.autofill"><a class="viewcode-back" href="../../../operation_groups.html#pytezos.operation.group.OperationGroup.autofill">[docs]</a>    <span class="k">def</span> <span class="nf">autofill</span><span class="p">(</span>
+<div class="viewcode-block" id="OperationGroup.autofill"><a class="viewcode-back" href="../../../operation_groups.html#pymavryk.operation.group.OperationGroup.autofill">[docs]</a>    <span class="k">def</span> <span class="nf">autofill</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">gas_reserve</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">DEFAULT_GAS_RESERVE</span><span class="p">,</span>
         <span class="n">burn_reserve</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">DEFAULT_BURN_RESERVE</span><span class="p">,</span>
@@ -396,7 +396,7 @@
 
         <span class="k">return</span> <span class="n">opg</span></div>
 
-<div class="viewcode-block" id="OperationGroup.sign"><a class="viewcode-back" href="../../../operation_groups.html#pytezos.operation.group.OperationGroup.sign">[docs]</a>    <span class="k">def</span> <span class="nf">sign</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;OperationGroup&#39;</span><span class="p">:</span>
+<div class="viewcode-block" id="OperationGroup.sign"><a class="viewcode-back" href="../../../operation_groups.html#pymavryk.operation.group.OperationGroup.sign">[docs]</a>    <span class="k">def</span> <span class="nf">sign</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;OperationGroup&#39;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Sign the operation group with the key specified by `using`.</span>
 
 <span class="sd">        :rtype: OperationGroup</span>
@@ -417,12 +417,12 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_spawn</span><span class="p">(</span><span class="n">signature</span><span class="o">=</span><span class="n">signature</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="OperationGroup.hash"><a class="viewcode-back" href="../../../operation_groups.html#pytezos.operation.group.OperationGroup.hash">[docs]</a>    <span class="k">def</span> <span class="nf">hash</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="OperationGroup.hash"><a class="viewcode-back" href="../../../operation_groups.html#pymavryk.operation.group.OperationGroup.hash">[docs]</a>    <span class="k">def</span> <span class="nf">hash</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate the Base58 encoded operation group hash.&quot;&quot;&quot;</span>
         <span class="n">hash_digest</span> <span class="o">=</span> <span class="n">blake2b_32</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">binary_payload</span><span class="p">())</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">base58_encode</span><span class="p">(</span><span class="n">hash_digest</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;o&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="OperationGroup.run_operation"><a class="viewcode-back" href="../../../operation_groups.html#pytezos.operation.group.OperationGroup.run_operation">[docs]</a>    <span class="k">def</span> <span class="nf">run_operation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">block_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;head&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="OperationGroup.run_operation"><a class="viewcode-back" href="../../../operation_groups.html#pymavryk.operation.group.OperationGroup.run_operation">[docs]</a>    <span class="k">def</span> <span class="nf">run_operation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">block_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;head&#39;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Simulate operation without signature checks.</span>
 
 <span class="sd">        :param block_id: Specify a level at which this operation should be applied (default is head)</span>
@@ -430,7 +430,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">block_id</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="OperationGroup.preapply"><a class="viewcode-back" href="../../../operation_groups.html#pytezos.operation.group.OperationGroup.preapply">[docs]</a>    <span class="nd">@deprecated</span><span class="p">(</span><span class="n">deprecated_in</span><span class="o">=</span><span class="s1">&#39;3.1.0&#39;</span><span class="p">,</span> <span class="n">removed_in</span><span class="o">=</span><span class="s1">&#39;4.0.0&#39;</span><span class="p">,</span> <span class="n">details</span><span class="o">=</span><span class="s1">&#39;use `run_operation()` instead&#39;</span><span class="p">)</span>
+<div class="viewcode-block" id="OperationGroup.preapply"><a class="viewcode-back" href="../../../operation_groups.html#pymavryk.operation.group.OperationGroup.preapply">[docs]</a>    <span class="nd">@deprecated</span><span class="p">(</span><span class="n">deprecated_in</span><span class="o">=</span><span class="s1">&#39;3.1.0&#39;</span><span class="p">,</span> <span class="n">removed_in</span><span class="o">=</span><span class="s1">&#39;4.0.0&#39;</span><span class="p">,</span> <span class="n">details</span><span class="o">=</span><span class="s1">&#39;use `run_operation()` instead&#39;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">preapply</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Preapply signed operation group.</span>
 
@@ -441,7 +441,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_operation</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="OperationGroup.send"><a class="viewcode-back" href="../../../operation_groups.html#pytezos.operation.group.OperationGroup.send">[docs]</a>    <span class="k">def</span> <span class="nf">send</span><span class="p">(</span>
+<div class="viewcode-block" id="OperationGroup.send"><a class="viewcode-back" href="../../../operation_groups.html#pymavryk.operation.group.OperationGroup.send">[docs]</a>    <span class="k">def</span> <span class="nf">send</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">gas_reserve</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">DEFAULT_GAS_RESERVE</span><span class="p">,</span>
         <span class="n">burn_reserve</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">DEFAULT_BURN_RESERVE</span><span class="p">,</span>
@@ -463,13 +463,13 @@
         <span class="n">res</span> <span class="o">=</span> <span class="n">opg</span><span class="o">.</span><span class="n">inject</span><span class="p">(</span><span class="n">min_confirmations</span><span class="o">=</span><span class="n">min_confirmations</span><span class="p">,</span> <span class="n">num_blocks_wait</span><span class="o">=</span><span class="n">ttl</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">opg</span><span class="o">.</span><span class="n">_spawn</span><span class="p">(</span><span class="n">opg_hash</span><span class="o">=</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;hash&#39;</span><span class="p">],</span> <span class="n">opg_result</span><span class="o">=</span><span class="n">res</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="OperationGroup.send_async"><a class="viewcode-back" href="../../../operation_groups.html#pytezos.operation.group.OperationGroup.send_async">[docs]</a>    <span class="k">def</span> <span class="nf">send_async</span><span class="p">(</span>
+<div class="viewcode-block" id="OperationGroup.send_async"><a class="viewcode-back" href="../../../operation_groups.html#pymavryk.operation.group.OperationGroup.send_async">[docs]</a>    <span class="k">def</span> <span class="nf">send_async</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">ttl</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
         <span class="n">counter</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
         <span class="n">gas_limit</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
         <span class="n">storage_limit</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-        <span class="n">minimal_nanotez_per_gas_unit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">minimal_nanomav_per_gas_unit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;OperationGroup&#39;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Send operation without simulation or pre-validation</span>
@@ -478,7 +478,7 @@
 <span class="sd">        :param counter: Set counter value</span>
 <span class="sd">        :param gas_limit: Set gas_limit value</span>
 <span class="sd">        :param storage_limit: Set storage_limit value</span>
-<span class="sd">        :param minimal_nanotez_per_gas_unit: Override minimal_nanotez_per_gas_unit constant</span>
+<span class="sd">        :param minimal_nanomav_per_gas_unit: Override minimal_nanomav_per_gas_unit constant</span>
 <span class="sd">        :rtype: OperationGroup</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">opg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span>
@@ -486,12 +486,12 @@
             <span class="n">ttl</span><span class="o">=</span><span class="n">ttl</span><span class="p">,</span>
             <span class="n">gas_limit</span><span class="o">=</span><span class="n">gas_limit</span><span class="p">,</span>
             <span class="n">storage_limit</span><span class="o">=</span><span class="n">storage_limit</span><span class="p">,</span>
-            <span class="n">minimal_nanotez_per_gas_unit</span><span class="o">=</span><span class="n">minimal_nanotez_per_gas_unit</span><span class="p">,</span>
+            <span class="n">minimal_nanomav_per_gas_unit</span><span class="o">=</span><span class="n">minimal_nanomav_per_gas_unit</span><span class="p">,</span>
         <span class="p">)</span><span class="o">.</span><span class="n">sign</span><span class="p">()</span>
         <span class="n">res</span> <span class="o">=</span> <span class="n">opg</span><span class="o">.</span><span class="n">inject</span><span class="p">(</span><span class="n">prevalidate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">opg</span><span class="o">.</span><span class="n">_spawn</span><span class="p">(</span><span class="n">opg_hash</span><span class="o">=</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;hash&#39;</span><span class="p">])</span></div>
 
-<div class="viewcode-block" id="OperationGroup.inject"><a class="viewcode-back" href="../../../operation_groups.html#pytezos.operation.group.OperationGroup.inject">[docs]</a>    <span class="k">def</span> <span class="nf">inject</span><span class="p">(</span>
+<div class="viewcode-block" id="OperationGroup.inject"><a class="viewcode-back" href="../../../operation_groups.html#pymavryk.operation.group.OperationGroup.inject">[docs]</a>    <span class="k">def</span> <span class="nf">inject</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">check_result</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">num_blocks_wait</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
@@ -506,7 +506,7 @@
 <span class="sd">        :param check_result: raise RpcError in case operation is applied but has runtime errors</span>
 <span class="sd">        :param num_blocks_wait: number of blocks to wait for injection</span>
 <span class="sd">        :param time_between_blocks: override the corresponding parameter from constants</span>
-<span class="sd">        :param block_timeout: set block timeout (by default Pytezos will wait for a long time)</span>
+<span class="sd">        :param block_timeout: set block timeout (by default Pymavryk will wait for a long time)</span>
 <span class="sd">        :param min_confirmations: number of block injections to wait for before returning</span>
 <span class="sd">        :param prevalidate: ask node to pre-validate the operation before the injection (True by default)</span>
 <span class="sd">        :returns: operation group with metadata (raw RPC response)</span>
@@ -540,7 +540,7 @@
 
         <span class="k">return</span> <span class="n">operations</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="OperationGroup.result"><a class="viewcode-back" href="../../../operation_groups.html#pytezos.operation.group.OperationGroup.result">[docs]</a>    <span class="nd">@deprecated</span><span class="p">(</span><span class="n">deprecated_in</span><span class="o">=</span><span class="s1">&#39;3.1.0&#39;</span><span class="p">,</span> <span class="n">removed_in</span><span class="o">=</span><span class="s1">&#39;4.0.0&#39;</span><span class="p">,</span> <span class="n">details</span><span class="o">=</span><span class="s1">&#39;use `run_operation()` instead&#39;</span><span class="p">)</span>
+<div class="viewcode-block" id="OperationGroup.result"><a class="viewcode-back" href="../../../operation_groups.html#pymavryk.operation.group.OperationGroup.result">[docs]</a>    <span class="nd">@deprecated</span><span class="p">(</span><span class="n">deprecated_in</span><span class="o">=</span><span class="s1">&#39;3.1.0&#39;</span><span class="p">,</span> <span class="n">removed_in</span><span class="o">=</span><span class="s1">&#39;4.0.0&#39;</span><span class="p">,</span> <span class="n">details</span><span class="o">=</span><span class="s1">&#39;use `run_operation()` instead&#39;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">result</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">OperationResult</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Parse the preapply result.</span>
 

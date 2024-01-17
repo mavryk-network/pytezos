@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytezos.contract.interface &mdash; PyTezos  documentation</title>
+  <title>pymavryk.contract.interface &mdash; PyMavryk  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
-    <link rel="canonical" href="https://pytezos.org/_modules/pytezos/contract/interface.html" />
+    <link rel="canonical" href="https://pymavryk.mavryk.org/_modules/pymavryk/contract/interface.html" />
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -30,7 +30,7 @@
           
           
           <a href="../../../contents.html" class="icon icon-home">
-            PyTezos
+            PyMavryk
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -44,7 +44,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../quick_start.html">Quick start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../integration_tests.html">Michelson integration tests</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../pytezos_cli.html">PyTezos CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pymavryk_cli.html">PyMavryk CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../high_level.html">High-level interfaces</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../crypto.html">Cryptography</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../operation_groups.html">Building and parsing operations</a></li>
@@ -63,7 +63,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../contents.html">PyTezos</a>
+          <a href="../../../contents.html">PyMavryk</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -72,7 +72,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../contents.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">pytezos.contract.interface</li>
+      <li class="breadcrumb-item active">pymavryk.contract.interface</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -81,7 +81,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for pytezos.contract.interface</h1><div class="highlight"><pre>
+  <h1>Source code for pymavryk.contract.interface</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">from</span> <span class="nn">decimal</span> <span class="kn">import</span> <span class="n">Decimal</span>
@@ -102,27 +102,27 @@
 <span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">from</span> <span class="nn">deprecation</span> <span class="kn">import</span> <span class="n">deprecated</span>  <span class="c1"># type: ignore</span>
 
-<span class="kn">from</span> <span class="nn">pytezos.context.mixin</span> <span class="kn">import</span> <span class="n">ContextMixin</span>
-<span class="kn">from</span> <span class="nn">pytezos.context.mixin</span> <span class="kn">import</span> <span class="n">ExecutionContext</span>
-<span class="kn">from</span> <span class="nn">pytezos.contract.data</span> <span class="kn">import</span> <span class="n">ContractData</span>
-<span class="kn">from</span> <span class="nn">pytezos.contract.entrypoint</span> <span class="kn">import</span> <span class="n">ContractEntrypoint</span>
-<span class="kn">from</span> <span class="nn">pytezos.contract.metadata</span> <span class="kn">import</span> <span class="n">ContractMetadata</span>
-<span class="kn">from</span> <span class="nn">pytezos.contract.result</span> <span class="kn">import</span> <span class="n">ContractCallResult</span>
-<span class="kn">from</span> <span class="nn">pytezos.contract.token_metadata</span> <span class="kn">import</span> <span class="n">ContractTokenMetadata</span>
-<span class="kn">from</span> <span class="nn">pytezos.contract.view</span> <span class="kn">import</span> <span class="n">ContractView</span>
-<span class="kn">from</span> <span class="nn">pytezos.crypto.key</span> <span class="kn">import</span> <span class="n">Key</span>
-<span class="kn">from</span> <span class="nn">pytezos.jupyter</span> <span class="kn">import</span> <span class="n">get_class_docstring</span>
-<span class="kn">from</span> <span class="nn">pytezos.logging</span> <span class="kn">import</span> <span class="n">logger</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.format</span> <span class="kn">import</span> <span class="n">micheline_to_michelson</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.micheline</span> <span class="kn">import</span> <span class="n">MichelsonRuntimeError</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.parse</span> <span class="kn">import</span> <span class="n">michelson_to_micheline</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.program</span> <span class="kn">import</span> <span class="n">MichelsonProgram</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.sections</span> <span class="kn">import</span> <span class="n">ViewSection</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.types</span> <span class="kn">import</span> <span class="n">BigMapType</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.types</span> <span class="kn">import</span> <span class="n">BytesType</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.types.base</span> <span class="kn">import</span> <span class="n">generate_pydoc</span>
-<span class="kn">from</span> <span class="nn">pytezos.operation.group</span> <span class="kn">import</span> <span class="n">OperationGroup</span>
-<span class="kn">from</span> <span class="nn">pytezos.rpc</span> <span class="kn">import</span> <span class="n">ShellQuery</span>
+<span class="kn">from</span> <span class="nn">pymavryk.context.mixin</span> <span class="kn">import</span> <span class="n">ContextMixin</span>
+<span class="kn">from</span> <span class="nn">pymavryk.context.mixin</span> <span class="kn">import</span> <span class="n">ExecutionContext</span>
+<span class="kn">from</span> <span class="nn">pymavryk.contract.data</span> <span class="kn">import</span> <span class="n">ContractData</span>
+<span class="kn">from</span> <span class="nn">pymavryk.contract.entrypoint</span> <span class="kn">import</span> <span class="n">ContractEntrypoint</span>
+<span class="kn">from</span> <span class="nn">pymavryk.contract.metadata</span> <span class="kn">import</span> <span class="n">ContractMetadata</span>
+<span class="kn">from</span> <span class="nn">pymavryk.contract.result</span> <span class="kn">import</span> <span class="n">ContractCallResult</span>
+<span class="kn">from</span> <span class="nn">pymavryk.contract.token_metadata</span> <span class="kn">import</span> <span class="n">ContractTokenMetadata</span>
+<span class="kn">from</span> <span class="nn">pymavryk.contract.view</span> <span class="kn">import</span> <span class="n">ContractView</span>
+<span class="kn">from</span> <span class="nn">pymavryk.crypto.key</span> <span class="kn">import</span> <span class="n">Key</span>
+<span class="kn">from</span> <span class="nn">pymavryk.jupyter</span> <span class="kn">import</span> <span class="n">get_class_docstring</span>
+<span class="kn">from</span> <span class="nn">pymavryk.logging</span> <span class="kn">import</span> <span class="n">logger</span>
+<span class="kn">from</span> <span class="nn">pymavryk.michelson.format</span> <span class="kn">import</span> <span class="n">micheline_to_michelson</span>
+<span class="kn">from</span> <span class="nn">pymavryk.michelson.micheline</span> <span class="kn">import</span> <span class="n">MichelsonRuntimeError</span>
+<span class="kn">from</span> <span class="nn">pymavryk.michelson.parse</span> <span class="kn">import</span> <span class="n">michelson_to_micheline</span>
+<span class="kn">from</span> <span class="nn">pymavryk.michelson.program</span> <span class="kn">import</span> <span class="n">MichelsonProgram</span>
+<span class="kn">from</span> <span class="nn">pymavryk.michelson.sections</span> <span class="kn">import</span> <span class="n">ViewSection</span>
+<span class="kn">from</span> <span class="nn">pymavryk.michelson.types</span> <span class="kn">import</span> <span class="n">BigMapType</span>
+<span class="kn">from</span> <span class="nn">pymavryk.michelson.types</span> <span class="kn">import</span> <span class="n">BytesType</span>
+<span class="kn">from</span> <span class="nn">pymavryk.michelson.types.base</span> <span class="kn">import</span> <span class="n">generate_pydoc</span>
+<span class="kn">from</span> <span class="nn">pymavryk.operation.group</span> <span class="kn">import</span> <span class="n">OperationGroup</span>
+<span class="kn">from</span> <span class="nn">pymavryk.rpc</span> <span class="kn">import</span> <span class="n">ShellQuery</span>
 
 
 <span class="k">class</span> <span class="nc">ContractTokenMetadataProxy</span><span class="p">:</span>
@@ -135,7 +135,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fn</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="ContractInterface"><a class="viewcode-back" href="../../../high_level.html#pytezos.contract.interface.ContractInterface">[docs]</a><span class="k">class</span> <span class="nc">ContractInterface</span><span class="p">(</span><span class="n">ContextMixin</span><span class="p">):</span>
+<div class="viewcode-block" id="ContractInterface"><a class="viewcode-back" href="../../../high_level.html#pymavryk.contract.interface.ContractInterface">[docs]</a><span class="k">class</span> <span class="nc">ContractInterface</span><span class="p">(</span><span class="n">ContextMixin</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Proxy class for interacting with a contract.&quot;&quot;&quot;</span>
 
     <span class="n">program</span><span class="p">:</span> <span class="n">MichelsonProgram</span>
@@ -184,7 +184,7 @@
     <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ContractEntrypoint</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;unexpected entrypoint </span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="ContractInterface.from_url"><a class="viewcode-back" href="../../../high_level.html#pytezos.contract.interface.ContractInterface.from_url">[docs]</a>    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ContractInterface.from_url"><a class="viewcode-back" href="../../../high_level.html#pymavryk.contract.interface.ContractInterface.from_url">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">from_url</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ExecutionContext</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;ContractInterface&#39;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create contract from michelson source code available via URL</span>
 
@@ -197,7 +197,7 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;cannot fetch `</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">res</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s1">`&#39;</span><span class="p">,</span> <span class="n">res</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ContractInterface</span><span class="o">.</span><span class="n">from_michelson</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ContractInterface.from_file"><a class="viewcode-back" href="../../../high_level.html#pytezos.contract.interface.ContractInterface.from_file">[docs]</a>    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ContractInterface.from_file"><a class="viewcode-back" href="../../../high_level.html#pymavryk.contract.interface.ContractInterface.from_file">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">from_file</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ExecutionContext</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;ContractInterface&#39;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create contract from michelson source code stored in a file.</span>
 
@@ -208,7 +208,7 @@
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">expanduser</span><span class="p">(</span><span class="n">path</span><span class="p">))</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">ContractInterface</span><span class="o">.</span><span class="n">from_michelson</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">context</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ContractInterface.from_michelson"><a class="viewcode-back" href="../../../high_level.html#pytezos.contract.interface.ContractInterface.from_michelson">[docs]</a>    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ContractInterface.from_michelson"><a class="viewcode-back" href="../../../high_level.html#pymavryk.contract.interface.ContractInterface.from_michelson">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">from_michelson</span><span class="p">(</span><span class="n">source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ExecutionContext</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;ContractInterface&#39;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create contract from michelson source code.</span>
 
@@ -218,7 +218,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ContractInterface</span><span class="o">.</span><span class="n">from_micheline</span><span class="p">(</span><span class="n">michelson_to_micheline</span><span class="p">(</span><span class="n">source</span><span class="p">),</span> <span class="n">context</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ContractInterface.from_micheline"><a class="viewcode-back" href="../../../high_level.html#pytezos.contract.interface.ContractInterface.from_micheline">[docs]</a>    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ContractInterface.from_micheline"><a class="viewcode-back" href="../../../high_level.html#pymavryk.contract.interface.ContractInterface.from_micheline">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">from_micheline</span><span class="p">(</span>
         <span class="n">expression</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span>
         <span class="n">context</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ExecutionContext</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -243,7 +243,7 @@
         <span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">context</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ContractInterface.from_context"><a class="viewcode-back" href="../../../high_level.html#pytezos.contract.interface.ContractInterface.from_context">[docs]</a>    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ContractInterface.from_context"><a class="viewcode-back" href="../../../high_level.html#pymavryk.contract.interface.ContractInterface.from_context">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">from_context</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">ExecutionContext</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;ContractInterface&#39;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create contract from the previously loaded context data.</span>
 
@@ -254,7 +254,7 @@
         <span class="bp">cls</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">ContractInterface</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="p">(</span><span class="n">ContractInterface</span><span class="p">,),</span> <span class="p">{</span><span class="s1">&#39;program&#39;</span><span class="p">:</span> <span class="n">program</span><span class="p">})</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">context</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ContractInterface.create_from"><a class="viewcode-back" href="../../../high_level.html#pytezos.contract.interface.ContractInterface.create_from">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="ContractInterface.create_from"><a class="viewcode-back" href="../../../high_level.html#pymavryk.contract.interface.ContractInterface.create_from">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="nd">@deprecated</span><span class="p">(</span>
         <span class="n">deprecated_in</span><span class="o">=</span><span class="s1">&#39;3.0.0&#39;</span><span class="p">,</span>
         <span class="n">removed_in</span><span class="o">=</span><span class="s1">&#39;4.0.0&#39;</span><span class="p">,</span>
@@ -272,21 +272,21 @@
             <span class="k">return</span> <span class="n">ContractInterface</span><span class="o">.</span><span class="n">from_michelson</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ContractInterface</span><span class="o">.</span><span class="n">from_micheline</span><span class="p">(</span><span class="n">source</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ContractInterface.to_micheline"><a class="viewcode-back" href="../../../high_level.html#pytezos.contract.interface.ContractInterface.to_micheline">[docs]</a>    <span class="k">def</span> <span class="nf">to_micheline</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+<div class="viewcode-block" id="ContractInterface.to_micheline"><a class="viewcode-back" href="../../../high_level.html#pymavryk.contract.interface.ContractInterface.to_micheline">[docs]</a>    <span class="k">def</span> <span class="nf">to_micheline</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get contract script in Micheline JSON</span>
 
 <span class="sd">        :return:  [{&#39;prim&#39;: &#39;parameter&#39;}, {&#39;prim&#39;: &#39;storage&#39;}, {&#39;prim&#39;: &#39;code&#39;}]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">program</span><span class="o">.</span><span class="n">as_micheline_expr</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="ContractInterface.to_michelson"><a class="viewcode-back" href="../../../high_level.html#pytezos.contract.interface.ContractInterface.to_michelson">[docs]</a>    <span class="k">def</span> <span class="nf">to_michelson</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="ContractInterface.to_michelson"><a class="viewcode-back" href="../../../high_level.html#pymavryk.contract.interface.ContractInterface.to_michelson">[docs]</a>    <span class="k">def</span> <span class="nf">to_michelson</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get contract listing in formatted Michelson</span>
 
 <span class="sd">        :return: string</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">micheline_to_michelson</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_micheline</span><span class="p">())</span></div>
 
-<div class="viewcode-block" id="ContractInterface.to_file"><a class="viewcode-back" href="../../../high_level.html#pytezos.contract.interface.ContractInterface.to_file">[docs]</a>    <span class="k">def</span> <span class="nf">to_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="ContractInterface.to_file"><a class="viewcode-back" href="../../../high_level.html#pymavryk.contract.interface.ContractInterface.to_file">[docs]</a>    <span class="k">def</span> <span class="nf">to_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Write contract source to a .tz file</span>
 
 <span class="sd">        :param path: path to the file</span>
@@ -294,7 +294,7 @@
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;w+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_michelson</span><span class="p">())</span></div>
 
-<div class="viewcode-block" id="ContractInterface.big_map_get"><a class="viewcode-back" href="../../../high_level.html#pytezos.contract.interface.ContractInterface.big_map_get">[docs]</a>    <span class="nd">@deprecated</span><span class="p">(</span><span class="n">deprecated_in</span><span class="o">=</span><span class="s1">&#39;3.0.0&#39;</span><span class="p">,</span> <span class="n">removed_in</span><span class="o">=</span><span class="s1">&#39;4.0.0&#39;</span><span class="p">,</span> <span class="n">details</span><span class="o">=</span><span class="s1">&#39;use `.storage[path][to][big_map][key]()` instead&#39;</span><span class="p">)</span>
+<div class="viewcode-block" id="ContractInterface.big_map_get"><a class="viewcode-back" href="../../../high_level.html#pymavryk.contract.interface.ContractInterface.big_map_get">[docs]</a>    <span class="nd">@deprecated</span><span class="p">(</span><span class="n">deprecated_in</span><span class="o">=</span><span class="s1">&#39;3.0.0&#39;</span><span class="p">,</span> <span class="n">removed_in</span><span class="o">=</span><span class="s1">&#39;4.0.0&#39;</span><span class="p">,</span> <span class="n">details</span><span class="o">=</span><span class="s1">&#39;use `.storage[path][to][big_map][key]()` instead&#39;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">big_map_get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get BigMap entry as Python object by plain key and block height.</span>
 
@@ -313,7 +313,7 @@
             <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="p">[</span><span class="n">item</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">node</span><span class="p">()</span> <span class="k">if</span> <span class="n">node</span> <span class="k">else</span> <span class="kc">None</span></div>
 
-<div class="viewcode-block" id="ContractInterface.using"><a class="viewcode-back" href="../../../high_level.html#pytezos.contract.interface.ContractInterface.using">[docs]</a>    <span class="k">def</span> <span class="nf">using</span><span class="p">(</span>
+<div class="viewcode-block" id="ContractInterface.using"><a class="viewcode-back" href="../../../high_level.html#pymavryk.contract.interface.ContractInterface.using">[docs]</a>    <span class="k">def</span> <span class="nf">using</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">shell</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ShellQuery</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Key</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -325,7 +325,7 @@
 
 <span class="sd">        Also, if address is undefined you can specify RPC endpoint, and private key.</span>
 
-<span class="sd">        :param shell: one of &#39;mainnet&#39;, &#39;***net&#39;, or RPC node uri, or instance of :class:`pytezos.rpc.shell.ShellQuery`</span>
+<span class="sd">        :param shell: one of &#39;mainnet&#39;, &#39;***net&#39;, or RPC node uri, or instance of :class:`pymavryk.rpc.shell.ShellQuery`</span>
 <span class="sd">        :param key: base58 encoded key, path to the faucet file, alias from tezos-client, or instance of `Key`</span>
 <span class="sd">        :param block_id: block height / hash / offset to use, default is `head`</span>
 <span class="sd">        :param mode: whether to use `readable` or `optimized` encoding for parameters/storage/other</span>
@@ -362,7 +362,7 @@
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Can</span><span class="se">\&#39;</span><span class="s1">t set storage of deployed contract&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span> <span class="o">=</span> <span class="n">storage</span>
 
-<div class="viewcode-block" id="ContractInterface.storage_from_file"><a class="viewcode-back" href="../../../high_level.html#pytezos.contract.interface.ContractInterface.storage_from_file">[docs]</a>    <span class="k">def</span> <span class="nf">storage_from_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="ContractInterface.storage_from_file"><a class="viewcode-back" href="../../../high_level.html#pymavryk.contract.interface.ContractInterface.storage_from_file">[docs]</a>    <span class="k">def</span> <span class="nf">storage_from_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Load contract storage from file</span>
 
 <span class="sd">        :param path: path to .tz file</span>
@@ -371,7 +371,7 @@
             <span class="n">expr</span> <span class="o">=</span> <span class="n">michelson_to_micheline</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">storage_from_micheline</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ContractInterface.storage_from_micheline"><a class="viewcode-back" href="../../../high_level.html#pytezos.contract.interface.ContractInterface.storage_from_micheline">[docs]</a>    <span class="k">def</span> <span class="nf">storage_from_micheline</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expression</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="ContractInterface.storage_from_micheline"><a class="viewcode-back" href="../../../high_level.html#pymavryk.contract.interface.ContractInterface.storage_from_micheline">[docs]</a>    <span class="k">def</span> <span class="nf">storage_from_micheline</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expression</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Load contract storage from Micheline expression</span>
 
 <span class="sd">        :param expression: Micheline expression</span>
@@ -380,7 +380,7 @@
         <span class="n">storage</span><span class="o">.</span><span class="n">attach_context</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">storage</span> <span class="o">=</span> <span class="n">ContractData</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="p">,</span> <span class="n">storage</span><span class="o">.</span><span class="n">item</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;storage&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ContractInterface.storage_from_michelson"><a class="viewcode-back" href="../../../high_level.html#pytezos.contract.interface.ContractInterface.storage_from_michelson">[docs]</a>    <span class="k">def</span> <span class="nf">storage_from_michelson</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="ContractInterface.storage_from_michelson"><a class="viewcode-back" href="../../../high_level.html#pymavryk.contract.interface.ContractInterface.storage_from_michelson">[docs]</a>    <span class="k">def</span> <span class="nf">storage_from_michelson</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Load contract storage from Michelson code</span>
 
 <span class="sd">        :param source: Michelson code</span>
@@ -539,7 +539,7 @@
     <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ContractEntrypoint</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameter</span>
 
-<div class="viewcode-block" id="ContractInterface.operation_result"><a class="viewcode-back" href="../../../high_level.html#pytezos.contract.interface.ContractInterface.operation_result">[docs]</a>    <span class="k">def</span> <span class="nf">operation_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operation_group</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">ContractCallResult</span><span class="p">]:</span>
+<div class="viewcode-block" id="ContractInterface.operation_result"><a class="viewcode-back" href="../../../high_level.html#pymavryk.contract.interface.ContractInterface.operation_result">[docs]</a>    <span class="k">def</span> <span class="nf">operation_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operation_group</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">ContractCallResult</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get operation parameters, and resulting storage as Python objects.</span>
 <span class="sd">        Can locate operation inside operation groups with multiple contents and/or internal operations.</span>
 
@@ -548,7 +548,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ContractCallResult</span><span class="o">.</span><span class="n">from_run_operation</span><span class="p">(</span><span class="n">operation_group</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ContractInterface.script"><a class="viewcode-back" href="../../../high_level.html#pytezos.contract.interface.ContractInterface.script">[docs]</a>    <span class="k">def</span> <span class="nf">script</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_storage</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<div class="viewcode-block" id="ContractInterface.script"><a class="viewcode-back" href="../../../high_level.html#pymavryk.contract.interface.ContractInterface.script">[docs]</a>    <span class="k">def</span> <span class="nf">script</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_storage</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate script for contract origination.</span>
 
 <span class="sd">        :param initial_storage: Python object, leave None to generate default (attach shell/key for smart fill)</span>
@@ -564,7 +564,7 @@
             <span class="s1">&#39;storage&#39;</span><span class="p">:</span> <span class="n">storage</span><span class="o">.</span><span class="n">to_micheline_value</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">mode</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span> <span class="n">lazy_diff</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
         <span class="p">}</span></div>
 
-<div class="viewcode-block" id="ContractInterface.originate"><a class="viewcode-back" href="../../../high_level.html#pytezos.contract.interface.ContractInterface.originate">[docs]</a>    <span class="k">def</span> <span class="nf">originate</span><span class="p">(</span>
+<div class="viewcode-block" id="ContractInterface.originate"><a class="viewcode-back" href="../../../high_level.html#pymavryk.contract.interface.ContractInterface.originate">[docs]</a>    <span class="k">def</span> <span class="nf">originate</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">initial_storage</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">mode</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>

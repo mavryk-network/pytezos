@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytezos.operation.fees &mdash; PyTezos  documentation</title>
+  <title>pymavryk.operation.fees &mdash; PyMavryk  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
-    <link rel="canonical" href="https://pytezos.org/_modules/pytezos/operation/fees.html" />
+    <link rel="canonical" href="https://pymavryk.mavryk.org/_modules/pymavryk/operation/fees.html" />
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -30,7 +30,7 @@
           
           
           <a href="../../../contents.html" class="icon icon-home">
-            PyTezos
+            PyMavryk
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -44,7 +44,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../quick_start.html">Quick start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../integration_tests.html">Michelson integration tests</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../pytezos_cli.html">PyTezos CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pymavryk_cli.html">PyMavryk CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../high_level.html">High-level interfaces</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../crypto.html">Cryptography</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../operation_groups.html">Building and parsing operations</a></li>
@@ -63,7 +63,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../contents.html">PyTezos</a>
+          <a href="../../../contents.html">PyMavryk</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -72,7 +72,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../contents.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">pytezos.operation.fees</li>
+      <li class="breadcrumb-item active">pymavryk.operation.fees</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -81,12 +81,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for pytezos.operation.fees</h1><div class="highlight"><pre>
+  <h1>Source code for pymavryk.operation.fees</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
 
-<span class="kn">from</span> <span class="nn">pytezos.operation.forge</span> <span class="kn">import</span> <span class="n">forge_operation</span>
+<span class="kn">from</span> <span class="nn">pymavryk.operation.forge</span> <span class="kn">import</span> <span class="n">forge_operation</span>
 
 <span class="n">DEFAULT_CONSTANTS</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;hard_gas_limit_per_operation&#39;</span><span class="p">:</span> <span class="mi">1040000</span><span class="p">,</span>
@@ -96,16 +96,16 @@
 <span class="n">DEFAULT_TRANSACTION_GAS_LIMIT</span> <span class="o">=</span> <span class="mi">1451</span>
 <span class="n">DEFAULT_TRANSACTION_STORAGE_LIMIT</span> <span class="o">=</span> <span class="mi">257</span>
 <span class="n">MINIMAL_FEES</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">MINIMAL_MUTEZ_PER_BYTE</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">MINIMAL_MUTEZ_PER_GAS_UNIT</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">MINIMAL_MUMAV_PER_BYTE</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">MINIMAL_MUMAV_PER_GAS_UNIT</span> <span class="o">=</span> <span class="mf">0.1</span>
 
 
-<div class="viewcode-block" id="calculate_fee"><a class="viewcode-back" href="../../../operation_groups.html#pytezos.operation.fees.calculate_fee">[docs]</a><span class="k">def</span> <span class="nf">calculate_fee</span><span class="p">(</span>
+<div class="viewcode-block" id="calculate_fee"><a class="viewcode-back" href="../../../operation_groups.html#pymavryk.operation.fees.calculate_fee">[docs]</a><span class="k">def</span> <span class="nf">calculate_fee</span><span class="p">(</span>
     <span class="n">content</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
     <span class="n">consumed_gas</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">extra_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">reserve</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-    <span class="n">minimal_nanotez_per_gas_unit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">minimal_nanomav_per_gas_unit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate minimal required operation fee.</span>
 
@@ -115,16 +115,16 @@
 <span class="sd">    :param reserve: safe reserve, just in case</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">forge_operation</span><span class="p">(</span><span class="n">content</span><span class="p">))</span> <span class="o">+</span> <span class="n">extra_size</span>
-    <span class="k">if</span> <span class="n">minimal_nanotez_per_gas_unit</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">minimal_nanotez_per_gas_unit</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">MINIMAL_MUTEZ_PER_GAS_UNIT</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
-    <span class="n">fee</span> <span class="o">=</span> <span class="n">MINIMAL_FEES</span> <span class="o">+</span> <span class="n">MINIMAL_MUTEZ_PER_BYTE</span> <span class="o">*</span> <span class="n">size</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">minimal_nanotez_per_gas_unit</span> <span class="o">*</span> <span class="n">consumed_gas</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">minimal_nanomav_per_gas_unit</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">minimal_nanomav_per_gas_unit</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">MINIMAL_MUMAV_PER_GAS_UNIT</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
+    <span class="n">fee</span> <span class="o">=</span> <span class="n">MINIMAL_FEES</span> <span class="o">+</span> <span class="n">MINIMAL_MUMAV_PER_BYTE</span> <span class="o">*</span> <span class="n">size</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">minimal_nanomav_per_gas_unit</span> <span class="o">*</span> <span class="n">consumed_gas</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">fee</span> <span class="o">+</span> <span class="n">reserve</span></div>
 
 
-<div class="viewcode-block" id="default_fee"><a class="viewcode-back" href="../../../operation_groups.html#pytezos.operation.fees.default_fee">[docs]</a><span class="k">def</span> <span class="nf">default_fee</span><span class="p">(</span>
+<div class="viewcode-block" id="default_fee"><a class="viewcode-back" href="../../../operation_groups.html#pymavryk.operation.fees.default_fee">[docs]</a><span class="k">def</span> <span class="nf">default_fee</span><span class="p">(</span>
     <span class="n">content</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
     <span class="n">gas_limit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">minimal_nanotez_per_gas_unit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">minimal_nanomav_per_gas_unit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Take hard gas limit instead of precise amount (no simulation) and calculate fee.</span>
 
@@ -133,12 +133,12 @@
     <span class="k">return</span> <span class="n">calculate_fee</span><span class="p">(</span>
         <span class="n">content</span><span class="o">=</span><span class="n">content</span><span class="p">,</span>
         <span class="n">consumed_gas</span><span class="o">=</span><span class="n">gas_limit</span> <span class="k">if</span> <span class="n">gas_limit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">default_gas_limit</span><span class="p">(</span><span class="n">content</span><span class="p">),</span>
-        <span class="n">extra_size</span><span class="o">=</span><span class="mi">32</span> <span class="o">+</span> <span class="mi">64</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span>  <span class="c1"># branch, signature, fee:gas_limit:storage_limit mutez values (+3 bytes)</span>
-        <span class="n">minimal_nanotez_per_gas_unit</span><span class="o">=</span><span class="n">minimal_nanotez_per_gas_unit</span><span class="p">,</span>
+        <span class="n">extra_size</span><span class="o">=</span><span class="mi">32</span> <span class="o">+</span> <span class="mi">64</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span>  <span class="c1"># branch, signature, fee:gas_limit:storage_limit mumav values (+3 bytes)</span>
+        <span class="n">minimal_nanomav_per_gas_unit</span><span class="o">=</span><span class="n">minimal_nanomav_per_gas_unit</span><span class="p">,</span>
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="default_gas_limit"><a class="viewcode-back" href="../../../operation_groups.html#pytezos.operation.fees.default_gas_limit">[docs]</a><span class="k">def</span> <span class="nf">default_gas_limit</span><span class="p">(</span>
+<div class="viewcode-block" id="default_gas_limit"><a class="viewcode-back" href="../../../operation_groups.html#pymavryk.operation.fees.default_gas_limit">[docs]</a><span class="k">def</span> <span class="nf">default_gas_limit</span><span class="p">(</span>
     <span class="n">content</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
     <span class="n">constants</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
@@ -163,7 +163,7 @@
     <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="n">content</span><span class="p">[</span><span class="s1">&#39;kind&#39;</span><span class="p">]]</span></div>
 
 
-<div class="viewcode-block" id="default_storage_limit"><a class="viewcode-back" href="../../../operation_groups.html#pytezos.operation.fees.default_storage_limit">[docs]</a><span class="k">def</span> <span class="nf">default_storage_limit</span><span class="p">(</span>
+<div class="viewcode-block" id="default_storage_limit"><a class="viewcode-back" href="../../../operation_groups.html#pymavryk.operation.fees.default_storage_limit">[docs]</a><span class="k">def</span> <span class="nf">default_storage_limit</span><span class="p">(</span>
     <span class="n">content</span><span class="p">,</span>
     <span class="n">constants</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>

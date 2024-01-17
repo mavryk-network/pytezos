@@ -4,17 +4,17 @@ Michelson integration tests
 Step by step guide
 --------------------
 
-Read this Medium article: https://medium.com/tezoscommons/testing-michelson-contracts-with-pytezos-513718499e93
+Read this Medium article: https://medium.com/tezoscommons/testing-michelson-contracts-with-pymavryk-513718499e93
 
 Loading contract
 ------------------
 
-First step in testing contracts is to create :class:`pytezos.contract.interface.ContractInterface` from Michelson code, .tz file or existing deployed contract.
+First step in testing contracts is to create :class:`pymavryk.contract.interface.ContractInterface` from Michelson code, .tz file or existing deployed contract.
 
 .. code-block:: python
 
   from os.path import dirname, join
-  from pytezos import ContractInterface, pytezos
+  from pymavryk import ContractInterface, pymavryk
 
   contract_michelson = """
     parameter string;
@@ -27,7 +27,7 @@ First step in testing contracts is to create :class:`pytezos.contract.interface.
   """
 
   # From blockchain
-  contract = pytezos.contract('KT1...')
+  contract = pymavryk.contract('KT1...')
 
   # From michelson
   contract = ContractInterface.from_michelson(contract_michelson)
@@ -43,7 +43,7 @@ First step in testing contracts is to create :class:`pytezos.contract.interface.
 Calling contract entrypoints
 ------------------------------
 
-Entrypoints are accessed by name of contract attributes. Call them with parameters to create :class:`pytezos.contract.call.ContractCall` wrapper.
+Entrypoints are accessed by name of contract attributes. Call them with parameters to create :class:`pymavryk.contract.call.ContractCall` wrapper.
 
 .. code-block:: python
 
@@ -72,7 +72,7 @@ Let's talk about the first two methods.
   # In both cases you could patch SENDER, AMOUNT and other context variables
   result = call.interpret(storage="foo", balance=1000)
 
-Each method will return :class:`pytezos.contract.result.ContractCallResult` instance. Now let's ensure our call has modified storage correctly.
+Each method will return :class:`pymavryk.contract.result.ContractCallResult` instance. Now let's ensure our call has modified storage correctly.
 
 .. code-block:: python
 
@@ -81,16 +81,16 @@ Each method will return :class:`pytezos.contract.result.ContractCallResult` inst
 Deploying contract to sandboxed node
 --------------------------------------
 
-Another option is to deploy contract to sandboxed node and interact with it with real transactions. PyTezos has :class:`pytezos.sandbox.node.SandboxedNodeTestCase` helper to simplify spinning up sandboxed node in Docker. Use `self.client` interact with it from within your tests.
+Another option is to deploy contract to sandboxed node and interact with it with real transactions. PyMavryk has :class:`pymavryk.sandbox.node.SandboxedNodeTestCase` helper to simplify spinning up sandboxed node in Docker. Use `self.client` interact with it from within your tests.
 
-.. autoclass:: pytezos.sandbox.node.SandboxedNodeTestCase
+.. autoclass:: pymavryk.sandbox.node.SandboxedNodeTestCase
    :members:
 
 .. code-block:: python
 
-  from pytezos import ContractInterface
-  from pytezos.sandbox.node import SandboxedNodeTestCase
-  from pytezos.contract.result import ContractCallResult
+  from pymavryk import ContractInterface
+  from pymavryk.sandbox.node import SandboxedNodeTestCase
+  from pymavryk.contract.result import ContractCallResult
 
   contract_michelson = """
       parameter string;
@@ -139,18 +139,9 @@ Sandboxed node will be rolled back to genesis block between run of multiple test
 Examples
 --------------
 
-- Contract tests: https://github.com/baking-bad/pytezos/tree/master/tests/contract_tests
-- Tests with sandboxed node: https://github.com/baking-bad/pytezos/tree/master/tests/sandbox_tests
+- Contract tests: https://github.com/baking-bad/pymavryk/tree/master/tests/contract_tests
+- Tests with sandboxed node: https://github.com/baking-bad/pymavryk/tree/master/tests/sandbox_tests
 
-Projects using PyTezos
+Projects using PyMavryk
 ------------------------
-See how PyTezos testing engine is used in production:
-
-- Atomex
-  https://github.com/atomex-me/atomex-michelson/blob/master/tests/test_atomex.py
-- Atomex FA1.2
-  https://github.com/atomex-me/atomex-fa12-ligo/tree/master/tests
-- TQTezos MAC
-  https://github.com/tqtezos/smart-contracts/tree/master/multi_asset/tezos_mac_tests
-- Equisafe NYX
-  https://gitlab.com/equisafe/nyx/-/tree/master/tests
+See how PyMavryk testing engine is used in production:

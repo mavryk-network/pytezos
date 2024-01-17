@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytezos.michelson.format &mdash; PyTezos  documentation</title>
+  <title>pymavryk.michelson.format &mdash; PyMavryk  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
-    <link rel="canonical" href="https://pytezos.org/_modules/pytezos/michelson/format.html" />
+    <link rel="canonical" href="https://pymavryk.mavryk.org/_modules/pymavryk/michelson/format.html" />
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -30,7 +30,7 @@
           
           
           <a href="../../../contents.html" class="icon icon-home">
-            PyTezos
+            PyMavryk
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -44,7 +44,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../quick_start.html">Quick start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../integration_tests.html">Michelson integration tests</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../pytezos_cli.html">PyTezos CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pymavryk_cli.html">PyMavryk CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../high_level.html">High-level interfaces</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../crypto.html">Cryptography</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../operation_groups.html">Building and parsing operations</a></li>
@@ -63,7 +63,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../contents.html">PyTezos</a>
+          <a href="../../../contents.html">PyMavryk</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -72,7 +72,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../contents.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">pytezos.michelson.format</li>
+      <li class="breadcrumb-item active">pymavryk.michelson.format</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -81,16 +81,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for pytezos.michelson.format</h1><div class="highlight"><pre>
+  <h1>Source code for pymavryk.michelson.format</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 
-<span class="kn">from</span> <span class="nn">pytezos.logging</span> <span class="kn">import</span> <span class="n">logger</span>
+<span class="kn">from</span> <span class="nn">pymavryk.logging</span> <span class="kn">import</span> <span class="n">logger</span>
 
 <span class="n">line_size</span> <span class="o">=</span> <span class="mi">100</span>
 
 
-<div class="viewcode-block" id="format_timestamp"><a class="viewcode-back" href="../../../code.html#pytezos.michelson.format.format_timestamp">[docs]</a><span class="k">def</span> <span class="nf">format_timestamp</span><span class="p">(</span><span class="n">timestamp</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="format_timestamp"><a class="viewcode-back" href="../../../code.html#pymavryk.michelson.format.format_timestamp">[docs]</a><span class="k">def</span> <span class="nf">format_timestamp</span><span class="p">(</span><span class="n">timestamp</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Format unix timestamp.</span>
 
 <span class="sd">    :param timestamp: Unix timestamp (seconds)</span>
@@ -99,7 +99,7 @@
     <span class="k">return</span> <span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%SZ&#39;</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="MichelsonFormatterError"><a class="viewcode-back" href="../../../code.html#pytezos.michelson.format.MichelsonFormatterError">[docs]</a><span class="k">class</span> <span class="nc">MichelsonFormatterError</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
+<div class="viewcode-block" id="MichelsonFormatterError"><a class="viewcode-back" href="../../../code.html#pymavryk.michelson.format.MichelsonFormatterError">[docs]</a><span class="k">class</span> <span class="nc">MichelsonFormatterError</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
     <span class="k">pass</span></div>
 
 
@@ -133,7 +133,7 @@
         <span class="s1">&#39;nat&#39;</span><span class="p">,</span>
         <span class="s1">&#39;string&#39;</span><span class="p">,</span>
         <span class="s1">&#39;bytes&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;mutez&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;mumav&#39;</span><span class="p">,</span>
         <span class="s1">&#39;bool&#39;</span><span class="p">,</span>
         <span class="s1">&#39;key_hash&#39;</span><span class="p">,</span>
         <span class="s1">&#39;timestamp&#39;</span><span class="p">,</span>
@@ -235,7 +235,7 @@
         <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;unexpected node </span><span class="si">{</span><span class="n">node</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="micheline_to_michelson"><a class="viewcode-back" href="../../../code.html#pytezos.michelson.format.micheline_to_michelson">[docs]</a><span class="k">def</span> <span class="nf">micheline_to_michelson</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">inline</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="micheline_to_michelson"><a class="viewcode-back" href="../../../code.html#pymavryk.michelson.format.micheline_to_michelson">[docs]</a><span class="k">def</span> <span class="nf">micheline_to_michelson</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">inline</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts micheline expression into formatted Michelson source.</span>
 
 <span class="sd">    :param data: Micheline expression</span>

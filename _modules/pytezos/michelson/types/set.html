@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytezos.michelson.types.set &mdash; PyTezos  documentation</title>
+  <title>pymavryk.michelson.types.set &mdash; PyMavryk  documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
     <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
-    <link rel="canonical" href="https://pytezos.org/_modules/pytezos/michelson/types/set.html" />
+    <link rel="canonical" href="https://pymavryk.mavryk.org/_modules/pymavryk/michelson/types/set.html" />
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -30,7 +30,7 @@
           
           
           <a href="../../../../contents.html" class="icon icon-home">
-            PyTezos
+            PyMavryk
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
@@ -44,7 +44,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../quick_start.html">Quick start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../integration_tests.html">Michelson integration tests</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../pytezos_cli.html">PyTezos CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pymavryk_cli.html">PyMavryk CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../high_level.html">High-level interfaces</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../crypto.html">Cryptography</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../operation_groups.html">Building and parsing operations</a></li>
@@ -63,7 +63,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../../contents.html">PyTezos</a>
+          <a href="../../../../contents.html">PyMavryk</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -72,7 +72,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../contents.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">pytezos.michelson.types.set</li>
+      <li class="breadcrumb-item active">pymavryk.michelson.types.set</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -81,19 +81,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for pytezos.michelson.types.set</h1><div class="highlight"><pre>
+  <h1>Source code for pymavryk.michelson.types.set</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">copy</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Generator</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Type</span>
 
-<span class="kn">from</span> <span class="nn">pytezos.context.abstract</span> <span class="kn">import</span> <span class="n">AbstractContext</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.micheline</span> <span class="kn">import</span> <span class="n">Micheline</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.micheline</span> <span class="kn">import</span> <span class="n">MichelineSequence</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.types.base</span> <span class="kn">import</span> <span class="n">MichelsonType</span>
+<span class="kn">from</span> <span class="nn">pymavryk.context.abstract</span> <span class="kn">import</span> <span class="n">AbstractContext</span>
+<span class="kn">from</span> <span class="nn">pymavryk.michelson.micheline</span> <span class="kn">import</span> <span class="n">Micheline</span>
+<span class="kn">from</span> <span class="nn">pymavryk.michelson.micheline</span> <span class="kn">import</span> <span class="n">MichelineSequence</span>
+<span class="kn">from</span> <span class="nn">pymavryk.michelson.types.base</span> <span class="kn">import</span> <span class="n">MichelsonType</span>
 
 
-<div class="viewcode-block" id="SetType"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.set.SetType">[docs]</a><span class="k">class</span> <span class="nc">SetType</span><span class="p">(</span><span class="n">MichelsonType</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;set&#39;</span><span class="p">,</span> <span class="n">args_len</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="SetType"><a class="viewcode-back" href="../../../../types.html#pymavryk.michelson.types.set.SetType">[docs]</a><span class="k">class</span> <span class="nc">SetType</span><span class="p">(</span><span class="n">MichelsonType</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;set&#39;</span><span class="p">,</span> <span class="n">args_len</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">items</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">MichelsonType</span><span class="p">]):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">SetType</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="o">=</span> <span class="n">items</span>
@@ -112,12 +112,12 @@
             <span class="k">return</span> <span class="kc">False</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">items</span>
 
-<div class="viewcode-block" id="SetType.empty"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.set.SetType.empty">[docs]</a>    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="SetType.empty"><a class="viewcode-back" href="../../../../types.html#pymavryk.michelson.types.set.SetType.empty">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">empty</span><span class="p">(</span><span class="n">item_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">MichelsonType</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;SetType&#39;</span><span class="p">:</span>
         <span class="bp">cls</span> <span class="o">=</span> <span class="n">SetType</span><span class="o">.</span><span class="n">create_type</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">item_type</span><span class="p">])</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">items</span><span class="o">=</span><span class="p">[])</span>  <span class="c1"># type: ignore</span></div>
 
-<div class="viewcode-block" id="SetType.from_items"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.set.SetType.from_items">[docs]</a>    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="SetType.from_items"><a class="viewcode-back" href="../../../../types.html#pymavryk.michelson.types.set.SetType.from_items">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">from_items</span><span class="p">(</span><span class="n">items</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">MichelsonType</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;SetType&#39;</span><span class="p">:</span>
         <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;cannot instantiate from empty list&#39;</span>
         <span class="n">item_type</span> <span class="o">=</span> <span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_anon_type</span><span class="p">()</span>
@@ -127,23 +127,23 @@
         <span class="bp">cls</span><span class="o">.</span><span class="n">check_constraints</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>  <span class="c1"># type: ignore</span></div>
 
-<div class="viewcode-block" id="SetType.check_constraints"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.set.SetType.check_constraints">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="SetType.check_constraints"><a class="viewcode-back" href="../../../../types.html#pymavryk.michelson.types.set.SetType.check_constraints">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">check_constraints</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">items</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">MichelsonType</span><span class="p">]):</span>
         <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">items</span><span class="p">))</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">),</span> <span class="sa">f</span><span class="s1">&#39;duplicate elements found&#39;</span>
         <span class="k">assert</span> <span class="n">items</span> <span class="o">==</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">items</span><span class="p">),</span> <span class="sa">f</span><span class="s1">&#39;set elements are not sorted&#39;</span></div>
 
-<div class="viewcode-block" id="SetType.dummy"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.set.SetType.dummy">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="SetType.dummy"><a class="viewcode-back" href="../../../../types.html#pymavryk.michelson.types.set.SetType.dummy">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">dummy</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">AbstractContext</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">([])</span></div>
 
-<div class="viewcode-block" id="SetType.from_micheline_value"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.set.SetType.from_micheline_value">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="SetType.from_micheline_value"><a class="viewcode-back" href="../../../../types.html#pymavryk.michelson.types.set.SetType.from_micheline_value">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_micheline_value</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">val_expr</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;SetType&#39;</span><span class="p">:</span>
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val_expr</span><span class="p">,</span> <span class="nb">list</span><span class="p">),</span> <span class="sa">f</span><span class="s1">&#39;expected list, got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">val_expr</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">&#39;</span>
         <span class="n">items</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">from_micheline_value</span><span class="p">,</span> <span class="n">val_expr</span><span class="p">))</span>
         <span class="bp">cls</span><span class="o">.</span><span class="n">check_constraints</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">items</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="SetType.from_python_object"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.set.SetType.from_python_object">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="SetType.from_python_object"><a class="viewcode-back" href="../../../../types.html#pymavryk.michelson.types.set.SetType.from_python_object">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_python_object</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">py_obj</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;SetType&#39;</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">py_obj</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
             <span class="n">py_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">py_obj</span><span class="p">)</span>
@@ -155,13 +155,13 @@
         <span class="n">items</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">items</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="SetType.to_literal"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.set.SetType.to_literal">[docs]</a>    <span class="k">def</span> <span class="nf">to_literal</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">Micheline</span><span class="p">]:</span>
+<div class="viewcode-block" id="SetType.to_literal"><a class="viewcode-back" href="../../../../types.html#pymavryk.michelson.types.set.SetType.to_literal">[docs]</a>    <span class="k">def</span> <span class="nf">to_literal</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">Micheline</span><span class="p">]:</span>
         <span class="k">return</span> <span class="n">MichelineSequence</span><span class="o">.</span><span class="n">create_type</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">to_literal</span><span class="p">()</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">])</span></div>
 
-<div class="viewcode-block" id="SetType.to_micheline_value"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.set.SetType.to_micheline_value">[docs]</a>    <span class="k">def</span> <span class="nf">to_micheline_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;readable&#39;</span><span class="p">,</span> <span class="n">lazy_diff</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="SetType.to_micheline_value"><a class="viewcode-back" href="../../../../types.html#pymavryk.michelson.types.set.SetType.to_micheline_value">[docs]</a>    <span class="k">def</span> <span class="nf">to_micheline_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;readable&#39;</span><span class="p">,</span> <span class="n">lazy_diff</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">to_micheline_value</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span> <span class="n">lazy_diff</span><span class="o">=</span><span class="n">lazy_diff</span><span class="p">),</span> <span class="bp">self</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="SetType.to_python_object"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.set.SetType.to_python_object">[docs]</a>    <span class="k">def</span> <span class="nf">to_python_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">try_unpack</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">lazy_diff</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">comparable</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="SetType.to_python_object"><a class="viewcode-back" href="../../../../types.html#pymavryk.michelson.types.set.SetType.to_python_object">[docs]</a>    <span class="k">def</span> <span class="nf">to_python_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">try_unpack</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">lazy_diff</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">comparable</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="k">assert</span> <span class="ow">not</span> <span class="n">comparable</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">prim</span><span class="si">}</span><span class="s1"> is not comparable&#39;</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span>
             <span class="nb">map</span><span class="p">(</span>
@@ -174,7 +174,7 @@
             <span class="p">)</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="SetType.generate_pydoc"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.set.SetType.generate_pydoc">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="SetType.generate_pydoc"><a class="viewcode-back" href="../../../../types.html#pymavryk.michelson.types.set.SetType.generate_pydoc">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">generate_pydoc</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">definitions</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">inferred_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">comparable</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="n">name</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">field_name</span> <span class="ow">or</span> <span class="bp">cls</span><span class="o">.</span><span class="n">type_name</span> <span class="ow">or</span> <span class="n">inferred_name</span>
         <span class="n">arg_doc</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">generate_pydoc</span><span class="p">(</span>
@@ -182,18 +182,18 @@
         <span class="p">)</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="se">{{</span><span class="s1"> </span><span class="si">{</span><span class="n">arg_doc</span><span class="si">}</span><span class="s1">, … </span><span class="se">}}</span><span class="s1">&#39;</span></div>
 
-<div class="viewcode-block" id="SetType.contains"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.set.SetType.contains">[docs]</a>    <span class="k">def</span> <span class="nf">contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">MichelsonType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<div class="viewcode-block" id="SetType.contains"><a class="viewcode-back" href="../../../../types.html#pymavryk.michelson.types.set.SetType.contains">[docs]</a>    <span class="k">def</span> <span class="nf">contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">MichelsonType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">assert_type_equal</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span></div>
 
-<div class="viewcode-block" id="SetType.add"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.set.SetType.add">[docs]</a>    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">MichelsonType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;SetType&#39;</span><span class="p">:</span>
+<div class="viewcode-block" id="SetType.add"><a class="viewcode-back" href="../../../../types.html#pymavryk.michelson.types.set.SetType.add">[docs]</a>    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">MichelsonType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;SetType&#39;</span><span class="p">:</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span>
             <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">items</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="SetType.remove"><a class="viewcode-back" href="../../../../types.html#pytezos.michelson.types.set.SetType.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">MichelsonType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;SetType&#39;</span><span class="p">:</span>
+<div class="viewcode-block" id="SetType.remove"><a class="viewcode-back" href="../../../../types.html#pymavryk.michelson.types.set.SetType.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">MichelsonType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;SetType&#39;</span><span class="p">:</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
             <span class="n">items</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">!=</span> <span class="n">item</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">))</span>
             <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)(</span><span class="n">items</span><span class="p">)</span>

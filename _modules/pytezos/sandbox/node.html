@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytezos.sandbox.node &mdash; PyTezos  documentation</title>
+  <title>pymavryk.sandbox.node &mdash; PyMavryk  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
-    <link rel="canonical" href="https://pytezos.org/_modules/pytezos/sandbox/node.html" />
+    <link rel="canonical" href="https://pymavryk.mavryk.org/_modules/pymavryk/sandbox/node.html" />
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -30,7 +30,7 @@
           
           
           <a href="../../../contents.html" class="icon icon-home">
-            PyTezos
+            PyMavryk
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -44,7 +44,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../quick_start.html">Quick start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../integration_tests.html">Michelson integration tests</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../pytezos_cli.html">PyTezos CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pymavryk_cli.html">PyMavryk CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../high_level.html">High-level interfaces</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../crypto.html">Cryptography</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../operation_groups.html">Building and parsing operations</a></li>
@@ -63,7 +63,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../contents.html">PyTezos</a>
+          <a href="../../../contents.html">PyMavryk</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -72,7 +72,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../contents.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">pytezos.sandbox.node</li>
+      <li class="breadcrumb-item active">pymavryk.sandbox.node</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -81,7 +81,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for pytezos.sandbox.node</h1><div class="highlight"><pre>
+  <h1>Source code for pymavryk.sandbox.node</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">atexit</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">unittest</span>
@@ -101,10 +101,10 @@
 <span class="kn">from</span> <span class="nn">testcontainers.core.docker_client</span> <span class="kn">import</span> <span class="n">DockerClient</span>  <span class="c1"># type: ignore</span>
 <span class="kn">from</span> <span class="nn">testcontainers.core.generic</span> <span class="kn">import</span> <span class="n">DockerContainer</span>  <span class="c1"># type: ignore</span>
 
-<span class="kn">from</span> <span class="nn">pytezos.client</span> <span class="kn">import</span> <span class="n">PyTezosClient</span>
-<span class="kn">from</span> <span class="nn">pytezos.operation.group</span> <span class="kn">import</span> <span class="n">OperationGroup</span>
-<span class="kn">from</span> <span class="nn">pytezos.sandbox.parameters</span> <span class="kn">import</span> <span class="n">LATEST</span>
-<span class="kn">from</span> <span class="nn">pytezos.sandbox.parameters</span> <span class="kn">import</span> <span class="n">sandbox_addresses</span>
+<span class="kn">from</span> <span class="nn">pymavryk.client</span> <span class="kn">import</span> <span class="n">PyMavrykClient</span>
+<span class="kn">from</span> <span class="nn">pymavryk.operation.group</span> <span class="kn">import</span> <span class="n">OperationGroup</span>
+<span class="kn">from</span> <span class="nn">pymavryk.sandbox.parameters</span> <span class="kn">import</span> <span class="n">LATEST</span>
+<span class="kn">from</span> <span class="nn">pymavryk.sandbox.parameters</span> <span class="kn">import</span> <span class="n">sandbox_addresses</span>
 
 <span class="n">DOCKER_IMAGE</span> <span class="o">=</span> <span class="s1">&#39;bakingbad/sandboxed-node:v16.0-2&#39;</span>
 <span class="n">MAX_ATTEMPTS</span> <span class="o">=</span> <span class="mi">100</span>
@@ -154,7 +154,7 @@
     <span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">get_next_baker_key</span><span class="p">(</span><span class="n">client</span><span class="p">:</span> <span class="n">PyTezosClient</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">get_next_baker_key</span><span class="p">(</span><span class="n">client</span><span class="p">:</span> <span class="n">PyMavrykClient</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="n">baking_rights</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">shell</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">helpers</span><span class="o">.</span><span class="n">baking_rights</span><span class="p">()</span>
     <span class="n">delegate</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">br</span><span class="p">[</span><span class="s1">&#39;delegate&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">br</span> <span class="ow">in</span> <span class="n">baking_rights</span> <span class="k">if</span> <span class="n">br</span><span class="p">[</span><span class="s1">&#39;round&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
     <span class="k">return</span> <span class="nb">next</span><span class="p">(</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">sandbox_addresses</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="o">==</span> <span class="n">delegate</span><span class="p">)</span>
@@ -165,7 +165,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">with_bind_ports</span><span class="p">(</span><span class="n">TEZOS_NODE_PORT</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;http://localhost:</span><span class="si">{</span><span class="n">port</span><span class="si">}</span><span class="s1">&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">PyTezosClient</span><span class="p">()</span><span class="o">.</span><span class="n">using</span><span class="p">(</span><span class="n">shell</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">PyMavrykClient</span><span class="p">()</span><span class="o">.</span><span class="n">using</span><span class="p">(</span><span class="n">shell</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
@@ -193,7 +193,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">using</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="SandboxedNodeTestCase"><a class="viewcode-back" href="../../../integration_tests.html#pytezos.sandbox.node.SandboxedNodeTestCase">[docs]</a><span class="k">class</span> <span class="nc">SandboxedNodeTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="SandboxedNodeTestCase"><a class="viewcode-back" href="../../../integration_tests.html#pymavryk.sandbox.node.SandboxedNodeTestCase">[docs]</a><span class="k">class</span> <span class="nc">SandboxedNodeTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Perform tests with sanboxed node in Docker container.&quot;&quot;&quot;</span>
 
     <span class="n">IMAGE</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">DOCKER_IMAGE</span>
@@ -208,7 +208,7 @@
     <span class="n">node_container</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;SandboxedNodeContainer&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">executor</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ThreadPoolExecutor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="SandboxedNodeTestCase.setUpClass"><a class="viewcode-back" href="../../../integration_tests.html#pytezos.sandbox.node.SandboxedNodeTestCase.setUpClass">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="SandboxedNodeTestCase.setUpClass"><a class="viewcode-back" href="../../../integration_tests.html#pymavryk.sandbox.node.SandboxedNodeTestCase.setUpClass">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">setUpClass</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Spin up sandboxed node container and activate protocol.&quot;&quot;&quot;</span>
         <span class="n">kill_existing_containers</span><span class="p">()</span>
@@ -221,7 +221,7 @@
 
         <span class="bp">cls</span><span class="o">.</span><span class="n">node_container</span><span class="o">.</span><span class="n">activate</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">PROTOCOL</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="SandboxedNodeTestCase.tearDownClass"><a class="viewcode-back" href="../../../integration_tests.html#pytezos.sandbox.node.SandboxedNodeTestCase.tearDownClass">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="SandboxedNodeTestCase.tearDownClass"><a class="viewcode-back" href="../../../integration_tests.html#pymavryk.sandbox.node.SandboxedNodeTestCase.tearDownClass">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">tearDownClass</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">cls</span><span class="o">.</span><span class="n">_get_node_container</span><span class="p">()</span><span class="o">.</span><span class="n">stop</span><span class="p">(</span><span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">delete_volume</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
@@ -231,16 +231,16 @@
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Sandboxed node container is not running&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">node_container</span>
 
-<div class="viewcode-block" id="SandboxedNodeTestCase.activate"><a class="viewcode-back" href="../../../integration_tests.html#pytezos.sandbox.node.SandboxedNodeTestCase.activate">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="SandboxedNodeTestCase.activate"><a class="viewcode-back" href="../../../integration_tests.html#pymavryk.sandbox.node.SandboxedNodeTestCase.activate">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">activate</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">protocol_alias</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OperationGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Activate protocol.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_get_node_container</span><span class="p">()</span><span class="o">.</span><span class="n">activate</span><span class="p">(</span><span class="n">protocol</span><span class="o">=</span><span class="n">protocol_alias</span><span class="p">)</span></div>
 
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">get_client</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;bootstrap2&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PyTezosClient</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">get_client</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;bootstrap2&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PyMavrykClient</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_get_node_container</span><span class="p">()</span><span class="o">.</span><span class="n">get_client</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
 
-<div class="viewcode-block" id="SandboxedNodeTestCase.bake_block"><a class="viewcode-back" href="../../../integration_tests.html#pytezos.sandbox.node.SandboxedNodeTestCase.bake_block">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="SandboxedNodeTestCase.bake_block"><a class="viewcode-back" href="../../../integration_tests.html#pymavryk.sandbox.node.SandboxedNodeTestCase.bake_block">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">bake_block</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">min_fee</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OperationGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Bake new block.</span>
 
@@ -250,8 +250,8 @@
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_get_node_container</span><span class="p">()</span><span class="o">.</span><span class="n">bake</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">min_fee</span><span class="o">=</span><span class="n">min_fee</span><span class="p">)</span></div>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">client</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PyTezosClient</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;PyTezos client to interact with sandboxed node.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">client</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PyMavrykClient</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;PyMavryk client to interact with sandboxed node.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_node_container</span><span class="p">()</span><span class="o">.</span><span class="n">get_client</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;bootstrap1&#39;</span><span class="p">)</span></div>
 
 
@@ -266,7 +266,7 @@
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">autobake</span><span class="p">(</span><span class="n">time_between_blocks</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">node_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">exit_event</span><span class="p">:</span> <span class="n">Event</span><span class="p">,</span> <span class="n">min_fee</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Baker thread started&quot;</span><span class="p">)</span>
-        <span class="n">client</span> <span class="o">=</span> <span class="n">PyTezosClient</span><span class="p">()</span><span class="o">.</span><span class="n">using</span><span class="p">(</span><span class="n">shell</span><span class="o">=</span><span class="n">node_url</span><span class="p">)</span>
+        <span class="n">client</span> <span class="o">=</span> <span class="n">PyMavrykClient</span><span class="p">()</span><span class="o">.</span><span class="n">using</span><span class="p">(</span><span class="n">shell</span><span class="o">=</span><span class="n">node_url</span><span class="p">)</span>
         <span class="n">ptr</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">while</span> <span class="ow">not</span> <span class="n">exit_event</span><span class="o">.</span><span class="n">is_set</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">ptr</span> <span class="o">%</span> <span class="n">time_between_blocks</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>

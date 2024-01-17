@@ -3,10 +3,10 @@ Cryptography
 
 Keys and signatures
 +++++++++++++++++++++++++
-.. automodule:: pytezos.crypto.key
+.. automodule:: pymavryk.crypto.key
     :members:
 
 Encoding
 +++++++++++++++++++++++++
-.. automodule:: pytezos.crypto.encoding
+.. automodule:: pymavryk.crypto.encoding
     :members:

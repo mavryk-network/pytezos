@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytezos.michelson.instructions.boolean &mdash; PyTezos  documentation</title>
+  <title>pymavryk.michelson.instructions.boolean &mdash; PyMavryk  documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
     <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
-    <link rel="canonical" href="https://pytezos.org/_modules/pytezos/michelson/instructions/boolean.html" />
+    <link rel="canonical" href="https://pymavryk.mavryk.org/_modules/pymavryk/michelson/instructions/boolean.html" />
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -30,7 +30,7 @@
           
           
           <a href="../../../../contents.html" class="icon icon-home">
-            PyTezos
+            PyMavryk
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
@@ -44,7 +44,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../quick_start.html">Quick start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../integration_tests.html">Michelson integration tests</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../pytezos_cli.html">PyTezos CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pymavryk_cli.html">PyMavryk CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../high_level.html">High-level interfaces</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../crypto.html">Cryptography</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../operation_groups.html">Building and parsing operations</a></li>
@@ -63,7 +63,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../../contents.html">PyTezos</a>
+          <a href="../../../../contents.html">PyMavryk</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -72,7 +72,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../contents.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">pytezos.michelson.instructions.boolean</li>
+      <li class="breadcrumb-item active">pymavryk.michelson.instructions.boolean</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -81,24 +81,24 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for pytezos.michelson.instructions.boolean</h1><div class="highlight"><pre>
+  <h1>Source code for pymavryk.michelson.instructions.boolean</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">cast</span>
 
-<span class="kn">from</span> <span class="nn">pytezos.context.abstract</span> <span class="kn">import</span> <span class="n">AbstractContext</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.instructions.base</span> <span class="kn">import</span> <span class="n">MichelsonInstruction</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.instructions.base</span> <span class="kn">import</span> <span class="n">dispatch_types</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.instructions.base</span> <span class="kn">import</span> <span class="n">format_stdout</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.stack</span> <span class="kn">import</span> <span class="n">MichelsonStack</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.types</span> <span class="kn">import</span> <span class="n">BoolType</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.types</span> <span class="kn">import</span> <span class="n">IntType</span>
-<span class="kn">from</span> <span class="nn">pytezos.michelson.types</span> <span class="kn">import</span> <span class="n">NatType</span>
+<span class="kn">from</span> <span class="nn">pymavryk.context.abstract</span> <span class="kn">import</span> <span class="n">AbstractContext</span>
+<span class="kn">from</span> <span class="nn">pymavryk.michelson.instructions.base</span> <span class="kn">import</span> <span class="n">MichelsonInstruction</span>
+<span class="kn">from</span> <span class="nn">pymavryk.michelson.instructions.base</span> <span class="kn">import</span> <span class="n">dispatch_types</span>
+<span class="kn">from</span> <span class="nn">pymavryk.michelson.instructions.base</span> <span class="kn">import</span> <span class="n">format_stdout</span>
+<span class="kn">from</span> <span class="nn">pymavryk.michelson.stack</span> <span class="kn">import</span> <span class="n">MichelsonStack</span>
+<span class="kn">from</span> <span class="nn">pymavryk.michelson.types</span> <span class="kn">import</span> <span class="n">BoolType</span>
+<span class="kn">from</span> <span class="nn">pymavryk.michelson.types</span> <span class="kn">import</span> <span class="n">IntType</span>
+<span class="kn">from</span> <span class="nn">pymavryk.michelson.types</span> <span class="kn">import</span> <span class="n">NatType</span>
 
 
-<div class="viewcode-block" id="execute_boolean_add"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.boolean.execute_boolean_add">[docs]</a><span class="k">def</span> <span class="nf">execute_boolean_add</span><span class="p">(</span><span class="n">prim</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="n">MichelsonStack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">add</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
+<div class="viewcode-block" id="execute_boolean_add"><a class="viewcode-back" href="../../../../instructions.html#pymavryk.michelson.instructions.boolean.execute_boolean_add">[docs]</a><span class="k">def</span> <span class="nf">execute_boolean_add</span><span class="p">(</span><span class="n">prim</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="n">MichelsonStack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">add</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
     <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">BoolType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">],</span> <span class="o">...</span><span class="p">],</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop2</span><span class="p">())</span>
     <span class="n">res_type</span><span class="p">,</span> <span class="n">convert</span> <span class="o">=</span> <span class="n">dispatch_types</span><span class="p">(</span>
         <span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">),</span>
@@ -114,22 +114,22 @@
     <span class="n">stdout</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">format_stdout</span><span class="p">(</span><span class="n">prim</span><span class="p">,</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">],</span> <span class="p">[</span><span class="n">res</span><span class="p">]))</span></div>
 
 
-<div class="viewcode-block" id="OrInstruction"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.boolean.OrInstruction">[docs]</a><span class="k">class</span> <span class="nc">OrInstruction</span><span class="p">(</span><span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;OR&#39;</span><span class="p">):</span>
-<div class="viewcode-block" id="OrInstruction.execute"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.boolean.OrInstruction.execute">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="OrInstruction"><a class="viewcode-back" href="../../../../instructions.html#pymavryk.michelson.instructions.boolean.OrInstruction">[docs]</a><span class="k">class</span> <span class="nc">OrInstruction</span><span class="p">(</span><span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;OR&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="OrInstruction.execute"><a class="viewcode-back" href="../../../../instructions.html#pymavryk.michelson.instructions.boolean.OrInstruction.execute">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="n">MichelsonStack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">context</span><span class="p">:</span> <span class="n">AbstractContext</span><span class="p">):</span>
         <span class="n">execute_boolean_add</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">prim</span><span class="p">,</span> <span class="n">stack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">|</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># type: ignore</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">stack_items_added</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="XorInstruction"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.boolean.XorInstruction">[docs]</a><span class="k">class</span> <span class="nc">XorInstruction</span><span class="p">(</span><span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;XOR&#39;</span><span class="p">):</span>
-<div class="viewcode-block" id="XorInstruction.execute"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.boolean.XorInstruction.execute">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="XorInstruction"><a class="viewcode-back" href="../../../../instructions.html#pymavryk.michelson.instructions.boolean.XorInstruction">[docs]</a><span class="k">class</span> <span class="nc">XorInstruction</span><span class="p">(</span><span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;XOR&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="XorInstruction.execute"><a class="viewcode-back" href="../../../../instructions.html#pymavryk.michelson.instructions.boolean.XorInstruction.execute">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="n">MichelsonStack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">context</span><span class="p">:</span> <span class="n">AbstractContext</span><span class="p">):</span>
         <span class="n">execute_boolean_add</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">prim</span><span class="p">,</span> <span class="n">stack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">^</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># type: ignore</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">stack_items_added</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="AndInstruction"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.boolean.AndInstruction">[docs]</a><span class="k">class</span> <span class="nc">AndInstruction</span><span class="p">(</span><span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;AND&#39;</span><span class="p">):</span>
-<div class="viewcode-block" id="AndInstruction.execute"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.boolean.AndInstruction.execute">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="AndInstruction"><a class="viewcode-back" href="../../../../instructions.html#pymavryk.michelson.instructions.boolean.AndInstruction">[docs]</a><span class="k">class</span> <span class="nc">AndInstruction</span><span class="p">(</span><span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;AND&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="AndInstruction.execute"><a class="viewcode-back" href="../../../../instructions.html#pymavryk.michelson.instructions.boolean.AndInstruction.execute">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="n">MichelsonStack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">context</span><span class="p">:</span> <span class="n">AbstractContext</span><span class="p">):</span>
         <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">BoolType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">,</span> <span class="n">IntType</span><span class="p">],</span> <span class="o">...</span><span class="p">],</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop2</span><span class="p">())</span>
         <span class="n">res_type</span><span class="p">,</span> <span class="n">convert</span> <span class="o">=</span> <span class="n">dispatch_types</span><span class="p">(</span>
@@ -148,8 +148,8 @@
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">stack_items_added</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="NotInstruction"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.boolean.NotInstruction">[docs]</a><span class="k">class</span> <span class="nc">NotInstruction</span><span class="p">(</span><span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;NOT&#39;</span><span class="p">):</span>
-<div class="viewcode-block" id="NotInstruction.execute"><a class="viewcode-back" href="../../../../instructions.html#pytezos.michelson.instructions.boolean.NotInstruction.execute">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="NotInstruction"><a class="viewcode-back" href="../../../../instructions.html#pymavryk.michelson.instructions.boolean.NotInstruction">[docs]</a><span class="k">class</span> <span class="nc">NotInstruction</span><span class="p">(</span><span class="n">MichelsonInstruction</span><span class="p">,</span> <span class="n">prim</span><span class="o">=</span><span class="s1">&#39;NOT&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="NotInstruction.execute"><a class="viewcode-back" href="../../../../instructions.html#pymavryk.michelson.instructions.boolean.NotInstruction.execute">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="n">MichelsonStack</span><span class="p">,</span> <span class="n">stdout</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">context</span><span class="p">:</span> <span class="n">AbstractContext</span><span class="p">):</span>
         <span class="n">a</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Union</span><span class="p">[</span><span class="n">IntType</span><span class="p">,</span> <span class="n">NatType</span><span class="p">,</span> <span class="n">BoolType</span><span class="p">],</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop1</span><span class="p">())</span>
         <span class="n">res_type</span><span class="p">,</span> <span class="n">convert</span> <span class="o">=</span> <span class="n">dispatch_types</span><span class="p">(</span>

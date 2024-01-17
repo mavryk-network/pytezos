@@ -4,11 +4,11 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Michelson integration tests &mdash; PyTezos  documentation</title>
+  <title>Michelson integration tests &mdash; PyMavryk  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
     <link rel="shortcut icon" href="_static/favicon.ico"/>
-    <link rel="canonical" href="https://pytezos.org/integration_tests.html" />
+    <link rel="canonical" href="https://pymavryk.mavryk.org/integration_tests.html" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -20,7 +20,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="PyTezos CLI" href="pytezos_cli.html" />
+    <link rel="next" title="PyMavryk CLI" href="pymavryk_cli.html" />
     <link rel="prev" title="Quick start" href="quick_start.html" /> 
 </head>
 
@@ -33,7 +33,7 @@
           
           
           <a href="contents.html" class="icon icon-home">
-            PyTezos
+            PyMavryk
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -51,24 +51,24 @@
 <li class="toctree-l2"><a class="reference internal" href="#loading-contract">Loading contract</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#calling-contract-entrypoints">Calling contract entrypoints</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#deploying-contract-to-sandboxed-node">Deploying contract to sandboxed node</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#pytezos.sandbox.node.SandboxedNodeTestCase"><code class="docutils literal notranslate"><span class="pre">SandboxedNodeTestCase</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#pytezos.sandbox.node.SandboxedNodeTestCase.IMAGE"><code class="docutils literal notranslate"><span class="pre">SandboxedNodeTestCase.IMAGE</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pytezos.sandbox.node.SandboxedNodeTestCase.PORT"><code class="docutils literal notranslate"><span class="pre">SandboxedNodeTestCase.PORT</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pytezos.sandbox.node.SandboxedNodeTestCase.PROTOCOL"><code class="docutils literal notranslate"><span class="pre">SandboxedNodeTestCase.PROTOCOL</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pytezos.sandbox.node.SandboxedNodeTestCase.activate"><code class="docutils literal notranslate"><span class="pre">SandboxedNodeTestCase.activate()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pytezos.sandbox.node.SandboxedNodeTestCase.bake_block"><code class="docutils literal notranslate"><span class="pre">SandboxedNodeTestCase.bake_block()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pytezos.sandbox.node.SandboxedNodeTestCase.client"><code class="docutils literal notranslate"><span class="pre">SandboxedNodeTestCase.client</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pytezos.sandbox.node.SandboxedNodeTestCase.setUpClass"><code class="docutils literal notranslate"><span class="pre">SandboxedNodeTestCase.setUpClass()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pytezos.sandbox.node.SandboxedNodeTestCase.tearDownClass"><code class="docutils literal notranslate"><span class="pre">SandboxedNodeTestCase.tearDownClass()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pymavryk.sandbox.node.SandboxedNodeTestCase"><code class="docutils literal notranslate"><span class="pre">SandboxedNodeTestCase</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pymavryk.sandbox.node.SandboxedNodeTestCase.IMAGE"><code class="docutils literal notranslate"><span class="pre">SandboxedNodeTestCase.IMAGE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pymavryk.sandbox.node.SandboxedNodeTestCase.PORT"><code class="docutils literal notranslate"><span class="pre">SandboxedNodeTestCase.PORT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pymavryk.sandbox.node.SandboxedNodeTestCase.PROTOCOL"><code class="docutils literal notranslate"><span class="pre">SandboxedNodeTestCase.PROTOCOL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pymavryk.sandbox.node.SandboxedNodeTestCase.activate"><code class="docutils literal notranslate"><span class="pre">SandboxedNodeTestCase.activate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pymavryk.sandbox.node.SandboxedNodeTestCase.bake_block"><code class="docutils literal notranslate"><span class="pre">SandboxedNodeTestCase.bake_block()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pymavryk.sandbox.node.SandboxedNodeTestCase.client"><code class="docutils literal notranslate"><span class="pre">SandboxedNodeTestCase.client</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pymavryk.sandbox.node.SandboxedNodeTestCase.setUpClass"><code class="docutils literal notranslate"><span class="pre">SandboxedNodeTestCase.setUpClass()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pymavryk.sandbox.node.SandboxedNodeTestCase.tearDownClass"><code class="docutils literal notranslate"><span class="pre">SandboxedNodeTestCase.tearDownClass()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#projects-using-pytezos">Projects using PyTezos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#projects-using-pymavryk">Projects using PyMavryk</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="pytezos_cli.html">PyTezos CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymavryk_cli.html">PyMavryk CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="high_level.html">High-level interfaces</a></li>
 <li class="toctree-l1"><a class="reference internal" href="crypto.html">Cryptography</a></li>
 <li class="toctree-l1"><a class="reference internal" href="operation_groups.html">Building and parsing operations</a></li>
@@ -87,7 +87,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="contents.html">PyTezos</a>
+          <a href="contents.html">PyMavryk</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -109,13 +109,13 @@
 <h1>Michelson integration tests<a class="headerlink" href="#michelson-integration-tests" title="Permalink to this heading"></a></h1>
 <section id="step-by-step-guide">
 <h2>Step by step guide<a class="headerlink" href="#step-by-step-guide" title="Permalink to this heading"></a></h2>
-<p>Read this Medium article: <a class="reference external" href="https://medium.com/tezoscommons/testing-michelson-contracts-with-pytezos-513718499e93">https://medium.com/tezoscommons/testing-michelson-contracts-with-pytezos-513718499e93</a></p>
+<p>Read this Medium article: <a class="reference external" href="https://medium.com/tezoscommons/testing-michelson-contracts-with-pymavryk-513718499e93">https://medium.com/tezoscommons/testing-michelson-contracts-with-pymavryk-513718499e93</a></p>
 </section>
 <section id="loading-contract">
 <h2>Loading contract<a class="headerlink" href="#loading-contract" title="Permalink to this heading"></a></h2>
-<p>First step in testing contracts is to create <a class="reference internal" href="high_level.html#pytezos.contract.interface.ContractInterface" title="pytezos.contract.interface.ContractInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">pytezos.contract.interface.ContractInterface</span></code></a> from Michelson code, .tz file or existing deployed contract.</p>
+<p>First step in testing contracts is to create <a class="reference internal" href="high_level.html#pymavryk.contract.interface.ContractInterface" title="pymavryk.contract.interface.ContractInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">pymavryk.contract.interface.ContractInterface</span></code></a> from Michelson code, .tz file or existing deployed contract.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">dirname</span><span class="p">,</span> <span class="n">join</span>
-<span class="kn">from</span> <span class="nn">pytezos</span> <span class="kn">import</span> <span class="n">ContractInterface</span><span class="p">,</span> <span class="n">pytezos</span>
+<span class="kn">from</span> <span class="nn">pymavryk</span> <span class="kn">import</span> <span class="n">ContractInterface</span><span class="p">,</span> <span class="n">pymavryk</span>
 
 <span class="n">contract_michelson</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">  parameter string;</span>
@@ -128,7 +128,7 @@
 <span class="s2">&quot;&quot;&quot;</span>
 
 <span class="c1"># From blockchain</span>
-<span class="n">contract</span> <span class="o">=</span> <span class="n">pytezos</span><span class="o">.</span><span class="n">contract</span><span class="p">(</span><span class="s1">&#39;KT1...&#39;</span><span class="p">)</span>
+<span class="n">contract</span> <span class="o">=</span> <span class="n">pymavryk</span><span class="o">.</span><span class="n">contract</span><span class="p">(</span><span class="s1">&#39;KT1...&#39;</span><span class="p">)</span>
 
 <span class="c1"># From michelson</span>
 <span class="n">contract</span> <span class="o">=</span> <span class="n">ContractInterface</span><span class="o">.</span><span class="n">from_michelson</span><span class="p">(</span><span class="n">contract_michelson</span><span class="p">)</span>
@@ -145,7 +145,7 @@
 </section>
 <section id="calling-contract-entrypoints">
 <h2>Calling contract entrypoints<a class="headerlink" href="#calling-contract-entrypoints" title="Permalink to this heading"></a></h2>
-<p>Entrypoints are accessed by name of contract attributes. Call them with parameters to create <a class="reference internal" href="high_level.html#pytezos.contract.call.ContractCall" title="pytezos.contract.call.ContractCall"><code class="xref py py-class docutils literal notranslate"><span class="pre">pytezos.contract.call.ContractCall</span></code></a> wrapper.</p>
+<p>Entrypoints are accessed by name of contract attributes. Call them with parameters to create <a class="reference internal" href="high_level.html#pymavryk.contract.call.ContractCall" title="pymavryk.contract.call.ContractCall"><code class="xref py py-class docutils literal notranslate"><span class="pre">pymavryk.contract.call.ContractCall</span></code></a> wrapper.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create call to `default` entrypoint</span>
 <span class="n">call</span> <span class="o">=</span> <span class="n">contract</span><span class="o">.</span><span class="n">default</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">)</span>
 
@@ -170,45 +170,45 @@
 <span class="n">result</span> <span class="o">=</span> <span class="n">call</span><span class="o">.</span><span class="n">interpret</span><span class="p">(</span><span class="n">storage</span><span class="o">=</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="n">balance</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Each method will return <a class="reference internal" href="high_level.html#pytezos.contract.result.ContractCallResult" title="pytezos.contract.result.ContractCallResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">pytezos.contract.result.ContractCallResult</span></code></a> instance. Now let’s ensure our call has modified storage correctly.</p>
+<p>Each method will return <a class="reference internal" href="high_level.html#pymavryk.contract.result.ContractCallResult" title="pymavryk.contract.result.ContractCallResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">pymavryk.contract.result.ContractCallResult</span></code></a> instance. Now let’s ensure our call has modified storage correctly.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">result</span><span class="o">.</span><span class="n">storage</span> <span class="o">==</span> <span class="s2">&quot;foobar&quot;</span>
 </pre></div>
 </div>
 </section>
 <section id="deploying-contract-to-sandboxed-node">
 <h2>Deploying contract to sandboxed node<a class="headerlink" href="#deploying-contract-to-sandboxed-node" title="Permalink to this heading"></a></h2>
-<p>Another option is to deploy contract to sandboxed node and interact with it with real transactions. PyTezos has <a class="reference internal" href="#pytezos.sandbox.node.SandboxedNodeTestCase" title="pytezos.sandbox.node.SandboxedNodeTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pytezos.sandbox.node.SandboxedNodeTestCase</span></code></a> helper to simplify spinning up sandboxed node in Docker. Use <cite>self.client</cite> interact with it from within your tests.</p>
+<p>Another option is to deploy contract to sandboxed node and interact with it with real transactions. PyMavryk has <a class="reference internal" href="#pymavryk.sandbox.node.SandboxedNodeTestCase" title="pymavryk.sandbox.node.SandboxedNodeTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pymavryk.sandbox.node.SandboxedNodeTestCase</span></code></a> helper to simplify spinning up sandboxed node in Docker. Use <cite>self.client</cite> interact with it from within your tests.</p>
 <dl class="py class">
-<dt class="sig sig-object py" id="pytezos.sandbox.node.SandboxedNodeTestCase">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytezos.sandbox.node.</span></span><span class="sig-name descname"><span class="pre">SandboxedNodeTestCase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytezos/sandbox/node.html#SandboxedNodeTestCase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.sandbox.node.SandboxedNodeTestCase" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="pymavryk.sandbox.node.SandboxedNodeTestCase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pymavryk.sandbox.node.</span></span><span class="sig-name descname"><span class="pre">SandboxedNodeTestCase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pymavryk/sandbox/node.html#SandboxedNodeTestCase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pymavryk.sandbox.node.SandboxedNodeTestCase" title="Permalink to this definition"></a></dt>
 <dd><p>Perform tests with sanboxed node in Docker container.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="pytezos.sandbox.node.SandboxedNodeTestCase.IMAGE">
-<span class="sig-name descname"><span class="pre">IMAGE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'bakingbad/sandboxed-node:v16.0-2'</span></em><a class="headerlink" href="#pytezos.sandbox.node.SandboxedNodeTestCase.IMAGE" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="pymavryk.sandbox.node.SandboxedNodeTestCase.IMAGE">
+<span class="sig-name descname"><span class="pre">IMAGE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'bakingbad/sandboxed-node:v16.0-2'</span></em><a class="headerlink" href="#pymavryk.sandbox.node.SandboxedNodeTestCase.IMAGE" title="Permalink to this definition"></a></dt>
 <dd><p>Docker image to use</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="pytezos.sandbox.node.SandboxedNodeTestCase.PORT">
-<span class="sig-name descname"><span class="pre">PORT</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8732</span></em><a class="headerlink" href="#pytezos.sandbox.node.SandboxedNodeTestCase.PORT" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="pymavryk.sandbox.node.SandboxedNodeTestCase.PORT">
+<span class="sig-name descname"><span class="pre">PORT</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8732</span></em><a class="headerlink" href="#pymavryk.sandbox.node.SandboxedNodeTestCase.PORT" title="Permalink to this definition"></a></dt>
 <dd><p>Port to expose to host machine</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="pytezos.sandbox.node.SandboxedNodeTestCase.PROTOCOL">
-<span class="sig-name descname"><span class="pre">PROTOCOL</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'PtMumbai2TmsJHNGRkD8v8YDbtao7BLUC3wjASn1inAKLFCjaH1'</span></em><a class="headerlink" href="#pytezos.sandbox.node.SandboxedNodeTestCase.PROTOCOL" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="pymavryk.sandbox.node.SandboxedNodeTestCase.PROTOCOL">
+<span class="sig-name descname"><span class="pre">PROTOCOL</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'PtMumbai2TmsJHNGRkD8v8YDbtao7BLUC3wjASn1inAKLFCjaH1'</span></em><a class="headerlink" href="#pymavryk.sandbox.node.SandboxedNodeTestCase.PROTOCOL" title="Permalink to this definition"></a></dt>
 <dd><p>Hash of protocol to activate</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="pytezos.sandbox.node.SandboxedNodeTestCase.activate">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">activate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">protocol_alias</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="operation_groups.html#pytezos.operation.group.OperationGroup" title="pytezos.operation.group.OperationGroup"><span class="pre">OperationGroup</span></a></span></span><a class="reference internal" href="_modules/pytezos/sandbox/node.html#SandboxedNodeTestCase.activate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.sandbox.node.SandboxedNodeTestCase.activate" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="pymavryk.sandbox.node.SandboxedNodeTestCase.activate">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">activate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">protocol_alias</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="operation_groups.html#pymavryk.operation.group.OperationGroup" title="pymavryk.operation.group.OperationGroup"><span class="pre">OperationGroup</span></a></span></span><a class="reference internal" href="_modules/pymavryk/sandbox/node.html#SandboxedNodeTestCase.activate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pymavryk.sandbox.node.SandboxedNodeTestCase.activate" title="Permalink to this definition"></a></dt>
 <dd><p>Activate protocol.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="pytezos.sandbox.node.SandboxedNodeTestCase.bake_block">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bake_block</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min_fee</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="operation_groups.html#pytezos.operation.group.OperationGroup" title="pytezos.operation.group.OperationGroup"><span class="pre">OperationGroup</span></a></span></span><a class="reference internal" href="_modules/pytezos/sandbox/node.html#SandboxedNodeTestCase.bake_block"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.sandbox.node.SandboxedNodeTestCase.bake_block" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="pymavryk.sandbox.node.SandboxedNodeTestCase.bake_block">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bake_block</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min_fee</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="operation_groups.html#pymavryk.operation.group.OperationGroup" title="pymavryk.operation.group.OperationGroup"><span class="pre">OperationGroup</span></a></span></span><a class="reference internal" href="_modules/pymavryk/sandbox/node.html#SandboxedNodeTestCase.bake_block"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pymavryk.sandbox.node.SandboxedNodeTestCase.bake_block" title="Permalink to this definition"></a></dt>
 <dd><p>Bake new block.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -218,28 +218,28 @@
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="pytezos.sandbox.node.SandboxedNodeTestCase.client">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">client</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="high_level.html#pytezos.client.PyTezosClient" title="pytezos.client.PyTezosClient"><span class="pre">PyTezosClient</span></a></em><a class="headerlink" href="#pytezos.sandbox.node.SandboxedNodeTestCase.client" title="Permalink to this definition"></a></dt>
-<dd><p>PyTezos client to interact with sandboxed node.</p>
+<dt class="sig sig-object py" id="pymavryk.sandbox.node.SandboxedNodeTestCase.client">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">client</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="high_level.html#pymavryk.client.PyMavrykClient" title="pymavryk.client.PyMavrykClient"><span class="pre">PyMavrykClient</span></a></em><a class="headerlink" href="#pymavryk.sandbox.node.SandboxedNodeTestCase.client" title="Permalink to this definition"></a></dt>
+<dd><p>PyMavryk client to interact with sandboxed node.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="pytezos.sandbox.node.SandboxedNodeTestCase.setUpClass">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">setUpClass</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/pytezos/sandbox/node.html#SandboxedNodeTestCase.setUpClass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.sandbox.node.SandboxedNodeTestCase.setUpClass" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="pymavryk.sandbox.node.SandboxedNodeTestCase.setUpClass">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">setUpClass</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/pymavryk/sandbox/node.html#SandboxedNodeTestCase.setUpClass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pymavryk.sandbox.node.SandboxedNodeTestCase.setUpClass" title="Permalink to this definition"></a></dt>
 <dd><p>Spin up sandboxed node container and activate protocol.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="pytezos.sandbox.node.SandboxedNodeTestCase.tearDownClass">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tearDownClass</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/pytezos/sandbox/node.html#SandboxedNodeTestCase.tearDownClass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytezos.sandbox.node.SandboxedNodeTestCase.tearDownClass" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="pymavryk.sandbox.node.SandboxedNodeTestCase.tearDownClass">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tearDownClass</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/pymavryk/sandbox/node.html#SandboxedNodeTestCase.tearDownClass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pymavryk.sandbox.node.SandboxedNodeTestCase.tearDownClass" title="Permalink to this definition"></a></dt>
 <dd><p>Hook method for deconstructing the class fixture after running all tests in the class.</p>
 </dd></dl>
 
 </dd></dl>
 
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pytezos</span> <span class="kn">import</span> <span class="n">ContractInterface</span>
-<span class="kn">from</span> <span class="nn">pytezos.sandbox.node</span> <span class="kn">import</span> <span class="n">SandboxedNodeTestCase</span>
-<span class="kn">from</span> <span class="nn">pytezos.contract.result</span> <span class="kn">import</span> <span class="n">ContractCallResult</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pymavryk</span> <span class="kn">import</span> <span class="n">ContractInterface</span>
+<span class="kn">from</span> <span class="nn">pymavryk.sandbox.node</span> <span class="kn">import</span> <span class="n">SandboxedNodeTestCase</span>
+<span class="kn">from</span> <span class="nn">pymavryk.contract.result</span> <span class="kn">import</span> <span class="n">ContractCallResult</span>
 
 <span class="n">contract_michelson</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">    parameter string;</span>
@@ -289,22 +289,22 @@
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
 <ul class="simple">
-<li><p>Contract tests: <a class="reference external" href="https://github.com/baking-bad/pytezos/tree/master/tests/contract_tests">https://github.com/baking-bad/pytezos/tree/master/tests/contract_tests</a></p></li>
-<li><p>Tests with sandboxed node: <a class="reference external" href="https://github.com/baking-bad/pytezos/tree/master/tests/sandbox_tests">https://github.com/baking-bad/pytezos/tree/master/tests/sandbox_tests</a></p></li>
+<li><p>Contract tests: <a class="reference external" href="https://github.com/baking-bad/pymavryk/tree/master/tests/contract_tests">https://github.com/baking-bad/pymavryk/tree/master/tests/contract_tests</a></p></li>
+<li><p>Tests with sandboxed node: <a class="reference external" href="https://github.com/baking-bad/pymavryk/tree/master/tests/sandbox_tests">https://github.com/baking-bad/pymavryk/tree/master/tests/sandbox_tests</a></p></li>
 </ul>
 </section>
-<section id="projects-using-pytezos">
-<h2>Projects using PyTezos<a class="headerlink" href="#projects-using-pytezos" title="Permalink to this heading"></a></h2>
-<p>See how PyTezos testing engine is used in production:</p>
+<section id="projects-using-pymavryk">
+<h2>Projects using PyMavryk<a class="headerlink" href="#projects-using-pymavryk" title="Permalink to this heading"></a></h2>
+<p>See how PyMavryk testing engine is used in production:</p>
 <ul class="simple">
-<li><p>Atomex
+<!-- <li><p>Atomex
 <a class="reference external" href="https://github.com/atomex-me/atomex-michelson/blob/master/tests/test_atomex.py">https://github.com/atomex-me/atomex-michelson/blob/master/tests/test_atomex.py</a></p></li>
 <li><p>Atomex FA1.2
 <a class="reference external" href="https://github.com/atomex-me/atomex-fa12-ligo/tree/master/tests">https://github.com/atomex-me/atomex-fa12-ligo/tree/master/tests</a></p></li>
 <li><p>TQTezos MAC
 <a class="reference external" href="https://github.com/tqtezos/smart-contracts/tree/master/multi_asset/tezos_mac_tests">https://github.com/tqtezos/smart-contracts/tree/master/multi_asset/tezos_mac_tests</a></p></li>
 <li><p>Equisafe NYX
-<a class="reference external" href="https://gitlab.com/equisafe/nyx/-/tree/master/tests">https://gitlab.com/equisafe/nyx/-/tree/master/tests</a></p></li>
+<a class="reference external" href="https://gitlab.com/equisafe/nyx/-/tree/master/tests">https://gitlab.com/equisafe/nyx/-/tree/master/tests</a></p></li> -->
 </ul>
 </section>
 </section>
@@ -314,7 +314,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="quick_start.html" class="btn btn-neutral float-left" title="Quick start" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="pytezos_cli.html" class="btn btn-neutral float-right" title="PyTezos CLI" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="pymavryk_cli.html" class="btn btn-neutral float-right" title="PyMavryk CLI" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

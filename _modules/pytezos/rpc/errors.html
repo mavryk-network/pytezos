@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytezos.rpc.errors &mdash; PyTezos  documentation</title>
+  <title>pymavryk.rpc.errors &mdash; PyMavryk  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
-    <link rel="canonical" href="https://pytezos.org/_modules/pytezos/rpc/errors.html" />
+    <link rel="canonical" href="https://pymavryk.mavryk.org/_modules/pymavryk/rpc/errors.html" />
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -30,7 +30,7 @@
           
           
           <a href="../../../contents.html" class="icon icon-home">
-            PyTezos
+            PyMavryk
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -44,7 +44,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../quick_start.html">Quick start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../integration_tests.html">Michelson integration tests</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../pytezos_cli.html">PyTezos CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pymavryk_cli.html">PyMavryk CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../high_level.html">High-level interfaces</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../crypto.html">Cryptography</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../operation_groups.html">Building and parsing operations</a></li>
@@ -63,7 +63,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../contents.html">PyTezos</a>
+          <a href="../../../contents.html">PyMavryk</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -72,7 +72,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../contents.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">pytezos.rpc.errors</li>
+      <li class="breadcrumb-item active">pymavryk.rpc.errors</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -81,11 +81,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for pytezos.rpc.errors</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">pytezos.rpc.node</span> <span class="kn">import</span> <span class="n">RpcError</span>
+  <h1>Source code for pymavryk.rpc.errors</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">pymavryk.rpc.node</span> <span class="kn">import</span> <span class="n">RpcError</span>
 
 
-<div class="viewcode-block" id="ReorgError"><a class="viewcode-back" href="../../../rpc_queries.html#pytezos.rpc.errors.ReorgError">[docs]</a><span class="k">class</span> <span class="nc">ReorgError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<div class="viewcode-block" id="ReorgError"><a class="viewcode-back" href="../../../rpc_queries.html#pymavryk.rpc.errors.ReorgError">[docs]</a><span class="k">class</span> <span class="nc">ReorgError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">old_hash</span><span class="p">,</span> <span class="n">new_hash</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">old_hash</span><span class="p">,</span> <span class="n">new_hash</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">level</span> <span class="o">=</span> <span class="n">level</span>
@@ -96,25 +96,25 @@
         <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;Reorg detected at level </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">level</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">old_hash</span><span class="si">}</span><span class="s1"> -&gt; </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">new_hash</span><span class="si">}</span><span class="s1">&#39;</span></div>
 
 
-<div class="viewcode-block" id="MichelsonBadContractParameter"><a class="viewcode-back" href="../../../rpc_queries.html#pytezos.rpc.errors.MichelsonBadContractParameter">[docs]</a><span class="k">class</span> <span class="nc">MichelsonBadContractParameter</span><span class="p">(</span><span class="n">RpcError</span><span class="p">,</span> <span class="n">error_id</span><span class="o">=</span><span class="s1">&#39;michelson_v1.bad_contract_parameter&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="MichelsonBadContractParameter"><a class="viewcode-back" href="../../../rpc_queries.html#pymavryk.rpc.errors.MichelsonBadContractParameter">[docs]</a><span class="k">class</span> <span class="nc">MichelsonBadContractParameter</span><span class="p">(</span><span class="n">RpcError</span><span class="p">,</span> <span class="n">error_id</span><span class="o">=</span><span class="s1">&#39;michelson_v1.bad_contract_parameter&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Either no parameter was supplied to a contract with a non-unit parameter type, a non-unit parameter was passed</span>
 <span class="sd">    to an account, or a parameter was supplied of the wrong type</span>
 <span class="sd">    &quot;&quot;&quot;</span></div>
 
 
-<div class="viewcode-block" id="MichelsonBadReturn"><a class="viewcode-back" href="../../../rpc_queries.html#pytezos.rpc.errors.MichelsonBadReturn">[docs]</a><span class="k">class</span> <span class="nc">MichelsonBadReturn</span><span class="p">(</span><span class="n">RpcError</span><span class="p">,</span> <span class="n">error_id</span><span class="o">=</span><span class="s1">&#39;michelson_v1.bad_return&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="MichelsonBadReturn"><a class="viewcode-back" href="../../../rpc_queries.html#pymavryk.rpc.errors.MichelsonBadReturn">[docs]</a><span class="k">class</span> <span class="nc">MichelsonBadReturn</span><span class="p">(</span><span class="n">RpcError</span><span class="p">,</span> <span class="n">error_id</span><span class="o">=</span><span class="s1">&#39;michelson_v1.bad_return&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Unexpected stack at the end of a lambda or script&quot;&quot;&quot;</span></div>
 
 
-<div class="viewcode-block" id="MichelsonError"><a class="viewcode-back" href="../../../rpc_queries.html#pytezos.rpc.errors.MichelsonError">[docs]</a><span class="k">class</span> <span class="nc">MichelsonError</span><span class="p">(</span><span class="n">RpcError</span><span class="p">,</span> <span class="n">error_id</span><span class="o">=</span><span class="s1">&#39;michelson_v1&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="MichelsonError"><a class="viewcode-back" href="../../../rpc_queries.html#pymavryk.rpc.errors.MichelsonError">[docs]</a><span class="k">class</span> <span class="nc">MichelsonError</span><span class="p">(</span><span class="n">RpcError</span><span class="p">,</span> <span class="n">error_id</span><span class="o">=</span><span class="s1">&#39;michelson_v1&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Catch all michelson_v1 errors&quot;&quot;&quot;</span></div>
 
 
-<div class="viewcode-block" id="TezArithmeticError"><a class="viewcode-back" href="../../../rpc_queries.html#pytezos.rpc.errors.TezArithmeticError">[docs]</a><span class="k">class</span> <span class="nc">TezArithmeticError</span><span class="p">(</span><span class="n">RpcError</span><span class="p">,</span> <span class="n">error_id</span><span class="o">=</span><span class="s1">&#39;tez&#39;</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Catch all tez errors&quot;&quot;&quot;</span></div>
+<div class="viewcode-block" id="TezArithmeticError"><a class="viewcode-back" href="../../../rpc_queries.html#pymavryk.rpc.errors.TezArithmeticError">[docs]</a><span class="k">class</span> <span class="nc">TezArithmeticError</span><span class="p">(</span><span class="n">RpcError</span><span class="p">,</span> <span class="n">error_id</span><span class="o">=</span><span class="s1">&#39;mav&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Catch all mav errors&quot;&quot;&quot;</span></div>
 
 
-<div class="viewcode-block" id="MichelsonScriptRejected"><a class="viewcode-back" href="../../../rpc_queries.html#pytezos.rpc.errors.MichelsonScriptRejected">[docs]</a><span class="k">class</span> <span class="nc">MichelsonScriptRejected</span><span class="p">(</span><span class="n">RpcError</span><span class="p">,</span> <span class="n">error_id</span><span class="o">=</span><span class="s1">&#39;script_rejected&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="MichelsonScriptRejected"><a class="viewcode-back" href="../../../rpc_queries.html#pymavryk.rpc.errors.MichelsonScriptRejected">[docs]</a><span class="k">class</span> <span class="nc">MichelsonScriptRejected</span><span class="p">(</span><span class="n">RpcError</span><span class="p">,</span> <span class="n">error_id</span><span class="o">=</span><span class="s1">&#39;script_rejected&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A FAILWITH instruction was reached&quot;&quot;&quot;</span></div>
 </pre></div>
 
