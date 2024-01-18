@@ -159,7 +159,6 @@ https://medium.com/tezoscommons/testing-michelson-contracts-with-pytezos-5137184
 * Slack channel: [#baking-bad](https://tezos-dev.slack.com/archives/CV5NX7F2L)
 
 ## Credits
-* The project was initially started by Arthur Breitman, now it's maintained by Baking Bad team.
-* Baking Bad is supported by Tezos Foundation
-* Michelson test set from the Tezos repo is used to ensure the interpreter workability
+* The project was initially started by Arthur Breitman, now it's maintained by Mavryk Dynamics team, based on the forked of Baking Bad.
+* Michelson test set from the Mavryk repo is used to ensure the interpreter workability
 * Michelson structured documentation by Nomadic Labs is used for inline help
