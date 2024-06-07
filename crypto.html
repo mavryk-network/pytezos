@@ -13,10 +13,11 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=b3ba4146"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -82,6 +83,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#pymavryk.crypto.encoding.is_pkh"><code class="docutils literal notranslate"><span class="pre">is_pkh()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pymavryk.crypto.encoding.is_public_key"><code class="docutils literal notranslate"><span class="pre">is_public_key()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pymavryk.crypto.encoding.is_sig"><code class="docutils literal notranslate"><span class="pre">is_sig()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pymavryk.crypto.encoding.is_sr"><code class="docutils literal notranslate"><span class="pre">is_sr()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pymavryk.crypto.encoding.is_txr_address"><code class="docutils literal notranslate"><span class="pre">is_txr_address()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pymavryk.crypto.encoding.validate_l2_pkh"><code class="docutils literal notranslate"><span class="pre">validate_l2_pkh()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pymavryk.crypto.encoding.validate_pkh"><code class="docutils literal notranslate"><span class="pre">validate_pkh()</span></code></a></li>
@@ -140,14 +142,14 @@ are supported.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pymavryk.crypto.key.Key.from_alias">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_alias</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alias</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">passphrase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tezos_client_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'~/.tezos-client'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pymavryk.crypto.key.Key" title="pymavryk.crypto.key.Key"><span class="pre">Key</span></a></span></span><a class="reference internal" href="_modules/pymavryk/crypto/key.html#Key.from_alias"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pymavryk.crypto.key.Key.from_alias" title="Permalink to this definition"></a></dt>
-<dd><p>Import secret key from tezos-client keychain.</p>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_alias</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alias</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">passphrase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mavryk_client_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'~/.tezos-client'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pymavryk.crypto.key.Key" title="pymavryk.crypto.key.Key"><span class="pre">Key</span></a></span></span><a class="reference internal" href="_modules/pymavryk/crypto/key.html#Key.from_alias"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pymavryk.crypto.key.Key.from_alias" title="Permalink to this definition"></a></dt>
+<dd><p>Import secret key from octez-client keychain.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>alias</strong> – key alias</p></li>
 <li><p><strong>passphrase</strong> – if key is encrypted (optional)</p></li>
-<li><p><strong>tezos_client_dir</strong> – path to the tezos client directory (default is <cite>~/.tezos-client</cite>)</p></li>
+<li><p><strong>mavryk_client_dir</strong> – path to the octez client directory (default is <cite>~/.tezos-client</cite>)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -375,6 +377,12 @@ if not set value from from PYMAVRYK_PASSPHRASE env variable will be used or prom
 <dt class="sig sig-object py" id="pymavryk.crypto.encoding.is_sig">
 <span class="sig-prename descclassname"><span class="pre">pymavryk.crypto.encoding.</span></span><span class="sig-name descname"><span class="pre">is_sig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/pymavryk/crypto/encoding.html#is_sig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pymavryk.crypto.encoding.is_sig" title="Permalink to this definition"></a></dt>
 <dd><p>Check if value is a signature.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pymavryk.crypto.encoding.is_sr">
+<span class="sig-prename descclassname"><span class="pre">pymavryk.crypto.encoding.</span></span><span class="sig-name descname"><span class="pre">is_sr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/pymavryk/crypto/encoding.html#is_sr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pymavryk.crypto.encoding.is_sr" title="Permalink to this definition"></a></dt>
+<dd><p>Check if value is a smart rollup address.</p>
 </dd></dl>
 
 <dl class="py function">

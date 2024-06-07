@@ -121,7 +121,7 @@ We are interested in ``using`` method, which is responsible for setting up manag
     Change current RPC endpoint and account (private key).
 
     :param shell: one of 'mainnet', '***net', or RPC node uri, or instance of :class:`pymavryk.rpc.shell.ShellQuery`
-    :param key: base58 encoded key, path to the faucet file, faucet file itself, alias from tezos-client, or `Key`
+    :param key: base58 encoded key, path to the faucet file, faucet file itself, alias from octez-client, or `Key`
     :param mode: whether to use `readable` or `optimized` encoding for parameters/storage/other
     :returns: A copy of current object with changes applied
 
@@ -476,7 +476,7 @@ And for the wallet:
         int  /* Natural number */
 
     $address:
-        str  /* Base58 encoded `tz` or `KT` address */
+        str  /* Base58 encoded `mv` or `KT` address */
 
 
     Helpers
@@ -600,7 +600,7 @@ In order to see type definition, just remove the trailing brackets:
         { address: nat, … } || int /* Big_map ID */
 
     $address:
-        str  /* Base58 encoded `tz` or `KT` address */
+        str  /* Base58 encoded `mv` or `KT` address */
 
     $nat:
         int  /* Natural number */
@@ -665,7 +665,7 @@ We can do the same using special entrypoint ``balance_of``. Let's give a look at
         }
 
     $address:
-        str  /* Base58 encoded `tz` or `KT` address */
+        str  /* Base58 encoded `mv` or `KT` address */
 
     $nat:
         int  /* Natural number */

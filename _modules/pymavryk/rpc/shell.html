@@ -12,10 +12,11 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=b3ba4146"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -174,7 +175,7 @@
 <span class="sd">        :param max_blocks: number of blocks to iterate (not including the current one)</span>
 <span class="sd">        :param yield_current: yield current block hash at the very beginning</span>
 <span class="sd">        :param time_between_blocks: override protocol constant</span>
-<span class="sd">        :param block_timeout: set block timeout (by default Pymavryk will wait for a long time)</span>
+<span class="sd">        :param block_timeout: set block timeout (by default PyMavryk will wait for a long time)</span>
 <span class="sd">        :return: block hashes</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">time_between_blocks</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -233,7 +234,7 @@
 <span class="sd">        :param min_confirmations: minimum number of blocks after inclusion to wait for</span>
 <span class="sd">        :param current_block_hash: current block hash (head)</span>
 <span class="sd">        :param time_between_blocks: override protocol constant</span>
-<span class="sd">        :param block_timeout: set block timeout (by default Pymavryk will wait for a long time)</span>
+<span class="sd">        :param block_timeout: set block timeout (by default PyMavryk will wait for a long time)</span>
 <span class="sd">        :return: list of operation contents with metadata</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 

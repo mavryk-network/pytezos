@@ -63,7 +63,7 @@ Operations with structures
 
 Mavryk-specific operations
 ++++++++++++++++++++++++++++
-.. automodule:: pymavryk.michelson.instructions.tezos
+.. automodule:: pymavryk.michelson.instructions.mavryk
     :members:
     :undoc-members:
 

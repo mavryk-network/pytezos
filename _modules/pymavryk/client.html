@@ -12,10 +12,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b3ba4146"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -211,7 +212,7 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Change current RPC endpoint and account (private key).</span>
 
 <span class="sd">        :param shell: one of &#39;mainnet&#39;, &#39;***net&#39;, or RPC node uri, or instance of :class:`pymavryk.rpc.shell.ShellQuery`</span>
-<span class="sd">        :param key: base58 encoded key, path to the faucet file, faucet file itself, alias from tezos-client, or `Key`</span>
+<span class="sd">        :param key: base58 encoded key, path to the faucet file, faucet file itself, alias from octez-client, or `Key`</span>
 <span class="sd">        :param mode: whether to use `readable` or `optimized` encoding for parameters/storage/other</span>
 <span class="sd">        :returns: A copy of current object with changes applied</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -295,7 +296,7 @@
 <span class="sd">        :param num_blocks_wait: number of blocks to wait for injection</span>
 <span class="sd">        :param time_between_blocks: override the corresponding parameter from constants</span>
 <span class="sd">        :param prev_hash: Current block hash (optional). If not set, current head is used.</span>
-<span class="sd">        :param block_timeout: set block timeout (by default Pymavryk will wait for a long time)</span>
+<span class="sd">        :param block_timeout: set block timeout (by default PyMavryk will wait for a long time)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">operation_groups</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;At least one operation group has to be passed to the args&#39;</span><span class="p">)</span>
@@ -325,7 +326,7 @@
 
 <span class="sd">        :param num_blocks: number of blocks to wait for</span>
 <span class="sd">        :param time_between_blocks: override the corresponding parameter from constants</span>
-<span class="sd">        :param block_timeout: set block timeout (by default Pymavryk will wait for a long time)</span>
+<span class="sd">        :param block_timeout: set block timeout (by default PyMavryk will wait for a long time)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">block_hash</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shell</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">hash</span><span class="p">()</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span>

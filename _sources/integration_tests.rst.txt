@@ -145,3 +145,12 @@ Examples
 Projects using PyMavryk
 ------------------------
 See how PyMavryk testing engine is used in production:
+
+- Atomex
+  https://github.com/atomex-me/atomex-michelson/blob/master/tests/test_atomex.py
+- Atomex FA1.2
+  https://github.com/atomex-me/atomex-fa12-ligo/tree/master/tests
+- TQTezos MAC
+  https://github.com/tqtezos/smart-contracts/tree/master/multi_asset/tezos_mac_tests
+- Equisafe NYX
+  https://gitlab.com/equisafe/nyx/-/tree/master/tests
