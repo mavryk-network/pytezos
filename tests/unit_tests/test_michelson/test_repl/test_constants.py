@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from pytezos.contract.interface import ContractInterface
-from pytezos.contract.interface import ExecutionContext
+from pymavryk.contract.interface import ContractInterface
+from pymavryk.contract.interface import ExecutionContext
 
 source = """
 parameter (constant "exprvKFFbc7SnPjkPZgyhaHewQhmrouNjNae3DpsQ8KuADn9i2WuJ8") ;

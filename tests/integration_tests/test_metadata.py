@@ -1,15 +1,17 @@
 from unittest import TestCase
 
-from pytezos import pytezos
+from pymavryk import pymavryk
 
-
+#TODO: Fix when Mavryk mainnet is deployed
 class TestMetadata(TestCase):
     def test_usds_all_tokens_view(self):
-        usds = pytezos.using('mainnet').contract('KT1REEb5VxWRjcHm5GzDMwErMmNFftsE5Gpf')
-        res = usds.metadata.allTokens().storage_view()
-        self.assertEqual([0], res)
+        ...
+        # usds = pymavryk.using('mainnet').contract('KT1REEb5VxWRjcHm5GzDMwErMmNFftsE5Gpf')
+        # res = usds.metadata.allTokens().storage_view()
+        # self.assertEqual([0], res)
 
     def test_domains(self):
-        td = pytezos.using('mainnet').contract('KT1GBZmSxmnKJXGMdMLbugPfLyUPmuLSMwKS')
-        res = td.metadata.resolveAddress('tz2Li3UTeiQQzh32EH4VriVa7owyUWFj1NKJ').storage_view()
-        self.assertEqual('tz2Li3UTeiQQzh32EH4VriVa7owyUWFj1NKJ', res['address'])
+        ...
+        # td = pymavryk.using('mainnet').contract('KT1GBZmSxmnKJXGMdMLbugPfLyUPmuLSMwKS')
+        # res = td.metadata.resolveAddress('mv2SWyttJCrigv3XdHaS8XJF33AMoLGYLttC').storage_view()
+        # self.assertEqual('mv2SWyttJCrigv3XdHaS8XJF33AMoLGYLttC', res['address'])

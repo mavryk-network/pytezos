@@ -25,7 +25,7 @@ define([
                 { regex: /(?:SELF|CONTRACT|TRANSFER_TOKENS|SET_DELEGATE|CREATE_CONTRACT|IMPLICIT_ACCOUNT|NOW|AMOUNT|BALANCE|STEPS_TO_QUOTA|SOURCE|SENDER|ADDRESS|CHAIN_ID|LEVEL|SELF_ADDRESS|TOTAL_VOTING_POWER|SAPLING_EMPTY_STATE|MIN_BLOCK_TIME)(?=\s|;|\}|$)/, token: "operator"},
                 // type
                 { regex: /(?:option|list|set|contract|pair|or|lambda|map|big_map)(?=\s|\)|$)/, token: "builtin" },
-                { regex: /(?:key|unit|signature|operation|address|int|nat|string|bytes|mutez|bool|key_hash|timestamp|chain_id|never|bls12_381_g1|bls12_381_g2|bls12_381_fr|sapling_state|sapling_transaction|sapling_transaction_deprecated|tx_rollup_l2_address)(?=\s|\)|\}|;|$)/, token: "builtin" },
+                { regex: /(?:key|unit|signature|operation|address|int|nat|string|bytes|mumav|bool|key_hash|timestamp|chain_id|never|bls12_381_g1|bls12_381_g2|bls12_381_fr|sapling_state|sapling_transaction|sapling_transaction_deprecated|tx_rollup_l2_address)(?=\s|\)|\}|;|$)/, token: "builtin" },
                 // macros
                 { regex: /(?:IF_SOME|FAIL|ASSERT|ASSERT_NONE|ASSERT_SOME|ASSERT_LEFT|ASSERT_RIGHT|UNPAIR|(?:SET|MAP)_C[AD]+R)(?=\s|;|\}|$)/, token: "string-2" },
                 { regex: /(?:DII+P|C[AD]{2,}R|DUU+P|P[PAI]{3,}R|UNP[PAI]{3,}R)(?=\s|;|\}|$)/, token: "string-2" },

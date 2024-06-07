@@ -27,13 +27,13 @@ pyenv local 3.7.0   # per folder
 pyenv global 3.7.9  # per system
 ```
 
-2. Ensure you have several crypto libraries installed (see [pytezos docs](https://baking-bad.github.io/pytezos/#requirements)):
+2. Ensure you have several crypto libraries installed (see [pymavryk docs](https://pymavryk.mavryk.org/#requirements)):
 ```
 sudo apt install libsodium-dev libsecp256k1-dev libgmp-dev
 ```
-3. Install the PyTezos package using pip
+3. Install the PyMavryk package using pip
 ```
-pip install pytezos
+pip install pymavryk
 ```
 4. Install Jupyter
 ```
@@ -54,13 +54,13 @@ jupyter notebook
 Open the link from the command output, create new notebook with Michelson kernel.
 
 ### Option 4: install from sources
-1. Follow steps 1-2 from "Option 3" to ensure you have correct Python version and packets required for the PyTezos library
+1. Follow steps 1-2 from "Option 3" to ensure you have correct Python version and packets required for the PyMavryk library
 2. Ensure the following packages are installed: `libssl-dev zlib1g-dev uuid-dev`
 3. Ensure you have `poetry` installed
 4. Get the sources, build and install
 ```
-git clone https://github.com/baking-bad/pytezos
-cd pytezos
+git clone https://github.com/mavryk-network/pymavryk
+cd pymavryk
 poetry install
 ```
 4. Follow steps 4-6 from "Option 3"
@@ -76,7 +76,7 @@ jupyter kernelspec list
 ```
 3. Uninstall Python package
 ```
-pip uninstall pytezos
+pip uninstall pymavryk
 ```
 
 ### How it works
@@ -89,7 +89,7 @@ https://nbviewer.jupyter.org/github/baking-bad/pytezos/blob/binder/michelson_qui
 
 ### Sample notebooks
 Located in the current repository:  
-https://github.com/baking-bad/pytezos/tree/master/notebooks
+https://github.com/mavryk-network/pymavryk/tree/master/notebooks
 
 ### List of helpers
 These instructions are not Michelson primitives and thus cannot be used outside of the Jupyter.  
@@ -113,7 +113,7 @@ Expands Michelson macros:
 `EXPAND { PAPAIIR }`
 
 #### `INCLUDE path`
-Loads Michelson source from the filesystem (absolute or relative path) `INCLUDE "test.tz"`, or from one of the Tezos networks `INCLUDE "mainnet:KT1VG2WtYdSWz5E7chTeAdDPZNy2MpP8pTfL"`. Initializes `parameter`, `storage`, and `code` sections. If loaded from the network, current storage is also written to the `STORAGE` variable and can be accessed later. 
+Loads Michelson source from the filesystem (absolute or relative path) `INCLUDE "test.tz"`, or from one of the Mavryk networks `INCLUDE "mainnet:KT1VG2WtYdSWz5E7chTeAdDPZNy2MpP8pTfL"`. Initializes `parameter`, `storage`, and `code` sections. If loaded from the network, current storage is also written to the `STORAGE` variable and can be accessed later. 
 
 #### `PATCH prim value`
 Sets value for on of the context-dependent Michelson instructions: `AMOUNT`, `BALANCE`, `NOW`, `SOURCE`, `SENDER`, `CHAIN_ID`.

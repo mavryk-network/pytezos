@@ -161,7 +161,7 @@
                         "prim": "PUSH",
                         "args": [
                           {
-                            "prim": "mutez"
+                            "prim": "mumav"
                           },
                           {
                             "int": "0"
@@ -257,7 +257,7 @@
                               "prim": "PUSH",
                               "args": [
                                 {
-                                  "prim": "mutez"
+                                  "prim": "mumav"
                                 },
                                 {
                                   "int": "0"
@@ -388,7 +388,7 @@
                         "prim": "AMOUNT"
                       },
                       {
-                        "prim": "SUB_MUTEZ"
+                        "prim": "SUB_MUMAV"
                       },
                       {
                         "prim": "IF_NONE",
@@ -419,7 +419,7 @@
                         "prim": "PUSH",
                         "args": [
                           {
-                            "prim": "mutez"
+                            "prim": "mumav"
                           },
                           {
                             "int": "0"

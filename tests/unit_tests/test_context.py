@@ -1,8 +1,8 @@
 from unittest import TestCase
 from unittest.mock import patch
 
-from pytezos.context.impl import ExecutionContext
-from pytezos.rpc.shell import ShellQuery
+from pymavryk.context.impl import ExecutionContext
+from pymavryk.rpc.shell import ShellQuery
 
 
 class TestContext(TestCase):
@@ -16,7 +16,7 @@ class TestContext(TestCase):
                 "additional_info": "release",
             },
             "network_version": {
-                "chain_name": "TEZOS_EDO2NET_2021-02-11T14:00:00Z",
+                "chain_name": "MAVRYK_EDO2NET_2021-02-11T14:00:00Z",
                 "distributed_db_version": 1,
                 "p2p_version": 1,
             },
@@ -32,7 +32,7 @@ class TestContext(TestCase):
                 "additional_info": "release",
             },
             "network_version": {
-                "chain_name": "SANDBOXED_TEZOS",
+                "chain_name": "SANDBOXED_MAVRYK",
                 "distributed_db_version": 1,
                 "p2p_version": 1,
             },
@@ -43,11 +43,11 @@ class TestContext(TestCase):
         }
 
         # Act
-        with patch("pytezos.rpc.query.RpcQuery.__call__") as rpc_mock:
+        with patch("pymavryk.rpc.query.RpcQuery.__call__") as rpc_mock:
             rpc_mock.return_value = public_version_response
             public_result = ExecutionContext(shell=ShellQuery(None)).sandboxed  # type: ignore
 
-        with patch("pytezos.rpc.query.RpcQuery.__call__") as rpc_mock:
+        with patch("pymavryk.rpc.query.RpcQuery.__call__") as rpc_mock:
             rpc_mock.return_value = sandboxed_version_response
             sandboxed_result = ExecutionContext(shell=ShellQuery(None)).sandboxed  # type: ignore
 

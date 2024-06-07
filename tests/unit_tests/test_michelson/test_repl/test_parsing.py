@@ -5,7 +5,7 @@ from unittest import TestCase
 
 from parameterized import parameterized  # type: ignore
 
-from pytezos.contract.interface import ContractInterface
+from pymavryk.contract.interface import ContractInterface
 
 
 class ParsingTestCase(TestCase):

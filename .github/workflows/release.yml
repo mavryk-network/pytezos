@@ -48,11 +48,11 @@ jobs:
           username: ${{ secrets.DOCKER_LOGIN }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Set up metadata (pytezos)
-        id: meta-pytezos
+      - name: Set up metadata (pymavryk)
+        id: meta-pymavryk
         uses: docker/metadata-action@v3
         with:
-          images: bakingbad/pytezos
+          images: bakingbad/pymavryk
           tags: type=pep440,pattern={{version}}
 
       - name: Set up metadata (michelson-kernel)
@@ -62,15 +62,15 @@ jobs:
           images: bakingbad/michelson-kernel
           tags: type=pep440,pattern={{version}}
 
-      - name: Publish stable image (pytezos)
+      - name: Publish stable image (pymavryk)
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: pytezos.dockerfile
+          file: pymavryk.dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ steps.meta-pytezos.outputs.tags }}
-          labels: ${{ steps.meta-pytezos.outputs.labels }}
+          tags: ${{ steps.meta-pymavryk.outputs.tags }}
+          labels: ${{ steps.meta-pymavryk.outputs.labels }}
 
       - name: Publish stable image (michelson-kernel)
         uses: docker/build-push-action@v3

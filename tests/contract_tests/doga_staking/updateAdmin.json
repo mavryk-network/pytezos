@@ -2,7 +2,7 @@
   "parameters": {
     "entrypoint": "updateAdmin",
     "value": {
-      "string": "tz1MqrQrJT2hsbZfm4LbGa3VvKZRxo5AdJgs"
+      "string": "mv1AvuCoZimDQmz8vNMBpv5J7Arh8JAqbUqz"
     }
   },
   "storage": [

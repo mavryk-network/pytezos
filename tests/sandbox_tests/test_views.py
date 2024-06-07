@@ -1,6 +1,6 @@
-from pytezos import ContractInterface
-from pytezos.operation.result import OperationResult
-from pytezos.sandbox.node import SandboxedNodeTestCase
+from pymavryk import ContractInterface
+from pymavryk.operation.result import OperationResult
+from pymavryk.sandbox.node import SandboxedNodeTestCase
 
 # This contract updates his storage with number provided to default and allow
 # to view this number using getValue view:

@@ -4,7 +4,7 @@ Quick start
 Introduction
 ------------
 
-PyTezos library is a Python toolset for Tezos blockchain, including work with keys, signatures, contracts, operations,
+PyMavryk library is a Python toolset for Mavryk blockchain, including work with keys, signatures, contracts, operations,
 RPC query builder, and a high-level interface for smart contract interaction. It can be used to build a full-fledged
 application, but also it's perfect for doing researches in Jupyter interactive notebooks.
 In this quick start guide, we'll go through the main concepts and inspect one of the common use cases.
@@ -52,14 +52,14 @@ In console:
 
 .. code-block::
 
-   $ pip install pytezos
+   $ pip install pymavryk
 
 In Google Colab notebook:
 
 .. code-block:: python
 
    >>> !apt install libsodium-dev libsecp256k1-dev libgmp-dev
-   >>> !pip install pytezos
+   >>> !pip install pymavryk
    [RESTART RUNTIME]
 
 That's it! You can open Python console or Jupyter notebook and get to the next step.
@@ -67,16 +67,16 @@ That's it! You can open Python console or Jupyter notebook and get to the next s
 Set key and RPC node
 --------------------
 
-All active interaction with the blockchain starts with the PyTezosClient:
+All active interaction with the blockchain starts with the PyMavrykClient:
 
 .. code-block:: python
 
-   >>> from pytezos import pytezos
-   >>> pytezos
-   <pytezos.client.PyTezosClient object at 0x7f95b0c9e5b0>
+   >>> from pymavryk import pymavryk
+   >>> pymavryk
+   <pymavryk.client.PyMavrykClient object at 0x7f95b0c9e5b0>
 
     Properties
-    .key		tz1grSQDByRpnVs7sPtaprNZRp531ZKz6Jmm
+    .key		mv1VDuhoWLjBMmeM1iTS4g4aapw1Zwkz9ziU
     .shell		['https://rpc.tzkt.io/ghostnet']
     .block_id	head
 
@@ -116,16 +116,16 @@ We are interested in ``using`` method, which is responsible for setting up manag
 
 .. code-block:: python
 
-   >>> pytezos.using
-   <function PyTezosClient.using at 0x7f958be02ee0>
+   >>> pymavryk.using
+   <function PyMavrykClient.using at 0x7f958be02ee0>
     Change current RPC endpoint and account (private key).
 
-    :param shell: one of 'mainnet', '***net', or RPC node uri, or instance of :class:`pytezos.rpc.shell.ShellQuery`
-    :param key: base58 encoded key, path to the faucet file, faucet file itself, alias from tezos-client, or `Key`
+    :param shell: one of 'mainnet', '***net', or RPC node uri, or instance of :class:`pymavryk.rpc.shell.ShellQuery`
+    :param key: base58 encoded key, path to the faucet file, faucet file itself, alias from octez-client, or `Key`
     :param mode: whether to use `readable` or `optimized` encoding for parameters/storage/other
     :returns: A copy of current object with changes applied
 
-Note, that by default ``pytezos`` is initialized with the latest testnet and a predefined private key for demo purpose,
+Note, that by default ``pymavryk`` is initialized with the latest testnet and a predefined private key for demo purpose,
 so you can start to interact immediately, but it's highly recommended to use your own key. Let's do that!
 
 Generate keys
@@ -133,13 +133,13 @@ Generate keys
 
 .. code-block:: python
 
-    >>> from pytezos import Key
+    >>> from pymavryk import Key
     >>> key = Key.generate()
     >>> key
-    <pytezos.crypto.key.Key object at 0x7f958bd3b7f0>
+    <pymavryk.crypto.key.Key object at 0x7f958bd3b7f0>
 
     Public key hash
-    tz1N7bRGGxE6pGXS92apoybheJxNKe1jU8FB
+    mv1MGgJxyRyNK8vAiE6oCdazu3yZobxuZYNo
 
     Helpers
     .blinded_public_key_hash()
@@ -161,12 +161,12 @@ Set key as default
 
 .. code-block:: python
 
-    >>> pytezos = pytezos.using(key=key)
-    >>> pytezos
-    <pytezos.client.PyTezosClient object at 0x7f958b64f190>
+    >>> pymavryk = pymavryk.using(key=key)
+    >>> pymavryk
+    <pymavryk.client.PyMavrykClient object at 0x7f958b64f190>
 
     Properties
-    .key		tz1QeVeCHFMBd3fRj5aPxwqcAaqUDiARjwJp
+    .key		mv1Ue5qMgJFNFKkjF9x7z867ciE8imnKX8V3
     .shell		['https://rpc.tzkt.io/ghostnet']
     .block_id	head
 
@@ -204,13 +204,13 @@ Top up account
 ^^^^^^^^^^^^^^
 
 Go to the `https://faucet.ghostnet.teztnets.xyz/ <https://faucet.ghostnet.teztnets.xyz/>` and paste your public key hash key file to the "Wallet address" field.  
-Press "Request 2001 tez" and wait for transaction to be completed.  
+Press "Request 2001 mav" and wait for transaction to be completed.  
 
 Check that your balance is non-zero:
 
 .. code-block:: python
 
-   >>> pytezos.account()
+   >>> pymavryk.account()
    {'balance': '2001000000', 'counter': '1'}
 
 What happened is your account has been allocated by an incoming transaction and its balance is now positive.
@@ -223,12 +223,12 @@ Now, in order to start using this key we need to send the according public key t
 
 .. code-block:: python
 
-   >>> reveal_op = pytezos.reveal().send()
+   >>> reveal_op = pymavryk.reveal().send()
    >>> reveal_op
-   <pytezos.operation.group.OperationGroup object at 0x7f95d73ff3d0>
+   <pymavryk.operation.group.OperationGroup object at 0x7f95d73ff3d0>
 
     Properties
-    .key		tz1QeVeCHFMBd3fRj5aPxwqcAaqUDiARjwJp
+    .key		mv1Ue5qMgJFNFKkjF9x7z867ciE8imnKX8V3
     .shell		['https://rpc.tzkt.io/ghostnet']
     .block_id	head
 
@@ -242,7 +242,7 @@ Now, in order to start using this key we need to send the according public key t
                 'gas_limit': '1000',
                 'kind': 'reveal',
                 'public_key': 'edpkvHehVYEFJss7VxieJydkdbAwbSNqV9hN4SHo2P6WtsceZ24eaj',
-                'source': 'tz1QeVeCHFMBd3fRj5aPxwqcAaqUDiARjwJp',
+                'source': 'mv1Ue5qMgJFNFKkjF9x7z867ciE8imnKX8V3',
                 'storage_limit': '0'}],
     'protocol': 'PtLimaPtLMwfNinJi9rCfDPWea8dFgTZ1MeJ9f1m2SRic6ayiwW',
     'signature': 'sigPcdMpWx48qsCyotSaHg3RYskNq6RWD2cJT2Nno53yUiJBpTAkGNuMnPvNc17iDqM994TNqckGm85Dxv3C6smKaKYnf7xp'}
@@ -283,20 +283,20 @@ We can also search for operation by hash if we know exact block level or that it
 
 .. code-block:: python
 
-   >>> pytezos.shell.blocks[-20:].find_operation(reveal_op.opg_hash)
+   >>> pymavryk.shell.blocks[-20:].find_operation(reveal_op.opg_hash)
    {'protocol': 'PtLimaPtLMwfNinJi9rCfDPWea8dFgTZ1MeJ9f1m2SRic6ayiwW',
     'chain_id': 'NetXnHfVqm9iesp',
     'hash': 'oo6e7UjGkvoqXG49VRNuN5cEAjo5TqyiRJtVhTvXETbYDDahDNR',
     'branch': 'BLvDnmxUXwLMB3UyREj8ckLDdSBgzajyxZJfmoCrifZXhaRaHAL',
     'contents': [{'kind': 'reveal',
-    'source': 'tz1QeVeCHFMBd3fRj5aPxwqcAaqUDiARjwJp',
+    'source': 'mv1Ue5qMgJFNFKkjF9x7z867ciE8imnKX8V3',
     'fee': '370',
     'counter': '15404829',
     'gas_limit': '1000',
     'storage_limit': '0',
     'public_key': 'edpkvHehVYEFJss7VxieJydkdbAwbSNqV9hN4SHo2P6WtsceZ24eaj',
     'metadata': {'balance_updates': [{'kind': 'contract',
-        'contract': 'tz1QeVeCHFMBd3fRj5aPxwqcAaqUDiARjwJp',
+        'contract': 'mv1Ue5qMgJFNFKkjF9x7z867ciE8imnKX8V3',
         'change': '-370',
         'origin': 'block'},
         {'kind': 'accumulator',
@@ -316,8 +316,8 @@ tutorial we will get it from Michelson source file. There are plenty of availabl
 
 .. code-block:: python
 
-   >>> from pytezos import ContractInterface
-   >>> contract = ContractInterface.from_url('https://raw.githubusercontent.com/baking-bad/pytezos/master/tests/unit_tests/test_michelson/test_repl/mini_scenarios/ticket_wallet_fungible.tz')
+   >>> from pymavryk import ContractInterface
+   >>> contract = ContractInterface.from_url('https://raw.githubusercontent.com/baking-bad/pymavryk/master/tests/unit_tests/test_michelson/test_repl/mini_scenarios/ticket_wallet_fungible.tz')
    >>> contract.script
    <function ContractInterface.script at 0x7fc1768e2c10>
    Generate script for contract origination.
@@ -326,29 +326,29 @@ tutorial we will get it from Michelson source file. There are plenty of availabl
    :param mode: whether to use `readable` or `optimized` (or `legacy_optimized`) encoding for initial storage
    :return: {"code": $Micheline, "storage": $Micheline}
 
-PyTezos can generate empty storage based on the type description, moreover it can do smart filling with the context provided (network, key).
+PyMavryk can generate empty storage based on the type description, moreover it can do smart filling with the context provided (network, key).
 Let's attach shell and key to the contract interface and see the default storage generated:
 
 .. code-block:: python
 
     >>> ci = contract.using(key=key)
     ... ci.storage.dummy()
-    {'manager': 'tz1QeVeCHFMBd3fRj5aPxwqcAaqUDiARjwJp', 'tickets': {}}
+    {'manager': 'mv1Ue5qMgJFNFKkjF9x7z867ciE8imnKX8V3', 'tickets': {}}
 
 Perfect! Now we are ready to deploy the contract:
 
 .. code-block:: python
 
-   >>> pytezos.origination(script=ci.script()).send(min_confirmations=1)
+   >>> pymavryk.origination(script=ci.script()).send(min_confirmations=1)
    { ... origination operation body ... }
 
-Note that we used synchronous injection this time, PyTezos does all the polling job for you and freezes the execution until operations is included into a block.
+Note that we used synchronous injection this time, PyMavryk does all the polling job for you and freezes the execution until operations is included into a block.
 Previously we were searching operation using an integer offset (N levels ago), here's another example how to search an operation using branch:
 
 .. code-block:: python
 
-    >>> from pytezos.operation.result import OperationResult
-    ... opg = pytezos.shell.blocks['BM8tcfVyd1g8yqqfE8UpasXZWFLS3Xr3cRyYaoKTTfhU9PUr1YR':] \
+    >>> from pymavryk.operation.result import OperationResult
+    ... opg = pymavryk.shell.blocks['BM8tcfVyd1g8yqqfE8UpasXZWFLS3Xr3cRyYaoKTTfhU9PUr1YR':] \
     ...     .find_operation('ooKx4wBV4DerrXnAEMRfZrwTyBZQQgBMGGD3xbyXeffWn88QC1f')
     ... res = OperationResult.from_operation_group(opg)
     ... res[0].originated_contracts[0]
@@ -364,14 +364,14 @@ Simultaneously, we will explore how to batch several operations in a single grou
 .. code-block:: python
 
     >>> wallet = ContractInterface \
-    ...     .from_url('https://raw.githubusercontent.com/baking-bad/pytezos/master/tests/unit_tests/test_michelson/test_repl/mini_scenarios/ticket_wallet_fungible.tz') \
+    ...     .from_url('https://raw.githubusercontent.com/baking-bad/pymavryk/master/tests/unit_tests/test_michelson/test_repl/mini_scenarios/ticket_wallet_fungible.tz') \
     ...     .using(key=key)
     ...
     ... builder = ContractInterface \
-    ...     .from_url('https://raw.githubusercontent.com/baking-bad/pytezos/master/tests/unit_tests/test_michelson/test_repl/mini_scenarios/ticket_builder_fungible.tz') \
+    ...     .from_url('https://raw.githubusercontent.com/baking-bad/pymavryk/master/tests/unit_tests/test_michelson/test_repl/mini_scenarios/ticket_builder_fungible.tz') \
     ...     .using(key=key)
     ...
-    ... opg = pytezos.bulk(
+    ... opg = pymavryk.bulk(
     ...     wallet.originate(),
     ...     builder.originate()
     ... ).send(min_confirmations=1)
@@ -387,12 +387,12 @@ We have our contracts deployed and ready to be invoked, let's see the list of en
 
 .. code-block:: python
 
-   >>> builder = pytezos.contract('KT1Si4t6ETLoj6eEsjp8hvfJeiFe3b6Z7eM5')
+   >>> builder = pymavryk.contract('KT1Si4t6ETLoj6eEsjp8hvfJeiFe3b6Z7eM5')
    ... builder.parameter
-    <pytezos.contract.entrypoint.ContractEntrypoint object at 0x7f95d57f54c0>
+    <pymavryk.contract.entrypoint.ContractEntrypoint object at 0x7f95d57f54c0>
 
     Properties
-    .key		tz1QeVeCHFMBd3fRj5aPxwqcAaqUDiARjwJp
+    .key		mv1Ue5qMgJFNFKkjF9x7z867ciE8imnKX8V3
     .shell		['https://rpc.tzkt.io/ghostnet']
     .address	KT1Si4t6ETLoj6eEsjp8hvfJeiFe3b6Z7eM5
     .block_id	head
@@ -421,7 +421,7 @@ We have our contracts deployed and ready to be invoked, let's see the list of en
     $contract:
         str  /* Base58 encoded `KT` address with optional entrypoint */ ||
         None  /* when you need to avoid type checking */ ||
-        Undefined  /* `from pytezos import Undefined` for resolving None ambiguity  */
+        Undefined  /* `from pymavryk import Undefined` for resolving None ambiguity  */
 
     $nat:
         int  /* Natural number */
@@ -435,12 +435,12 @@ And for the wallet:
 
 .. code-block:: python
 
-    >>> wallet = pytezos.contract('KT1S4UmLNwVcmLBE9VgHKpJJWpKE1JE8VjwN')
+    >>> wallet = pymavryk.contract('KT1S4UmLNwVcmLBE9VgHKpJJWpKE1JE8VjwN')
     >>> wallet.parameter
-    <pytezos.contract.entrypoint.ContractEntrypoint object at 0x7f95d57f5fd0>
+    <pymavryk.contract.entrypoint.ContractEntrypoint object at 0x7f95d57f5fd0>
 
     Properties
-    .key		tz1QeVeCHFMBd3fRj5aPxwqcAaqUDiARjwJp
+    .key		mv1Ue5qMgJFNFKkjF9x7z867ciE8imnKX8V3
     .shell		['https://rpc.tzkt.io/ghostnet']
     .address	KT1S4UmLNwVcmLBE9VgHKpJJWpKE1JE8VjwN
     .block_id	head
@@ -470,13 +470,13 @@ And for the wallet:
     $contract:
         str  /* Base58 encoded `KT` address with optional entrypoint */ ||
         None  /* when you need to avoid type checking */ ||
-        Undefined  /* `from pytezos import Undefined` for resolving None ambiguity  */
+        Undefined  /* `from pymavryk import Undefined` for resolving None ambiguity  */
 
     $nat:
         int  /* Natural number */
 
     $address:
-        str  /* Base58 encoded `tz` or `KT` address */
+        str  /* Base58 encoded `mv` or `KT` address */
 
 
     Helpers
@@ -488,7 +488,7 @@ Let's also use bulk API again to demonstrate how to batch contract calls:
 
 .. code-block:: python
 
-    >>> opg = pytezos.bulk(
+    >>> opg = pymavryk.bulk(
     ...    builder.mint(destination=f'{wallet.address}%receive', amount=42),
     ...    builder.mint(destination=f'{wallet.address}%receive', amount=123)
     ... ).send(min_confirmations=1)
@@ -505,12 +505,12 @@ as it has BigMap entries, named entrypoints, and a non-trivial data scheme.
 
 .. code-block:: python
 
-   >>> usds = pytezos.using('mainnet').contract('KT1REEb5VxWRjcHm5GzDMwErMmNFftsE5Gpf')
+   >>> usds = pymavryk.using('mainnet').contract('KT1REEb5VxWRjcHm5GzDMwErMmNFftsE5Gpf')
    >>> usds
-    <pytezos.jupyter.ContractInterface object at 0x7fc17689f2b0>
+    <pymavryk.jupyter.ContractInterface object at 0x7fc17689f2b0>
 
     Properties
-    .key  # tz1Ne4yzDRQPd5HFz6sTaCYCNHwFubT2MWsB
+    .key  # mv1LDPE2n2mZXbQt3MwR5ZbQU432eag71grX
     .shell  # https://mainnet-tezos.giganode.io/ (mainnet)
     .address  # KT1REEb5VxWRjcHm5GzDMwErMmNFftsE5Gpf
     .block_id  # head
@@ -561,20 +561,20 @@ You can access contract storage at any block level, just pass block id into the 
     {'default_expiry': 300000,
      'ledger': -1,
      'metadata': -2,
-     'minting_allowances': {'tz1PNsHbJRejCnnYzbsQ1CR8wUdEQqVjWen1': 999989000000,
-      'tz1i2tE6hic2ASe9Kvy85ar5hGSSc58bYejT': 999985800000},
+     'minting_allowances': {'mv1N913itbcFVECQPzKLzXfgN8jgZ6MaEPwE': 999989000000,
+      'mv19bzdiWWzVhwLHCCbPjeyLjiUMgdKAxsbF': 999985800000},
      'operators': -3,
      'paused': False,
      'permit_counter': 0,
      'permits': -4,
-     'roles': {'master_minter': 'tz1i2tE6hic2ASe9Kvy85ar5hGSSc58bYejT',
-      'owner': 'tz1i2tE6hic2ASe9Kvy85ar5hGSSc58bYejT',
-      'pauser': 'tz1i2tE6hic2ASe9Kvy85ar5hGSSc58bYejT',
+     'roles': {'master_minter': 'mv19bzdiWWzVhwLHCCbPjeyLjiUMgdKAxsbF',
+      'owner': 'mv19bzdiWWzVhwLHCCbPjeyLjiUMgdKAxsbF',
+      'pauser': 'mv19bzdiWWzVhwLHCCbPjeyLjiUMgdKAxsbF',
       'pending_owner': None},
      'total_supply': 20200000,
      'transferlist_contract': None}
 
-Under the hood PyTezos has parsed the storage type, collapsed all nested structures, converted annotations into keys,
+Under the hood PyMavryk has parsed the storage type, collapsed all nested structures, converted annotations into keys,
 and in the result we get a simple Python object which is much easier to manipulate.
 You can also access child elements by name or index (depending on the underlying Michelson type).
 In order to see type definition, just remove the trailing brackets:
@@ -582,10 +582,10 @@ In order to see type definition, just remove the trailing brackets:
 .. code-block:: python
 
    >>> usds.storage['ledger']
-    <pytezos.contract.data.ContractData object at 0x7f21aaeaca30>
+    <pymavryk.contract.data.ContractData object at 0x7f21aaeaca30>
 
     Properties
-    .key  # tz1Ne4yzDRQPd5HFz6sTaCYCNHwFubT2MWsB
+    .key  # mv1LDPE2n2mZXbQt3MwR5ZbQU432eag71grX
     .shell  # https://mainnet-tezos.giganode.io/ (mainnet)
     .address  # KT1REEb5VxWRjcHm5GzDMwErMmNFftsE5Gpf
     .block_id  # head
@@ -600,7 +600,7 @@ In order to see type definition, just remove the trailing brackets:
         { address: nat, … } || int /* Big_map ID */
 
     $address:
-        str  /* Base58 encoded `tz` or `KT` address */
+        str  /* Base58 encoded `mv` or `KT` address */
 
     $nat:
         int  /* Natural number */
@@ -622,7 +622,7 @@ The approach described in the previous section also works for lazy storage, here
 
 .. code-block:: python
 
-   >>> usds.storage['ledger']['tz1PNsHbJRejCnnYzbsQ1CR8wUdEQqVjWen1']()
+   >>> usds.storage['ledger']['mv1N913itbcFVECQPzKLzXfgN8jgZ6MaEPwE']()
    11000000
 
 Pretty cool, hah?
@@ -636,10 +636,10 @@ We can do the same using special entrypoint ``balance_of``. Let's give a look at
 .. code-block:: python
 
    >>> usds.balance_of
-    <pytezos.contract.entrypoint.ContractEntrypoint object at 0x7f4789170dc0>
+    <pymavryk.contract.entrypoint.ContractEntrypoint object at 0x7f4789170dc0>
 
     Properties
-    .key  # tz1Ne4yzDRQPd5HFz6sTaCYCNHwFubT2MWsB
+    .key  # mv1LDPE2n2mZXbQt3MwR5ZbQU432eag71grX
     .shell  # https://mainnet-tezos.giganode.io/ (mainnet)
     .address  # KT1REEb5VxWRjcHm5GzDMwErMmNFftsE5Gpf
     .block_id  # head
@@ -665,7 +665,7 @@ We can do the same using special entrypoint ``balance_of``. Let's give a look at
         }
 
     $address:
-        str  /* Base58 encoded `tz` or `KT` address */
+        str  /* Base58 encoded `mv` or `KT` address */
 
     $nat:
         int  /* Natural number */
@@ -676,34 +676,34 @@ We can do the same using special entrypoint ``balance_of``. Let's give a look at
     .encode()
 
 Apparently, we need to pass a list of requests, where each item contains owner address and token ID.
-In addition to that a callback address is expected which should accept the response (currently there are no on-chain views in Tezos, this async pattern is a workaround for them).
-PyTezos allows you to keep that address empty and get the view result:
+In addition to that a callback address is expected which should accept the response (currently there are no on-chain views in Mavryk, this async pattern is a workaround for them).
+PyMavryk allows you to keep that address empty and get the view result:
 
 .. code-block:: python
 
    >>> usds.balance_of(requests=[
-   ...   {'owner': 'tz1PNsHbJRejCnnYzbsQ1CR8wUdEQqVjWen1', 'token_id': 0},
-   ...   {'owner': 'tz1i2tE6hic2ASe9Kvy85ar5hGSSc58bYejT', 'token_id': 0},
-   ...   {'owner': 'tz2QegZQXyz8b74iTdaqKsGRF7YQb88Wu9CS', 'token_id': 0}
+   ...   {'owner': 'mv1N913itbcFVECQPzKLzXfgN8jgZ6MaEPwE', 'token_id': 0},
+   ...   {'owner': 'mv19bzdiWWzVhwLHCCbPjeyLjiUMgdKAxsbF', 'token_id': 0},
+   ...   {'owner': 'mv2e9VsSX7VxigA4Z9eqMiEtQZdvnS7Go4j4', 'token_id': 0}
    ...], callback=None).view()
-   [{'owner': 'tz1PNsHbJRejCnnYzbsQ1CR8wUdEQqVjWen1',
+   [{'owner': 'mv1N913itbcFVECQPzKLzXfgN8jgZ6MaEPwE',
      'token_id': 0,
      'nat_2': 11000000},
-    {'owner': 'tz1i2tE6hic2ASe9Kvy85ar5hGSSc58bYejT',
+    {'owner': 'mv19bzdiWWzVhwLHCCbPjeyLjiUMgdKAxsbF',
      'token_id': 0,
      'nat_2': 8200000},
-    {'owner': 'tz2QegZQXyz8b74iTdaqKsGRF7YQb88Wu9CS', 'token_id': 0, 'nat_2': 0}]
+    {'owner': 'mv2e9VsSX7VxigA4Z9eqMiEtQZdvnS7Go4j4', 'token_id': 0, 'nat_2': 0}]
 
 Get Contract Balance
 --------------------
 
-Looking for a balance for a contract involves interacting with the contract context. You can inspect the context object to see the methods, or read about it here - :class:`pytezos.context.impl.ExecutionContext`
+Looking for a balance for a contract involves interacting with the contract context. You can inspect the context object to see the methods, or read about it here - :class:`pymavryk.context.impl.ExecutionContext`
 
 The context object holds general functions for retriving data about a contract/address, including the `get_balance()` call.
 
 .. code-block:: python
 
-   >>> kolibri_oven = pytezos.using('mainnet').contract('KT1KH3wH4sneEevPVW7AACiVKMjhTvmXLSK6')
+   >>> kolibri_oven = pymavryk.using('mainnet').contract('KT1KH3wH4sneEevPVW7AACiVKMjhTvmXLSK6')
    >>> print([x for x in dir(kolibri_oven.context) if x.startswith('get_')])
    ['get_amount', 'get_amount_expr', 'get_balance', 'get_balance_expr', 'get_big_map_diff', 'get_big_map_value', 'get_big_maps_expr', 'get_chain_id', 'get_chain_id_expr', 'get_code_expr', 'get_counter', 'get_counter_offset', 'get_dummy_address', 'get_dummy_chain_id', 'get_dummy_key_hash', 'get_dummy_lambda', 'get_dummy_public_key', 'get_dummy_signature', 'get_input_expr', 'get_level', 'get_now', 'get_now_expr', 'get_operations_ttl', 'get_originated_address', 'get_output_expr', 'get_parameter_expr', 'get_sapling_state_diff', 'get_self_address', 'get_self_expr', 'get_sender', 'get_sender_expr', 'get_source', 'get_source_expr', 'get_storage_expr', 'get_tmp_big_map_id', 'get_tmp_sapling_state_id', 'get_total_voting_power', 'get_voting_power']
 

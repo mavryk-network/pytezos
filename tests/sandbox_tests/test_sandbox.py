@@ -1,6 +1,6 @@
-from pytezos.sandbox.node import SandboxedNodeTestCase
-from pytezos.sandbox.parameters import sandbox_addresses
-from pytezos.sandbox.parameters import sandbox_commitment
+from pymavryk.sandbox.node import SandboxedNodeTestCase
+from pymavryk.sandbox.parameters import sandbox_addresses
+from pymavryk.sandbox.parameters import sandbox_commitment
 
 
 # NOTE: Node won't be wiped between tests so alphabetical order of method names matters

@@ -4,13 +4,13 @@ from os.path import join
 from unittest import TestCase
 from unittest import skip
 
-from pytezos.michelson.forge import forge_micheline
-from pytezos.michelson.forge import unforge_micheline
-from pytezos.michelson.format import micheline_to_michelson
-from pytezos.michelson.micheline import get_script_section
-from pytezos.michelson.parse import michelson_to_micheline
-from pytezos.michelson.program import MichelsonProgram
-from pytezos.michelson.types.base import MichelsonType
+from pymavryk.michelson.forge import forge_micheline
+from pymavryk.michelson.forge import unforge_micheline
+from pymavryk.michelson.format import micheline_to_michelson
+from pymavryk.michelson.micheline import get_script_section
+from pymavryk.michelson.parse import michelson_to_micheline
+from pymavryk.michelson.program import MichelsonProgram
+from pymavryk.michelson.types.base import MichelsonType
 
 folder = 'typed_minter'
 

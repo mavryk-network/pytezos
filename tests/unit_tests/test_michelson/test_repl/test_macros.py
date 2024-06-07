@@ -4,8 +4,8 @@ from unittest import TestCase
 
 from parameterized import parameterized  # type: ignore
 
-from pytezos.michelson.parse import michelson_to_micheline
-from pytezos.michelson.repl import Interpreter
+from pymavryk.michelson.parse import michelson_to_micheline
+from pymavryk.michelson.repl import Interpreter
 
 
 class MacrosTestCase(TestCase):
@@ -43,7 +43,7 @@ class MacrosTestCase(TestCase):
                 '{ -10 ; -1 ; -20 ; -100 }',
                 '(Some -1)',
             ),
-            # Test comparisons on tez { EQ ; GT ; LT ; GE ; LE }
+            # Test comparisons on mav { EQ ; GT ; LT ; GE ; LE }
             (
                 'compare.tz',
                 '{}',

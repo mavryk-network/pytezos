@@ -9,8 +9,8 @@ RUN apt update && \
     apt install -y build-essential pkg-config libsodium-dev libsecp256k1-dev libgmp-dev && \
     rm -rf /var/lib/apt/lists/*
 
-COPY . /tmp/pytezos
-RUN pip install notebook jupyter-client /tmp/pytezos
+COPY . /tmp/pymavryk
+RUN pip install notebook jupyter-client /tmp/pymavryk
 RUN michelson-kernel install
 
 ENV USER ${NB_USER}

@@ -1,8 +1,8 @@
 from unittest import TestCase
 
-from pytezos import pytezos
-from pytezos.block.forge import forge_block_header
-from pytezos.block.forge import forge_protocol_data
+from pymavryk import pymavryk
+from pymavryk.block.forge import forge_block_header
+from pymavryk.block.forge import forge_protocol_data
 
 
 class TestForging(TestCase):
@@ -19,7 +19,7 @@ class TestForging(TestCase):
             'validation_pass': 4,
         }
         actual = forge_block_header(header).hex()
-        expected = pytezos.shell.head.helpers.forge_block_header.post(header)
+        expected = pymavryk.shell.head.helpers.forge_block_header.post(header)
         self.assertEqual(expected['block'], actual)
 
     def test_forge_protocol_data(self) -> None:

@@ -3,84 +3,84 @@ Michelson types
 
 Base class
 ++++++++++++++++++++++++++
-.. automodule:: pytezos.michelson.types.base
+.. automodule:: pymavryk.michelson.types.base
    :members:
    :undoc-members:
 
 Core types
 ++++++++++++++++++++++++++
-.. automodule:: pytezos.michelson.types.core
+.. automodule:: pymavryk.michelson.types.core
    :members:
    :undoc-members:
 
 Domain types
 ++++++++++++++++++++++++++
-.. automodule:: pytezos.michelson.types.domain
+.. automodule:: pymavryk.michelson.types.domain
    :members:
    :undoc-members:
 
 Big map type
 ++++++++++++++++++++++++++
-.. automodule:: pytezos.michelson.types.big_map
+.. automodule:: pymavryk.michelson.types.big_map
    :members:
    :undoc-members:
 
 BLS types
 ++++++++++++++++++++++++++
-.. automodule:: pytezos.michelson.types.bls
+.. automodule:: pymavryk.michelson.types.bls
    :members:
    :undoc-members:
 
 List type
 ++++++++++++++++++++++++++
-.. automodule:: pytezos.michelson.types.list
+.. automodule:: pymavryk.michelson.types.list
    :members:
    :undoc-members:
 
 Map type
 ++++++++++++++++++++++++++
-.. automodule:: pytezos.michelson.types.map
+.. automodule:: pymavryk.michelson.types.map
    :members:
    :undoc-members:
 
 Operation type
 ++++++++++++++++++++++++++
-.. automodule:: pytezos.michelson.types.operation
+.. automodule:: pymavryk.michelson.types.operation
    :members:
    :undoc-members:
 
 Option type
 ++++++++++++++++++++++++++
-.. automodule:: pytezos.michelson.types.option
+.. automodule:: pymavryk.michelson.types.option
    :members:
    :undoc-members:
 
 Pair type
 ++++++++++++++++++++++++++
-.. automodule:: pytezos.michelson.types.pair
+.. automodule:: pymavryk.michelson.types.pair
    :members:
    :undoc-members:
 
 Sapling type
 ++++++++++++++++++++++++++
-.. automodule:: pytezos.michelson.types.sapling
+.. automodule:: pymavryk.michelson.types.sapling
    :members:
    :undoc-members:
 
 Set type
 ++++++++++++++++++++++++++
-.. automodule:: pytezos.michelson.types.set
+.. automodule:: pymavryk.michelson.types.set
    :members:
    :undoc-members:
 
 Or type
 ++++++++++++++++++++++++++
-.. automodule:: pytezos.michelson.types.sum
+.. automodule:: pymavryk.michelson.types.sum
    :members:
    :undoc-members:
 
 Ticket type
 ++++++++++++++++++++++++++
-.. automodule:: pytezos.michelson.types.ticket
+.. automodule:: pymavryk.michelson.types.ticket
    :members:
    :undoc-members:

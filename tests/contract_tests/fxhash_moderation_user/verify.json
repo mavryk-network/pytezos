@@ -2,7 +2,7 @@
   "parameters": {
     "entrypoint": "verify",
     "value": {
-      "string": "tz1iS5hTzLvjaH7Q3zRLukUBbHi7GfGz2wKv"
+      "string": "mv1Gx6dj2f84asRGNTxamsJFxAnSkuePVAoo"
     }
   },
   "storage": {

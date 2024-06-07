@@ -2,12 +2,12 @@ from os.path import dirname
 from os.path import join
 from unittest import TestCase
 
-from pytezos import ContractInterface
-from pytezos import Unit
-from pytezos import pytezos
+from pymavryk import ContractInterface
+from pymavryk import Unit
+from pymavryk import pymavryk
 
 initial_storage = {
-    'admin': {'admin': pytezos.key.public_key_hash(), 'paused': False},
+    'admin': {'admin': pymavryk.key.public_key_hash(), 'paused': False},
     'assets': {
         'hook': {
             'hook': """
@@ -48,8 +48,8 @@ class TestMac(TestCase):
     def test_pause(self):
         res = self.mac.pause(True).interpret(
             storage=initial_storage,
-            source=pytezos.key.public_key_hash(),
-            sender=pytezos.key.public_key_hash(),
+            source=pymavryk.key.public_key_hash(),
+            sender=pymavryk.key.public_key_hash(),
         )
         self.assertTrue(res.storage['admin']['paused'])
 
@@ -57,15 +57,15 @@ class TestMac(TestCase):
         res = self.mac.is_operator(
             callback='KT1V4jijVy1HfVWde6HBVD1cCygZDtFJK4Xz',  # does not matter
             operator={
-                'operator': pytezos.key.public_key_hash(),
-                'owner': pytezos.key.public_key_hash(),
+                'operator': pymavryk.key.public_key_hash(),
+                'owner': pymavryk.key.public_key_hash(),
                 'tokens': {'all_tokens': Unit},
             },
         ).interpret(storage=initial_storage)
         self.assertEqual(1, len(res.operations))
 
     def test_transfer(self):
-        pkh = pytezos.key.public_key_hash()
+        pkh = pymavryk.key.public_key_hash()
         initial_storage_balance = initial_storage.copy()
         initial_storage_balance['assets']['ledger'] = {(pkh, 0): 42000}
         res = self.mac.transfer(
@@ -73,7 +73,7 @@ class TestMac(TestCase):
                 {
                     'amount': 1000,
                     'from_': pkh,
-                    'to_': 'tz1abavrqYNzpcDPiQURyCt1THti8J27W6mR',
+                    'to_': 'mv1Q1GMULqh686DQLWLcdXvnzWiem8k8L19M',
                     'token_id': 0,
                 }
             ]
@@ -82,7 +82,7 @@ class TestMac(TestCase):
         self.assertDictEqual(
             {
                 (pkh, 0): 41000,
-                ('tz1abavrqYNzpcDPiQURyCt1THti8J27W6mR', 0): 1000,
+                ('mv1Q1GMULqh686DQLWLcdXvnzWiem8k8L19M', 0): 1000,
             },
             res.storage['assets']['ledger'],
         )

@@ -4,7 +4,7 @@ from os.path import dirname
 from os.path import join
 from unittest import TestCase
 
-from pytezos.contract.token_metadata import ContractTokenMetadata
+from pymavryk.contract.token_metadata import ContractTokenMetadata
 
 
 class TokenMetadataTest(TestCase):

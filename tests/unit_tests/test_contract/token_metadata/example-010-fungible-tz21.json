@@ -1,5 +1,5 @@
 {
-  "name": "Tezos TZIP-21 Token",
+  "name": "Mavryk TZIP-21 Token",
   "symbol": "TZ21",
   "decimals": 8,
   "shouldPreferSymbol": true,

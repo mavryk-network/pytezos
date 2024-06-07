@@ -2,7 +2,7 @@
   "parameters": {
     "entrypoint": "set_dev_address",
     "value": {
-      "string": "tz1Rdc7TwLgMjLua3RTmhTNvarDSwyZnqS3f"
+      "string": "mv1H6zLS6YwTdqYA3PxY1qsqdUzX7gHm8Jj6"
     }
   },
   "storage": [

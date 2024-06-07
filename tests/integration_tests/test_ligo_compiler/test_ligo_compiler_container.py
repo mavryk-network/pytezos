@@ -4,7 +4,7 @@ from unittest import skip
 import pytest
 from click.testing import CliRunner
 
-from pytezos.cli.cli import cli
+from pymavryk.cli.cli import cli
 
 TEST_CONTRACT_TEXT = """// variant defining pseudo multi-entrypoint actions
 type action is

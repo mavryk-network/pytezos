@@ -1,7 +1,7 @@
 from unittest import TestCase
 from unittest import skip
 
-from pytezos.contract.interface import ContractInterface
+from pymavryk.contract.interface import ContractInterface
 
 source = """
 storage (bytes);

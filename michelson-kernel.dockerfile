@@ -18,18 +18,18 @@ RUN mkdir /tmp/secp256k1 \
 	&& ./autogen.sh \
 	&& ./configure
 
-RUN python -m venv --without-pip --system-site-packages /opt/pytezos \
-    && mkdir -p /opt/pytezos/src/pytezos/ \
-    && touch /opt/pytezos/src/pytezos/__init__.py \
-    && mkdir -p /opt/pytezos/src/michelson_kernel/ \
-    && touch /opt/pytezos/src/michelson_kernel/__init__.py
-WORKDIR /opt/pytezos
-ENV PATH="/opt/pytezos/bin:$PATH"
-ENV PYTHON_PATH="/opt/pytezos/src:$PATH"
+RUN python -m venv --without-pip --system-site-packages /opt/pymavryk \
+    && mkdir -p /opt/pymavryk/src/pymavryk/ \
+    && touch /opt/pymavryk/src/pymavryk/__init__.py \
+    && mkdir -p /opt/pymavryk/src/michelson_kernel/ \
+    && touch /opt/pymavryk/src/michelson_kernel/__init__.py
+WORKDIR /opt/pymavryk
+ENV PATH="/opt/pymavryk/bin:$PATH"
+ENV PYTHON_PATH="/opt/pymavryk/src:$PATH"
 
-COPY pyproject.toml requirements.txt README.md /opt/pytezos/
+COPY pyproject.toml requirements.txt README.md /opt/pymavryk/
 
-RUN /usr/local/bin/pip install --prefix /opt/pytezos --no-cache-dir --disable-pip-version-check --no-deps -r /opt/pytezos/requirements.txt -e .
+RUN /usr/local/bin/pip install --prefix /opt/pymavryk --no-cache-dir --disable-pip-version-check --no-deps -r /opt/pymavryk/requirements.txt -e .
 
 FROM python:3.11-alpine3.17 AS build-image
 RUN apk add --update --no-cache \
@@ -38,15 +38,15 @@ RUN apk add --update --no-cache \
 	libsodium-dev \
 	libsecp256k1-dev
 
-RUN adduser -D pytezos
-USER pytezos
-ENV PATH="/opt/pytezos/bin:$PATH"
-ENV PYTHONPATH="/home/pytezos:/home/pytezos/src:/opt/pytezos/src:/opt/pytezos/lib/python3.11/site-packages:$PYTHONPATH"
-WORKDIR /home/pytezos/
-ENTRYPOINT [ "/opt/pytezos/bin/jupyter-notebook", "--port=8888", "--ip=0.0.0.0" , "--no-browser", "--no-mathjax" ]
+RUN adduser -D pymavryk
+USER pymavryk
+ENV PATH="/opt/pymavryk/bin:$PATH"
+ENV PYTHONPATH="/home/pymavryk:/home/pymavryk/src:/opt/pymavryk/src:/opt/pymavryk/lib/python3.11/site-packages:$PYTHONPATH"
+WORKDIR /home/pymavryk/
+ENTRYPOINT [ "/opt/pymavryk/bin/jupyter-notebook", "--port=8888", "--ip=0.0.0.0" , "--no-browser", "--no-mathjax" ]
 EXPOSE 8888
 
-COPY --chown=pytezos --from=compile-image /opt/pytezos /opt/pytezos
-COPY --chown=pytezos . /opt/pytezos
+COPY --chown=pymavryk --from=compile-image /opt/pymavryk /opt/pymavryk
+COPY --chown=pymavryk . /opt/pymavryk
 
 RUN michelson-kernel install

@@ -3,26 +3,26 @@ from typing import Dict
 from typing import List
 from unittest import TestCase
 
-from pytezos.operation.fees import DEFAULT_CONSTANTS
-from pytezos.operation.fees import DEFAULT_TRANSACTION_GAS_LIMIT
-from pytezos.operation.fees import DEFAULT_TRANSACTION_STORAGE_LIMIT
-from pytezos.operation.fees import calculate_fee
-from pytezos.operation.fees import default_fee
-from pytezos.operation.fees import default_gas_limit
-from pytezos.operation.fees import default_storage_limit
+from pymavryk.operation.fees import DEFAULT_CONSTANTS
+from pymavryk.operation.fees import DEFAULT_TRANSACTION_GAS_LIMIT
+from pymavryk.operation.fees import DEFAULT_TRANSACTION_STORAGE_LIMIT
+from pymavryk.operation.fees import calculate_fee
+from pymavryk.operation.fees import default_fee
+from pymavryk.operation.fees import default_gas_limit
+from pymavryk.operation.fees import default_storage_limit
 
 
 class FeesTest(TestCase):
     def setUp(self) -> None:
         self.content = {
             "kind": "transaction",
-            "source": "tz1KqTpEZ7Yob7QbPE4Hy4Wo8fHG8LhKxZSx",
+            "source": "mv18Cw7psUrAAPBpXYd9CtCpHg9EgjHP9KTe",
             "fee": "404",
             "counter": "1",
             "gas_limit": "1527",
             "storage_limit": "0",
             "amount": "42000000",
-            "destination": "tz1gjaF81ZRRvdzjobyfVNsAeSC6PScjfQwN",
+            "destination": "mv1RQjfTWvtFVpqoQqB7qb8tgPfRvPqzWCDH",
         }
 
     def test_calculate_fee(self) -> None:

@@ -6,9 +6,9 @@ from unittest import TestCase
 
 from parameterized import parameterized  # type: ignore
 
-from pytezos.michelson.format import micheline_to_michelson
-from pytezos.michelson.parse import michelson_to_micheline
-from pytezos.michelson.repl import Interpreter
+from pymavryk.michelson.format import micheline_to_michelson
+from pymavryk.michelson.parse import michelson_to_micheline
+from pymavryk.michelson.repl import Interpreter
 
 
 def iter_lazy_diff(lazy_diff: List[dict]) -> Generator[List[str], None, None]:

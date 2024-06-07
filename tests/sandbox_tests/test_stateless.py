@@ -1,10 +1,10 @@
 from random import SystemRandom
 
-from pytezos import ContractInterface
-from pytezos.crypto.key import Key
-from pytezos.michelson.parse import michelson_to_micheline
-from pytezos.michelson.types.base import MichelsonType
-from pytezos.sandbox.node import SandboxedNodeTestCase
+from pymavryk import ContractInterface
+from pymavryk.crypto.key import Key
+from pymavryk.michelson.parse import michelson_to_micheline
+from pymavryk.michelson.types.base import MichelsonType
+from pymavryk.sandbox.node import SandboxedNodeTestCase
 
 rnd = SystemRandom()
 

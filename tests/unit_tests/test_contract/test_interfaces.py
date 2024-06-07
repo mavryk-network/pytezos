@@ -2,9 +2,9 @@ from os.path import dirname
 from os.path import join
 from unittest import TestCase
 
-from pytezos import ContractInterface
-from pytezos import Unit
-from pytezos.jupyter import is_interactive
+from pymavryk import ContractInterface
+from pymavryk import Unit
+from pymavryk.jupyter import is_interactive
 
 
 class TestInterfaces(TestCase):
@@ -21,7 +21,7 @@ class TestInterfaces(TestCase):
 
     def test_mint(self):
         token_v3 = ContractInterface.from_file(join(dirname(__file__), 'contracts', 'token.tz'))
-        alice = "tz1ibMpWS6n6MJn73nQHtK5f4ogyYC1z9T9z"
+        alice = "mv1V1C9x3MNkNen341CXa1yBoY7LeytDP468"
         res = token_v3.mint(mintOwner=alice, mintValue=3).interpret(
             storage={
                 "admin": alice,

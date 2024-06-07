@@ -4,24 +4,24 @@ from unittest.mock import patch
 from mnemonic import Mnemonic
 from parameterized import parameterized  # type: ignore
 
-from pytezos.crypto.key import Key
+from pymavryk.crypto.key import Key
 
 
 class TestCrypto(TestCase):
     """
     Test data generation:
-    ./tezos-client gen keys test_ed25519 -s ed25519 --force (--encrypted)
-    ./tezos-client gen keys test_secp256k1 -s secp256k1 --force (--encrypted)
-    ./tezos-client gen keys test_p256 -s p256 --force (--encrypted)
-    ./tezos-client show address test_ed25519 -S
-    ./tezos-client show address test_secp256k1 -S
-    ./tezos-client show address test_p256 -S
-    ./tezos-client sign bytes 0x74657374 for test_ed25519
-    ./tezos-client sign bytes 0x74657374 for test_secp256k1
-    ./tezos-client sign bytes 0x74657374 for test_p256
+    ./octez-client gen keys test_ed25519 -s ed25519 --force (--encrypted)
+    ./octez-client gen keys test_secp256k1 -s secp256k1 --force (--encrypted)
+    ./octez-client gen keys test_p256 -s p256 --force (--encrypted)
+    ./octez-client show address test_ed25519 -S
+    ./octez-client show address test_secp256k1 -S
+    ./octez-client show address test_p256 -S
+    ./octez-client sign bytes 0x74657374 for test_ed25519
+    ./octez-client sign bytes 0x74657374 for test_secp256k1
+    ./octez-client sign bytes 0x74657374 for test_p256
 
     Issues:
-    * `tezos-client sign bytes` does not support P256 curve
+    * `octez-client sign bytes` does not support P256 curve
     """
 
     @parameterized.expand(
@@ -29,27 +29,27 @@ class TestCrypto(TestCase):
             (
                 'edsk3nM41ygNfSxVU4w1uAW3G9EnTQEB5rjojeZedLTGmiGRcierVv',
                 'edpku976gpuAD2bXyx1XGraeKuCo1gUZ3LAJcHM12W1ecxZwoiu22R',
-                'tz1eKkWU5hGtfLUiqNpucHrXymm83z3DG9Sq',
+                'mv1ShDp4Q4aFEcFwyhPkr7YZ8nd6cNbxntvN',
             ),
             (
                 'spsk1zkqrmst1yg2c4xi3crWcZPqgdc9KtPtb9SAZWYHAdiQzdHy7j',
                 'sppk7aMNM3xh14haqEyaxNjSt7hXanCDyoWtRcxF8wbtya859ak6yZT',
-                'tz28YZoayJjVz2bRgGeVjxE8NonMiJ3r2Wdu',
+                'mv2LFe6Haxk32BC5xgEmK6QGocGqXdAtJDHT',
             ),
             (
                 'p2sk3PM77YMR99AvD3fSSxeLChMdiQ6kkEzqoPuSwQqhPsh29irGLC',
                 'p2pk679D18uQNkdjpRxuBXL5CqcDKTKzsiXVtc9oCUT6xb82zQmgUks',
-                'tz3agP9LGe2cXmKQyYn6T68BHKjjktDbbSWX',
+                'mv3P3rSvb1Ky736e7sLwgupCSLbiKGgm4EDJ',
             ),
             (
                 'p2sk2rHNfHbuqq1Q6RZAnXfwoA3fFk1xtUFPrNVj7mhwxmvY4xmrEd',
                 'p2pk663exKaDHnzFmUeBsmYjKUMJYPyW1WQJzmhyYgNrUuo5Ef9SXxG',
-                'tz3VqqyCrvZni4jbxVrzG2EeVQ97D9LARjJz',
+                'mv3JDKGoBHs9HLWq6pRqVqvfeR15mXod9ytn',
             ),
             (
                 'p2sk2Md6rioE62a7hVdD8xdYGDLH2erDbAcD4i15e8DSpnHruhVHBw',
                 'p2pk66yEDuRC5RLHpVj8hvAS5fr8HnU2YsLvFNdwQoW3jH8WUynMwGG',
-                'tz3Q2KTKWw3xqiowvfX4N7gyyAfCz8hTvcnk',
+                'mv3CPnkuqJMKQzbB4z5ubwP18BXBYXBheM56',
             ),
         ]
     )
@@ -157,7 +157,7 @@ class TestCrypto(TestCase):
         key = Key.from_encoded_key(sk, passphrase=passphrase)
         self.assertEqual(pk, key.public_key())
 
-        with patch('pytezos.crypto.key.pysodium.randombytes', return_value=salt):
+        with patch('pymavryk.crypto.key.pysodium.randombytes', return_value=salt):
             self.assertEqual(sk, key.secret_key(passphrase))
 
     @parameterized.expand(

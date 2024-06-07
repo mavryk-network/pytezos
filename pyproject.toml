@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "pytezos"
+name = "pymavryk"
 version = "3.10.3"
-description = "Python toolkit for Tezos"
+description = "Python toolkit for Mavryk"
 license = "MIT"
 authors = [
     "Michael Zaikin <mz@baking-bad.org>",
@@ -10,13 +10,14 @@ authors = [
     "Roman Serikov",
 ]
 maintainers = [
+    "Tristan Allaire <tristan@mavryk.io>",
     "Michael Zaikin <mz@baking-bad.org>",
     "Lev Gorodetskii <pytezos@drsr.io>",
 ]
 readme = "README.md"
-repository = "https://github.com/baking-bad/pytezos"
-homepage = "https://pytezos.org"
-keywords = ['tezos', 'blockchain', 'sdk', 'michelson', 'repl', 'cryptocurrencies', 'smart-contracts', 'jupyter', 'ipython', 'docker', 'crypto']
+repository = "https://github.com/mavryk-network/pymavryk"
+homepage = "https://pymavryk.mavryk.org"
+keywords = ['mavryk', 'blockchain', 'sdk', 'michelson', 'repl', 'cryptocurrencies', 'smart-contracts', 'jupyter', 'ipython', 'docker', 'crypto']
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Environment :: Console",
@@ -34,7 +35,7 @@ classifiers = [
     "Typing :: Typed",
 ]
 packages = [
-    { include = "pytezos", from = "src" },
+    { include = "pymavryk", from = "src" },
     { include = "michelson_kernel", from = "src" },
 ]
 
@@ -91,7 +92,7 @@ PyYAML = "*"
 ruff = "*"
 
 [tool.poetry.scripts]
-pytezos = 'pytezos.cli.cli:cli'
+pymavryk = 'pymavryk.cli.cli:cli'
 michelson-kernel = 'michelson_kernel.cli:cli'
 
 [tool.isort]

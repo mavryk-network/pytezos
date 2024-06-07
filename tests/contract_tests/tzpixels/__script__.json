@@ -31,7 +31,7 @@
                           ]
                         },
                         {
-                          "prim": "mutez",
+                          "prim": "mumav",
                           "annots": [
                             "%swap"
                           ]
@@ -88,7 +88,7 @@
                                   ]
                                 },
                                 {
-                                  "prim": "mutez",
+                                  "prim": "mumav",
                                   "annots": [
                                     "%swap"
                                   ]
@@ -435,7 +435,7 @@
                         "prim": "PUSH",
                         "args": [
                           {
-                            "prim": "mutez"
+                            "prim": "mumav"
                           },
                           {
                             "int": "100000"
@@ -477,7 +477,7 @@
                         "prim": "PUSH",
                         "args": [
                           {
-                            "prim": "mutez"
+                            "prim": "mumav"
                           },
                           {
                             "int": "100000"
@@ -515,7 +515,7 @@
                               "prim": "PUSH",
                               "args": [
                                 {
-                                  "prim": "mutez"
+                                  "prim": "mumav"
                                 },
                                 {
                                   "int": "200000"
@@ -582,7 +582,7 @@
                               "prim": "PUSH",
                               "args": [
                                 {
-                                  "prim": "mutez"
+                                  "prim": "mumav"
                                 },
                                 {
                                   "int": "200000"

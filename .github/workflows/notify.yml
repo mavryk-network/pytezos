@@ -27,8 +27,8 @@ jobs:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
         message: |
-          Pytezos ${{ env.RELEASE_VERSION }} has been released 🎉
-          More info at https://github.com/baking-bad/pytezos/releases/tag/${{ env.RELEASE_VERSION }}
+          Pymavryk ${{ env.RELEASE_VERSION }} has been released 🎉
+          More info at https://github.com/mavryk-network/pymavryk/releases/tag/${{ env.RELEASE_VERSION }}
     - name: slack notification
       if: steps.filter.outputs.changelog == 'true'
       uses: Ilshidur/action-slack@master
@@ -36,5 +36,5 @@ jobs:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
       with:
         args: |
-          Pytezos ${{ env.RELEASE_VERSION }} has been released 🎉
-          More info at https://github.com/baking-bad/pytezos/releases/tag/${{ env.RELEASE_VERSION }}
+          Pymavryk ${{ env.RELEASE_VERSION }} has been released 🎉
+          More info at https://github.com/mavryk-network/pymavryk/releases/tag/${{ env.RELEASE_VERSION }}
