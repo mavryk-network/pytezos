@@ -22,9 +22,9 @@ from pymavryk.operation.group import OperationGroup
 from pymavryk.sandbox.parameters import LATEST
 from pymavryk.sandbox.parameters import sandbox_addresses
 
-DOCKER_IMAGE = 'bakingbad/sandboxed-node:v17.0-1'
-MAX_ATTEMPTS = 100
-ATTEMPT_DELAY = 0.1
+DOCKER_IMAGE = 'bakingbad/sandboxed-node:v20.0-3'
+MAX_ATTEMPTS = 60
+ATTEMPT_DELAY = 0.5
 TEZOS_NODE_PORT = 8732
 
 

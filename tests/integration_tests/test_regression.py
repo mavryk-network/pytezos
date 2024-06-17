@@ -10,7 +10,7 @@ class TestRegression(TestCase):
         res = tzbtc.getBalance(owner='mv1SoL5knJPwP6nCgBSnVSm6a6rduH9psPaT', contract_1=None).view()
         self.assertIsNotNone(res)
 
-    #TODO: Fix when Mavryk mainnet is deployed
+    # TODO: Fix when Mavryk mainnet is deployed
     def test_kusd_get_balance_view(self):
         ...
         # kusd = pymavryk.using('mainnet').contract('KT1K9gCRgaLRFKTErYt1wVxA3Frb9FjasjTV')

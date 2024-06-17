@@ -1,5 +1,47 @@
 # Changelog
 
+## [3.12.1](https://github.com/baking-bad/pytezos/compare/3.12.0...3.12.1) (2024-06-11)
+
+### Changed
+
+* Octez binaries updated to v20.0-3
+
+## [3.12.0](https://github.com/baking-bad/pytezos/compare/3.11.3...3.12.0) (2024-05-27)
+
+### Added
+
+* Parisnet protocol support
+* Compatibility with Python 3.12
+
+### Changed
+
+* Octez binaries updated to v20.0-rc1
+
+## [3.11.3](https://github.com/baking-bad/pytezos/compare/3.11.2...3.11.3) (2024-02-23)
+
+### Fixed
+
+* Updated cryptographic libraries
+
+## [3.11.2](https://github.com/baking-bad/pytezos/compare/3.11.1...3.11.2) (2024-02-22)
+
+### Fixed
+
+* Fixed protocol parameters for sandboxed node
+
+## [3.11.1](https://github.com/baking-bad/pytezos/compare/3.11.0...3.11.1) (2024-02-07)
+
+### Added
+
+* Forging/encoding for Smart Rollup State hash
+
+## [3.11.0](https://github.com/baking-bad/pytezos/compare/3.10.3...3.11.0) (2024-02-05)
+
+### Added
+
+* Compatibility with Oxfordnet protocol
+* Octez binaries updated to v19.0
+
 ## [3.10.3](https://github.com/baking-bad/pytezos/compare/3.10.2...3.10.3) (2023-11-27)
 
 ### Fixed

@@ -11,7 +11,7 @@ TAG=latest
 ##
 
 help:              ## Show this help (default)
-	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
+	@grep -Fh "##" $(MAKEFILE_LIST) | grep -Fv grep -F | sed -e 's/\\$$//' | sed -e 's/##//'
 
 all:               ## Run a whole CI pipeline: lint, run tests, build docs
 	make install lint test docs
@@ -61,7 +61,7 @@ isort:             ## Format with isort
 black:             ## Format with black
 	poetry run black src tests scripts --exclude ".*/docs.py"
 
-ruff:             ## Lint with ruff
+ruff:              ## Lint with ruff
 	poetry run ruff check src tests scripts
 
 mypy:              ## Lint with mypy
@@ -77,25 +77,10 @@ image:             ## Build Docker image
 	docker buildx build . --file pymavryk.dockerfile -t pymavryk:${TAG} --load
 	docker buildx build . --file michelson-kernel.dockerfile -t michelson-kernel:${TAG} --load
 
-release-patch:     ## Release patch version
-	bumpversion patch
-	git push --tags
-	git push
-
-release-minor:     ## Release minor version
-	bumpversion minor
-	git push --tags
-	git push
-
-release-major:     ## Release major version
-	bumpversion major
-	git push --tags
-	git push
-
 clean:             ## Remove all files from .gitignore except for `.venv`
 	git clean -xdf --exclude=".venv"
 
-update:         ## Update dependencies, export requirements.txt
+update:            ## Update dependencies, export requirements.txt
 	poetry update
 
 	cp pyproject.toml pyproject.toml.bak

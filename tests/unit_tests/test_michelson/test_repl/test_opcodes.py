@@ -817,7 +817,7 @@ class OpcodesTestCase(TestCase):
                 + '"mv1NnoXstBrcox9Nr6krYNKYPJFDecGaxWG8"))))))))',
                 'Unit',
             ),
-            #TODO: Fix when Mavryk mainnet is deployed
+            # TODO: Fix when Mavryk mainnet is deployed
             # (
             #     'packunpack_rev_cty.tz',
             #     'Unit',

@@ -2,7 +2,8 @@ from unittest import TestCase
 
 from pymavryk import pymavryk
 
-#TODO: Fix when Mavryk mainnet is deployed
+
+# TODO: Fix when Mavryk mainnet is deployed
 class CallbackViewTestCase(TestCase):
     def test_balance_of(self):
         ...
