@@ -163,7 +163,7 @@ prim_tags = {
     # MUMBAI
     'BYTES': b'\x9B',
     'NAT': b'\x9C',
-    # PARIS
+    # BOREAS
     'Ticket': b'\x9D',
     # FIXME: Dummy values for TZT, refactor macros
     'Stack_elt': b'\xEE',

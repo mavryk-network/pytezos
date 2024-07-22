@@ -77,7 +77,7 @@ All active interaction with the blockchain starts with the PyMavrykClient:
 
     Properties
     .key		mv1VDuhoWLjBMmeM1iTS4g4aapw1Zwkz9ziU
-    .shell		['https://rpc.tzkt.io/ghostnet']
+    .shell		['https://basenet.rpc.mavryk.network']
     .block_id	head
 
     Helpers
@@ -121,7 +121,7 @@ We are interested in ``using`` method, which is responsible for setting up manag
     Change current RPC endpoint and account (private key).
 
     :param shell: one of 'mainnet', '***net', or RPC node uri, or instance of :class:`pymavryk.rpc.shell.ShellQuery`
-    :param key: base58 encoded key, path to the faucet file, faucet file itself, alias from octez-client, or `Key`
+    :param key: base58 encoded key, path to the faucet file, faucet file itself, alias from mavkit-client, or `Key`
     :param mode: whether to use `readable` or `optimized` encoding for parameters/storage/other
     :returns: A copy of current object with changes applied
 
@@ -167,7 +167,7 @@ Set key as default
 
     Properties
     .key		mv1Ue5qMgJFNFKkjF9x7z867ciE8imnKX8V3
-    .shell		['https://rpc.tzkt.io/ghostnet']
+    .shell		['https://basenet.rpc.mavryk.network']
     .block_id	head
 
     Helpers
@@ -203,7 +203,7 @@ Set key as default
 Top up account
 ^^^^^^^^^^^^^^
 
-Go to the `https://faucet.ghostnet.teztnets.xyz/ <https://faucet.ghostnet.teztnets.xyz/>` and paste your public key hash key file to the "Wallet address" field.  
+Go to the `https://basenet.faucet.mavryk.network/ <https://basenet.faucet.mavryk.network/>` and paste your public key hash key file to the "Wallet address" field.  
 Press "Request 2001 mav" and wait for transaction to be completed.  
 
 Check that your balance is non-zero:
@@ -229,7 +229,7 @@ Now, in order to start using this key we need to send the according public key t
 
     Properties
     .key		mv1Ue5qMgJFNFKkjF9x7z867ciE8imnKX8V3
-    .shell		['https://rpc.tzkt.io/ghostnet']
+    .shell		['https://basenet.rpc.mavryk.network']
     .block_id	head
 
     Hash
@@ -393,7 +393,7 @@ We have our contracts deployed and ready to be invoked, let's see the list of en
 
     Properties
     .key		mv1Ue5qMgJFNFKkjF9x7z867ciE8imnKX8V3
-    .shell		['https://rpc.tzkt.io/ghostnet']
+    .shell		['https://basenet.rpc.mavryk.network']
     .address	KT1Si4t6ETLoj6eEsjp8hvfJeiFe3b6Z7eM5
     .block_id	head
     .entrypoint	default
@@ -441,7 +441,7 @@ And for the wallet:
 
     Properties
     .key		mv1Ue5qMgJFNFKkjF9x7z867ciE8imnKX8V3
-    .shell		['https://rpc.tzkt.io/ghostnet']
+    .shell		['https://basenet.rpc.mavryk.network']
     .address	KT1S4UmLNwVcmLBE9VgHKpJJWpKE1JE8VjwN
     .block_id	head
     .entrypoint	default

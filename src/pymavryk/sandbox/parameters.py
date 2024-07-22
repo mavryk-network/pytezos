@@ -3,48 +3,18 @@ from typing import Dict
 
 from pymavryk.crypto.key import Key
 
-EDO = 'PtEdo2ZkT9oKpimTah6x2embF25oss54njMuPzkJTEi5RqfdZFA'
-FLORENCE = 'PsFLorenaUUuikDWvMDr6fGBRG8kt3e3D3fHoXK1j1BFRxeSH4i'
-GRANADA = 'PtGRANADsDU8R9daYKAgWnQYAJ64omN1o3KMGVCykShA97vQbvV'
-HANGZHOU = 'PtHangz2aRngywmSRGGvrcTyMbbdpWdpFKuS4uMWxg2RaH9i1qx'
-ITHACA = 'Psithaca2MLRFYargivpo7YvUr7wUDqyxrdhC5CQq78mRvimz6A'
-JAKARTA = 'PtJakart2xVj7pYXJBXrqHgd82rdkLey5ZeeGwDgPp9rhQUbSqY'
-KATHMANDU = 'PtKathmankSpLLDALzWw7CGD2j2MtyveTwboEYokqUCP4a1LxMg'
-LIMA = 'PtLimaPtLMwfNinJi9rCfDPWea8dFgTZ1MeJ9f1m2SRic6ayiwW'
-MUMBAI = 'PtMumbai2TmsJHNGRkD8v8YDbtao7BLUC3wjASn1inAKLFCjaH1'
-NAIROBI = 'PtNairobiyssHuh87hEhfVBGCVrK3WnS8Z2FT4ymB5tAa4r1nQf'
-OXFORD = 'ProxfordYmVfjWnRcgjWH36fW6PArwqykTFzotUxRs6gmTcZDuH'
-PARIS = 'PtParisBxoLz5gzMmn3d9WBQNoPSZakgnkMC2VNuQ3KXfUtUQeZ'
-LATEST = PARIS
+ATLAS = 'PtAtLasomUEW99aVhVTrqjCHjJSpFUa8uHNEAEamx9v2SNeTaNp'
+BOREAS = 'PtParisBxoLz5gzMmn3d9WBQNoPSZakgnkMC2VNuQ3KXfUtUQeZ'
+LATEST = BOREAS
 
 protocol_hashes = {
-    'edo': EDO,
-    'florence': FLORENCE,
-    'granada': GRANADA,
-    'hangzhou': HANGZHOU,
-    'ithaca': ITHACA,
-    'jakarta': JAKARTA,
-    'kathmandu': KATHMANDU,
-    'lima': LIMA,
-    'mumbai': MUMBAI,
-    'nairobi': NAIROBI,
-    'oxford': OXFORD,
-    'paris': PARIS,
+    'atlas': ATLAS,
+    'boreas': BOREAS,
 }
 
 protocol_version = {
-    EDO: 8,
-    FLORENCE: 9,
-    GRANADA: 10,
-    HANGZHOU: 11,
-    ITHACA: 12,
-    JAKARTA: 13,
-    KATHMANDU: 14,
-    LIMA: 15,
-    MUMBAI: 16,
-    NAIROBI: 17,
-    OXFORD: 18,
-    PARIS: 19,
+    ATLAS: 1,
+    BOREAS: 2,
 }
 
 sandbox_commitment = {
@@ -116,8 +86,8 @@ sandbox_params: Dict[str, Any] = {
     'max_operations_time_to_live': 8,
 }
 
-# NOTE: https://rpc.tzkt.io/parisnet/chains/main/blocks/head/context/constants/parametric
-paris_params = {
+# NOTE: https://rpc.tzkt.io/boreasnet/chains/main/blocks/head/context/constants/parametric
+boreas_params = {
     "consensus_rights_delay": 2,
     "blocks_preservation_cycles": 1,
     "delegate_parameters_activation_delay": 5,
@@ -222,9 +192,9 @@ paris_params = {
 
 
 def get_protocol_parameters(protocol_hash: str) -> Dict[str, Any]:
-    # https://gitlab.com/tezos/tezos/-/blob/master/src/proto_018_Proxford/lib_parameters/default_parameters.ml
+    # https://gitlab.com/tezos/tezos/-/blob/master/src/proto_001_PtAtLas/lib_parameters/default_parameters.ml
     return {
-        **paris_params,
+        **boreas_params,
         # **old_params,
         **sandbox_params,
     }

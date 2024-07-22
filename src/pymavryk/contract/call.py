@@ -135,7 +135,7 @@ class ContractCall(ContextMixin):
         )
 
     def cmdline(self) -> str:
-        """Generate command line for octez-client."""
+        """Generate command line for mavkit-client."""
         arg = micheline_to_michelson(self.parameters['value'], inline=True)
         source = self.key.public_key_hash()
         amount = format_tez(self.amount)

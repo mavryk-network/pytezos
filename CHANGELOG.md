@@ -4,18 +4,18 @@
 
 ### Changed
 
-* Octez binaries updated to v20.0-3
+* Mavkit binaries updated to v20.0-3
 
 ## [3.12.0](https://github.com/baking-bad/pytezos/compare/3.11.3...3.12.0) (2024-05-27)
 
 ### Added
 
-* Parisnet protocol support
+* Boreasnet protocol support
 * Compatibility with Python 3.12
 
 ### Changed
 
-* Octez binaries updated to v20.0-rc1
+* Mavkit binaries updated to v20.0-rc1
 
 ## [3.11.3](https://github.com/baking-bad/pytezos/compare/3.11.2...3.11.3) (2024-02-23)
 
@@ -39,8 +39,8 @@
 
 ### Added
 
-* Compatibility with Oxfordnet protocol
-* Octez binaries updated to v19.0
+* Compatibility with Atlasnet protocol
+* Mavkit binaries updated to v19.0
 
 ## [3.10.3](https://github.com/baking-bad/pytezos/compare/3.10.2...3.10.3) (2023-11-27)
 
@@ -139,7 +139,7 @@
 ### Changed
 
 * `consumed_milligas` is used instead of deprecated `consumed_gas` field
-* `ghostnet` is now a default network in pytezos client (as it is permanent)
+* `basenet` is now a default network in pytezos client (as it is permanent)
 
 ## [3.6.1](https://github.com/baking-bad/pytezos/compare/3.6.0...3.6.1) (2022-08-04)
 
