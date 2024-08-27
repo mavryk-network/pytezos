@@ -4,7 +4,7 @@ from typing import Dict
 from pymavryk.crypto.key import Key
 
 ATLAS = 'PtAtLasomUEW99aVhVTrqjCHjJSpFUa8uHNEAEamx9v2SNeTaNp'
-BOREAS = 'PtParisBxoLz5gzMmn3d9WBQNoPSZakgnkMC2VNuQ3KXfUtUQeZ'
+BOREAS = 'Pt8h9rz3r9F3Yx3wzJqF42sxsyVoo6kL4FBoJSWRzKmDvjXjHwV'
 LATEST = BOREAS
 
 protocol_hashes = {
