@@ -1,4 +1,5 @@
 """Fetch contract data for tests from BCD and TzKT APIs"""
+
 import json
 import logging
 from os import makedirs

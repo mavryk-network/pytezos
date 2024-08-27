@@ -332,11 +332,11 @@ class Key(metaclass=InlineDocstring):
         passphrase: PassphraseInput = None,
         mavryk_client_dir: str = DEFAULT_TEZOS_DIR,
     ) -> 'Key':
-        """Import secret key from octez-client keychain.
+        """Import secret key from mavkit-client keychain.
 
         :param alias: key alias
         :param passphrase: if key is encrypted (optional)
-        :param mavryk_client_dir: path to the octez client directory (default is `~/.tezos-client`)
+        :param mavryk_client_dir: path to the mavkit client directory (default is `~/.tezos-client`)
         :rtype: Key
         """
         path = expanduser(join(mavryk_client_dir, 'secret_keys'))

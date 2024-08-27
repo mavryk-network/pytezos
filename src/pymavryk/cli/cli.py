@@ -31,7 +31,7 @@ from pymavryk.sandbox.node import DOCKER_IMAGE
 from pymavryk.sandbox.node import TEZOS_NODE_PORT
 from pymavryk.sandbox.node import SandboxedNodeContainer
 from pymavryk.sandbox.node import get_next_baker_key
-from pymavryk.sandbox.parameters import KATHMANDU
+from pymavryk.sandbox.parameters import protocol_hashes
 
 kernel_js_path = join(dirname(dirname(__file__)), 'assets', 'kernel.js')
 kernel_json = {
@@ -340,7 +340,7 @@ def smartpy_compile(
 
 @cli.command(help='Run containerized sandbox node')
 @click.option('--image', type=str, help='Docker image to use', default=DOCKER_IMAGE)
-@click.option('--protocol', type=click.Choice(['kathmandu']), help='Protocol to use', default='kathmandu')
+@click.option('--protocol', type=click.Choice(['boreas']), help='Protocol to use', default='boreas')
 @click.option('--port', '-p', type=int, help='Port to expose', default=TEZOS_NODE_PORT)
 @click.option('--interval', '-i', type=float, help='Interval between baked blocks (in seconds)', default=1.0)
 @click.option('--blocks', '-b', type=int, help='Number of blocks to bake before exit')
@@ -353,9 +353,7 @@ def sandbox(
     interval: float,
     blocks: int,
 ):
-    protocol_hash = {
-        'kathmandu': KATHMANDU,
-    }[protocol]
+    protocol_hash = protocol_hashes[protocol]
 
     node = SandboxedNodeContainer(image=image, port=port)
     with node:

@@ -1,5 +1,47 @@
 # Changelog
 
+## [3.12.1](https://github.com/baking-bad/pytezos/compare/3.12.0...3.12.1) (2024-06-11)
+
+### Changed
+
+* Mavkit binaries updated to v20.0-3
+
+## [3.12.0](https://github.com/baking-bad/pytezos/compare/3.11.3...3.12.0) (2024-05-27)
+
+### Added
+
+* Boreasnet protocol support
+* Compatibility with Python 3.12
+
+### Changed
+
+* Mavkit binaries updated to v20.0-rc1
+
+## [3.11.3](https://github.com/baking-bad/pytezos/compare/3.11.2...3.11.3) (2024-02-23)
+
+### Fixed
+
+* Updated cryptographic libraries
+
+## [3.11.2](https://github.com/baking-bad/pytezos/compare/3.11.1...3.11.2) (2024-02-22)
+
+### Fixed
+
+* Fixed protocol parameters for sandboxed node
+
+## [3.11.1](https://github.com/baking-bad/pytezos/compare/3.11.0...3.11.1) (2024-02-07)
+
+### Added
+
+* Forging/encoding for Smart Rollup State hash
+
+## [3.11.0](https://github.com/baking-bad/pytezos/compare/3.10.3...3.11.0) (2024-02-05)
+
+### Added
+
+* Compatibility with Atlasnet protocol
+* Mavkit binaries updated to v19.0
+
 ## [3.10.3](https://github.com/baking-bad/pytezos/compare/3.10.2...3.10.3) (2023-11-27)
 
 ### Fixed
@@ -97,7 +139,7 @@
 ### Changed
 
 * `consumed_milligas` is used instead of deprecated `consumed_gas` field
-* `ghostnet` is now a default network in pytezos client (as it is permanent)
+* `basenet` is now a default network in pytezos client (as it is permanent)
 
 ## [3.6.1](https://github.com/baking-bad/pytezos/compare/3.6.0...3.6.1) (2022-08-04)
 

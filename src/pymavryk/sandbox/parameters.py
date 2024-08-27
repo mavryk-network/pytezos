@@ -3,29 +3,18 @@ from typing import Dict
 
 from pymavryk.crypto.key import Key
 
-EDO = 'PtEdo2ZkT9oKpimTah6x2embF25oss54njMuPzkJTEi5RqfdZFA'
-FLORENCE = 'PsFLorenaUUuikDWvMDr6fGBRG8kt3e3D3fHoXK1j1BFRxeSH4i'
-GRANADA = 'PtGRANADsDU8R9daYKAgWnQYAJ64omN1o3KMGVCykShA97vQbvV'
-HANGZHOU = 'PtHangz2aRngywmSRGGvrcTyMbbdpWdpFKuS4uMWxg2RaH9i1qx'
-ITHACA = 'Psithaca2MLRFYargivpo7YvUr7wUDqyxrdhC5CQq78mRvimz6A'
-JAKARTA = 'PtJakart2xVj7pYXJBXrqHgd82rdkLey5ZeeGwDgPp9rhQUbSqY'
-KATHMANDU = 'PtKathmankSpLLDALzWw7CGD2j2MtyveTwboEYokqUCP4a1LxMg'
-LIMA = 'PtLimaPtLMwfNinJi9rCfDPWea8dFgTZ1MeJ9f1m2SRic6ayiwW'
-MUMBAI = 'PtMumbai2TmsJHNGRkD8v8YDbtao7BLUC3wjASn1inAKLFCjaH1'
-NAIROBI = 'PtNairobiyssHuh87hEhfVBGCVrK3WnS8Z2FT4ymB5tAa4r1nQf'
-LATEST = NAIROBI
+ATLAS = 'PtAtLasomUEW99aVhVTrqjCHjJSpFUa8uHNEAEamx9v2SNeTaNp'
+BOREAS = 'Pt8h9rz3r9F3Yx3wzJqF42sxsyVoo6kL4FBoJSWRzKmDvjXjHwV'
+LATEST = BOREAS
+
+protocol_hashes = {
+    'atlas': ATLAS,
+    'boreas': BOREAS,
+}
 
 protocol_version = {
-    EDO: 8,
-    FLORENCE: 9,
-    GRANADA: 10,
-    HANGZHOU: 11,
-    ITHACA: 12,
-    JAKARTA: 13,
-    KATHMANDU: 14,
-    LIMA: 15,
-    MUMBAI: 16,
-    NAIROBI: 17,
+    ATLAS: 1,
+    BOREAS: 2,
 }
 
 sandbox_commitment = {
@@ -63,6 +52,7 @@ sandbox_addresses = {
 }
 
 sandbox_params: Dict[str, Any] = {
+    # NOTE: Built-in accounts
     'bootstrap_accounts': [
         ['edpkuBknW28nW72KG6RoHtYW7p12T6GKc7nAbwYX5m8Wd9sDVC9yav', '4000000000000'],
         ['edpktzNbDAUjUk697W7gYg2CRuBQjyPxbEg8dLccYYwKSKvkPvjtV9', '4000000000000'],
@@ -77,89 +67,134 @@ sandbox_params: Dict[str, Any] = {
             '100500000000',
         ],
     ],
-    'preserved_cycles': 2.0,
-    'blocks_per_cycle': 8.0,
-    'blocks_per_commitment': 4.0,
-    'cycles_per_voting_period': 64.0,
-    'hard_gas_limit_per_operation': '1040000',
-    'hard_gas_limit_per_block': '10400000',
+    # NOTE: Shorter cycles, voting periods and other parameters
+    # NOTE: From https://gitlab.com/tezos/tezos/-/blob/master/src/proto_019_PtParisB/lib_parameters/default_parameters.ml#L317
+    'blocks_preservation_cycles': 1,
+    'consensus_rights_delay': 2,
+    'delegate_parameters_activation_delay': 2,
+    'blocks_per_cycle': 8,
+    'blocks_per_commitment': 4,
+    'nonce_revelation_threshold': 4,
+    'cycles_per_voting_period': 8,
     'proof_of_work_threshold': str((1 << 63) - 1),
-    'seed_nonce_revelation_tip': '125000',
-    'origination_size': 257.0,
-    'cost_per_byte': '250',
-    'hard_storage_limit_per_operation': '60000',
-    'quorum_min': 2000.0,
-    'quorum_max': 7000.0,
-    'min_proposal_quorum': 500.0,
+    'vdf_difficulty': '50000',
+    'minimal_block_delay': '1',
+    'delay_increment_per_round': '1',
+    'consensus_committee_size': 256,
+    'consensus_threshold': 0,
+    'limit_of_delegation_over_baking': 19,
+    'max_operations_time_to_live': 8,
+}
+
+# NOTE: https://rpc.tzkt.io/boreasnet/chains/main/blocks/head/context/constants/parametric
+boreas_params = {
+    "consensus_rights_delay": 2,
+    "blocks_preservation_cycles": 1,
+    "delegate_parameters_activation_delay": 5,
+    "blocks_per_cycle": 12288,
+    "blocks_per_commitment": 96,
+    "nonce_revelation_threshold": 768,
+    "cycles_per_voting_period": 1,
+    "hard_gas_limit_per_operation": "1040000",
+    "hard_gas_limit_per_block": "1733333",
+    "proof_of_work_threshold": "-1",
+    "minimal_stake": "6000000000",
+    "minimal_frozen_stake": "600000000",
+    "vdf_difficulty": "10000000000",
+    "origination_size": 257,
+    "issuance_weights": {
+        "base_total_issued_per_minute": "80007812",
+        "baking_reward_fixed_portion_weight": 5120,
+        "baking_reward_bonus_weight": 5120,
+        "attesting_reward_weight": 10240,
+        "seed_nonce_revelation_tip_weight": 1,
+        "vdf_revelation_tip_weight": 1,
+    },
+    "cost_per_byte": "250",
+    "hard_storage_limit_per_operation": "60000",
+    "quorum_min": 2000,
+    "quorum_max": 7000,
+    "min_proposal_quorum": 500,
+    "liquidity_baking_subsidy": "5000000",
+    "liquidity_baking_toggle_ema_threshold": 1000000000,
+    "max_operations_time_to_live": 360,
+    "minimal_block_delay": "5",
+    "delay_increment_per_round": "2",
+    "consensus_committee_size": 7000,
+    "consensus_threshold": 4667,
+    "minimal_participation_ratio": {"numerator": 2, "denominator": 3},
+    "limit_of_delegation_over_baking": 9,
+    "percentage_of_frozen_deposits_slashed_per_double_baking": 500,
+    "percentage_of_frozen_deposits_slashed_per_double_attestation": 5000,
+    "max_slashing_per_block": 10000,
+    "max_slashing_threshold": 2334,
+    "testnet_dictator": "tz1Xf8zdT3DbAX9cHw3c3CXh79rc4nK4gCe8",
+    "cache_script_size": 100000000,
+    "cache_stake_distribution_cycles": 8,
+    "cache_sampler_state_cycles": 8,
+    "dal_parametric": {
+        "feature_enable": True,
+        "incentives_enable": False,
+        "number_of_slots": 32,
+        "attestation_lag": 8,
+        "attestation_threshold": 66,
+        "redundancy_factor": 8,
+        "page_size": 3967,
+        "slot_size": 126944,
+        "number_of_shards": 512,
+    },
+    "smart_rollup_arith_pvm_enable": False,
+    "smart_rollup_origination_size": 6314,
+    "smart_rollup_challenge_window_in_blocks": 241920,
+    "smart_rollup_stake_amount": "10000000000",
+    "smart_rollup_commitment_period_in_blocks": 180,
+    "smart_rollup_max_lookahead_in_blocks": 518400,
+    "smart_rollup_max_active_outbox_levels": 241920,
+    "smart_rollup_max_outbox_messages_per_level": 100,
+    "smart_rollup_number_of_sections_in_dissection": 32,
+    "smart_rollup_timeout_period_in_blocks": 120960,
+    "smart_rollup_max_number_of_cemented_commitments": 5,
+    "smart_rollup_max_number_of_parallel_games": 32,
+    "smart_rollup_reveal_activation_level": {
+        "raw_data": {"Blake2B": 0},
+        "metadata": 0,
+        "dal_page": 8193,
+        "dal_parameters": 8193,
+        "dal_attested_slots_validity_lag": 241920,
+    },
+    "smart_rollup_private_enable": True,
+    "smart_rollup_riscv_pvm_enable": False,
+    "zk_rollup_enable": False,
+    "zk_rollup_origination_size": 4000,
+    "zk_rollup_min_pending_to_process": 10,
+    "zk_rollup_max_ticket_payload_size": 2048,
+    "global_limit_of_staking_over_baking": 5,
+    "edge_of_staking_over_delegation": 2,
+    "adaptive_issuance_launch_ema_threshold": 0,
+    "adaptive_rewards_params": {
+        "issuance_ratio_final_min": {"numerator": "1", "denominator": "400"},
+        "issuance_ratio_final_max": {"numerator": "1", "denominator": "10"},
+        "issuance_ratio_initial_min": {"numerator": "9", "denominator": "200"},
+        "issuance_ratio_initial_max": {"numerator": "11", "denominator": "200"},
+        "initial_period": 10,
+        "transition_period": 50,
+        "max_bonus": "50000000000000",
+        "growth_rate": {"numerator": "1", "denominator": "25"},
+        "center_dz": {"numerator": "1", "denominator": "2"},
+        "radius_dz": {"numerator": "1", "denominator": "50"},
+    },
+    "adaptive_issuance_activation_vote_enable": True,
+    "autostaking_enable": True,
+    "adaptive_issuance_force_activation": False,
+    "ns_enable": True,
+    "direct_ticket_spending_enable": False,
 }
 
 
 def get_protocol_parameters(protocol_hash: str) -> Dict[str, Any]:
-    # https://gitlab.com/tezos/tezos/-/blob/master/src/proto_017_PtNairob/lib_parameters/default_parameters.ml
+    # https://gitlab.com/tezos/tezos/-/blob/master/src/proto_001_PtAtLas/lib_parameters/default_parameters.ml
     return {
-        **sandbox_params.copy(),
-        'cache_sampler_state_cycles': 8.0,
-        'tx_rollup_enable': False,
-        'tx_rollup_origination_size': 4000.0,
-        'liquidity_baking_toggle_ema_threshold': 1000000000.0,
-        'cache_script_size': 100000000.0,
-        'cache_stake_distribution_cycles': 8.0,
-        'tx_rollup_hard_size_limit_per_inbox': 500000.0,
-        'tx_rollup_hard_size_limit_per_message': 5000.0,
-        'tx_rollup_max_withdrawals_per_batch': 15.0,
-        'tx_rollup_commitment_bond': '10000000000',
-        'tx_rollup_finality_period': 40000.0,
-        'tx_rollup_withdraw_period': 40000.0,
-        'tx_rollup_max_inboxes_count': 40100.0,
-        'tx_rollup_max_messages_per_inbox': 1010.0,
-        'tx_rollup_max_commitments_count': 80100.0,
-        'tx_rollup_cost_per_byte_ema_factor': 120.0,
-        'tx_rollup_max_ticket_payload_size': 2048.0,
-        'tx_rollup_rejection_max_proof_size': 30000.0,
-        'tx_rollup_sunset_level': 3473409.0,
-        'smart_rollup_enable': True,
-        'smart_rollup_arith_pvm_enable': False,
-        'smart_rollup_origination_size': 6314.0,
-        'smart_rollup_challenge_window_in_blocks': 20160.0,
-        'smart_rollup_stake_amount': '32000000',
-        'smart_rollup_commitment_period_in_blocks': 30.0,
-        'smart_rollup_max_lookahead_in_blocks': 30000.0,
-        'smart_rollup_max_active_outbox_levels': 20160.0,
-        'smart_rollup_max_outbox_messages_per_level': 100.0,
-        'smart_rollup_number_of_sections_in_dissection': 32.0,
-        'smart_rollup_timeout_period_in_blocks': 20160.0,
-        'smart_rollup_max_number_of_cemented_commitments': 5.0,
-        'smart_rollup_max_number_of_parallel_games': 32.0,
-        'zk_rollup_enable': False,
-        'zk_rollup_origination_size': 4000.0,
-        'zk_rollup_min_pending_to_process': 10.0,
-        'blocks_per_stake_snapshot': 4.0,
-        'consensus_committee_size': 526.0,
-        'consensus_threshold': 0.0,
-        'baking_reward_fixed_portion': '333333',
-        'baking_reward_bonus_per_slot': '3921',
-        'endorsing_reward_per_slot': '2604',
-        'max_slashing_period': 2.0,
-        'frozen_deposits_percentage': 5.0,
-        'max_operations_time_to_live': 120.0,
-        'delay_increment_per_round': '1',
-        'minimal_participation_ratio': {'numerator': 2.0, 'denominator': 3.0},
-        'double_baking_punishment': '640000000',
-        'ratio_of_frozen_deposits_slashed_per_double_endorsement': {'numerator': 1.0, 'denominator': 2.0},
-        'minimal_block_delay': '1',
-        'liquidity_baking_subsidy': '2500000',
-        'nonce_revelation_threshold': 2.0,
-        'vdf_difficulty': '50000',
-        'dal_parametric': {
-            'feature_enable': False,
-            'number_of_slots': 256.0,
-            'attestation_lag': 1.0,
-            'attestation_threshold': 50.0,
-            'blocks_per_epoch': 4.0,
-            'page_size': 4096.0,
-            'slot_size': 1048576.0,
-            'redundancy_factor': 16.0,
-            'number_of_shards': 256.0,
-        },
-        'minimal_stake': '6000',
+        **boreas_params,
+        # **old_params,
+        **sandbox_params,
     }

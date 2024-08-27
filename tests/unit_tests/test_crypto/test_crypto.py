@@ -10,18 +10,18 @@ from pymavryk.crypto.key import Key
 class TestCrypto(TestCase):
     """
     Test data generation:
-    ./octez-client gen keys test_ed25519 -s ed25519 --force (--encrypted)
-    ./octez-client gen keys test_secp256k1 -s secp256k1 --force (--encrypted)
-    ./octez-client gen keys test_p256 -s p256 --force (--encrypted)
-    ./octez-client show address test_ed25519 -S
-    ./octez-client show address test_secp256k1 -S
-    ./octez-client show address test_p256 -S
-    ./octez-client sign bytes 0x74657374 for test_ed25519
-    ./octez-client sign bytes 0x74657374 for test_secp256k1
-    ./octez-client sign bytes 0x74657374 for test_p256
+    ./mavkit-client gen keys test_ed25519 -s ed25519 --force (--encrypted)
+    ./mavkit-client gen keys test_secp256k1 -s secp256k1 --force (--encrypted)
+    ./mavkit-client gen keys test_p256 -s p256 --force (--encrypted)
+    ./mavkit-client show address test_ed25519 -S
+    ./mavkit-client show address test_secp256k1 -S
+    ./mavkit-client show address test_p256 -S
+    ./mavkit-client sign bytes 0x74657374 for test_ed25519
+    ./mavkit-client sign bytes 0x74657374 for test_secp256k1
+    ./mavkit-client sign bytes 0x74657374 for test_p256
 
     Issues:
-    * `octez-client sign bytes` does not support P256 curve
+    * `mavkit-client sign bytes` does not support P256 curve
     """
 
     @parameterized.expand(

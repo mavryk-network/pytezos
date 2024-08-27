@@ -29,8 +29,7 @@ class SandboxTestCase(SandboxedNodeTestCase):
     def test_4_bake_block(self) -> None:
         self.bake_block()
         bootstrap3 = self.client.shell.contracts[sandbox_addresses['bootstrap3']]()
-        self.assertEqual(3_800_000_333_333 + 42, int(bootstrap3['balance']))
-        # 200_000_000_000 frozen deposits + 333333 block rewards
+        self.assertEqual(3800000316708, int(bootstrap3['balance']))
 
     def test_5_activate_account(self) -> None:
         client = self.get_client(key=sandbox_commitment)
