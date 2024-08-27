@@ -52,7 +52,7 @@ jobs:
         id: meta-pymavryk
         uses: docker/metadata-action@v3
         with:
-          images: bakingbad/pymavryk
+          images: mavrykdynamics/pymavryk
           tags: type=pep440,pattern={{version}}
 
       - name: Set up metadata (michelson-kernel)
