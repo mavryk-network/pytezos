@@ -59,7 +59,7 @@ jobs:
         id: meta-michelson-kernel
         uses: docker/metadata-action@v3
         with:
-          images: bakingbad/michelson-kernel
+          images: mavrykdynamics/michelson-kernel
           tags: type=pep440,pattern={{version}}
 
       - name: Publish stable image (pymavryk)

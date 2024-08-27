@@ -41,7 +41,7 @@ RUN apk add --update --no-cache \
 RUN adduser -D pymavryk
 USER pymavryk
 ENV PATH="/opt/pymavryk/bin:$PATH"
-ENV PYTHONPATH="/home/pymavryk:/home/pymravryk/src:/opt/pymavyk/src:/opt/pymavryk/lib/python3.12/site-packages:$PYTHONPATH"
+ENV PYTHONPATH="/home/pymavryk:/home/pymavryk/src:/opt/pymavryk/src:/opt/pymavryk/lib/python3.12/site-packages:$PYTHONPATH"
 WORKDIR /home/pymavryk/
 ENTRYPOINT [ "/opt/pymavryk/bin/jupyter-notebook", "--port=8888", "--ip=0.0.0.0" , "--no-browser", "--no-mathjax" ]
 EXPOSE 8888
